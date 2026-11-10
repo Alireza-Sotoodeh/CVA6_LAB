@@ -1,0 +1,43 @@
+[*]
+[*] GTKWave Analyzer v3.3.116 (w)1999-2023 BSI
+[*]
+[dumpfile] "/home/alireza/GitHub/Mahani/CVA6_LAB/Verilator/CVA6_Lab/waveform.vcd"
+[savefile] "/home/alireza/GitHub/Mahani/CVA6_LAB/Verilator/CVA6_Lab/CVA6_simple_smoke.gtkw"
+[timestart] 0
+[size] 1854 1001
+[pos] -27 -24
+*-6.900000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TOP.
+[treeopen] TOP.cva6_axi_wrapper.
+[treeopen] TOP.cva6_axi_wrapper.i_cva6.
+[treeopen] TOP.cva6_axi_wrapper.i_cva6.issue_stage_i.
+[treeopen] TOP.cva6_axi_wrapper.i_cva6.issue_stage_i.i_scoreboard.
+[sst_width] 386
+[signals_width] 260
+[sst_expanded] 1
+[sst_vpaned_height] 297
+@28
+TOP.clk_i
+TOP.rst_ni
+@200
+-Instruction Commit & Retirement
+@28
+TOP.cva6_axi_wrapper.commit_ack_o[1:0]
+@22
+TOP.cva6_axi_wrapper.commit_pc_o[0][31:0]
+TOP.cva6_axi_wrapper.commit_pc_o[1][31:0]
+TOP.cva6_axi_wrapper.commit_rd_o[0][4:0]
+TOP.cva6_axi_wrapper.commit_rd_o[1][4:0]
+TOP.cva6_axi_wrapper.commit_wdata_o[0][31:0]
+TOP.cva6_axi_wrapper.commit_wdata_o[1][31:0]
+@200
+-Scoreboard In-Flight Instruction Counters & Pointers
+@24
+TOP.cva6_axi_wrapper.i_cva6.issue_stage_i.i_scoreboard.num_issue[0]
+TOP.cva6_axi_wrapper.i_cva6.issue_stage_i.i_scoreboard.num_commit[1:0]
+TOP.cva6_axi_wrapper.i_cva6.issue_stage_i.i_scoreboard.issue_pointer_q[2:0]
+TOP.cva6_axi_wrapper.i_cva6.issue_stage_i.i_scoreboard.commit_pointer_q[0][2:0]
+@28
+TOP.cva6_axi_wrapper.i_cva6.issue_stage_i.i_scoreboard.still_issued[7:0]
+[pattern_trace] 1
+[pattern_trace] 0
