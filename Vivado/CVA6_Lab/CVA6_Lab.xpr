@@ -58,7 +58,7 @@
     <Option Name="IPUserFilesDir" Val="$PIPUSERFILESDIR"/>
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
-    <Option Name="WTXSimLaunchSim" Val="0"/>
+    <Option Name="WTXSimLaunchSim" Val="6"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
@@ -2583,11 +2583,31 @@
     </FileSet>
     <FileSet Name="sim_1" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_1" RelGenDir="$PGENDIR/sim_1">
       <Filter Type="Srcs"/>
+      <File Path="$PPRDIR/tb/sv/cva6_tb.sv">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/tb/wrappers/cva6_axi_wrapper.sv">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="cb_filter"/>
+        <Option Name="TopModule" Val="cva6_tb"/>
         <Option Name="TopLib" Val="xil_defaultlib"/>
-        <Option Name="TopAutoSet" Val="TRUE"/>
+        <Option Name="VerilogDir" Val="$PPRDIR/imports/rtl/.bender/git/checkouts/axi-f14341c32cf56c49/include"/>
+        <Option Name="VerilogDir" Val="$PPRDIR/imports/rtl/.bender/git/checkouts/common_cells-7e395bb92335c3c4/include"/>
+        <Option Name="VerilogDir" Val="$PPRDIR/imports/rtl/common/local/util"/>
+        <Option Name="VerilogDir" Val="$PPRDIR/imports/rtl/core/cache_subsystem/hpdcache/rtl/include"/>
+        <Option Name="VerilogDir" Val="$PPRDIR/imports/rtl/core/cache_subsystem/hpdcache/rtl/src/utils/ecc"/>
+        <Option Name="VerilogDir" Val="$PPRDIR/imports/rtl/core/include"/>
         <Option Name="TransportPathDelay" Val="0"/>
         <Option Name="TransportIntDelay" Val="0"/>
         <Option Name="SelectedSimModel" Val="rtl"/>
@@ -2600,6 +2620,11 @@
         <Option Name="CosimPlatform" Val=""/>
         <Option Name="CosimElf" Val=""/>
         <Option Name="Dmv" Val=""/>
+        <Verilog_Define Name="TARGET_CV32A6_IMAC_SV32"/>
+        <Verilog_Define Name="TARGET_FPGA"/>
+        <Verilog_Define Name="TARGET_SYNTHESIS"/>
+        <Verilog_Define Name="TARGET_VIVADO"/>
+        <Verilog_Define Name="TARGET_XILINX"/>
       </Config>
     </FileSet>
     <FileSet Name="utils_1" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
