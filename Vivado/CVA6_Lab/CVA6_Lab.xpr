@@ -4,10 +4,10 @@
 <!-- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.                   -->
 <!-- Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.   -->
 
-<Project Product="Vivado" Version="7" Minor="70" Path="/home/alireza/GitHub/Mahani/CVA6_LAB/VivadoSimulations/CVA6_32bit/CVA6_32bit.xpr">
+<Project Product="Vivado" Version="7" Minor="70" Path="/home/alireza/GitHub/Mahani/CVA6_LAB/Vivado/CVA6_Lab/CVA6_Lab.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="1ce5d5f305564850b42b7cc57ec4a7f8"/>
+    <Option Name="Id" Val="972cdfc347f64c85888afe05f142b3dd"/>
     <Option Name="Part" Val="xa7s6cpga196-1Q"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
