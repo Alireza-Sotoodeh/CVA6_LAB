@@ -1,8 +1,9 @@
 # ============================================================================
 # Author: Alireza Sotodeh
-# Date & Time: 2026-11-11 00:13:00 +03:30
+# Date & Time: 2026-11-14 11:40:00 +03:30
 # Status: MODIFIED FILE
-# Reason / Modification: Comprehensive .gitignore for CVA6_LAB including AGENTS.md
+# Reason / Modification: Comprehensive .gitignore for CVA6_LAB including AGENTS.md;
+#   added the local CVA6-Lab build output directories (firmware images, Verilator tree)
 # ============================================================================
 
 # -----------------------------------------------------------------------------
@@ -77,3 +78,9 @@ scratch/
 __pycache__/
 *.pyc
 *.pyo
+
+# -----------------------------------------------------------------------------
+# 7. Local CVA6-Lab Build Outputs (firmware images, Verilator build tree)
+# -----------------------------------------------------------------------------
+Vivado/CVA6_Lab/build/
+Vivado/CVA6_Lab/firmware/build/
