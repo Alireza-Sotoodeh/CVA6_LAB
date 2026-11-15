@@ -188,6 +188,15 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/core/cache_subsystem/axi_adapter.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/core/cache_subsystem/axi_adapter.sv"/>
+          <Attr Name="ImportTime" Val="1794293203"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/imports/rtl/core/axi_shim.sv">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/core/axi_shim.sv"/>
@@ -485,9 +494,54 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/core/cache_subsystem/hpdcache/rtl/src/common/hpdcache_1hot_to_binary.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/core/cache_subsystem/hpdcache/rtl/src/common/hpdcache_1hot_to_binary.sv"/>
+          <Attr Name="ImportTime" Val="1794293203"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/core/cache_subsystem/hpdcache/rtl/src/hpdcache_cmo.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/core/cache_subsystem/hpdcache/rtl/src/hpdcache_cmo.sv"/>
+          <Attr Name="ImportTime" Val="1794293203"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/core/cache_subsystem/hpdcache/rtl/src/hpdcache_core_arbiter.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/core/cache_subsystem/hpdcache/rtl/src/hpdcache_core_arbiter.sv"/>
+          <Attr Name="ImportTime" Val="1794293203"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/core/cache_subsystem/hpdcache/rtl/src/hpdcache_ctrl.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/core/cache_subsystem/hpdcache/rtl/src/hpdcache_ctrl.sv"/>
+          <Attr Name="ImportTime" Val="1794293203"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/imports/rtl/core/cache_subsystem/hpdcache/rtl/src/common/hpdcache_data_upsize.sv">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/core/cache_subsystem/hpdcache/rtl/src/common/hpdcache_data_upsize.sv"/>
+          <Attr Name="ImportTime" Val="1794293203"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/core/cache_subsystem/hpdcache/rtl/src/common/hpdcache_demux.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/core/cache_subsystem/hpdcache/rtl/src/common/hpdcache_demux.sv"/>
           <Attr Name="ImportTime" Val="1794293203"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -503,9 +557,36 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/core/cache_subsystem/hpdcache/rtl/src/hpdcache_flush.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/core/cache_subsystem/hpdcache/rtl/src/hpdcache_flush.sv"/>
+          <Attr Name="ImportTime" Val="1794293203"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/core/cache_subsystem/hpdcache/rtl/src/common/hpdcache_fxarb.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/core/cache_subsystem/hpdcache/rtl/src/common/hpdcache_fxarb.sv"/>
+          <Attr Name="ImportTime" Val="1794293203"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/imports/rtl/core/cache_subsystem/hpdcache/rtl/src/utils/hpdcache_mem_req_read_arbiter.sv">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/core/cache_subsystem/hpdcache/rtl/src/utils/hpdcache_mem_req_read_arbiter.sv"/>
+          <Attr Name="ImportTime" Val="1794293203"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/core/cache_subsystem/hpdcache/rtl/src/utils/hpdcache_mem_req_write_arbiter.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/core/cache_subsystem/hpdcache/rtl/src/utils/hpdcache_mem_req_write_arbiter.sv"/>
           <Attr Name="ImportTime" Val="1794293203"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -533,6 +614,51 @@
       <File Path="$PSRCDIR/sources_1/imports/rtl/core/cache_subsystem/hpdcache/rtl/src/utils/hpdcache_mem_to_axi_write.sv">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/core/cache_subsystem/hpdcache/rtl/src/utils/hpdcache_mem_to_axi_write.sv"/>
+          <Attr Name="ImportTime" Val="1794293203"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/core/cache_subsystem/hpdcache/rtl/src/hpdcache_miss_handler.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/core/cache_subsystem/hpdcache/rtl/src/hpdcache_miss_handler.sv"/>
+          <Attr Name="ImportTime" Val="1794293203"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/core/cache_subsystem/hpdcache/rtl/src/common/hpdcache_mux.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/core/cache_subsystem/hpdcache/rtl/src/common/hpdcache_mux.sv"/>
+          <Attr Name="ImportTime" Val="1794293203"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/core/cache_subsystem/hpdcache/rtl/src/common/hpdcache_sync_buffer.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/core/cache_subsystem/hpdcache/rtl/src/common/hpdcache_sync_buffer.sv"/>
+          <Attr Name="ImportTime" Val="1794293203"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/core/cache_subsystem/hpdcache/rtl/src/hpdcache_uncached.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/core/cache_subsystem/hpdcache/rtl/src/hpdcache_uncached.sv"/>
+          <Attr Name="ImportTime" Val="1794293203"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/core/cache_subsystem/hpdcache/rtl/src/hpdcache_wbuf.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/core/cache_subsystem/hpdcache/rtl/src/hpdcache_wbuf.sv"/>
           <Attr Name="ImportTime" Val="1794293203"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -827,6 +953,24 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/common/local/util/tc_sram_wrapper.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/common/local/util/tc_sram_wrapper.sv"/>
+          <Attr Name="ImportTime" Val="1794293203"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/common/local/util/tc_sram_wrapper_cache_techno.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/common/local/util/tc_sram_wrapper_cache_techno.sv"/>
+          <Attr Name="ImportTime" Val="1794293203"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/imports/src/unread.sv">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/.bender/git/checkouts/common_cells-7e395bb92335c3c4/src/unread.sv"/>
@@ -942,36 +1086,6 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/rtl/.bender/git/checkouts/common_cells-7e395bb92335c3c4/src/rr_arb_tree.sv">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/.bender/git/checkouts/common_cells-7e395bb92335c3c4/src/rr_arb_tree.sv"/>
-          <Attr Name="ImportTime" Val="1794293203"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/rtl/.bender/git/checkouts/common_cells-7e395bb92335c3c4/src/spill_register_flushable.sv">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/.bender/git/checkouts/common_cells-7e395bb92335c3c4/src/spill_register_flushable.sv"/>
-          <Attr Name="ImportTime" Val="1794293203"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/rtl/.bender/git/checkouts/common_cells-7e395bb92335c3c4/src/lfsr.sv">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/.bender/git/checkouts/common_cells-7e395bb92335c3c4/src/lfsr.sv"/>
-          <Attr Name="ImportTime" Val="1794293203"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/imports/common_cells/registers.svh">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
@@ -990,6 +1104,46 @@
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
           <Attr Name="IsVisible" Val="1"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/.bender/git/checkouts/common_cells-7e395bb92335c3c4/src/rr_arb_tree.sv">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/.bender/git/checkouts/common_cells-7e395bb92335c3c4/src/rr_arb_tree.sv"/>
+          <Attr Name="ImportTime" Val="1794293203"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/.bender/git/checkouts/common_cells-7e395bb92335c3c4/src/lfsr.sv">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/.bender/git/checkouts/common_cells-7e395bb92335c3c4/src/lfsr.sv"/>
+          <Attr Name="ImportTime" Val="1794293203"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/.bender/git/checkouts/common_cells-7e395bb92335c3c4/src/lfsr_8bit.sv">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/.bender/git/checkouts/common_cells-7e395bb92335c3c4/src/lfsr_8bit.sv"/>
+          <Attr Name="ImportTime" Val="1794293203"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/.bender/git/checkouts/common_cells-7e395bb92335c3c4/src/spill_register_flushable.sv">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../CloneFiles/CVA6-Lab/rtl/.bender/git/checkouts/common_cells-7e395bb92335c3c4/src/spill_register_flushable.sv"/>
+          <Attr Name="ImportTime" Val="1794293203"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
       <Config>
