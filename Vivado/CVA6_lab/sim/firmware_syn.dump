@@ -1,0 +1,15 @@
+
+/home/alireza/GitHub/Mahani/CVA6_LAB/Vivado/CVA6_lab/sim/firmware_syn.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+80000000 <_start>:
+80000000:	40a9                	li	ra,10
+80000002:	4151                	li	sp,20
+80000004:	002081b3          	add	gp,ra,sp
+80000008:	80001237          	lui	tp,0x80001
+8000000c:	00322023          	sw	gp,0(tp) # 80001000 <_end+0xfe0>
+
+80000010 <loop>:
+80000010:	a001                	j	80000010 <loop>
