@@ -1,9 +1,10 @@
 // ============================================================================
 // Author: Alireza Sotodeh
-// Date & Time: 2026-11-10 11:10:00 +03:30
+// Date & Time: 2026-11-18 00:03:00 +03:30
 // Status: MODIFIED FILE
-// Reason / Modification: Added dual-commit port support (NrCommitPorts=2) to spy_commit_pc,
-//                        spy_loop_hit, and widened probe_fifo_usage for FETCH_FIFO_DEPTH=8.
+// Reason / Modification: Added comprehensive pipeline signals (counters, fetch instruction,
+//                        I/D-cache, ALU/execution, branch resolution, LSU/AXI, commit)
+//                        to CSV trace logger.
 // ============================================================================
 
 `timescale 1ns / 1ps
@@ -137,6 +138,22 @@ module tb_cva6;
   wire        probe_fifo_empty        = u_dut.i_frontend.i_instr_queue.instr_queue_empty[0];
   wire [3:0]  probe_fifo_usage        = u_dut.i_frontend.i_instr_queue.gen_instr_fifo[0].i_fifo_instr_data.usage_o;
   wire        probe_sb_full           = u_dut.issue_stage_i.i_scoreboard.sb_full_o;
+
+  // Group 7: ALU, Branch, Functional Units & D-Cache Miss Probes
+  wire        probe_dcache_miss               = u_dut.dcache_miss_cache_perf;
+  wire        probe_alu_valid                 = u_dut.alu_valid_id_ex[0];
+  wire [31:0] probe_alu_result                = u_dut.flu_result_ex_id[31:0];
+  wire        probe_flu_valid                 = u_dut.flu_valid_ex_id;
+  wire        probe_flu_ready                 = u_dut.flu_ready_ex_id;
+  wire        probe_mult_valid                = u_dut.mult_valid_id_ex[0];
+  wire        probe_branch_valid              = u_dut.branch_valid_id_ex[0];
+  wire        probe_branch_predict            = u_dut.branch_predict_id_ex.valid;
+  wire        probe_resolve_branch            = u_dut.resolve_branch_ex_id;
+  wire        probe_resolved_branch_taken     = u_dut.resolved_branch.is_taken;
+  wire        probe_resolved_branch_mispredict= u_dut.resolved_branch.is_mispredict;
+  wire [31:0] probe_resolved_branch_target    = u_dut.resolved_branch.target_address[31:0];
+  wire        probe_store_valid               = u_dut.store_valid_ex_id;
+  wire [31:0] probe_store_result              = u_dut.store_result_ex_id[31:0];
 
   // ----------------------------------------------------------------------------
   // 4. Memory Preload with Standard 19-Instruction RV32I Test Program
@@ -370,12 +387,23 @@ module tb_cva6;
   int check_count = 0;
   int error_count = 0;
   int cycle_count = 0;
+  int instret_count = 0;
   int csv_fd;
+
+  always @(posedge clk or negedge rst_ni) begin
+    if (!rst_ni) begin
+      instret_count <= 0;
+    end else begin
+      if (probe_commit_ack[0]) begin
+        instret_count <= instret_count + 1;
+      end
+    end
+  end
 
   initial begin
     csv_fd = $fopen("cva6_trace.csv", "w");
     if (csv_fd) begin
-      $fdisplay(csv_fd, "Time_ps,Cycle,CommitAck,CommitPC,WAddr,WData,FetchPC,IcacheState,IcacheMiss,IcacheReq,IcacheRdy,IcacheVld,FifoRdy,FifoFull,FifoEmpty,FifoUsage,FeIdVld,IdFeRdy,IdPC,AxiARValid,AxiARAddr,AxiRValid,LsuValid,LsuReady,StallStPending,WbufEmpty,SbFull");
+      $fdisplay(csv_fd, "Time_ps,Cycle,InstRet,FetchPC,FetchReq,FetchValid,FetchInstr,FeIdValid,IdFeReady,InstrQueueUsage,IcacheState,IcacheMiss,IcacheReady,IcacheFlushDone,DcacheMiss,WbufEmpty,StallStPending,AluValid,AluResult,FluValid,FluReady,MultValid,BranchValid,BranchPredict,BranchResolvedValid,BranchResolvedTaken,BranchMispredict,BranchTarget,LsuValid,LsuReady,LoadValid,LoadResult,StoreValid,StoreResult,AxiARValid,AxiARAddr,AxiRValid,AxiAWValid,AxiAWAddr,AxiWValid,AxiBValid,CommitAck,CommitPC,GprWe,GprWaddr,GprWdata,SbFull");
     end else begin
       $display("[TB_WARNING] Could not open cva6_trace.csv for writing.");
     end
@@ -385,32 +413,53 @@ module tb_cva6;
     cycle_count++;
 
     if (csv_fd) begin
-      $fdisplay(csv_fd, "%0t,%0d,%b,0x%08h,%0d,0x%08h,0x%08h,%0d,%b,%b,%b,%b,%b,%b,%b,%0d,%b,%b,0x%08h,%b,0x%08h,%b,%b,%b,%b,%b,%b",
-                $time, cycle_count,
-                probe_commit_ack,
-                probe_commit_ack ? probe_commit_pc : 32'h0,
-                probe_we_gpr ? probe_waddr_gpr : 5'd0,
-                probe_we_gpr ? probe_wdata_gpr : 32'd0,
+      $fdisplay(csv_fd, "%0t,%0d,%0d,0x%08h,%b,%b,0x%08h,%b,%b,%0d,%0d,%b,%b,%b,%b,%b,%b,%b,0x%08h,%b,%b,%b,%b,%b,%b,%b,%b,0x%08h,%b,%b,%b,0x%08h,%b,0x%08h,%b,0x%08h,%b,%b,0x%08h,%b,%b,%b,0x%08h,%b,%0d,0x%08h,%b",
+                $time,
+                cycle_count,
+                instret_count,
                 spy_fetch_pc,
-                probe_icache_state,
-                probe_icache_miss,
                 probe_fetch_req,
-                probe_icache_ready,
                 probe_fetch_valid,
-                probe_fifo_ready,
-                probe_fifo_full,
-                probe_fifo_empty,
-                probe_fifo_usage,
+                probe_fe_instr,
                 probe_fe_id_valid,
                 probe_id_fe_ready,
-                probe_fe_addr,
+                probe_fifo_usage,
+                probe_icache_state,
+                probe_icache_miss,
+                probe_icache_ready,
+                probe_icache_flush_done,
+                probe_dcache_miss,
+                probe_wbuffer_empty,
+                probe_stall_st_pending,
+                probe_alu_valid,
+                probe_alu_result,
+                probe_flu_valid,
+                probe_flu_ready,
+                probe_mult_valid,
+                probe_branch_valid,
+                probe_branch_predict,
+                probe_resolve_branch,
+                probe_resolved_branch_taken,
+                probe_resolved_branch_mispredict,
+                probe_resolved_branch_target,
+                probe_lsu_valid,
+                probe_lsu_ready,
+                probe_load_valid,
+                probe_load_result,
+                probe_store_valid,
+                probe_store_result,
                 noc_req.ar_valid,
                 noc_req.ar.addr[31:0],
                 noc_resp.r_valid,
-                probe_lsu_valid,
-                probe_lsu_ready,
-                probe_stall_st_pending,
-                probe_wbuffer_empty,
+                noc_req.aw_valid,
+                noc_req.aw.addr[31:0],
+                noc_req.w_valid,
+                noc_resp.b_valid,
+                probe_commit_ack[0],
+                probe_commit_ack[0] ? probe_commit_pc : 32'h0,
+                probe_we_gpr,
+                probe_we_gpr ? probe_waddr_gpr : 5'd0,
+                probe_we_gpr ? probe_wdata_gpr : 32'd0,
                 probe_sb_full);
     end
   end
