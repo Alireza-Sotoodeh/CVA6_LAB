@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="480" viewBox="0 0 1100 480">
+<defs>
+  <style type="text/css">
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }
+    .sig-sub { font-size: 9px; fill: #64748b; }
+    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }
+    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }
+    .ann-title { font-size: 11px; font-weight: 700; fill: #0f172a; }
+    .ann-body { font-size: 10px; fill: #334155; }
+  </style>
+</defs>
+<rect width="1100" height="480" fill="#f8fafc" />
+<rect x="20" y="15" width="1060" height="42" rx="8" fill="#1e293b" />
+<text x="35" y="41" fill="#f8fafc" font-size="15" font-weight="700">CVA6 Scoreboard &amp; Dual-Commit Microarchitecture (Single-Issue vs Dual-Commit)</text>
+<text x="1065" y="41" fill="#94a3b8" font-size="11" text-anchor="end">Issue: 1 Instr/Cyc (NrIssuePorts=1) | Commit: Up to 2 Instrs/Cyc (NrCommitPorts=2)</text>
+<rect x="60" y="90" width="240" height="340" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" />
+<rect x="60" y="90" width="240" height="32" rx="8" fill="#e2e8f0" />
+<text x="180.0" y="111" font-size="12" font-weight="700" fill="#0f172a" text-anchor="middle">Front-End &amp; Issue Stage</text>
+<rect x="80" y="140" width="200" height="45" rx="6" fill="#ffffff" stroke="#cbd5e1" />
+<text x="180.0" y="160" font-size="11" font-weight="700" fill="#1e293b" text-anchor="middle">Fetch &amp; Align (I-Cache)</text>
+<text x="180.0" y="174" font-size="9" fill="#64748b" text-anchor="middle">32-bit aligned instructions</text>
+<rect x="80" y="205" width="200" height="45" rx="6" fill="#ffffff" stroke="#cbd5e1" />
+<text x="180.0" y="225" font-size="11" font-weight="700" fill="#1e293b" text-anchor="middle">Instruction FIFO (4 entries)</text>
+<text x="180.0" y="239" font-size="9" fill="#64748b" text-anchor="middle">Decouples fetch &amp; issue</text>
+<rect x="80" y="270" width="200" height="65" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5" />
+<text x="180.0" y="292" font-size="11" font-weight="700" fill="#1d4ed8" text-anchor="middle">Single-Issue Port</text>
+<text x="180.0" y="308" font-size="9.5" font-weight="600" fill="#1e40af" text-anchor="middle">NrIssuePorts = 1</text>
+<text x="180.0" y="322" font-size="8.5" fill="#3b82f6" text-anchor="middle">Max 1 instruction / cycle dispatched</text>
+<rect x="80" y="355" width="200" height="55" rx="6" fill="#fef2f2" stroke="#ef4444" />
+<text x="180.0" y="375" font-size="10" font-weight="700" fill="#b91c1c" text-anchor="middle">Front-End Ceiling</text>
+<text x="180.0" y="392" font-size="8.5" fill="#7f1d1d" text-anchor="middle">Long-term sustained IPC &le; 1.0</text>
+<line x1="300" y1="302" x2="360" y2="302" stroke="#2563eb" stroke-width="2.5" />
+<polygon points="360,298 368,302 360,306" fill="#2563eb" />
+<text x="334" y="293" font-size="9" font-weight="700" fill="#2563eb" text-anchor="middle">issue_ack</text>
+<rect x="370" y="90" width="340" height="340" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5" />
+<rect x="370" y="90" width="340" height="32" rx="8" fill="#e2e8f0" />
+<text x="540.0" y="111" font-size="12" font-weight="700" fill="#0f172a" text-anchor="middle">Scoreboard (8 In-Flight Entries)</text>
+<rect x="385" y="135" width="310" height="35" rx="5" fill="#bbf7d0" stroke="#15803d" stroke-width="1" />
+<text x="395" y="157" font-size="10" font-weight="700" fill="#0f172a">Slot 0 (Head): SW x5, 0(x1)</text>
+<text x="685" y="157" font-size="10" font-weight="700" fill="#15803d" text-anchor="end">DONE</text>
+<rect x="385" y="177" width="310" height="35" rx="5" fill="#bbf7d0" stroke="#15803d" stroke-width="1" />
+<text x="395" y="199" font-size="10" font-weight="700" fill="#0f172a">Slot 1 (Next): ADDI x6, x6, 1</text>
+<text x="685" y="199" font-size="10" font-weight="700" fill="#15803d" text-anchor="end">DONE</text>
+<rect x="385" y="219" width="310" height="35" rx="5" fill="#fed7aa" stroke="#c2410c" stroke-width="1" />
+<text x="395" y="241" font-size="10" font-weight="700" fill="#0f172a">Slot 2: ADDI x7, x7, 2</text>
+<text x="685" y="241" font-size="10" font-weight="700" fill="#c2410c" text-anchor="end">WAIT</text>
+<rect x="385" y="261" width="310" height="35" rx="5" fill="#fed7aa" stroke="#c2410c" stroke-width="1" />
+<text x="395" y="283" font-size="10" font-weight="700" fill="#0f172a">Slot 3: ADDI x8, x8, 3</text>
+<text x="685" y="283" font-size="10" font-weight="700" fill="#c2410c" text-anchor="end">WAIT</text>
+<rect x="385" y="308" width="310" height="95" rx="6" fill="#ffffff" stroke="#cbd5e1" />
+<text x="395" y="327" font-size="10.5" font-weight="700" fill="#0f172a">Dual-Commit Pairing Rules:</text>
+<text x="395" y="343" font-size="9" fill="#334155">• Rule 1: Slot 0 must be marked valid and completed (trans_id done).</text>
+<text x="395" y="357" font-size="9" fill="#334155">• Rule 2: Slot 1 must also be valid &amp; completed without pending RAW hazard.</text>
+<text x="395" y="371" font-size="9" fill="#334155">• Rule 3: No exception, trap, or CSR flush pending on either instruction.</text>
+<text x="395" y="385" font-size="9" fill="#16a34a" font-weight="600">✓ If all met: Slot 0 &rarr; Port 0, Slot 1 &rarr; Port 1 in SAME cycle!</text>
+<line x1="710" y1="152" x2="770" y2="190" stroke="#16a34a" stroke-width="2.5" />
+<polygon points="770,186 778,190 770,194" fill="#16a34a" />
+<text x="745" y="165" font-size="9" font-weight="700" fill="#16a34a">Port 0</text>
+<line x1="710" y1="194" x2="770" y2="270" stroke="#9333ea" stroke-width="2.5" />
+<polygon points="770,266 778,270 770,274" fill="#9333ea" />
+<text x="745" y="240" font-size="9" font-weight="700" fill="#9333ea">Port 1</text>
+<rect x="780" y="90" width="300" height="340" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" />
+<rect x="780" y="90" width="300" height="32" rx="8" fill="#e2e8f0" />
+<text x="930.0" y="111" font-size="12" font-weight="700" fill="#0f172a" text-anchor="middle">Commit Stage &amp; Register File</text>
+<rect x="795" y="140" width="270" height="70" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5" />
+<text x="805" y="162" font-size="11" font-weight="700" fill="#15803d">Commit Port 0 (Primary)</text>
+<text x="805" y="178" font-size="9.5" fill="#166534">commit_ack[0] = 1 | PC = 0x80000048 (SW)</text>
+<text x="805" y="194" font-size="9.5" fill="#166534">GPR Write: x0 / none | Mem Store Active</text>
+<rect x="795" y="230" width="270" height="70" rx="6" fill="#faf5ff" stroke="#9333ea" stroke-width="1.5" />
+<text x="805" y="252" font-size="11" font-weight="700" fill="#7e22ce">Commit Port 1 (Secondary)</text>
+<text x="805" y="268" font-size="9.5" fill="#6b21a8">commit_ack[1] = 1 | PC = 0x8000004C (ADDI)</text>
+<text x="805" y="284" font-size="9.5" fill="#6b21a8">GPR Write: x6 &larr; 0x00000001 (Updated!)</text>
+<rect x="795" y="320" width="270" height="90" rx="6" fill="#ffffff" stroke="#cbd5e1" />
+<text x="805" y="342" font-size="10.5" font-weight="700" fill="#0f172a">Architectural Result:</text>
+<text x="805" y="360" font-size="9.5" fill="#334155">• Dual-Commit = commit_ack[0] &amp;&amp; commit_ack[1]</text>
+<text x="805" y="376" font-size="9.5" fill="#334155">• Instantaneous IPC = 2.0 (2 instrs in 1 cyc!)</text>
+<text x="805" y="394" font-size="9.5" font-weight="600" fill="#16a34a">✓ Total observed: 9 Dual-Commit cycles in Suite 6</text>
+<rect x="20" y="445" width="1060" height="24" rx="4" fill="#0f172a" />
+<text x="550.0" y="461" font-size="10.5" font-weight="600" fill="#f8fafc" text-anchor="middle">CVA6 Pipeline Property: Single-Issue Frontend (1 instr/cyc) fed into Scoreboard allows Burst Dual-Commit (2 instrs/cyc) at Backend</text>
+</svg>

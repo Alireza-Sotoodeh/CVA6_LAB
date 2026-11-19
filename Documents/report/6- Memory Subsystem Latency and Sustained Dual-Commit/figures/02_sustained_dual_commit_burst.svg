@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520">
+<defs>
+  <style type="text/css">
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }
+    .sig-sub { font-size: 9px; fill: #64748b; }
+    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }
+    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }
+    .ann-title { font-size: 11px; font-weight: 700; fill: #0f172a; }
+    .ann-body { font-size: 10px; fill: #334155; }
+  </style>
+</defs>
+<rect width="1200" height="520" fill="#f8fafc" />
+<rect x="20" y="15" width="1160" height="42" rx="8" fill="#1e293b" />
+<text x="35" y="41" fill="#f8fafc" font-size="15" font-weight="700">CVA6 Suite 6: Cycle-Accurate Waveform of Dual-Commit Burst (Cycles 330-342)</text>
+<text x="1165" y="41" fill="#94a3b8" font-size="11" text-anchor="end">Back-to-Back Dual Retirement: Cycle 335 (LW+ADDI) &amp; Cycle 336 (ADD+ADD)</text>
+<text x="256.15384615384613" y="72" class="cyc-lbl">C330</text>
+<line x1="220.0" y1="80" x2="220.0" y2="388" stroke="#e2e8f0" />
+<text x="328.46153846153845" y="72" class="cyc-lbl">C331</text>
+<line x1="292.3076923076923" y1="80" x2="292.3076923076923" y2="388" stroke="#e2e8f0" />
+<text x="400.7692307692308" y="72" class="cyc-lbl">C332</text>
+<line x1="364.61538461538464" y1="80" x2="364.61538461538464" y2="388" stroke="#e2e8f0" />
+<text x="473.07692307692304" y="72" class="cyc-lbl">C333</text>
+<line x1="436.9230769230769" y1="80" x2="436.9230769230769" y2="388" stroke="#e2e8f0" />
+<text x="545.3846153846154" y="72" class="cyc-lbl">C334</text>
+<line x1="509.2307692307692" y1="80" x2="509.2307692307692" y2="388" stroke="#e2e8f0" />
+<rect x="581.5384615384615" y="80" width="72.3076923076923" height="308" fill="#fef2f2" opacity="0.8" />
+<line x1="581.5384615384615" y1="80" x2="581.5384615384615" y2="388" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,3" />
+<line x1="653.8461538461538" y1="80" x2="653.8461538461538" y2="388" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,3" />
+<text x="617.6923076923077" y="72" class="cyc-lbl">C335</text>
+<line x1="581.5384615384615" y1="80" x2="581.5384615384615" y2="388" stroke="#e2e8f0" />
+<rect x="653.8461538461538" y="80" width="72.3076923076923" height="308" fill="#fef2f2" opacity="0.8" />
+<line x1="653.8461538461538" y1="80" x2="653.8461538461538" y2="388" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,3" />
+<line x1="726.1538461538461" y1="80" x2="726.1538461538461" y2="388" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,3" />
+<text x="690.0" y="72" class="cyc-lbl">C336</text>
+<line x1="653.8461538461538" y1="80" x2="653.8461538461538" y2="388" stroke="#e2e8f0" />
+<text x="762.3076923076924" y="72" class="cyc-lbl">C337</text>
+<line x1="726.1538461538462" y1="80" x2="726.1538461538462" y2="388" stroke="#e2e8f0" />
+<text x="834.6153846153846" y="72" class="cyc-lbl">C338</text>
+<line x1="798.4615384615385" y1="80" x2="798.4615384615385" y2="388" stroke="#e2e8f0" />
+<text x="906.9230769230769" y="72" class="cyc-lbl">C339</text>
+<line x1="870.7692307692307" y1="80" x2="870.7692307692307" y2="388" stroke="#e2e8f0" />
+<text x="979.2307692307693" y="72" class="cyc-lbl">C340</text>
+<line x1="943.0769230769231" y1="80" x2="943.0769230769231" y2="388" stroke="#e2e8f0" />
+<text x="1051.5384615384614" y="72" class="cyc-lbl">C341</text>
+<line x1="1015.3846153846154" y1="80" x2="1015.3846153846154" y2="388" stroke="#e2e8f0" />
+<text x="1123.8461538461538" y="72" class="cyc-lbl">C342</text>
+<line x1="1087.6923076923076" y1="80" x2="1087.6923076923076" y2="388" stroke="#e2e8f0" />
+<line x1="1160.0" y1="80" x2="1160.0" y2="388" stroke="#e2e8f0" />
+<rect x="20" y="80" width="1160" height="28" fill="#ffffff" opacity="0.6" />
+<line x1="20" y1="108" x2="1180" y2="108" stroke="#cbd5e1" stroke-width="0.5" />
+<text x="25" y="94" class="sig-lbl">CommitAck0</text>
+<text x="25" y="104" class="sig-sub">Port 0 Retire Valid</text>
+<text x="256.15384615384613" y="98" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="328.46153846153845" y="98" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="400.7692307692308" y="98" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="473.07692307692304" y="98" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="545.3846153846154" y="98" class="cyc-lbl" fill="#94a3b8">0</text>
+<rect x="583.5384615384615" y="84" width="68.3076923076923" height="20" rx="3" fill="#2563eb" />
+<text x="617.6923076923077" y="98" class="box-lbl" fill="#ffffff">1</text>
+<rect x="655.8461538461538" y="84" width="68.3076923076923" height="20" rx="3" fill="#2563eb" />
+<text x="690.0" y="98" class="box-lbl" fill="#ffffff">1</text>
+<rect x="728.1538461538462" y="84" width="68.3076923076923" height="20" rx="3" fill="#2563eb" />
+<text x="762.3076923076924" y="98" class="box-lbl" fill="#ffffff">1</text>
+<rect x="800.4615384615385" y="84" width="68.3076923076923" height="20" rx="3" fill="#2563eb" />
+<text x="834.6153846153846" y="98" class="box-lbl" fill="#ffffff">1</text>
+<text x="906.9230769230769" y="98" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="979.2307692307693" y="98" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="1051.5384615384614" y="98" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="1123.8461538461538" y="98" class="cyc-lbl" fill="#94a3b8">0</text>
+<rect x="20" y="108" width="1160" height="28" fill="#f8fafc" opacity="0.6" />
+<line x1="20" y1="136" x2="1180" y2="136" stroke="#cbd5e1" stroke-width="0.5" />
+<text x="25" y="122" class="sig-lbl">CommitPC0</text>
+<text x="25" y="132" class="sig-sub">Port 0 PC &amp; Instruction</text>
+<text x="256.15384615384613" y="126" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="328.46153846153845" y="126" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="400.7692307692308" y="126" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="473.07692307692304" y="126" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="545.3846153846154" y="126" class="cyc-lbl" fill="#94a3b8">-</text>
+<rect x="583.5384615384615" y="112" width="68.3076923076923" height="20" rx="3" fill="#0284c7" opacity="0.9" />
+<text x="617.6923076923077" y="125" font-size="8.5" font-weight="700" fill="#ffffff" text-anchor="middle">LW x9,0(x1)</text>
+<rect x="655.8461538461538" y="112" width="68.3076923076923" height="20" rx="3" fill="#0284c7" opacity="0.9" />
+<text x="690.0" y="125" font-size="8.5" font-weight="700" fill="#ffffff" text-anchor="middle">ADD x11,x6,x7</text>
+<rect x="728.1538461538462" y="112" width="68.3076923076923" height="20" rx="3" fill="#0284c7" opacity="0.9" />
+<text x="762.3076923076924" y="125" font-size="8.5" font-weight="700" fill="#ffffff" text-anchor="middle">ADDI x13,10</text>
+<rect x="800.4615384615385" y="112" width="68.3076923076923" height="20" rx="3" fill="#0284c7" opacity="0.9" />
+<text x="834.6153846153846" y="125" font-size="8.5" font-weight="700" fill="#ffffff" text-anchor="middle">ADDI x14,20</text>
+<text x="906.9230769230769" y="126" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="979.2307692307693" y="126" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="1051.5384615384614" y="126" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="1123.8461538461538" y="126" class="cyc-lbl" fill="#94a3b8">-</text>
+<rect x="20" y="136" width="1160" height="28" fill="#ffffff" opacity="0.6" />
+<line x1="20" y1="164" x2="1180" y2="164" stroke="#cbd5e1" stroke-width="0.5" />
+<text x="25" y="150" class="sig-lbl">GprWaddr0 / Data</text>
+<text x="25" y="160" class="sig-sub">Port 0 Reg Write</text>
+<text x="256.15384615384613" y="154" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="328.46153846153845" y="154" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="400.7692307692308" y="154" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="473.07692307692304" y="154" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="545.3846153846154" y="154" class="cyc-lbl" fill="#94a3b8">-</text>
+<rect x="583.5384615384615" y="140" width="68.3076923076923" height="20" rx="3" fill="#0d9488" opacity="0.9" />
+<text x="617.6923076923077" y="153" font-size="8.5" font-weight="700" fill="#ffffff" text-anchor="middle">x9=42</text>
+<rect x="655.8461538461538" y="140" width="68.3076923076923" height="20" rx="3" fill="#0d9488" opacity="0.9" />
+<text x="690.0" y="153" font-size="8.5" font-weight="700" fill="#ffffff" text-anchor="middle">x11=3</text>
+<rect x="728.1538461538462" y="140" width="68.3076923076923" height="20" rx="3" fill="#0d9488" opacity="0.9" />
+<text x="762.3076923076924" y="153" font-size="8.5" font-weight="700" fill="#ffffff" text-anchor="middle">x13=13</text>
+<rect x="800.4615384615385" y="140" width="68.3076923076923" height="20" rx="3" fill="#0d9488" opacity="0.9" />
+<text x="834.6153846153846" y="153" font-size="8.5" font-weight="700" fill="#ffffff" text-anchor="middle">x14=27</text>
+<text x="906.9230769230769" y="154" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="979.2307692307693" y="154" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="1051.5384615384614" y="154" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="1123.8461538461538" y="154" class="cyc-lbl" fill="#94a3b8">-</text>
+<rect x="20" y="164" width="1160" height="28" fill="#f8fafc" opacity="0.6" />
+<line x1="20" y1="192" x2="1180" y2="192" stroke="#cbd5e1" stroke-width="0.5" />
+<text x="25" y="178" class="sig-lbl">CommitAck1</text>
+<text x="25" y="188" class="sig-sub">Port 1 Retire Valid</text>
+<text x="256.15384615384613" y="182" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="328.46153846153845" y="182" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="400.7692307692308" y="182" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="473.07692307692304" y="182" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="545.3846153846154" y="182" class="cyc-lbl" fill="#94a3b8">0</text>
+<rect x="583.5384615384615" y="168" width="68.3076923076923" height="20" rx="3" fill="#7c3aed" />
+<text x="617.6923076923077" y="182" class="box-lbl" fill="#ffffff">1</text>
+<rect x="655.8461538461538" y="168" width="68.3076923076923" height="20" rx="3" fill="#7c3aed" />
+<text x="690.0" y="182" class="box-lbl" fill="#ffffff">1</text>
+<text x="762.3076923076924" y="182" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="834.6153846153846" y="182" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="906.9230769230769" y="182" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="979.2307692307693" y="182" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="1051.5384615384614" y="182" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="1123.8461538461538" y="182" class="cyc-lbl" fill="#94a3b8">0</text>
+<rect x="20" y="192" width="1160" height="28" fill="#ffffff" opacity="0.6" />
+<line x1="20" y1="220" x2="1180" y2="220" stroke="#cbd5e1" stroke-width="0.5" />
+<text x="25" y="206" class="sig-lbl">CommitPC1</text>
+<text x="25" y="216" class="sig-sub">Port 1 PC &amp; Instruction</text>
+<text x="256.15384615384613" y="210" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="328.46153846153845" y="210" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="400.7692307692308" y="210" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="473.07692307692304" y="210" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="545.3846153846154" y="210" class="cyc-lbl" fill="#94a3b8">-</text>
+<rect x="583.5384615384615" y="196" width="68.3076923076923" height="20" rx="3" fill="#9333ea" opacity="0.9" />
+<text x="617.6923076923077" y="209" font-size="8.5" font-weight="700" fill="#ffffff" text-anchor="middle">ADDI x10,4</text>
+<rect x="655.8461538461538" y="196" width="68.3076923076923" height="20" rx="3" fill="#9333ea" opacity="0.9" />
+<text x="690.0" y="209" font-size="8.5" font-weight="700" fill="#ffffff" text-anchor="middle">ADD x12,x8,x10</text>
+<text x="762.3076923076924" y="210" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="834.6153846153846" y="210" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="906.9230769230769" y="210" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="979.2307692307693" y="210" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="1051.5384615384614" y="210" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="1123.8461538461538" y="210" class="cyc-lbl" fill="#94a3b8">-</text>
+<rect x="20" y="220" width="1160" height="28" fill="#f8fafc" opacity="0.6" />
+<line x1="20" y1="248" x2="1180" y2="248" stroke="#cbd5e1" stroke-width="0.5" />
+<text x="25" y="234" class="sig-lbl">GprWaddr1 / Data</text>
+<text x="25" y="244" class="sig-sub">Port 1 Reg Write</text>
+<text x="256.15384615384613" y="238" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="328.46153846153845" y="238" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="400.7692307692308" y="238" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="473.07692307692304" y="238" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="545.3846153846154" y="238" class="cyc-lbl" fill="#94a3b8">-</text>
+<rect x="583.5384615384615" y="224" width="68.3076923076923" height="20" rx="3" fill="#c026d3" opacity="0.9" />
+<text x="617.6923076923077" y="237" font-size="8.5" font-weight="700" fill="#ffffff" text-anchor="middle">x10=4</text>
+<rect x="655.8461538461538" y="224" width="68.3076923076923" height="20" rx="3" fill="#c026d3" opacity="0.9" />
+<text x="690.0" y="237" font-size="8.5" font-weight="700" fill="#ffffff" text-anchor="middle">x12=7</text>
+<text x="762.3076923076924" y="238" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="834.6153846153846" y="238" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="906.9230769230769" y="238" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="979.2307692307693" y="238" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="1051.5384615384614" y="238" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="1123.8461538461538" y="238" class="cyc-lbl" fill="#94a3b8">-</text>
+<rect x="20" y="248" width="1160" height="28" fill="#ffffff" opacity="0.6" />
+<line x1="20" y1="276" x2="1180" y2="276" stroke="#cbd5e1" stroke-width="0.5" />
+<text x="25" y="262" class="sig-lbl">DualCommit</text>
+<text x="25" y="272" class="sig-sub">Ack0 &amp;&amp; Ack1</text>
+<text x="256.15384615384613" y="266" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="328.46153846153845" y="266" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="400.7692307692308" y="266" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="473.07692307692304" y="266" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="545.3846153846154" y="266" class="cyc-lbl" fill="#94a3b8">0</text>
+<rect x="583.5384615384615" y="252" width="68.3076923076923" height="20" rx="3" fill="#dc2626" />
+<text x="617.6923076923077" y="266" class="box-lbl" fill="#ffffff">1</text>
+<rect x="655.8461538461538" y="252" width="68.3076923076923" height="20" rx="3" fill="#dc2626" />
+<text x="690.0" y="266" class="box-lbl" fill="#ffffff">1</text>
+<text x="762.3076923076924" y="266" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="834.6153846153846" y="266" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="906.9230769230769" y="266" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="979.2307692307693" y="266" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="1051.5384615384614" y="266" class="cyc-lbl" fill="#94a3b8">0</text>
+<text x="1123.8461538461538" y="266" class="cyc-lbl" fill="#94a3b8">0</text>
+<rect x="20" y="276" width="1160" height="28" fill="#f8fafc" opacity="0.6" />
+<line x1="20" y1="304" x2="1180" y2="304" stroke="#cbd5e1" stroke-width="0.5" />
+<text x="25" y="290" class="sig-lbl">DualCommitCount</text>
+<text x="25" y="300" class="sig-sub">Cumulative Dual-Commits</text>
+<text x="256.15384615384613" y="294" font-size="9.5" font-weight="600" fill="#b91c1c" text-anchor="middle">1</text>
+<text x="328.46153846153845" y="294" font-size="9.5" font-weight="600" fill="#b91c1c" text-anchor="middle">1</text>
+<text x="400.7692307692308" y="294" font-size="9.5" font-weight="600" fill="#b91c1c" text-anchor="middle">1</text>
+<text x="473.07692307692304" y="294" font-size="9.5" font-weight="600" fill="#b91c1c" text-anchor="middle">1</text>
+<text x="545.3846153846154" y="294" font-size="9.5" font-weight="600" fill="#b91c1c" text-anchor="middle">1</text>
+<text x="617.6923076923077" y="294" font-size="9.5" font-weight="600" fill="#b91c1c" text-anchor="middle">1</text>
+<text x="690.0" y="294" font-size="9.5" font-weight="600" fill="#b91c1c" text-anchor="middle">2</text>
+<text x="762.3076923076924" y="294" font-size="9.5" font-weight="600" fill="#b91c1c" text-anchor="middle">3</text>
+<text x="834.6153846153846" y="294" font-size="9.5" font-weight="600" fill="#b91c1c" text-anchor="middle">3</text>
+<text x="906.9230769230769" y="294" font-size="9.5" font-weight="600" fill="#b91c1c" text-anchor="middle">3</text>
+<text x="979.2307692307693" y="294" font-size="9.5" font-weight="600" fill="#b91c1c" text-anchor="middle">3</text>
+<text x="1051.5384615384614" y="294" font-size="9.5" font-weight="600" fill="#b91c1c" text-anchor="middle">3</text>
+<text x="1123.8461538461538" y="294" font-size="9.5" font-weight="600" fill="#b91c1c" text-anchor="middle">3</text>
+<rect x="20" y="304" width="1160" height="28" fill="#ffffff" opacity="0.6" />
+<line x1="20" y1="332" x2="1180" y2="332" stroke="#cbd5e1" stroke-width="0.5" />
+<text x="25" y="318" class="sig-lbl">IssueValid0 / Ack</text>
+<text x="25" y="328" class="sig-sub">Single-Issue Handshake</text>
+<text x="256.15384615384613" y="322" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="328.46153846153845" y="322" class="cyc-lbl" fill="#94a3b8">-</text>
+<rect x="366.61538461538464" y="308" width="68.3076923076923" height="20" rx="3" fill="#475569" />
+<text x="400.7692307692308" y="321" font-size="8" font-weight="700" fill="#ffffff" text-anchor="middle">ISSUE</text>
+<text x="473.07692307692304" y="322" class="cyc-lbl" fill="#94a3b8">-</text>
+<rect x="511.2307692307692" y="308" width="68.3076923076923" height="20" rx="3" fill="#475569" />
+<text x="545.3846153846154" y="321" font-size="8" font-weight="700" fill="#ffffff" text-anchor="middle">ISSUE</text>
+<rect x="583.5384615384615" y="308" width="68.3076923076923" height="20" rx="3" fill="#475569" />
+<text x="617.6923076923077" y="321" font-size="8" font-weight="700" fill="#ffffff" text-anchor="middle">ISSUE</text>
+<rect x="655.8461538461538" y="308" width="68.3076923076923" height="20" rx="3" fill="#475569" />
+<text x="690.0" y="321" font-size="8" font-weight="700" fill="#ffffff" text-anchor="middle">ISSUE</text>
+<text x="762.3076923076924" y="322" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="834.6153846153846" y="322" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="906.9230769230769" y="322" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="979.2307692307693" y="322" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="1051.5384615384614" y="322" class="cyc-lbl" fill="#94a3b8">-</text>
+<text x="1123.8461538461538" y="322" class="cyc-lbl" fill="#94a3b8">-</text>
+<rect x="20" y="332" width="1160" height="28" fill="#f8fafc" opacity="0.6" />
+<line x1="20" y1="360" x2="1180" y2="360" stroke="#cbd5e1" stroke-width="0.5" />
+<text x="25" y="346" class="sig-lbl">InstrQueueUsage</text>
+<text x="25" y="356" class="sig-sub">Frontend FIFO Depth</text>
+<text x="256.15384615384613" y="350" font-size="9.5" font-weight="600" fill="#475569" text-anchor="middle">0</text>
+<text x="328.46153846153845" y="350" font-size="9.5" font-weight="600" fill="#475569" text-anchor="middle">1</text>
+<text x="400.7692307692308" y="350" font-size="9.5" font-weight="600" fill="#475569" text-anchor="middle">0</text>
+<text x="473.07692307692304" y="350" font-size="9.5" font-weight="600" fill="#475569" text-anchor="middle">1</text>
+<text x="545.3846153846154" y="350" font-size="9.5" font-weight="600" fill="#475569" text-anchor="middle">1</text>
+<text x="617.6923076923077" y="350" font-size="9.5" font-weight="600" fill="#475569" text-anchor="middle">1</text>
+<text x="690.0" y="350" font-size="9.5" font-weight="600" fill="#475569" text-anchor="middle">0</text>
+<text x="762.3076923076924" y="350" font-size="9.5" font-weight="600" fill="#475569" text-anchor="middle">0</text>
+<text x="834.6153846153846" y="350" font-size="9.5" font-weight="600" fill="#475569" text-anchor="middle">0</text>
+<text x="906.9230769230769" y="350" font-size="9.5" font-weight="600" fill="#475569" text-anchor="middle">0</text>
+<text x="979.2307692307693" y="350" font-size="9.5" font-weight="600" fill="#475569" text-anchor="middle">0</text>
+<text x="1051.5384615384614" y="350" font-size="9.5" font-weight="600" fill="#475569" text-anchor="middle">0</text>
+<text x="1123.8461538461538" y="350" font-size="9.5" font-weight="600" fill="#475569" text-anchor="middle">1</text>
+<rect x="20" y="360" width="1160" height="28" fill="#ffffff" opacity="0.6" />
+<line x1="20" y1="388" x2="1180" y2="388" stroke="#cbd5e1" stroke-width="0.5" />
+<text x="25" y="374" class="sig-lbl">AxiRValid / Last</text>
+<text x="25" y="384" class="sig-sub">Memory Read Response</text>
+<text x="256.15384615384613" y="378" class="cyc-lbl" fill="#94a3b8">idle</text>
+<rect x="294.3076923076923" y="364" width="68.3076923076923" height="20" rx="3" fill="#ea580c" />
+<text x="328.46153846153845" y="377" font-size="8" font-weight="700" fill="#ffffff" text-anchor="middle">RDATA</text>
+<rect x="366.61538461538464" y="364" width="68.3076923076923" height="20" rx="3" fill="#ea580c" />
+<text x="400.7692307692308" y="377" font-size="8" font-weight="700" fill="#ffffff" text-anchor="middle">RDATA</text>
+<rect x="438.9230769230769" y="364" width="68.3076923076923" height="20" rx="3" fill="#c2410c" />
+<text x="473.07692307692304" y="377" font-size="8" font-weight="700" fill="#ffffff" text-anchor="middle">RLAST</text>
+<text x="545.3846153846154" y="378" class="cyc-lbl" fill="#94a3b8">idle</text>
+<text x="617.6923076923077" y="378" class="cyc-lbl" fill="#94a3b8">idle</text>
+<text x="690.0" y="378" class="cyc-lbl" fill="#94a3b8">idle</text>
+<rect x="728.1538461538462" y="364" width="68.3076923076923" height="20" rx="3" fill="#ea580c" />
+<text x="762.3076923076924" y="377" font-size="8" font-weight="700" fill="#ffffff" text-anchor="middle">RDATA</text>
+<rect x="800.4615384615385" y="364" width="68.3076923076923" height="20" rx="3" fill="#ea580c" />
+<text x="834.6153846153846" y="377" font-size="8" font-weight="700" fill="#ffffff" text-anchor="middle">RDATA</text>
+<rect x="872.7692307692307" y="364" width="68.3076923076923" height="20" rx="3" fill="#c2410c" />
+<text x="906.9230769230769" y="377" font-size="8" font-weight="700" fill="#ffffff" text-anchor="middle">RLAST</text>
+<text x="979.2307692307693" y="378" class="cyc-lbl" fill="#94a3b8">idle</text>
+<text x="1051.5384615384614" y="378" class="cyc-lbl" fill="#94a3b8">idle</text>
+<text x="1123.8461538461538" y="378" class="cyc-lbl" fill="#94a3b8">idle</text>
+<rect x="20" y="403" width="1160" height="80" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1" />
+<text x="35" y="423" class="ann-title">Microarchitectural Analysis of Sustained Dual-Commit Burst:</text>
+<text x="35" y="441" class="ann-body">1. Cycle 335: Port 0 commits "LW x9, 0(x1)" (x9=42) while Port 1 simultaneously commits "ADDI x10, x10, 4" (x10=4). Scoreboard resolved both without dependency conflict.</text>
+<text x="35" y="457" class="ann-body">2. Cycle 336: Immediate next cycle commits independent pair "ADD x11, x6, x7" (x11=3) on Port 0 and "ADD x12, x8, x10" (x12=7) on Port 1, achieving back-to-back Dual-Commit (4 instrs in 2 cycs, IPC = 2.0!).</text>
+<text x="35" y="473" class="ann-body">3. Front-End vs Back-End Decoupling: Issue stage issues at most 1 instruction/cycle, while Commit stage drains up to 2 instructions/cycle from the Scoreboard once data hazards resolve.</text>
+</svg>

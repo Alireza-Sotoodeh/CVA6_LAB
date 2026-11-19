@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420">
+<defs>
+  <style type="text/css">
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }
+    .sig-sub { font-size: 9px; fill: #64748b; }
+    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }
+    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }
+    .ann-title { font-size: 11px; font-weight: 700; fill: #0f172a; }
+    .ann-body { font-size: 10px; fill: #334155; }
+  </style>
+</defs>
+<rect width="1200" height="420" fill="#f8fafc" />
+<rect x="20" y="15" width="1160" height="42" rx="8" fill="#1e293b" />
+<text x="35" y="41" fill="#f8fafc" font-size="15" font-weight="700">CVA6 Suite 6: Full Execution Timeline &amp; Dual-Commit Milestones</text>
+<text x="1165" y="41" fill="#94a3b8" font-size="11" text-anchor="end">Total Cycles: 436 | Committed: 81 Instrs | Dual-Commit: 9 Cycles</text>
+<line x1="50" y1="135" x2="1150" y2="135" stroke="#94a3b8" stroke-width="3" />
+<rect x="50" y="110" width="792" height="50" rx="6" fill="#cbd5e1" stroke="#94a3b8" stroke-width="2" />
+<text x="446.0" y="132" font-size="11" font-weight="700" fill="#0f172a" text-anchor="middle">Phase 0: Boot &amp; Setup</text>
+<text x="446.0" y="148" font-size="9" font-weight="600" fill="#475569" text-anchor="middle">CPI: 18.5</text>
+<line x1="50" y1="160" x2="50" y2="168" stroke="#64748b" stroke-width="1.5" />
+<text x="50" y="180" font-size="9" fill="#475569" text-anchor="middle">C0</text>
+<rect x="844" y="110" width="104" height="50" rx="6" fill="#fed7aa" stroke="#f97316" stroke-width="2" />
+<text x="896.0" y="132" font-size="11" font-weight="700" fill="#0f172a" text-anchor="middle">Iter 1 (Wait=0 cyc)</text>
+<text x="896.0" y="148" font-size="9" font-weight="600" fill="#475569" text-anchor="middle">CPI: 1.33</text>
+<line x1="844" y1="160" x2="844" y2="168" stroke="#64748b" stroke-width="1.5" />
+<text x="844" y="180" font-size="9" fill="#475569" text-anchor="middle">C315</text>
+<rect x="950" y="110" width="38" height="50" rx="6" fill="#bbf7d0" stroke="#22c55e" stroke-width="2" />
+<text x="969.0" y="132" font-size="11" font-weight="700" fill="#0f172a" text-anchor="middle">Iter 2 (Wait=4 cyc)</text>
+<text x="969.0" y="148" font-size="9" font-weight="600" fill="#475569" text-anchor="middle">CPI: 1.00</text>
+<line x1="950" y1="160" x2="950" y2="168" stroke="#64748b" stroke-width="1.5" />
+<text x="950" y="180" font-size="9" fill="#475569" text-anchor="middle">C357</text>
+<rect x="991" y="110" width="37" height="50" rx="6" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2" />
+<text x="1009.5" y="132" font-size="11" font-weight="700" fill="#0f172a" text-anchor="middle">Iter 3 (Wait=8 cyc)</text>
+<text x="1009.5" y="148" font-size="9" font-weight="600" fill="#475569" text-anchor="middle">CPI: 1.00</text>
+<line x1="991" y1="160" x2="991" y2="168" stroke="#64748b" stroke-width="1.5" />
+<text x="991" y="180" font-size="9" fill="#475569" text-anchor="middle">C373</text>
+<rect x="1031" y="110" width="66" height="50" rx="6" fill="#e9d5ff" stroke="#a855f7" stroke-width="2" />
+<text x="1064.0" y="132" font-size="11" font-weight="700" fill="#0f172a" text-anchor="middle">Iter 4 (Wait=16 cyc)</text>
+<text x="1064.0" y="148" font-size="9" font-weight="600" fill="#475569" text-anchor="middle">CPI: 0.52*</text>
+<line x1="1031" y1="160" x2="1031" y2="168" stroke="#64748b" stroke-width="1.5" />
+<text x="1031" y="180" font-size="9" fill="#475569" text-anchor="middle">C389</text>
+<rect x="1099" y="110" width="51" height="50" rx="6" fill="#f1f5f9" stroke="#64748b" stroke-width="2" />
+<text x="1124.5" y="132" font-size="11" font-weight="700" fill="#0f172a" text-anchor="middle">End Self-Loop</text>
+<text x="1124.5" y="148" font-size="9" font-weight="600" fill="#475569" text-anchor="middle">CPI: 1.00</text>
+<line x1="1099" y1="160" x2="1099" y2="168" stroke="#64748b" stroke-width="1.5" />
+<text x="1099" y="180" font-size="9" fill="#475569" text-anchor="middle">C416</text>
+<line x1="1150" y1="160" x2="1150" y2="168" stroke="#64748b" stroke-width="1.5" />
+<text x="1150" y="180" font-size="9" fill="#475569" text-anchor="middle">C436</text>
+<text x="50" y="215" font-size="12" font-weight="700" fill="#0f172a">Dual-Commit Events (Port 0 + Port 1 Simultaneous Retirement):</text>
+<rect x="54.0" y="230" width="114.22222222222223" height="70" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5" />
+<text x="111.11111111111111" y="248" font-size="11" font-weight="700" fill="#1d4ed8" text-anchor="middle">Event #1</text>
+<text x="111.11111111111111" y="264" font-size="10" font-weight="600" fill="#0f172a" text-anchor="middle">Cycle 316</text>
+<text x="111.11111111111111" y="280" font-size="9" fill="#475569" text-anchor="middle">SW+ADDI</text>
+<rect x="176.22222222222223" y="230" width="114.22222222222223" height="70" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5" />
+<text x="233.33333333333334" y="248" font-size="11" font-weight="700" fill="#1d4ed8" text-anchor="middle">Event #2</text>
+<text x="233.33333333333334" y="264" font-size="10" font-weight="600" fill="#0f172a" text-anchor="middle">Cycle 335</text>
+<text x="233.33333333333334" y="280" font-size="9" fill="#475569" text-anchor="middle">LW+ADDI</text>
+<rect x="298.44444444444446" y="230" width="114.22222222222223" height="70" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5" />
+<text x="355.55555555555554" y="248" font-size="11" font-weight="700" fill="#1d4ed8" text-anchor="middle">Event #3</text>
+<text x="355.55555555555554" y="264" font-size="10" font-weight="600" fill="#0f172a" text-anchor="middle">Cycle 336</text>
+<text x="355.55555555555554" y="280" font-size="9" fill="#475569" text-anchor="middle">ADD+ADD</text>
+<rect x="420.6666666666667" y="230" width="114.22222222222223" height="70" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5" />
+<text x="477.7777777777778" y="248" font-size="11" font-weight="700" fill="#1d4ed8" text-anchor="middle">Event #4</text>
+<text x="477.7777777777778" y="264" font-size="10" font-weight="600" fill="#0f172a" text-anchor="middle">Cycle 359</text>
+<text x="477.7777777777778" y="280" font-size="9" fill="#475569" text-anchor="middle">SW+ADDI</text>
+<rect x="542.8888888888889" y="230" width="114.22222222222223" height="70" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5" />
+<text x="600.0" y="248" font-size="11" font-weight="700" fill="#1d4ed8" text-anchor="middle">Event #5</text>
+<text x="600.0" y="264" font-size="10" font-weight="600" fill="#0f172a" text-anchor="middle">Cycle 363</text>
+<text x="600.0" y="280" font-size="9" fill="#475569" text-anchor="middle">LW+ADDI</text>
+<rect x="665.1111111111111" y="230" width="114.22222222222223" height="70" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5" />
+<text x="722.2222222222222" y="248" font-size="11" font-weight="700" fill="#1d4ed8" text-anchor="middle">Event #6</text>
+<text x="722.2222222222222" y="264" font-size="10" font-weight="600" fill="#0f172a" text-anchor="middle">Cycle 379</text>
+<text x="722.2222222222222" y="280" font-size="9" fill="#475569" text-anchor="middle">SW+ADDI</text>
+<rect x="787.3333333333334" y="230" width="114.22222222222223" height="70" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5" />
+<text x="844.4444444444445" y="248" font-size="11" font-weight="700" fill="#1d4ed8" text-anchor="middle">Event #7</text>
+<text x="844.4444444444445" y="264" font-size="10" font-weight="600" fill="#0f172a" text-anchor="middle">Cycle 383</text>
+<text x="844.4444444444445" y="280" font-size="9" fill="#475569" text-anchor="middle">LW+ADDI</text>
+<rect x="909.5555555555557" y="230" width="114.22222222222223" height="70" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5" />
+<text x="966.6666666666667" y="248" font-size="11" font-weight="700" fill="#1d4ed8" text-anchor="middle">Event #8</text>
+<text x="966.6666666666667" y="264" font-size="10" font-weight="600" fill="#0f172a" text-anchor="middle">Cycle 395</text>
+<text x="966.6666666666667" y="280" font-size="9" fill="#475569" text-anchor="middle">SW+ADDI</text>
+<rect x="1031.7777777777778" y="230" width="114.22222222222223" height="70" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5" />
+<text x="1088.888888888889" y="248" font-size="11" font-weight="700" fill="#1d4ed8" text-anchor="middle">Event #9</text>
+<text x="1088.888888888889" y="264" font-size="10" font-weight="600" fill="#0f172a" text-anchor="middle">Cycle 399</text>
+<text x="1088.888888888889" y="280" font-size="9" fill="#475569" text-anchor="middle">LW+ADDI</text>
+<rect x="50" y="325" width="1100" height="75" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5" />
+<text x="70" y="348" font-size="12" font-weight="700" fill="#15803d">Architectural Scoreboard &amp; Latency Verification Summary (17/17 Checks PASSED):</text>
+<text x="70" y="368" font-size="10.5" fill="#166534">• Sustained Dual-Commit: Verified 9 distinct cycles where Port 0 and Port 1 retired instructions simultaneously (Peak IPC = 2.0).</text>
+<text x="70" y="386" font-size="10.5" fill="#166534">• Memory Latency Immunity: Iterations 2 &amp; 3 maintained CPI = 1.00 under 4 &amp; 8 AXI wait states due to D-Cache hit &amp; store-buffer forwarding.</text>
+</svg>
