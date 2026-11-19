@@ -1,10 +1,10 @@
 // ============================================================================
 // Author: Alireza Sotodeh
-// Date & Time: 2026-11-18 00:03:00 +03:30
+// Date & Time: 2026-11-19 10:28:30 +03:30
 // Status: MODIFIED FILE
-// Reason / Modification: Added comprehensive pipeline signals (counters, fetch instruction,
-//                        I/D-cache, ALU/execution, branch resolution, LSU/AXI, commit)
-//                        to CSV trace logger.
+// Reason / Modification: Expanded CSV trace logger to 60 comprehensive microarchitectural
+//                        pipeline signals across all core stages (Fetch, I-Cache flush,
+//                        D-Cache, Issue FU/Op, EX, Branch, LSU, AXI, Commit/Ctrl).
 // ============================================================================
 
 `timescale 1ns / 1ps
@@ -154,6 +154,18 @@ module tb_cva6;
   wire [31:0] probe_resolved_branch_target    = u_dut.resolved_branch.target_address[31:0];
   wire        probe_store_valid               = u_dut.store_valid_ex_id;
   wire [31:0] probe_store_result              = u_dut.store_result_ex_id[31:0];
+
+  // Group 8: Pipeline Control, Issue Stage & CSR Probes
+  wire        probe_halt_frontend             = u_dut.halt_frontend;
+  wire        probe_pipeline_flush            = u_dut.flush_ctrl_ex;
+  wire        probe_no_st_pending             = u_dut.no_st_pending_ex;
+  wire [31:0] probe_issue_pc                  = u_dut.pc_id_ex;
+  wire [3:0]  probe_issue_fu                  = u_dut.fu_data_id_ex[0].fu;
+  wire [6:0]  probe_issue_op                  = u_dut.fu_data_id_ex[0].operation;
+  wire        probe_is_compressed             = u_dut.is_compressed_instr_id_ex;
+  wire        probe_csr_valid                 = u_dut.csr_valid_id_ex[0];
+  wire [11:0] probe_csr_addr                  = u_dut.csr_addr_ex_csr;
+  wire        probe_commit_drop               = u_dut.commit_drop_id_commit[0];
 
   // ----------------------------------------------------------------------------
   // 4. Memory Preload with Standard 19-Instruction RV32I Test Program
@@ -403,7 +415,7 @@ module tb_cva6;
   initial begin
     csv_fd = $fopen("cva6_trace.csv", "w");
     if (csv_fd) begin
-      $fdisplay(csv_fd, "Time_ps,Cycle,InstRet,FetchPC,FetchReq,FetchValid,FetchInstr,FeIdValid,IdFeReady,InstrQueueUsage,IcacheState,IcacheMiss,IcacheReady,IcacheFlushDone,DcacheMiss,WbufEmpty,StallStPending,AluValid,AluResult,FluValid,FluReady,MultValid,BranchValid,BranchPredict,BranchResolvedValid,BranchResolvedTaken,BranchMispredict,BranchTarget,LsuValid,LsuReady,LoadValid,LoadResult,StoreValid,StoreResult,AxiARValid,AxiARAddr,AxiRValid,AxiAWValid,AxiAWAddr,AxiWValid,AxiBValid,CommitAck,CommitPC,GprWe,GprWaddr,GprWdata,SbFull");
+      $fdisplay(csv_fd, "Time_ps,Cycle,InstRet,FetchPC,FetchReq,FetchValid,FetchInstr,FeIdValid,IdFeReady,InstrQueueUsage,HaltFrontend,IcacheState,IcacheMiss,IcacheReady,IcacheFlushEn,IcacheFlushDone,IcacheFlushCnt,IcacheWren,DcacheMiss,WbufEmpty,StallStPending,NoStPending,IssuePC,IssueFU,IssueOp,IsCompressed,AluValid,AluResult,FluValid,FluReady,MultValid,CsrValid,CsrAddr,BranchValid,BranchPredict,BranchResolvedValid,BranchResolvedTaken,BranchMispredict,BranchTarget,LsuValid,LsuReady,LoadValid,LoadResult,StoreValid,StoreResult,AxiARValid,AxiARAddr,AxiRValid,AxiAWValid,AxiAWAddr,AxiWValid,AxiBValid,CommitAck,CommitPC,CommitDrop,GprWe,GprWaddr,GprWdata,SbFull,PipelineFlush");
     end else begin
       $display("[TB_WARNING] Could not open cva6_trace.csv for writing.");
     end
@@ -413,7 +425,7 @@ module tb_cva6;
     cycle_count++;
 
     if (csv_fd) begin
-      $fdisplay(csv_fd, "%0t,%0d,%0d,0x%08h,%b,%b,0x%08h,%b,%b,%0d,%0d,%b,%b,%b,%b,%b,%b,%b,0x%08h,%b,%b,%b,%b,%b,%b,%b,%b,0x%08h,%b,%b,%b,0x%08h,%b,0x%08h,%b,0x%08h,%b,%b,0x%08h,%b,%b,%b,0x%08h,%b,%0d,0x%08h,%b",
+      $fdisplay(csv_fd, "%0t,%0d,%0d,0x%08h,%b,%b,0x%08h,%b,%b,%0d,%b,%0d,%b,%b,%b,%b,%0d,%b,%b,%b,%b,%b,0x%08h,%0d,%0d,%b,%b,0x%08h,%b,%b,%b,%b,0x%03h,%b,%b,%b,%b,%b,0x%08h,%b,%b,%b,0x%08h,%b,0x%08h,%b,0x%08h,%b,%b,0x%08h,%b,%b,%b,0x%08h,%b,%b,%0d,0x%08h,%b,%b",
                 $time,
                 cycle_count,
                 instret_count,
@@ -424,18 +436,29 @@ module tb_cva6;
                 probe_fe_id_valid,
                 probe_id_fe_ready,
                 probe_fifo_usage,
+                probe_halt_frontend,
                 probe_icache_state,
                 probe_icache_miss,
                 probe_icache_ready,
+                probe_icache_flush_en,
                 probe_icache_flush_done,
+                probe_icache_flush_cnt,
+                probe_icache_wren,
                 probe_dcache_miss,
                 probe_wbuffer_empty,
                 probe_stall_st_pending,
+                probe_no_st_pending,
+                probe_issue_pc,
+                probe_issue_fu,
+                probe_issue_op,
+                probe_is_compressed,
                 probe_alu_valid,
                 probe_alu_result,
                 probe_flu_valid,
                 probe_flu_ready,
                 probe_mult_valid,
+                probe_csr_valid,
+                probe_csr_addr,
                 probe_branch_valid,
                 probe_branch_predict,
                 probe_resolve_branch,
@@ -457,10 +480,12 @@ module tb_cva6;
                 noc_resp.b_valid,
                 probe_commit_ack[0],
                 probe_commit_ack[0] ? probe_commit_pc : 32'h0,
+                probe_commit_drop,
                 probe_we_gpr,
                 probe_we_gpr ? probe_waddr_gpr : 5'd0,
                 probe_we_gpr ? probe_wdata_gpr : 32'd0,
-                probe_sb_full);
+                probe_sb_full,
+                probe_pipeline_flush);
     end
   end
 
