@@ -24,6 +24,7 @@ The testbench suite follows the unified architectural standard defined in [`Docu
 
 | Testbench File | Top Module | Test Description | Assertions | Target Cycles | Expected Runtime |
 | :--- | :--- | :--- | :--- | :--- | :--- |
+| **`tb_cva6_warm_cache.sv`** | `tb_cva6_warm_cache` | **Warmed Cache Benchmark:** 10-iteration loop benchmarking true steady-state warm CPI (~1.3 - 1.5) with zero secondary misses + `cva6_warm_trace.csv` | **18 / 18 (100%)** | ~600–700 cycles | ~6500 ns |
 | **`tb_cva6_smoke_cold_startup.sv`** | `tb_cva6_smoke_cold_startup` | **Smoke & Cold Startup Test:** 19-instruction RV32I verification suite (ALU, Branches, Memory, Shifts) + I-Cache Cold Startup Tag Flush & Compulsory Miss Analysis | **17 / 17 (100%)** | ~399 cycles | 3985 ns |
 | **`tb_test2_cva6.sv`** | `tb_test2_cva6` | **Benchmark Test 2:** Heavy integer workload (Bubble sort, recursive Fibonacci, 3x3 Matrix Multiplication) | **13 / 13 (100%)** | ~1340 cycles | 13395 ns (CPI: 7.88) |
 
