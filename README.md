@@ -1,8 +1,8 @@
 ---
 author: Alireza Sotodeh
-date: 2026-11-10 16:21:30 +03:30
+date: 2026-11-14 11:42:00 +03:30
 status: MODIFIED FILE
-reason: Added online web links and remote repository URLs for all primary and reference CVA6 repositories in README.md
+reason: Added online web links and remote repository URLs for all CVA6 repositories; added section 5 with the current Vivado XSIM / Verilator verification status and measured CPI
 ---
 
 # CVA6_LAB
@@ -58,3 +58,38 @@ All reference repositories are cloned locally under `/home/alireza/GitHub/Mahani
   - **Vivado Logic Analyzer / XSIM Waveform Viewer** (`.wdb`).
 * **Cross-Compiler**:
   - `riscv64-unknown-elf-gcc` / `riscv-none-elf-gcc` (RV32: `-march=rv32imac -mabi=ilp32`, RV64: `-march=rv64imafdc -mabi=lp64d`).
+
+---
+
+## 5. Current Verification Status — `Vivado/CVA6_Lab` (`cv32a6_imac_sv32`)
+
+Detailed report: [`Documents/CVA6_XSIM_Verilator_Simulation_Report.md`](Documents/CVA6_XSIM_Verilator_Simulation_Report.md)
+
+| Stage | Tool | Status |
+| :--- | :--- | :--- |
+| Compile (335 design files + `cva6_tb`) | `xvlog` (Vivado 2025.1) | **Passed**, 0 errors |
+| Elaborate | `xelab` (Vivado 2025.1) | **Failed** — `[XSIM 43-3316] Signal SIGSEGV` during data-flow analysis |
+| Behavioural simulation | `xsim` | **Blocked** — no snapshot |
+| Verilate / build / run | Verilator 5.020 | **Passed** |
+| Commit-trace cross-check | `scripts/check_commit_trace.py` | **Passed**, 21 checks, 0 errors |
+
+Functional and performance result (Verilator 5.020, self-checking RV32IMAC firmware):
+
+| Metric | Value |
+| :--- | ---: |
+| Committed instructions | 3544 |
+| Cycles reset → `tohost` | 5169 |
+| **CPI (steady state)** | **1.383** |
+| CPI (reset → exit) | 1.459 |
+| CPI (tight ALU loop, 1000 iterations) | 1.336 |
+| IPC (steady state) | 0.723 |
+| Longest stall run | 18 cycles |
+
+Reproduce with:
+
+```bash
+cd Vivado/CVA6_Lab
+./scripts/build_firmware.sh     # RV32IMAC self-test image
+./scripts/run_verilator.sh      # build + run + CSV + trace check
+./scripts/run_vivado_sim.sh     # xvlog / xelab / xsim stages
+```
