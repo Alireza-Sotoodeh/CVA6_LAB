@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560">
+<defs>
+  <style type="text/css">
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }
+    .sig-sub { font-size: 9px; fill: #64748b; }
+    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }
+    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }
+    .hex-lbl { font-size: 9px; font-family: monospace; text-anchor: middle; }
+    .sec-hdr { font-size: 14px; font-weight: 700; fill: #0f172a; }
+    .sec-sub { font-size: 11px; fill: #475569; }
+  </style>
+  <linearGradient id="grid-grad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#f8fafc" />
+    <stop offset="100%" stop-color="#f1f5f9" />
+  </linearGradient>
+</defs>
+<rect width="1200" height="560" fill="#ffffff" />
+<text x="30" y="32" class="sec-hdr">CVA6 Suite 11: Multiplier Upper-Word Operations (MUL, MULH, MULHU, MULHSU)</text>
+<text x="30" y="50" class="sec-sub">Upper 32-bit products: signed x signed (-1), unsigned x unsigned (0xFFFFFFFE), and signed x unsigned (0xFFFFFFFF)</text>
+<rect x="200" y="65" width="970" height="20" fill="#f1f5f9" rx="2" />
+<text x="211.82926829268294" y="79" class="cyc-lbl">315</text>
+<text x="306.4634146341463" y="79" class="cyc-lbl">319</text>
+<text x="401.0975609756097" y="79" class="cyc-lbl">323</text>
+<text x="495.7317073170732" y="79" class="cyc-lbl">327</text>
+<text x="590.3658536585366" y="79" class="cyc-lbl">331</text>
+<text x="685.0000000000001" y="79" class="cyc-lbl">335</text>
+<text x="779.6341463414635" y="79" class="cyc-lbl">339</text>
+<text x="874.2682926829269" y="79" class="cyc-lbl">343</text>
+<text x="968.9024390243903" y="79" class="cyc-lbl">347</text>
+<text x="1063.5365853658536" y="79" class="cyc-lbl">351</text>
+<text x="1158.1707317073171" y="79" class="cyc-lbl">355</text>
+<text x="20" y="110" class="sig-lbl">Commit PC</text>
+<text x="20" y="121" class="sig-sub">Retired instruction PC</text>
+<rect x="200" y="95" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="224.65853658536585" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="235.4878048780488" y="111" class="box-lbl" fill="#1e293b">0x80000044</text>
+<rect x="248.3170731707317" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="271.9756097560976" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="282.8048780487805" y="111" class="box-lbl" fill="#1e293b">0x80000048</text>
+<rect x="295.6341463414634" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="306.4634146341463" y="111" class="box-lbl" fill="#1e293b">0x8000004C</text>
+<rect x="319.2926829268293" y="97" width="92.63414634146342" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="413.9268292682927" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="424.7560975609756" y="111" class="box-lbl" fill="#1e293b">0x80000050</text>
+<rect x="437.5853658536586" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="461.2439024390244" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="472.0731707317073" y="111" class="box-lbl" fill="#1e293b">0x80000054</text>
+<rect x="484.9024390243903" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="495.7317073170732" y="111" class="box-lbl" fill="#1e293b">0x80000058</text>
+<rect x="508.5609756097561" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="532.219512195122" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="543.048780487805" y="111" class="box-lbl" fill="#1e293b">0x8000005C</text>
+<rect x="555.8780487804878" y="97" width="116.29268292682927" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="674.1707317073171" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="685.0000000000001" y="111" class="box-lbl" fill="#1e293b">0x80000060</text>
+<rect x="697.829268292683" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="721.4878048780488" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="732.3170731707318" y="111" class="box-lbl" fill="#1e293b">0x80000064</text>
+<rect x="745.1463414634146" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="755.9756097560976" y="111" class="box-lbl" fill="#1e293b">0x80000068</text>
+<rect x="768.8048780487806" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="792.4634146341464" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="803.2926829268293" y="111" class="box-lbl" fill="#1e293b">0x8000006C</text>
+<rect x="816.1219512195122" y="97" width="92.63414634146342" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="910.7560975609756" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="921.5853658536586" y="111" class="box-lbl" fill="#1e293b">0x80000070</text>
+<rect x="934.4146341463415" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="958.0731707317074" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="968.9024390243903" y="111" class="box-lbl" fill="#1e293b">0x80000074</text>
+<rect x="981.7317073170732" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1005.3902439024391" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="1016.2195121951221" y="111" class="box-lbl" fill="#1e293b">0x80000074</text>
+<rect x="1029.0487804878048" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1052.7073170731708" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="1063.5365853658536" y="111" class="box-lbl" fill="#1e293b">0x80000074</text>
+<rect x="1076.3658536585367" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1100.0243902439024" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="1110.8536585365853" y="111" class="box-lbl" fill="#1e293b">0x80000074</text>
+<rect x="1123.6829268292684" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1147.3414634146343" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="1158.1707317073171" y="111" class="box-lbl" fill="#1e293b">0x80000074</text>
+<text x="20" y="148" class="sig-lbl">GPR Write</text>
+<text x="20" y="159" class="sig-sub">Destination reg &amp; result</text>
+<rect x="200" y="133" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="224.65853658536585" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="248.3170731707317" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="271.9756097560976" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="295.6341463414634" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="319.2926829268293" y="135" width="45.31707317073171" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="366.609756097561" y="135" width="45.31707317073171" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="413.9268292682927" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="437.5853658536586" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="461.2439024390244" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="484.9024390243903" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="508.5609756097561" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="532.219512195122" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="555.8780487804878" y="135" width="68.97560975609757" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="626.8536585365854" y="135" width="45.31707317073171" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="674.1707317073171" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="697.829268292683" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="721.4878048780488" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="745.1463414634146" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="768.8048780487806" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="792.4634146341464" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="816.1219512195122" y="135" width="68.97560975609757" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="887.0975609756098" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="910.7560975609756" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="934.4146341463415" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="958.0731707317074" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="981.7317073170732" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1005.3902439024391" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="1029.0487804878048" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1052.7073170731708" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="1076.3658536585367" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1100.0243902439024" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="1123.6829268292684" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1147.3414634146343" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<text x="20" y="186" class="sig-lbl">div_valid_op</text>
+<text x="20" y="197" class="sig-sub">Divider active request</text>
+<rect x="200" y="171" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="173" width="968.0000000000001" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="224" class="sig-lbl">mul_valid_op</text>
+<text x="20" y="235" class="sig-sub">Multiplier active request</text>
+<rect x="200" y="209" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="211" width="163.609756097561" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="366.609756097561" y="211" width="21.658536585365855" height="24" rx="2" fill="#fbcfe8" stroke="#cbd5e1" />
+<text x="377.4390243902439" y="225" class="box-lbl" fill="#1e293b">MUL_OP</text>
+<rect x="390.2682926829268" y="211" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="413.9268292682927" y="211" width="21.658536585365855" height="24" rx="2" fill="#fbcfe8" stroke="#cbd5e1" />
+<text x="424.7560975609756" y="225" class="box-lbl" fill="#1e293b">MUL_OP</text>
+<rect x="437.5853658536586" y="211" width="45.31707317073171" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="484.9024390243903" y="211" width="21.658536585365855" height="24" rx="2" fill="#fbcfe8" stroke="#cbd5e1" />
+<text x="495.7317073170732" y="225" class="box-lbl" fill="#1e293b">MUL_OP</text>
+<rect x="508.5609756097561" y="211" width="116.29268292682927" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="626.8536585365854" y="211" width="21.658536585365855" height="24" rx="2" fill="#fbcfe8" stroke="#cbd5e1" />
+<text x="637.6829268292684" y="225" class="box-lbl" fill="#1e293b">MUL_OP</text>
+<rect x="650.5121951219512" y="211" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="674.1707317073171" y="211" width="21.658536585365855" height="24" rx="2" fill="#fbcfe8" stroke="#cbd5e1" />
+<text x="685.0000000000001" y="225" class="box-lbl" fill="#1e293b">MUL_OP</text>
+<rect x="697.829268292683" y="211" width="45.31707317073171" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="745.1463414634146" y="211" width="21.658536585365855" height="24" rx="2" fill="#fbcfe8" stroke="#cbd5e1" />
+<text x="755.9756097560976" y="225" class="box-lbl" fill="#1e293b">MUL_OP</text>
+<rect x="768.8048780487806" y="211" width="400.19512195121956" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="262" class="sig-lbl">serdiv_op_b_zero</text>
+<text x="20" y="273" class="sig-sub">Div-by-zero detection</text>
+<rect x="200" y="247" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="249" width="968.0000000000001" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="300" class="sig-lbl">serdiv_op_b_neg_one</text>
+<text x="20" y="311" class="sig-sub">Signed overflow (-1 divisor)</text>
+<rect x="200" y="285" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="287" width="968.0000000000001" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="338" class="sig-lbl">serdiv_div_res_zero</text>
+<text x="20" y="349" class="sig-sub">|opB| &gt; |opA| detected</text>
+<rect x="200" y="323" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="325" width="968.0000000000001" height="24" rx="2" fill="#ddd6fe" stroke="#cbd5e1" />
+<text x="685.0" y="339" class="box-lbl" fill="#1e293b">|opB|&gt;|opA| ZERO</text>
+<text x="20" y="376" class="sig-lbl">serdiv_state</text>
+<text x="20" y="387" class="sig-sub">0:IDLE, 1:DIVIDE, 2:FINISH</text>
+<rect x="200" y="361" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="363" width="21.658536585365855" height="24" rx="2" fill="#fde68a" stroke="#cbd5e1" />
+<text x="211.82926829268294" y="377" class="box-lbl" fill="#1e293b">DIVIDE</text>
+<rect x="224.65853658536585" y="363" width="944.3414634146342" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="696.829268292683" y="377" class="box-lbl" fill="#1e293b">IDLE</text>
+<text x="20" y="414" class="sig-lbl">flu_ready</text>
+<text x="20" y="425" class="sig-sub">Fixed Latency Unit Ready</text>
+<rect x="200" y="399" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="401" width="21.658536585365855" height="24" rx="2" fill="#fee2e2" stroke="#cbd5e1" />
+<text x="211.82926829268294" y="415" class="box-lbl" fill="#1e293b">STALLED</text>
+<rect x="224.65853658536585" y="401" width="944.3414634146342" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
+<text x="696.829268292683" y="415" class="box-lbl" fill="#1e293b">FLU_READY</text>
+</svg>

@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560">
+<defs>
+  <style type="text/css">
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }
+    .sig-sub { font-size: 9px; fill: #64748b; }
+    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }
+    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }
+    .hex-lbl { font-size: 9px; font-family: monospace; text-anchor: middle; }
+    .sec-hdr { font-size: 14px; font-weight: 700; fill: #0f172a; }
+    .sec-sub { font-size: 11px; fill: #475569; }
+  </style>
+  <linearGradient id="grid-grad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#f8fafc" />
+    <stop offset="100%" stop-color="#f1f5f9" />
+  </linearGradient>
+</defs>
+<rect width="1200" height="560" fill="#ffffff" />
+<text x="30" y="32" class="sec-hdr">CVA6 Suite 11: M-Extension Arithmetic Corner Cases Execution Timeline</text>
+<text x="30" y="50" class="sec-sub">Overview of Division by Zero, Signed Overflow, |opB|&gt;|opA| Early Termination, and Upper-Word Multiplications</text>
+<rect x="200" y="65" width="970" height="20" fill="#f1f5f9" rx="2" />
+<text x="204.8019801980198" y="79" class="cyc-lbl">260</text>
+<text x="243.21782178217822" y="79" class="cyc-lbl">264</text>
+<text x="281.63366336633663" y="79" class="cyc-lbl">268</text>
+<text x="320.049504950495" y="79" class="cyc-lbl">272</text>
+<text x="358.46534653465346" y="79" class="cyc-lbl">276</text>
+<text x="396.8811881188119" y="79" class="cyc-lbl">280</text>
+<text x="435.2970297029703" y="79" class="cyc-lbl">284</text>
+<text x="473.7128712871287" y="79" class="cyc-lbl">288</text>
+<text x="512.1287128712871" y="79" class="cyc-lbl">292</text>
+<text x="550.5445544554456" y="79" class="cyc-lbl">296</text>
+<text x="588.960396039604" y="79" class="cyc-lbl">300</text>
+<text x="627.3762376237623" y="79" class="cyc-lbl">304</text>
+<text x="665.7920792079208" y="79" class="cyc-lbl">308</text>
+<text x="704.2079207920792" y="79" class="cyc-lbl">312</text>
+<text x="742.6237623762376" y="79" class="cyc-lbl">316</text>
+<text x="781.039603960396" y="79" class="cyc-lbl">320</text>
+<text x="819.4554455445544" y="79" class="cyc-lbl">324</text>
+<text x="857.8712871287129" y="79" class="cyc-lbl">328</text>
+<text x="896.2871287128713" y="79" class="cyc-lbl">332</text>
+<text x="934.7029702970297" y="79" class="cyc-lbl">336</text>
+<text x="973.1188118811881" y="79" class="cyc-lbl">340</text>
+<text x="1011.5346534653465" y="79" class="cyc-lbl">344</text>
+<text x="1049.9504950495048" y="79" class="cyc-lbl">348</text>
+<text x="1088.3663366336632" y="79" class="cyc-lbl">352</text>
+<text x="1126.7821782178216" y="79" class="cyc-lbl">356</text>
+<text x="1165.19801980198" y="79" class="cyc-lbl">360</text>
+<text x="20" y="110" class="sig-lbl">Commit PC</text>
+<text x="20" y="121" class="sig-sub">Retired instruction PC</text>
+<rect x="200" y="95" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="97" width="74.83168316831683" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="277.83168316831683" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="281.63366336633663" y="111" class="box-lbl" fill="#1e293b">0x80000000</text>
+<rect x="287.43564356435644" y="97" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="297.03960396039605" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="300.84158415841586" y="111" class="box-lbl" fill="#1e293b">0x80000004</text>
+<rect x="306.6435643564356" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="310.4455445544554" y="111" class="box-lbl" fill="#1e293b">0x80000008</text>
+<rect x="316.2475247524752" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="320.049504950495" y="111" class="box-lbl" fill="#1e293b">0x8000000C</text>
+<rect x="325.8514851485148" y="97" width="65.22772277227722" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="393.0792079207921" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="396.8811881188119" y="111" class="box-lbl" fill="#1e293b">0x80000010</text>
+<rect x="402.6831683168317" y="97" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="421.8910891089109" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="425.6930693069307" y="111" class="box-lbl" fill="#1e293b">0x80000014</text>
+<rect x="431.4950495049505" y="97" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="450.7029702970297" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="454.5049504950495" y="111" class="box-lbl" fill="#1e293b">0x80000018</text>
+<rect x="460.3069306930693" y="97" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="479.5148514851485" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="483.3168316831683" y="111" class="box-lbl" fill="#1e293b">0x8000001C</text>
+<rect x="489.1188118811881" y="97" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="498.7227722772277" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="502.5247524752475" y="111" class="box-lbl" fill="#1e293b">0x80000020</text>
+<rect x="508.3267326732673" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="512.1287128712871" y="111" class="box-lbl" fill="#1e293b">0x80000024</text>
+<rect x="517.9306930693069" y="97" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="527.5346534653465" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="531.3366336633663" y="111" class="box-lbl" fill="#1e293b">0x80000028</text>
+<rect x="537.1386138613861" y="97" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="556.3465346534654" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="560.1485148514852" y="111" class="box-lbl" fill="#1e293b">0x8000002C</text>
+<rect x="565.950495049505" y="97" width="46.01980198019802" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="613.970297029703" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="617.7722772277228" y="111" class="box-lbl" fill="#1e293b">0x80000030</text>
+<rect x="623.5742574257425" y="97" width="26.81188118811881" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="652.3861386138614" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="656.1881188118812" y="111" class="box-lbl" fill="#1e293b">0x80000034</text>
+<rect x="661.990099009901" y="97" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="671.5940594059406" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="675.3960396039604" y="111" class="box-lbl" fill="#1e293b">0x80000038</text>
+<rect x="681.1980198019802" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="685.0" y="111" class="box-lbl" fill="#1e293b">0x8000003C</text>
+<rect x="690.8019801980198" y="97" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="710.0099009900989" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="713.8118811881187" y="111" class="box-lbl" fill="#1e293b">0x80000040</text>
+<rect x="719.6138613861386" y="97" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="738.8217821782177" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="742.6237623762376" y="111" class="box-lbl" fill="#1e293b">0x80000044</text>
+<rect x="748.4257425742574" y="97" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="758.029702970297" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="761.8316831683168" y="111" class="box-lbl" fill="#1e293b">0x80000048</text>
+<rect x="767.6336633663366" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="771.4356435643564" y="111" class="box-lbl" fill="#1e293b">0x8000004C</text>
+<rect x="777.2376237623762" y="97" width="36.415841584158414" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="815.6534653465346" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="819.4554455445544" y="111" class="box-lbl" fill="#1e293b">0x80000050</text>
+<rect x="825.2574257425742" y="97" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="834.8613861386139" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="838.6633663366337" y="111" class="box-lbl" fill="#1e293b">0x80000054</text>
+<rect x="844.4653465346535" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="848.2673267326733" y="111" class="box-lbl" fill="#1e293b">0x80000058</text>
+<rect x="854.0693069306931" y="97" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="863.6732673267327" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="867.4752475247525" y="111" class="box-lbl" fill="#1e293b">0x8000005C</text>
+<rect x="873.2772277227723" y="97" width="46.01980198019802" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="921.2970297029702" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="925.09900990099" y="111" class="box-lbl" fill="#1e293b">0x80000060</text>
+<rect x="930.9009900990098" y="97" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="940.5049504950495" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="944.3069306930693" y="111" class="box-lbl" fill="#1e293b">0x80000064</text>
+<rect x="950.1089108910891" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="953.9108910891089" y="111" class="box-lbl" fill="#1e293b">0x80000068</text>
+<rect x="959.7128712871287" y="97" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="969.3168316831683" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="973.1188118811881" y="111" class="box-lbl" fill="#1e293b">0x8000006C</text>
+<rect x="978.9207920792079" y="97" width="36.415841584158414" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1017.3366336633663" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="1021.1386138613861" y="111" class="box-lbl" fill="#1e293b">0x80000070</text>
+<rect x="1026.940594059406" y="97" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1036.5445544554455" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="1040.3465346534651" y="111" class="box-lbl" fill="#1e293b">0x80000074</text>
+<rect x="1046.148514851485" y="97" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1055.7524752475247" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="1059.5544554455444" y="111" class="box-lbl" fill="#1e293b">0x80000074</text>
+<rect x="1065.3564356435643" y="97" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1074.960396039604" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="1078.7623762376236" y="111" class="box-lbl" fill="#1e293b">0x80000074</text>
+<rect x="1084.5643564356435" y="97" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1094.1683168316831" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="1097.9702970297028" y="111" class="box-lbl" fill="#1e293b">0x80000074</text>
+<rect x="1103.7722772277227" y="97" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1113.3762376237623" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="1117.178217821782" y="111" class="box-lbl" fill="#1e293b">0x80000074</text>
+<rect x="1122.980198019802" y="97" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1132.5841584158416" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="1136.3861386138612" y="111" class="box-lbl" fill="#1e293b">0x80000074</text>
+<rect x="1142.1881188118812" y="97" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1151.7920792079208" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="1155.5940594059405" y="111" class="box-lbl" fill="#1e293b">0x80000074</text>
+<rect x="1161.3960396039604" y="97" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="148" class="sig-lbl">GPR Write</text>
+<text x="20" y="159" class="sig-sub">Destination reg &amp; result</text>
+<rect x="200" y="133" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="135" width="65.22772277227722" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="268.2277227722772" y="135" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="277.83168316831683" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="287.43564356435644" y="135" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="297.03960396039605" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="306.6435643564356" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="316.2475247524752" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="325.8514851485148" y="135" width="46.01980198019802" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="373.8712871287129" y="135" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="393.0792079207921" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="402.6831683168317" y="135" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="421.8910891089109" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="431.4950495049505" y="135" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="450.7029702970297" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="460.3069306930693" y="135" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="479.5148514851485" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="489.1188118811881" y="135" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="498.7227722772277" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="508.3267326732673" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="517.9306930693069" y="135" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="527.5346534653465" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="537.1386138613861" y="135" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="556.3465346534654" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="565.950495049505" y="135" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="585.1584158415842" y="135" width="26.81188118811881" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="613.970297029703" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="623.5742574257425" y="135" width="26.81188118811881" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="652.3861386138614" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="661.990099009901" y="135" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="671.5940594059406" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="681.1980198019802" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="690.8019801980198" y="135" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="710.0099009900989" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="719.6138613861386" y="135" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="738.8217821782177" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="748.4257425742574" y="135" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="758.029702970297" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="767.6336633663366" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="777.2376237623762" y="135" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="796.4455445544554" y="135" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="815.6534653465346" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="825.2574257425742" y="135" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="834.8613861386139" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="844.4653465346535" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="854.0693069306931" y="135" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="863.6732673267327" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="873.2772277227723" y="135" width="26.81188118811881" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="902.089108910891" y="135" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="921.2970297029702" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="930.9009900990098" y="135" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="940.5049504950495" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="950.1089108910891" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="959.7128712871287" y="135" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="969.3168316831683" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="978.9207920792079" y="135" width="26.81188118811881" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1007.7326732673267" y="135" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1017.3366336633663" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="1026.940594059406" y="135" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1036.5445544554455" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="1046.148514851485" y="135" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1055.7524752475247" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="1065.3564356435643" y="135" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1074.960396039604" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="1084.5643564356435" y="135" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1094.1683168316831" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="1103.7722772277227" y="135" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1113.3762376237623" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="1122.980198019802" y="135" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1132.5841584158416" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="1142.1881188118812" y="135" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1151.7920792079208" y="135" width="7.603960396039604" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="1161.3960396039604" y="135" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="186" class="sig-lbl">div_valid_op</text>
+<text x="20" y="197" class="sig-sub">Divider active request</text>
+<rect x="200" y="171" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="173" width="170.87128712871288" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="373.8712871287129" y="173" width="7.603960396039604" height="24" rx="2" fill="#fed7aa" stroke="#cbd5e1" />
+<text x="377.6732673267327" y="187" class="box-lbl" fill="#1e293b">DIV_OP</text>
+<rect x="383.4752475247525" y="173" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="402.6831683168317" y="173" width="7.603960396039604" height="24" rx="2" fill="#fed7aa" stroke="#cbd5e1" />
+<text x="406.4851485148515" y="187" class="box-lbl" fill="#1e293b">DIV_OP</text>
+<rect x="412.28712871287127" y="173" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="431.4950495049505" y="173" width="7.603960396039604" height="24" rx="2" fill="#fed7aa" stroke="#cbd5e1" />
+<text x="435.2970297029703" y="187" class="box-lbl" fill="#1e293b">DIV_OP</text>
+<rect x="441.0990099009901" y="173" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="460.3069306930693" y="173" width="7.603960396039604" height="24" rx="2" fill="#fed7aa" stroke="#cbd5e1" />
+<text x="464.1089108910891" y="187" class="box-lbl" fill="#1e293b">DIV_OP</text>
+<rect x="469.9108910891089" y="173" width="36.415841584158414" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="508.3267326732673" y="173" width="7.603960396039604" height="24" rx="2" fill="#fed7aa" stroke="#cbd5e1" />
+<text x="512.1287128712871" y="187" class="box-lbl" fill="#1e293b">DIV_OP</text>
+<rect x="517.9306930693069" y="173" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="537.1386138613861" y="173" width="7.603960396039604" height="24" rx="2" fill="#fed7aa" stroke="#cbd5e1" />
+<text x="540.940594059406" y="187" class="box-lbl" fill="#1e293b">DIV_OP</text>
+<rect x="546.7425742574258" y="173" width="36.415841584158414" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="585.1584158415842" y="173" width="7.603960396039604" height="24" rx="2" fill="#fed7aa" stroke="#cbd5e1" />
+<text x="588.960396039604" y="187" class="box-lbl" fill="#1e293b">DIV_OP</text>
+<rect x="594.7623762376238" y="173" width="26.81188118811881" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="623.5742574257425" y="173" width="7.603960396039604" height="24" rx="2" fill="#fed7aa" stroke="#cbd5e1" />
+<text x="627.3762376237623" y="187" class="box-lbl" fill="#1e293b">DIV_OP</text>
+<rect x="633.1782178217821" y="173" width="55.62376237623762" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="690.8019801980198" y="173" width="7.603960396039604" height="24" rx="2" fill="#fed7aa" stroke="#cbd5e1" />
+<text x="694.6039603960396" y="187" class="box-lbl" fill="#1e293b">DIV_OP</text>
+<rect x="700.4059405940594" y="173" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="719.6138613861386" y="173" width="7.603960396039604" height="24" rx="2" fill="#fed7aa" stroke="#cbd5e1" />
+<text x="723.4158415841584" y="187" class="box-lbl" fill="#1e293b">DIV_OP</text>
+<rect x="729.2178217821782" y="173" width="439.78217821782175" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="224" class="sig-lbl">mul_valid_op</text>
+<text x="20" y="235" class="sig-sub">Multiplier active request</text>
+<rect x="200" y="209" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="211" width="593.4455445544554" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="796.4455445544554" y="211" width="7.603960396039604" height="24" rx="2" fill="#fbcfe8" stroke="#cbd5e1" />
+<text x="800.2475247524752" y="225" class="box-lbl" fill="#1e293b">MUL_OP</text>
+<rect x="806.049504950495" y="211" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="815.6534653465346" y="211" width="7.603960396039604" height="24" rx="2" fill="#fbcfe8" stroke="#cbd5e1" />
+<text x="819.4554455445544" y="225" class="box-lbl" fill="#1e293b">MUL_OP</text>
+<rect x="825.2574257425742" y="211" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="844.4653465346535" y="211" width="7.603960396039604" height="24" rx="2" fill="#fbcfe8" stroke="#cbd5e1" />
+<text x="848.2673267326733" y="225" class="box-lbl" fill="#1e293b">MUL_OP</text>
+<rect x="854.0693069306931" y="211" width="46.01980198019802" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="902.089108910891" y="211" width="7.603960396039604" height="24" rx="2" fill="#fbcfe8" stroke="#cbd5e1" />
+<text x="905.8910891089108" y="225" class="box-lbl" fill="#1e293b">MUL_OP</text>
+<rect x="911.6930693069306" y="211" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="921.2970297029702" y="211" width="7.603960396039604" height="24" rx="2" fill="#fbcfe8" stroke="#cbd5e1" />
+<text x="925.09900990099" y="225" class="box-lbl" fill="#1e293b">MUL_OP</text>
+<rect x="930.9009900990098" y="211" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="950.1089108910891" y="211" width="7.603960396039604" height="24" rx="2" fill="#fbcfe8" stroke="#cbd5e1" />
+<text x="953.9108910891089" y="225" class="box-lbl" fill="#1e293b">MUL_OP</text>
+<rect x="959.7128712871287" y="211" width="209.28712871287127" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="262" class="sig-lbl">serdiv_op_b_zero</text>
+<text x="20" y="273" class="sig-sub">Div-by-zero detection</text>
+<rect x="200" y="247" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="249" width="180.47524752475246" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="383.4752475247525" y="249" width="132.45544554455444" height="24" rx="2" fill="#fecaca" stroke="#cbd5e1" />
+<text x="449.7029702970297" y="263" class="box-lbl" fill="#1e293b">DIV_BY_ZERO</text>
+<rect x="517.9306930693069" y="249" width="651.0693069306931" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="300" class="sig-lbl">serdiv_op_b_neg_one</text>
+<text x="20" y="311" class="sig-sub">Signed overflow (-1 divisor)</text>
+<rect x="200" y="285" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="287" width="314.9306930693069" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="517.9306930693069" y="287" width="74.83168316831683" height="24" rx="2" fill="#fef08a" stroke="#cbd5e1" />
+<text x="555.3465346534654" y="301" class="box-lbl" fill="#1e293b">DIV_BY_-1 (OVERFLOW)</text>
+<rect x="594.7623762376238" y="287" width="574.2376237623762" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="338" class="sig-lbl">serdiv_div_res_zero</text>
+<text x="20" y="349" class="sig-sub">|opB| &gt; |opA| detected</text>
+<rect x="200" y="323" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="325" width="497.4059405940594" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="700.4059405940594" y="325" width="468.5940594059406" height="24" rx="2" fill="#ddd6fe" stroke="#cbd5e1" />
+<text x="934.7029702970297" y="339" class="box-lbl" fill="#1e293b">|opB|&gt;|opA| ZERO</text>
+<text x="20" y="376" class="sig-lbl">serdiv_state</text>
+<text x="20" y="387" class="sig-sub">0:IDLE, 1:DIVIDE, 2:FINISH</text>
+<rect x="200" y="361" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="363" width="180.47524752475246" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="291.23762376237624" y="377" class="box-lbl" fill="#1e293b">IDLE</text>
+<rect x="383.4752475247525" y="363" width="7.603960396039604" height="24" rx="2" fill="#fde68a" stroke="#cbd5e1" />
+<text x="387.2772277227723" y="377" class="box-lbl" fill="#1e293b">DIVIDE</text>
+<rect x="393.0792079207921" y="363" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="401.6831683168317" y="377" class="box-lbl" fill="#1e293b">IDLE</text>
+<rect x="412.28712871287127" y="363" width="7.603960396039604" height="24" rx="2" fill="#fde68a" stroke="#cbd5e1" />
+<text x="416.08910891089107" y="377" class="box-lbl" fill="#1e293b">DIVIDE</text>
+<rect x="421.8910891089109" y="363" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="430.4950495049505" y="377" class="box-lbl" fill="#1e293b">IDLE</text>
+<rect x="441.0990099009901" y="363" width="7.603960396039604" height="24" rx="2" fill="#fde68a" stroke="#cbd5e1" />
+<text x="444.9009900990099" y="377" class="box-lbl" fill="#1e293b">DIVIDE</text>
+<rect x="450.7029702970297" y="363" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="459.3069306930693" y="377" class="box-lbl" fill="#1e293b">IDLE</text>
+<rect x="469.9108910891089" y="363" width="7.603960396039604" height="24" rx="2" fill="#fde68a" stroke="#cbd5e1" />
+<text x="473.7128712871287" y="377" class="box-lbl" fill="#1e293b">DIVIDE</text>
+<rect x="479.5148514851485" y="363" width="36.415841584158414" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="497.7227722772277" y="377" class="box-lbl" fill="#1e293b">IDLE</text>
+<rect x="517.9306930693069" y="363" width="7.603960396039604" height="24" rx="2" fill="#fde68a" stroke="#cbd5e1" />
+<text x="521.7326732673267" y="377" class="box-lbl" fill="#1e293b">DIVIDE</text>
+<rect x="527.5346534653465" y="363" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="536.1386138613861" y="377" class="box-lbl" fill="#1e293b">IDLE</text>
+<rect x="546.7425742574258" y="363" width="7.603960396039604" height="24" rx="2" fill="#fde68a" stroke="#cbd5e1" />
+<text x="550.5445544554456" y="377" class="box-lbl" fill="#1e293b">DIVIDE</text>
+<rect x="556.3465346534654" y="363" width="36.415841584158414" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="574.5544554455446" y="377" class="box-lbl" fill="#1e293b">IDLE</text>
+<rect x="594.7623762376238" y="363" width="7.603960396039604" height="24" rx="2" fill="#fde68a" stroke="#cbd5e1" />
+<text x="598.5643564356436" y="377" class="box-lbl" fill="#1e293b">DIVIDE</text>
+<rect x="604.3663366336634" y="363" width="7.603960396039604" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
+<text x="608.1683168316832" y="377" class="box-lbl" fill="#1e293b">FINISH</text>
+<rect x="613.970297029703" y="363" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="622.5742574257426" y="377" class="box-lbl" fill="#1e293b">IDLE</text>
+<rect x="633.1782178217821" y="363" width="7.603960396039604" height="24" rx="2" fill="#fde68a" stroke="#cbd5e1" />
+<text x="636.980198019802" y="377" class="box-lbl" fill="#1e293b">DIVIDE</text>
+<rect x="642.7821782178218" y="363" width="7.603960396039604" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
+<text x="646.5841584158416" y="377" class="box-lbl" fill="#1e293b">FINISH</text>
+<rect x="652.3861386138614" y="363" width="46.01980198019802" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="675.3960396039604" y="377" class="box-lbl" fill="#1e293b">IDLE</text>
+<rect x="700.4059405940594" y="363" width="7.603960396039604" height="24" rx="2" fill="#fde68a" stroke="#cbd5e1" />
+<text x="704.2079207920792" y="377" class="box-lbl" fill="#1e293b">DIVIDE</text>
+<rect x="710.0099009900989" y="363" width="17.207920792079207" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="718.6138613861385" y="377" class="box-lbl" fill="#1e293b">IDLE</text>
+<rect x="729.2178217821782" y="363" width="7.603960396039604" height="24" rx="2" fill="#fde68a" stroke="#cbd5e1" />
+<text x="733.019801980198" y="377" class="box-lbl" fill="#1e293b">DIVIDE</text>
+<rect x="738.8217821782177" y="363" width="430.17821782178214" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="953.9108910891089" y="377" class="box-lbl" fill="#1e293b">IDLE</text>
+<text x="20" y="414" class="sig-lbl">flu_ready</text>
+<text x="20" y="425" class="sig-sub">Fixed Latency Unit Ready</text>
+<rect x="200" y="399" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="401" width="170.87128712871288" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
+<text x="286.43564356435644" y="415" class="box-lbl" fill="#1e293b">FLU_READY</text>
+<rect x="373.8712871287129" y="401" width="17.207920792079207" height="24" rx="2" fill="#fee2e2" stroke="#cbd5e1" />
+<text x="382.4752475247525" y="415" class="box-lbl" fill="#1e293b">STALLED</text>
+<rect x="393.0792079207921" y="401" width="7.603960396039604" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
+<text x="396.8811881188119" y="415" class="box-lbl" fill="#1e293b">FLU_READY</text>
+<rect x="402.6831683168317" y="401" width="17.207920792079207" height="24" rx="2" fill="#fee2e2" stroke="#cbd5e1" />
+<text x="411.2871287128713" y="415" class="box-lbl" fill="#1e293b">STALLED</text>
+<rect x="421.8910891089109" y="401" width="7.603960396039604" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
+<text x="425.6930693069307" y="415" class="box-lbl" fill="#1e293b">FLU_READY</text>
+<rect x="431.4950495049505" y="401" width="17.207920792079207" height="24" rx="2" fill="#fee2e2" stroke="#cbd5e1" />
+<text x="440.0990099009901" y="415" class="box-lbl" fill="#1e293b">STALLED</text>
+<rect x="450.7029702970297" y="401" width="7.603960396039604" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
+<text x="454.5049504950495" y="415" class="box-lbl" fill="#1e293b">FLU_READY</text>
+<rect x="460.3069306930693" y="401" width="17.207920792079207" height="24" rx="2" fill="#fee2e2" stroke="#cbd5e1" />
+<text x="468.91089108910893" y="415" class="box-lbl" fill="#1e293b">STALLED</text>
+<rect x="479.5148514851485" y="401" width="26.81188118811881" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
+<text x="492.9207920792079" y="415" class="box-lbl" fill="#1e293b">FLU_READY</text>
+<rect x="508.3267326732673" y="401" width="17.207920792079207" height="24" rx="2" fill="#fee2e2" stroke="#cbd5e1" />
+<text x="516.9306930693069" y="415" class="box-lbl" fill="#1e293b">STALLED</text>
+<rect x="527.5346534653465" y="401" width="7.603960396039604" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
+<text x="531.3366336633663" y="415" class="box-lbl" fill="#1e293b">FLU_READY</text>
+<rect x="537.1386138613861" y="401" width="17.207920792079207" height="24" rx="2" fill="#fee2e2" stroke="#cbd5e1" />
+<text x="545.7425742574258" y="415" class="box-lbl" fill="#1e293b">STALLED</text>
+<rect x="556.3465346534654" y="401" width="26.81188118811881" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
+<text x="569.7524752475248" y="415" class="box-lbl" fill="#1e293b">FLU_READY</text>
+<rect x="585.1584158415842" y="401" width="26.81188118811881" height="24" rx="2" fill="#fee2e2" stroke="#cbd5e1" />
+<text x="598.5643564356436" y="415" class="box-lbl" fill="#1e293b">STALLED</text>
+<rect x="613.970297029703" y="401" width="7.603960396039604" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
+<text x="617.7722772277228" y="415" class="box-lbl" fill="#1e293b">FLU_READY</text>
+<rect x="623.5742574257425" y="401" width="26.81188118811881" height="24" rx="2" fill="#fee2e2" stroke="#cbd5e1" />
+<text x="636.980198019802" y="415" class="box-lbl" fill="#1e293b">STALLED</text>
+<rect x="652.3861386138614" y="401" width="36.415841584158414" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
+<text x="670.5940594059406" y="415" class="box-lbl" fill="#1e293b">FLU_READY</text>
+<rect x="690.8019801980198" y="401" width="17.207920792079207" height="24" rx="2" fill="#fee2e2" stroke="#cbd5e1" />
+<text x="699.4059405940594" y="415" class="box-lbl" fill="#1e293b">STALLED</text>
+<rect x="710.0099009900989" y="401" width="7.603960396039604" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
+<text x="713.8118811881187" y="415" class="box-lbl" fill="#1e293b">FLU_READY</text>
+<rect x="719.6138613861386" y="401" width="17.207920792079207" height="24" rx="2" fill="#fee2e2" stroke="#cbd5e1" />
+<text x="728.2178217821782" y="415" class="box-lbl" fill="#1e293b">STALLED</text>
+<rect x="738.8217821782177" y="401" width="430.17821782178214" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
+<text x="953.9108910891089" y="415" class="box-lbl" fill="#1e293b">FLU_READY</text>
+</svg>

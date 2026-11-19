@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560">
+<defs>
+  <style type="text/css">
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }
+    .sig-sub { font-size: 9px; fill: #64748b; }
+    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }
+    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }
+    .hex-lbl { font-size: 9px; font-family: monospace; text-anchor: middle; }
+    .sec-hdr { font-size: 14px; font-weight: 700; fill: #0f172a; }
+    .sec-sub { font-size: 11px; fill: #475569; }
+  </style>
+  <linearGradient id="grid-grad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#f8fafc" />
+    <stop offset="100%" stop-color="#f1f5f9" />
+  </linearGradient>
+</defs>
+<rect width="1200" height="560" fill="#ffffff" />
+<text x="30" y="32" class="sec-hdr">CVA6 Suite 11: Division by Zero Corner Cases &amp; Early Termination</text>
+<text x="30" y="50" class="sec-sub">div/divu returning -1 (0xFFFFFFFF) and rem/remu returning dividend (1000) with serdiv_op_b_zero early finish</text>
+<rect x="200" y="65" width="970" height="20" fill="#f1f5f9" rx="2" />
+<text x="215.6451612903226" y="79" class="cyc-lbl">265</text>
+<text x="278.22580645161287" y="79" class="cyc-lbl">267</text>
+<text x="340.8064516129032" y="79" class="cyc-lbl">269</text>
+<text x="403.38709677419354" y="79" class="cyc-lbl">271</text>
+<text x="465.96774193548384" y="79" class="cyc-lbl">273</text>
+<text x="528.5483870967741" y="79" class="cyc-lbl">275</text>
+<text x="591.1290322580645" y="79" class="cyc-lbl">277</text>
+<text x="653.7096774193548" y="79" class="cyc-lbl">279</text>
+<text x="716.2903225806451" y="79" class="cyc-lbl">281</text>
+<text x="778.8709677419355" y="79" class="cyc-lbl">283</text>
+<text x="841.4516129032257" y="79" class="cyc-lbl">285</text>
+<text x="904.0322580645161" y="79" class="cyc-lbl">287</text>
+<text x="966.6129032258065" y="79" class="cyc-lbl">289</text>
+<text x="1029.1935483870968" y="79" class="cyc-lbl">291</text>
+<text x="1091.774193548387" y="79" class="cyc-lbl">293</text>
+<text x="1154.3548387096773" y="79" class="cyc-lbl">295</text>
+<text x="20" y="110" class="sig-lbl">Commit PC</text>
+<text x="20" y="121" class="sig-sub">Retired instruction PC</text>
+<rect x="200" y="95" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="97" width="91.87096774193549" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="294.8709677419355" y="97" width="29.29032258064516" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="309.51612903225805" y="111" class="box-lbl" fill="#1e293b">0x0000 LUI sp,0x80000</text>
+<rect x="326.1612903225806" y="97" width="29.29032258064516" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="357.4516129032258" y="97" width="29.29032258064516" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="372.09677419354836" y="111" class="box-lbl" fill="#1e293b">0x0004 ADDI sp,512</text>
+<rect x="388.741935483871" y="97" width="29.29032258064516" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="403.38709677419354" y="111" class="box-lbl" fill="#1e293b">0x0008 LI gp,1000</text>
+<rect x="420.0322580645161" y="97" width="29.29032258064516" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="434.67741935483866" y="111" class="box-lbl" fill="#1e293b">0x000C LI tp,0</text>
+<rect x="451.3225806451613" y="97" width="217.03225806451613" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="670.3548387096773" y="97" width="29.29032258064516" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="684.9999999999999" y="111" class="box-lbl" fill="#1e293b">0x0010 DIV a0,gp,tp</text>
+<rect x="701.6451612903226" y="97" width="60.58064516129032" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="764.2258064516129" y="97" width="29.29032258064516" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="778.8709677419355" y="111" class="box-lbl" fill="#1e293b">0x0014 DIVU a1,gp,tp</text>
+<rect x="795.516129032258" y="97" width="60.58064516129032" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="858.0967741935484" y="97" width="29.29032258064516" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="872.741935483871" y="111" class="box-lbl" fill="#1e293b">0x0018 REM a2,gp,tp</text>
+<rect x="889.3870967741935" y="97" width="60.58064516129032" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="951.9677419354839" y="97" width="29.29032258064516" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="966.6129032258065" y="111" class="box-lbl" fill="#1e293b">0x001C REMU a3,gp,tp</text>
+<rect x="983.258064516129" y="97" width="29.29032258064516" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1014.5483870967741" y="97" width="29.29032258064516" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="1029.1935483870968" y="111" class="box-lbl" fill="#1e293b">0x0020 LUI s2,0x80000</text>
+<rect x="1045.8387096774193" y="97" width="29.29032258064516" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="1060.483870967742" y="111" class="box-lbl" fill="#1e293b">0x0024 LI s3,-1</text>
+<rect x="1077.1290322580644" y="97" width="29.29032258064516" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1108.4193548387098" y="97" width="29.29032258064516" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="1123.0645161290324" y="111" class="box-lbl" fill="#1e293b">0x0028 DIV a4,s2,s3</text>
+<rect x="1139.7096774193546" y="97" width="29.29032258064516" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="148" class="sig-lbl">GPR Write</text>
+<text x="20" y="159" class="sig-sub">Destination reg &amp; result</text>
+<rect x="200" y="133" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="135" width="60.58064516129032" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="263.5806451612903" y="135" width="29.29032258064516" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="294.8709677419355" y="135" width="29.29032258064516" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="326.1612903225806" y="135" width="29.29032258064516" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="357.4516129032258" y="135" width="29.29032258064516" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="388.741935483871" y="135" width="29.29032258064516" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="420.0322580645161" y="135" width="29.29032258064516" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="451.3225806451613" y="135" width="154.4516129032258" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="607.7741935483871" y="135" width="60.58064516129032" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="670.3548387096773" y="135" width="29.29032258064516" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="701.6451612903226" y="135" width="60.58064516129032" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="764.2258064516129" y="135" width="29.29032258064516" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="795.516129032258" y="135" width="60.58064516129032" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="858.0967741935484" y="135" width="29.29032258064516" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="889.3870967741935" y="135" width="60.58064516129032" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="951.9677419354839" y="135" width="29.29032258064516" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="983.258064516129" y="135" width="29.29032258064516" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1014.5483870967741" y="135" width="29.29032258064516" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="1045.8387096774193" y="135" width="29.29032258064516" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="1077.1290322580644" y="135" width="29.29032258064516" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1108.4193548387098" y="135" width="29.29032258064516" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
+<rect x="1139.7096774193546" y="135" width="29.29032258064516" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="186" class="sig-lbl">div_valid_op</text>
+<text x="20" y="197" class="sig-sub">Divider active request</text>
+<rect x="200" y="171" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="173" width="404.7741935483871" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="607.7741935483871" y="173" width="29.29032258064516" height="24" rx="2" fill="#fed7aa" stroke="#cbd5e1" />
+<text x="622.4193548387096" y="187" class="box-lbl" fill="#1e293b">DIV_OP</text>
+<rect x="639.0645161290322" y="173" width="60.58064516129032" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="701.6451612903226" y="173" width="29.29032258064516" height="24" rx="2" fill="#fed7aa" stroke="#cbd5e1" />
+<text x="716.2903225806451" y="187" class="box-lbl" fill="#1e293b">DIV_OP</text>
+<rect x="732.9354838709677" y="173" width="60.58064516129032" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="795.516129032258" y="173" width="29.29032258064516" height="24" rx="2" fill="#fed7aa" stroke="#cbd5e1" />
+<text x="810.1612903225806" y="187" class="box-lbl" fill="#1e293b">DIV_OP</text>
+<rect x="826.8064516129032" y="173" width="60.58064516129032" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="889.3870967741935" y="173" width="29.29032258064516" height="24" rx="2" fill="#fed7aa" stroke="#cbd5e1" />
+<text x="904.0322580645161" y="187" class="box-lbl" fill="#1e293b">DIV_OP</text>
+<rect x="920.6774193548387" y="173" width="123.16129032258064" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1045.8387096774193" y="173" width="29.29032258064516" height="24" rx="2" fill="#fed7aa" stroke="#cbd5e1" />
+<text x="1060.483870967742" y="187" class="box-lbl" fill="#1e293b">DIV_OP</text>
+<rect x="1077.1290322580644" y="173" width="60.58064516129032" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1139.7096774193546" y="173" width="29.29032258064516" height="24" rx="2" fill="#fed7aa" stroke="#cbd5e1" />
+<text x="1154.3548387096773" y="187" class="box-lbl" fill="#1e293b">DIV_OP</text>
+<text x="20" y="224" class="sig-lbl">mul_valid_op</text>
+<text x="20" y="235" class="sig-sub">Multiplier active request</text>
+<rect x="200" y="209" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="211" width="968.0" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="262" class="sig-lbl">serdiv_op_b_zero</text>
+<text x="20" y="273" class="sig-sub">Div-by-zero detection</text>
+<rect x="200" y="247" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="249" width="436.06451612903226" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="639.0645161290322" y="249" width="436.06451612903226" height="24" rx="2" fill="#fecaca" stroke="#cbd5e1" />
+<text x="857.0967741935483" y="263" class="box-lbl" fill="#1e293b">DIV_BY_ZERO</text>
+<rect x="1077.1290322580644" y="249" width="91.87096774193549" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="300" class="sig-lbl">serdiv_op_b_neg_one</text>
+<text x="20" y="311" class="sig-sub">Signed overflow (-1 divisor)</text>
+<rect x="200" y="285" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="287" width="874.1290322580645" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1077.1290322580644" y="287" width="91.87096774193549" height="24" rx="2" fill="#fef08a" stroke="#cbd5e1" />
+<text x="1123.0645161290322" y="301" class="box-lbl" fill="#1e293b">DIV_BY_-1 (OVERFLOW)</text>
+<text x="20" y="338" class="sig-lbl">serdiv_div_res_zero</text>
+<text x="20" y="349" class="sig-sub">|opB| &gt; |opA| detected</text>
+<rect x="200" y="323" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="325" width="968.0" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="376" class="sig-lbl">serdiv_state</text>
+<text x="20" y="387" class="sig-sub">0:IDLE, 1:DIVIDE, 2:FINISH</text>
+<rect x="200" y="361" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="363" width="436.06451612903226" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="419.0322580645161" y="377" class="box-lbl" fill="#1e293b">IDLE</text>
+<rect x="639.0645161290322" y="363" width="29.29032258064516" height="24" rx="2" fill="#fde68a" stroke="#cbd5e1" />
+<text x="653.7096774193548" y="377" class="box-lbl" fill="#1e293b">DIVIDE</text>
+<rect x="670.3548387096773" y="363" width="60.58064516129032" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="700.6451612903224" y="377" class="box-lbl" fill="#1e293b">IDLE</text>
+<rect x="732.9354838709677" y="363" width="29.29032258064516" height="24" rx="2" fill="#fde68a" stroke="#cbd5e1" />
+<text x="747.5806451612902" y="377" class="box-lbl" fill="#1e293b">DIVIDE</text>
+<rect x="764.2258064516129" y="363" width="60.58064516129032" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="794.516129032258" y="377" class="box-lbl" fill="#1e293b">IDLE</text>
+<rect x="826.8064516129032" y="363" width="29.29032258064516" height="24" rx="2" fill="#fde68a" stroke="#cbd5e1" />
+<text x="841.4516129032257" y="377" class="box-lbl" fill="#1e293b">DIVIDE</text>
+<rect x="858.0967741935484" y="363" width="60.58064516129032" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="888.3870967741935" y="377" class="box-lbl" fill="#1e293b">IDLE</text>
+<rect x="920.6774193548387" y="363" width="29.29032258064516" height="24" rx="2" fill="#fde68a" stroke="#cbd5e1" />
+<text x="935.3225806451612" y="377" class="box-lbl" fill="#1e293b">DIVIDE</text>
+<rect x="951.9677419354839" y="363" width="123.16129032258064" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="1013.5483870967743" y="377" class="box-lbl" fill="#1e293b">IDLE</text>
+<rect x="1077.1290322580644" y="363" width="29.29032258064516" height="24" rx="2" fill="#fde68a" stroke="#cbd5e1" />
+<text x="1091.774193548387" y="377" class="box-lbl" fill="#1e293b">DIVIDE</text>
+<rect x="1108.4193548387098" y="363" width="60.58064516129032" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="1138.7096774193549" y="377" class="box-lbl" fill="#1e293b">IDLE</text>
+<text x="20" y="414" class="sig-lbl">flu_ready</text>
+<text x="20" y="425" class="sig-sub">Fixed Latency Unit Ready</text>
+<rect x="200" y="399" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="401" width="404.7741935483871" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
+<text x="403.38709677419354" y="415" class="box-lbl" fill="#1e293b">FLU_READY</text>
+<rect x="607.7741935483871" y="401" width="60.58064516129032" height="24" rx="2" fill="#fee2e2" stroke="#cbd5e1" />
+<text x="638.0645161290322" y="415" class="box-lbl" fill="#1e293b">STALLED</text>
+<rect x="670.3548387096773" y="401" width="29.29032258064516" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
+<text x="684.9999999999999" y="415" class="box-lbl" fill="#1e293b">FLU_READY</text>
+<rect x="701.6451612903226" y="401" width="60.58064516129032" height="24" rx="2" fill="#fee2e2" stroke="#cbd5e1" />
+<text x="731.9354838709677" y="415" class="box-lbl" fill="#1e293b">STALLED</text>
+<rect x="764.2258064516129" y="401" width="29.29032258064516" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
+<text x="778.8709677419355" y="415" class="box-lbl" fill="#1e293b">FLU_READY</text>
+<rect x="795.516129032258" y="401" width="60.58064516129032" height="24" rx="2" fill="#fee2e2" stroke="#cbd5e1" />
+<text x="825.8064516129032" y="415" class="box-lbl" fill="#1e293b">STALLED</text>
+<rect x="858.0967741935484" y="401" width="29.29032258064516" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
+<text x="872.741935483871" y="415" class="box-lbl" fill="#1e293b">FLU_READY</text>
+<rect x="889.3870967741935" y="401" width="60.58064516129032" height="24" rx="2" fill="#fee2e2" stroke="#cbd5e1" />
+<text x="919.6774193548387" y="415" class="box-lbl" fill="#1e293b">STALLED</text>
+<rect x="951.9677419354839" y="401" width="91.87096774193549" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
+<text x="997.9032258064517" y="415" class="box-lbl" fill="#1e293b">FLU_READY</text>
+<rect x="1045.8387096774193" y="401" width="60.58064516129032" height="24" rx="2" fill="#fee2e2" stroke="#cbd5e1" />
+<text x="1076.1290322580644" y="415" class="box-lbl" fill="#1e293b">STALLED</text>
+<rect x="1108.4193548387098" y="401" width="29.29032258064516" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
+<text x="1123.0645161290324" y="415" class="box-lbl" fill="#1e293b">FLU_READY</text>
+<rect x="1139.7096774193546" y="401" width="29.29032258064516" height="24" rx="2" fill="#fee2e2" stroke="#cbd5e1" />
+<text x="1154.3548387096773" y="415" class="box-lbl" fill="#1e293b">STALLED</text>
+</svg>
