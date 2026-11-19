@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2076" height="501" viewBox="0 0 2076 501">
+<defs>
+  <style type="text/css">
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }
+    .sig-sub { font-size: 9px; fill: #64748b; }
+    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }
+    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }
+    .hex-lbl { font-size: 9px; font-family: monospace; text-anchor: middle; }
+  </style>
+</defs>
+<rect width="2076" height="501" fill="#ffffff"/>
+<text x="24" y="28" font-size="15" font-weight="700" fill="#0f172a">CVA6 AMOSWAP.W and AMOADD.W Operations &amp; Return Values</text>
+<text x="24" y="46" font-size="11" fill="#64748b">Validates atomic write bus transactions (AWATOP), read data returns, and memory update semantics</text>
+<line x1="190" y1="57" x2="190" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="203.0" y="53" class="cyc-lbl">C629</text>
+<line x1="268" y1="57" x2="268" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="281.0" y="53" class="cyc-lbl">C632</text>
+<line x1="346" y1="57" x2="346" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="359.0" y="53" class="cyc-lbl">C635</text>
+<line x1="424" y1="57" x2="424" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="437.0" y="53" class="cyc-lbl">C638</text>
+<line x1="502" y1="57" x2="502" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="515.0" y="53" class="cyc-lbl">C641</text>
+<line x1="580" y1="57" x2="580" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="593.0" y="53" class="cyc-lbl">C644</text>
+<line x1="658" y1="57" x2="658" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="671.0" y="53" class="cyc-lbl">C647</text>
+<line x1="736" y1="57" x2="736" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="749.0" y="53" class="cyc-lbl">C650</text>
+<line x1="814" y1="57" x2="814" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="827.0" y="53" class="cyc-lbl">C653</text>
+<line x1="892" y1="57" x2="892" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="905.0" y="53" class="cyc-lbl">C656</text>
+<line x1="970" y1="57" x2="970" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="983.0" y="53" class="cyc-lbl">C659</text>
+<line x1="1048" y1="57" x2="1048" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="1061.0" y="53" class="cyc-lbl">C662</text>
+<line x1="1126" y1="57" x2="1126" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="1139.0" y="53" class="cyc-lbl">C665</text>
+<line x1="1204" y1="57" x2="1204" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="1217.0" y="53" class="cyc-lbl">C668</text>
+<line x1="1282" y1="57" x2="1282" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="1295.0" y="53" class="cyc-lbl">C671</text>
+<line x1="1360" y1="57" x2="1360" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="1373.0" y="53" class="cyc-lbl">C674</text>
+<line x1="1438" y1="57" x2="1438" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="1451.0" y="53" class="cyc-lbl">C677</text>
+<line x1="1516" y1="57" x2="1516" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="1529.0" y="53" class="cyc-lbl">C680</text>
+<line x1="1594" y1="57" x2="1594" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="1607.0" y="53" class="cyc-lbl">C683</text>
+<line x1="1672" y1="57" x2="1672" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="1685.0" y="53" class="cyc-lbl">C686</text>
+<line x1="1750" y1="57" x2="1750" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="1763.0" y="53" class="cyc-lbl">C689</text>
+<line x1="1828" y1="57" x2="1828" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="1841.0" y="53" class="cyc-lbl">C692</text>
+<line x1="1906" y1="57" x2="1906" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="1919.0" y="53" class="cyc-lbl">C695</text>
+<line x1="1984" y1="57" x2="1984" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="1997.0" y="53" class="cyc-lbl">C698</text>
+<line x1="2010" y1="57" x2="2010" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
+<text x="2023.0" y="53" class="cyc-lbl">C699</text>
+<text x="24" y="77" class="sig-lbl">Commit Ack 0</text>
+<text x="24" y="87" class="sig-sub">Port 0 retirement</text>
+<path d="M 190 85 H 216 V 65 H 242 V 85 H 268 V 65 H 294 H 320 V 85 H 346 H 372 H 398 H 424 H 450 H 476 H 502 H 528 H 554 H 580 H 606 H 632 H 658 H 684 H 710 V 65 H 736 V 85 H 762 H 788 H 814 H 840 H 866 H 892 H 918 H 944 H 970 H 996 H 1022 H 1048 H 1074 H 1100 V 65 H 1126 H 1152 H 1178 V 85 H 1204 H 1230 H 1256 H 1282 H 1308 H 1334 H 1360 H 1386 H 1412 H 1438 H 1464 H 1490 H 1516 H 1542 V 65 H 1568 V 85 H 1594 H 1620 H 1646 H 1672 H 1698 H 1724 H 1750 H 1776 H 1802 H 1828 H 1854 H 1880 H 1906 H 1932 V 65 H 1958 H 1984 H 2010 H 2036" fill="none" stroke="#16a34a" stroke-width="1.8"/>
+<text x="24" y="113" class="sig-lbl">Commit PC 0</text>
+<text x="24" y="123" class="sig-sub">Instruction</text>
+<rect x="191" y="101" width="24" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="217" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
+<text x="229.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
+<rect x="243" y="101" width="24" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="269" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
+<text x="281.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
+<rect x="295" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
+<text x="307.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
+<rect x="321" y="101" width="388" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="711" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
+<text x="723.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
+<rect x="737" y="101" width="362" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="1101" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
+<text x="1113.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
+<rect x="1127" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
+<text x="1139.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
+<rect x="1153" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
+<text x="1165.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
+<rect x="1179" y="101" width="362" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="1543" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
+<text x="1555.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
+<rect x="1569" y="101" width="362" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="1933" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
+<text x="1945.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
+<rect x="1959" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
+<text x="1971.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
+<rect x="1985" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
+<text x="1997.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
+<rect x="2011" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
+<text x="2023.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
+<text x="24" y="149" class="sig-lbl">AW Valid</text>
+<text x="24" y="159" class="sig-sub">Atomic write valid</text>
+<path d="M 190 157 H 216 H 242 H 268 H 294 H 320 H 346 V 137 H 372 V 157 H 398 H 424 H 450 H 476 H 502 H 528 H 554 V 137 H 580 V 157 H 606 H 632 H 658 H 684 H 710 H 736 H 762 H 788 H 814 H 840 H 866 H 892 H 918 H 944 H 970 H 996 H 1022 H 1048 H 1074 H 1100 H 1126 H 1152 H 1178 H 1204 H 1230 H 1256 V 137 H 1282 V 157 H 1308 H 1334 H 1360 H 1386 H 1412 H 1438 V 137 H 1464 V 157 H 1490 H 1516 H 1542 H 1568 H 1594 H 1620 H 1646 H 1672 H 1698 H 1724 H 1750 H 1776 H 1802 H 1828 H 1854 H 1880 H 1906 H 1932 H 1958 H 1984 H 2010 H 2036" fill="none" stroke="#ea580c" stroke-width="1.8"/>
+<text x="24" y="185" class="sig-lbl">AW ATOP</text>
+<text x="24" y="195" class="sig-sub">0x30:SWAP, 0x20:ADD</text>
+<rect x="191" y="173" width="362" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="555" y="173" width="24" height="24" rx="2" fill="#fef08a" stroke="#ca8a04" stroke-width="1.2"/>
+<text x="567.0" y="188.5" class="hex-lbl" fill="#0f172a">0x30</text>
+<rect x="581" y="173" width="856" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="1439" y="173" width="24" height="24" rx="2" fill="#fef08a" stroke="#ca8a04" stroke-width="1.2"/>
+<text x="1451.0" y="188.5" class="hex-lbl" fill="#0f172a">0x20</text>
+<rect x="1465" y="173" width="570" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<text x="24" y="221" class="sig-lbl">W Data</text>
+<text x="24" y="231" class="sig-sub">Operand to memory</text>
+<rect x="191" y="209" width="154" height="24" rx="2" fill="#fed7aa" stroke="#f97316" stroke-width="1.2"/>
+<text x="268.0" y="224.5" class="hex-lbl" fill="#0f172a">0x9999999999999999</text>
+<rect x="347" y="209" width="24" height="24" rx="2" fill="#fed7aa" stroke="#f97316" stroke-width="1.2"/>
+<text x="359.0" y="224.5" class="hex-lbl" fill="#0f172a">0x5…</text>
+<rect x="373" y="209" width="180" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="555" y="209" width="24" height="24" rx="2" fill="#fed7aa" stroke="#f97316" stroke-width="1.2"/>
+<text x="567.0" y="224.5" class="hex-lbl" fill="#0f172a">0x1…</text>
+<rect x="581" y="209" width="362" height="24" rx="2" fill="#fed7aa" stroke="#f97316" stroke-width="1.2"/>
+<text x="762.0" y="224.5" class="hex-lbl" fill="#0f172a">0x5555555555555555</text>
+<rect x="945" y="209" width="24" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="971" y="209" width="284" height="24" rx="2" fill="#fed7aa" stroke="#f97316" stroke-width="1.2"/>
+<text x="1113.0" y="224.5" class="hex-lbl" fill="#0f172a">0x1122334411223344</text>
+<rect x="1257" y="209" width="24" height="24" rx="2" fill="#fed7aa" stroke="#f97316" stroke-width="1.2"/>
+<text x="1269.0" y="224.5" class="hex-lbl" fill="#0f172a">0x0…</text>
+<rect x="1283" y="209" width="154" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="1439" y="209" width="24" height="24" rx="2" fill="#fed7aa" stroke="#f97316" stroke-width="1.2"/>
+<text x="1451.0" y="224.5" class="hex-lbl" fill="#0f172a">0x0…</text>
+<rect x="1465" y="209" width="310" height="24" rx="2" fill="#fed7aa" stroke="#f97316" stroke-width="1.2"/>
+<text x="1620.0" y="224.5" class="hex-lbl" fill="#0f172a">0x0000000a0000000a</text>
+<rect x="1777" y="209" width="24" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="1803" y="209" width="232" height="24" rx="2" fill="#fed7aa" stroke="#f97316" stroke-width="1.2"/>
+<text x="1919.0" y="224.5" class="hex-lbl" fill="#0f172a">0x0000001900000019</text>
+<text x="24" y="257" class="sig-lbl">R Valid</text>
+<text x="24" y="267" class="sig-sub">Atomic read return valid</text>
+<path d="M 190 265 H 216 H 242 H 268 V 245 H 294 H 320 H 346 V 265 H 372 H 398 H 424 H 450 H 476 H 502 H 528 H 554 V 245 H 580 H 606 H 632 H 658 V 265 H 684 V 245 H 710 V 265 H 736 H 762 H 788 H 814 H 840 H 866 H 892 H 918 H 944 H 970 H 996 V 245 H 1022 H 1048 H 1074 V 265 H 1100 H 1126 V 245 H 1152 H 1178 H 1204 V 265 H 1230 H 1256 H 1282 H 1308 H 1334 H 1360 H 1386 H 1412 V 245 H 1438 H 1464 H 1490 V 265 H 1516 V 245 H 1542 V 265 H 1568 H 1594 H 1620 H 1646 H 1672 H 1698 H 1724 H 1750 H 1776 H 1802 H 1828 V 245 H 1854 H 1880 H 1906 V 265 H 1932 H 1958 V 245 H 1984 H 2010 H 2036" fill="none" stroke="#0284c7" stroke-width="1.8"/>
+<text x="24" y="293" class="sig-lbl">R Data</text>
+<text x="24" y="303" class="sig-sub">Previous memory value</text>
+<rect x="191" y="281" width="76" height="24" rx="2" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.2"/>
+<text x="229.0" y="296.5" class="hex-lbl" fill="#0f172a">0x000000130…</text>
+<rect x="269" y="281" width="50" height="24" rx="2" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.2"/>
+<text x="294.0" y="296.5" class="hex-lbl" fill="#0f172a">0x0004a…</text>
+<rect x="321" y="281" width="24" height="24" rx="2" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.2"/>
+<text x="333.0" y="296.5" class="hex-lbl" fill="#0f172a">0x0…</text>
+<rect x="347" y="281" width="284" height="24" rx="2" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.2"/>
+<text x="489.0" y="296.5" class="hex-lbl" fill="#0f172a">0x01900b130154a023</text>
+<rect x="633" y="281" width="24" height="24" rx="2" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.2"/>
+<text x="645.0" y="296.5" class="hex-lbl" fill="#0f172a">0x0…</text>
+<rect x="659" y="281" width="24" height="24" rx="2" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.2"/>
+<text x="671.0" y="296.5" class="hex-lbl" fill="#0f172a">0x0…</text>
+<rect x="685" y="281" width="310" height="24" rx="2" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.2"/>
+<text x="840.0" y="296.5" class="hex-lbl" fill="#0f172a">0x5555555555555555</text>
+<rect x="997" y="281" width="50" height="24" rx="2" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.2"/>
+<text x="1022.0" y="296.5" class="hex-lbl" fill="#0f172a">0x11223…</text>
+<rect x="1049" y="281" width="76" height="24" rx="2" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.2"/>
+<text x="1087.0" y="296.5" class="hex-lbl" fill="#0f172a">0x000000130…</text>
+<rect x="1127" y="281" width="50" height="24" rx="2" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.2"/>
+<text x="1152.0" y="296.5" class="hex-lbl" fill="#0f172a">0x00ff0…</text>
+<rect x="1179" y="281" width="24" height="24" rx="2" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.2"/>
+<text x="1191.0" y="296.5" class="hex-lbl" fill="#0f172a">0x0…</text>
+<rect x="1205" y="281" width="258" height="24" rx="2" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.2"/>
+<text x="1334.0" y="296.5" class="hex-lbl" fill="#0f172a">0xf0fd0d130f0f1d37</text>
+<rect x="1465" y="281" width="50" height="24" rx="2" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.2"/>
+<text x="1490.0" y="296.5" class="hex-lbl" fill="#0f172a">0x0004a…</text>
+<rect x="1517" y="281" width="310" height="24" rx="2" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.2"/>
+<text x="1672.0" y="296.5" class="hex-lbl" fill="#0f172a">0x0000000a0000000a</text>
+<rect x="1829" y="281" width="50" height="24" rx="2" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.2"/>
+<text x="1854.0" y="296.5" class="hex-lbl" fill="#0f172a">0x11223…</text>
+<rect x="1881" y="281" width="24" height="24" rx="2" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.2"/>
+<text x="1893.0" y="296.5" class="hex-lbl" fill="#0f172a">0x0…</text>
+<rect x="1907" y="281" width="50" height="24" rx="2" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.2"/>
+<text x="1932.0" y="296.5" class="hex-lbl" fill="#0f172a">0x00000…</text>
+<rect x="1959" y="281" width="50" height="24" rx="2" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.2"/>
+<text x="1984.0" y="296.5" class="hex-lbl" fill="#0f172a">0xaaaab…</text>
+<rect x="2011" y="281" width="24" height="24" rx="2" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.2"/>
+<text x="2023.0" y="296.5" class="hex-lbl" fill="#0f172a">0x0…</text>
+<text x="24" y="329" class="sig-lbl">GPR s3 (SWAP rd)</text>
+<text x="24" y="339" class="sig-sub">Expect 0x55555555</text>
+<rect x="191" y="317" width="544" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="737" y="317" width="1298" height="24" rx="2" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.2"/>
+<text x="1386.0" y="332.5" class="hex-lbl" fill="#0f172a">0x55555555</text>
+<text x="24" y="365" class="sig-lbl">GPR s4 (SWAP mem)</text>
+<text x="24" y="375" class="sig-sub">Expect 0x11223344</text>
+<rect x="191" y="353" width="934" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="1127" y="353" width="908" height="24" rx="2" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+<text x="1581.0" y="368.5" class="hex-lbl" fill="#0f172a">0x11223344</text>
+<text x="24" y="401" class="sig-lbl">GPR s7 (ADD rd)</text>
+<text x="24" y="411" class="sig-sub">Expect 10</text>
+<rect x="191" y="389" width="1376" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="1569" y="389" width="466" height="24" rx="2" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.2"/>
+<text x="1802.0" y="404.5" class="hex-lbl" fill="#0f172a">0x0000000a</text>
+<text x="24" y="437" class="sig-lbl">GPR s8 (ADD mem)</text>
+<text x="24" y="447" class="sig-sub">Expect 35</text>
+<rect x="191" y="425" width="1766" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+<rect x="1959" y="425" width="76" height="24" rx="2" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+<text x="1997.0" y="440.5" class="hex-lbl" fill="#0f172a">0x00000023</text>
+</svg>
