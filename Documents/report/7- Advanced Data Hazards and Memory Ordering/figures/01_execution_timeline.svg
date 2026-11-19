@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420">
+<defs>
+  <style type="text/css">
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }
+    .sig-sub { font-size: 9px; fill: #64748b; }
+    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }
+    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }
+    .ann-title { font-size: 11px; font-weight: 700; fill: #0f172a; }
+    .ann-body { font-size: 10px; fill: #334155; }
+  </style>
+</defs>
+<rect width="1200" height="420" fill="#f8fafc" />
+<rect x="20" y="15" width="1160" height="42" rx="8" fill="#1e293b" />
+<text x="35" y="41" fill="#f8fafc" font-size="15" font-weight="700">CVA6 Suite 7: Full Execution Timeline &amp; Hazard Resolution Phases</text>
+<text x="1165" y="41" fill="#94a3b8" font-size="11" text-anchor="end">WAW Hazard | Memory WAR | Store Buffer Bypass | Sub-words | Reg x0</text>
+<line x1="50" y1="135" x2="1150" y2="135" stroke="#94a3b8" stroke-width="3" />
+<rect x="50" y="110" width="822" height="50" rx="6" fill="#cbd5e1" stroke="#94a3b8" stroke-width="2" />
+<text x="461.0" y="134" font-size="10.5" font-weight="700" fill="#0f172a" text-anchor="middle">Phase 0: Boot &amp; Setup</text>
+<text x="461.0" y="148" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">C0-C314</text>
+<line x1="50" y1="160" x2="50" y2="168" stroke="#64748b" stroke-width="1.5" />
+<text x="50" y="180" font-size="9" fill="#475569" text-anchor="middle">C0</text>
+<rect x="875" y="110" width="44" height="50" rx="6" fill="#fed7aa" stroke="#f97316" stroke-width="2" />
+<text x="897.0" y="134" font-size="10.5" font-weight="700" fill="#0f172a" text-anchor="middle">Phase 1: WAW Hazard</text>
+<text x="897.0" y="148" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">C315-C332</text>
+<line x1="875" y1="160" x2="875" y2="168" stroke="#64748b" stroke-width="1.5" />
+<text x="875" y="180" font-size="9" fill="#475569" text-anchor="middle">C315</text>
+<rect x="922" y="110" width="39" height="50" rx="6" fill="#fef08a" stroke="#eab308" stroke-width="2" />
+<text x="941.5" y="134" font-size="10.5" font-weight="700" fill="#0f172a" text-anchor="middle">Phase 2: Multi-Producer WAW</text>
+<text x="941.5" y="148" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">C333-C348</text>
+<line x1="922" y1="160" x2="922" y2="168" stroke="#64748b" stroke-width="1.5" />
+<text x="922" y="180" font-size="9" fill="#475569" text-anchor="middle">C333</text>
+<rect x="964" y="110" width="34" height="50" rx="6" fill="#bbf7d0" stroke="#22c55e" stroke-width="2" />
+<text x="981.0" y="134" font-size="10.5" font-weight="700" fill="#0f172a" text-anchor="middle">Phase 3: Memory WAR</text>
+<text x="981.0" y="148" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">C349-C362</text>
+<line x1="964" y1="160" x2="964" y2="168" stroke="#64748b" stroke-width="1.5" />
+<text x="964" y="180" font-size="9" fill="#475569" text-anchor="middle">C349</text>
+<rect x="1000" y="110" width="34" height="50" rx="6" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2" />
+<text x="1017.0" y="134" font-size="10.5" font-weight="700" fill="#0f172a" text-anchor="middle">Phase 4: Store Buffer RAW</text>
+<text x="1017.0" y="148" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">C363-C376</text>
+<line x1="1000" y1="160" x2="1000" y2="168" stroke="#64748b" stroke-width="1.5" />
+<text x="1000" y="180" font-size="9" fill="#475569" text-anchor="middle">C363</text>
+<rect x="1037" y="110" width="44" height="50" rx="6" fill="#e9d5ff" stroke="#a855f7" stroke-width="2" />
+<text x="1059.0" y="134" font-size="10.5" font-weight="700" fill="#0f172a" text-anchor="middle">Phase 5: Sub-Word LSU</text>
+<text x="1059.0" y="148" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">C377-C394</text>
+<line x1="1037" y1="160" x2="1037" y2="168" stroke="#64748b" stroke-width="1.5" />
+<text x="1037" y="180" font-size="9" fill="#475569" text-anchor="middle">C377</text>
+<rect x="1084" y="110" width="66" height="50" rx="6" fill="#fbcfe8" stroke="#ec4899" stroke-width="2" />
+<text x="1117.0" y="134" font-size="10.5" font-weight="700" fill="#0f172a" text-anchor="middle">Phase 6: Reg x0 &amp; End</text>
+<text x="1117.0" y="148" font-size="8.5" font-weight="600" fill="#475569" text-anchor="middle">C395-C420</text>
+<line x1="1084" y1="160" x2="1084" y2="168" stroke="#64748b" stroke-width="1.5" />
+<text x="1084" y="180" font-size="9" fill="#475569" text-anchor="middle">C395</text>
+<line x1="1150" y1="160" x2="1150" y2="168" stroke="#64748b" stroke-width="1.5" />
+<text x="1150" y="180" font-size="9" fill="#475569" text-anchor="middle">C420</text>
+<rect x="55.0" y="205" width="356.6666666666667" height="85" rx="6" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" />
+<text x="65.0" y="223" font-size="11" font-weight="700" fill="#c2410c">WAW Hazard Resolution (Phase 1 &amp; 2)</text>
+<text x="65.0" y="241" font-size="9" fill="#334155">• Long-latency DIV completes AFTER fast ADDI.</text>
+<text x="65.0" y="257" font-size="9" fill="#334155">• In-order commit enforces DIV retires first, ADDI second (x10=99).</text>
+<text x="65.0" y="273" font-size="9" fill="#334155">• raw_checker directs consumer to youngest producer (x11=99, x15=77).</text>
+<rect x="421.6666666666667" y="205" width="356.6666666666667" height="85" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5" />
+<text x="431.6666666666667" y="223" font-size="11" font-weight="700" fill="#15803d">Memory WAR &amp; Store Buffer RAW (Phase 3 &amp; 4)</text>
+<text x="431.6666666666667" y="241" font-size="9" fill="#334155">• Memory WAR: LW reads old 1000 before immediate SW writes 10.</text>
+<text x="431.6666666666667" y="257" font-size="9" fill="#334155">• Store-to-Load Forwarding: SW bypasses directly from Store Buffer to LW.</text>
+<text x="431.6666666666667" y="273" font-size="9" fill="#334155">• Zero D-cache wait cycles on store-buffer forwarding bypass.</text>
+<rect x="788.3333333333334" y="205" width="356.6666666666667" height="85" rx="6" fill="#faf5ff" stroke="#9333ea" stroke-width="1.5" />
+<text x="798.3333333333334" y="223" font-size="11" font-weight="700" fill="#7e22ce">Sub-Word LSU &amp; Reg x0 Invariance (Phase 5 &amp; 6)</text>
+<text x="798.3333333333334" y="241" font-size="9" fill="#334155">• Signed LB (-35) vs Unsigned LBU (221) accurately extended.</text>
+<text x="798.3333333333334" y="257" font-size="9" fill="#334155">• Signed LH (-13091) vs Unsigned LHU (52445) accurately extended.</text>
+<text x="798.3333333333334" y="273" font-size="9" fill="#334155">• Reg x0: DIV/LW/ADDI to x0 discarded; zero stalls; x0 strictly 0.</text>
+<rect x="50" y="305" width="1100" height="95" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5" />
+<text x="70" y="328" font-size="12" font-weight="700" fill="#15803d">Architectural Scoreboard &amp; Hazard Verification (22/22 Checks PASSED):</text>
+<text x="70" y="348" font-size="10.5" fill="#166534">✓ WAW Out-of-Order Execution: DIV takes 8 cycles, ADDI takes 1 cycle; Scoreboard in-order commit guarantees x10=99 and x13=77.</text>
+<text x="70" y="366" font-size="10.5" fill="#166534">✓ Memory Ordering &amp; Bypass: Memory WAR prevents stale loads; Store Buffer RAW forwards 0x12345678 without D-cache stalls.</text>
+<text x="70" y="384" font-size="10.5" fill="#166534">✓ Sub-word &amp; Reg x0: Sign/zero extensions verified; operations targeting x0 incur 0 stalls and x0 remains strictly hardwired to 0.</text>
+</svg>
