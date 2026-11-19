@@ -1,15 +1,15 @@
 // ============================================================================
 // Author: Alireza Sotodeh
-// Date & Time: 2026-11-19 10:48:30 +03:30
+// Date & Time: 2026-11-19 14:58:00 +03:30
 // Status: MODIFIED FILE
-// Reason / Modification: Added diagnostic probes (I-Cache enable, cl_hit, paddr_is_nc,
-//                        kill_s1/s2, mem_data_req/ack, frontend replay, axi_arlen)
-//                        for root cause identification of I-Cache misses and CPI degradation.
+// Reason / Modification: Renamed module and testbench to tb_cva6_smoke_cold_startup
+//                        to represent the combination of functional smoke testing
+//                        and cold startup (I-Cache tag flush & compulsory miss) analysis.
 // ============================================================================
 
 `timescale 1ns / 1ps
 
-module tb_cva6;
+module tb_cva6_smoke_cold_startup;
 
   import ariane_pkg::*;
   import cva6_types_pkg::*;
