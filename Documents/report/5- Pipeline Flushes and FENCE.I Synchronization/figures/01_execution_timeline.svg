@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="390" viewBox="0 0 1200 390">
+<defs>
+  <style type="text/css">
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }
+    .sig-sub { font-size: 9px; fill: #64748b; }
+    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }
+    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }
+    .ann-title { font-size: 11px; font-weight: 700; fill: #0f172a; }
+    .ann-body { font-size: 10px; fill: #334155; }
+  </style>
+</defs>
+<rect width="1200" height="390" fill="#f8fafc" />
+  <text x="30" y="32" font-size="16" font-weight="700" fill="#0f172a">CVA6 Suite 5: Pipeline Flushes & FENCE.I Synchronization — Execution Timeline</text>
+  <text x="30" y="50" font-size="11" fill="#475569">End-to-end verification of self-modifying code rewrite, 256-cycle I-Cache tag invalidation, compulsory re-fetch, and CSR pipeline flush. Total cycles: 693, Active CPI: 10.34.</text>
+  <g transform="translate(40, 95)">
+    <rect width="433" height="60" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5" rx="5" />
+    <text x="216.5" y="24" class="box-lbl" fill="#94a3b8">Phase 0: Boot &amp; Cache Init</text>
+    <text x="216.5" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 0–267</text>
+  </g>
+  <g transform="translate(473, 95)">
+    <rect width="77" height="60" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" rx="5" />
+    <text x="38.5" y="24" class="box-lbl" fill="#2563eb">Phase 1: Subroutine Call 1</text>
+    <text x="38.5" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 268–315</text>
+  </g>
+  <g transform="translate(550, 95)">
+    <rect width="55" height="60" fill="#fef3c7" stroke="#d97706" stroke-width="1.5" rx="5" />
+    <text x="27.5" y="24" class="box-lbl" fill="#d97706">Phase 2: Code Rewrite (SW)</text>
+    <text x="27.5" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 316–342</text>
+  </g>
+  <g transform="translate(605, 95)">
+    <rect width="416" height="60" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5" rx="5" />
+    <text x="208.0" y="24" class="box-lbl" fill="#dc2626">Phase 3: FENCE.I Tag Flush</text>
+    <text x="208.0" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 343–600</text>
+  </g>
+  <g transform="translate(1021, 95)">
+    <rect width="55" height="60" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" rx="5" />
+    <text x="27.5" y="24" class="box-lbl" fill="#16a34a">Phase 4: Subroutine Call 2</text>
+    <text x="27.5" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 601–625</text>
+  </g>
+  <g transform="translate(1076, 95)">
+    <rect width="109" height="60" fill="#f3e8ff" stroke="#9333ea" stroke-width="1.5" rx="5" />
+    <text x="54.5" y="24" class="box-lbl" fill="#9333ea">Phase 5-7: CSR Flush &amp; End</text>
+    <text x="54.5" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 626–693</text>
+  </g>
+  <rect x="40" y="185" width="1120" height="185" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" rx="6" />
+  <rect x="40" y="185" width="1120" height="26" fill="#f1f5f9" rx="6" />
+  <text x="55" y="202" class="sig-lbl">Execution Milestone</text>
+  <text x="250" y="202" class="sig-lbl">Cycle Span</text>
+  <text x="360" y="202" class="sig-lbl">Microarchitectural Mechanism</text>
+  <text x="760" y="202" class="sig-lbl">Hardware Signals &amp; Evidence</text>
+  <text x="1030" y="202" class="sig-lbl">Architectural State / CPI</text>
+  <text x="55" y="229" font-size="10" font-weight="600" fill="#1e293b">Phase 1: Baseline Subroutine Run</text>
+  <text x="250" y="229" font-size="10" fill="#475569">268 – 315</text>
+  <text x="360" y="229" font-size="10" fill="#334155">Call target 0x8000_0200; loads initial opcode into I-Cache</text>
+  <text x="760" y="229" font-size="10" font-family="monospace" fill="#0369a1">commit_pc=0x8000_0200 at Cyc 313</text>
+  <text x="1030" y="229" font-size="10" font-weight="600" fill="#047857">x1 = 100 (0x64)</text>
+  <text x="55" y="253" font-size="10" font-weight="600" fill="#1e293b">Phase 2: Self-Modifying Store</text>
+  <text x="250" y="253" font-size="10" fill="#475569">316 – 342</text>
+  <text x="360" y="253" font-size="10" fill="#334155">Write 0x3e700513 (addi a0,999) to 0x8000_0200 via SW</text>
+  <text x="760" y="253" font-size="10" font-family="monospace" fill="#0369a1">commit_pc=0x8000_0040 at Cyc 336, AXI write OK</text>
+  <text x="1030" y="253" font-size="10" font-weight="600" fill="#047857">Memory updated in AXI</text>
+  <text x="55" y="277" font-size="10" font-weight="600" fill="#1e293b">Phase 3: FENCE.I Cache Flush</text>
+  <text x="250" y="277" font-size="10" fill="#475569">343 – 600</text>
+  <text x="360" y="277" font-size="10" fill="#334155">FENCE.I invalidates all tag valid bits (256 cycles in FLUSH)</text>
+  <text x="760" y="277" font-size="10" font-family="monospace" fill="#0369a1">fence_i_o=1, flush_icache=1, flush_cnt=0..255</text>
+  <text x="1030" y="277" font-size="10" font-weight="600" fill="#047857">Frontend halted (256 cycs)</text>
+  <text x="55" y="301" font-size="10" font-weight="600" fill="#1e293b">Phase 4: Post-FENCE.I Execution</text>
+  <text x="250" y="301" font-size="10" fill="#475569">601 – 625</text>
+  <text x="360" y="301" font-size="10" fill="#334155">Compulsory miss reloads updated opcode from AXI memory</text>
+  <text x="760" y="301" font-size="10" font-family="monospace" fill="#0369a1">icache_miss=1, commit_pc=0x8000_0200 at Cyc 621</text>
+  <text x="1030" y="301" font-size="10" font-weight="600" fill="#047857">x2 = 999 (0x3e7) [SUCCESS!]</text>
+  <text x="55" y="325" font-size="10" font-weight="600" fill="#1e293b">Phase 5: CSR Side-Effect Flush</text>
+  <text x="250" y="325" font-size="10" fill="#475569">626 – 648</text>
+  <text x="360" y="325" font-size="10" fill="#334155">csrw mstatus causes csr_regfile to assert flush_csr_ctrl</text>
+  <text x="760" y="325" font-size="10" font-family="monospace" fill="#0369a1">flush_csr_ctrl=1, flush_pipeline_count=3</text>
+  <text x="1030" y="325" font-size="10" font-weight="600" fill="#047857">x3 = 555 (0x22b)</text>
+  <text x="55" y="349" font-size="10" font-weight="600" fill="#1e293b">Phase 6-7: FENCE &amp; Terminal Loop</text>
+  <text x="250" y="349" font-size="10" fill="#475569">649 – 693</text>
+  <text x="360" y="349" font-size="10" fill="#334155">Data FENCE executed; core commits self-loop at Cyc 672</text>
+  <text x="760" y="349" font-size="10" font-family="monospace" fill="#0369a1">fence_o=1, end_commit_cycle=672, 12/12 checks PASS</text>
+  <text x="1030" y="349" font-size="10" font-weight="600" fill="#047857">Active CPI = 10.34</text>
+</svg>

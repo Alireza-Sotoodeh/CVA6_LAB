@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520">
+<defs>
+  <style type="text/css">
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }
+    .sig-sub { font-size: 9px; fill: #64748b; }
+    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }
+    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }
+    .ann-title { font-size: 11px; font-weight: 700; fill: #0f172a; }
+    .ann-body { font-size: 10px; fill: #334155; }
+  </style>
+</defs>
+<rect width="1200" height="520" fill="#f8fafc" />
+  <text x="30" y="30" font-size="15" font-weight="700" fill="#0f172a">CVA6 Modified Instruction Compulsory Re-fetch & Execution Waveform (Cycles 610 – 625)</text>
+  <text x="30" y="48" font-size="11" fill="#475569">Following FENCE.I tag flush, subroutine call at 0x8000_0200 misses in I-Cache, triggers fresh AXI reload, fetches modified opcode 0x3e700513, and writes a0 = 999 at Cyc 621.</text>
+  <rect x="210" y="80" width="59" height="350" fill="#ffffff" opacity="0.6" />
+  <line x1="210" y1="80" x2="210" y2="430" stroke="#e2e8f0" stroke-width="1" />
+  <text x="239.5" y="72" class="cyc-lbl">610</text>
+  <rect x="269" y="80" width="59" height="350" fill="#ffffff" opacity="0.6" />
+  <line x1="269" y1="80" x2="269" y2="430" stroke="#e2e8f0" stroke-width="1" />
+  <text x="298.5" y="72" class="cyc-lbl">611</text>
+  <rect x="328" y="80" width="59" height="350" fill="#ffffff" opacity="0.6" />
+  <line x1="328" y1="80" x2="328" y2="430" stroke="#e2e8f0" stroke-width="1" />
+  <text x="357.5" y="72" class="cyc-lbl">612</text>
+  <rect x="387" y="80" width="59" height="350" fill="#dbeafe" opacity="0.6" />
+  <line x1="387" y1="80" x2="387" y2="430" stroke="#e2e8f0" stroke-width="1" />
+  <text x="416.5" y="72" class="cyc-lbl">613</text>
+  <rect x="446" y="80" width="59" height="350" fill="#ffffff" opacity="0.6" />
+  <line x1="446" y1="80" x2="446" y2="430" stroke="#e2e8f0" stroke-width="1" />
+  <text x="475.5" y="72" class="cyc-lbl">614</text>
+  <rect x="505" y="80" width="59" height="350" fill="#ffffff" opacity="0.6" />
+  <line x1="505" y1="80" x2="505" y2="430" stroke="#e2e8f0" stroke-width="1" />
+  <text x="534.5" y="72" class="cyc-lbl">615</text>
+  <rect x="564" y="80" width="59" height="350" fill="#ffffff" opacity="0.6" />
+  <line x1="564" y1="80" x2="564" y2="430" stroke="#e2e8f0" stroke-width="1" />
+  <text x="593.5" y="72" class="cyc-lbl">616</text>
+  <rect x="623" y="80" width="59" height="350" fill="#ffffff" opacity="0.6" />
+  <line x1="623" y1="80" x2="623" y2="430" stroke="#e2e8f0" stroke-width="1" />
+  <text x="652.5" y="72" class="cyc-lbl">617</text>
+  <rect x="682" y="80" width="59" height="350" fill="#ffffff" opacity="0.6" />
+  <line x1="682" y1="80" x2="682" y2="430" stroke="#e2e8f0" stroke-width="1" />
+  <text x="711.5" y="72" class="cyc-lbl">618</text>
+  <rect x="741" y="80" width="59" height="350" fill="#ffffff" opacity="0.6" />
+  <line x1="741" y1="80" x2="741" y2="430" stroke="#e2e8f0" stroke-width="1" />
+  <text x="770.5" y="72" class="cyc-lbl">619</text>
+  <rect x="800" y="80" width="59" height="350" fill="#ffffff" opacity="0.6" />
+  <line x1="800" y1="80" x2="800" y2="430" stroke="#e2e8f0" stroke-width="1" />
+  <text x="829.5" y="72" class="cyc-lbl">620</text>
+  <rect x="859" y="80" width="59" height="350" fill="#dcfce7" opacity="0.6" />
+  <line x1="859" y1="80" x2="859" y2="430" stroke="#e2e8f0" stroke-width="1" />
+  <text x="888.5" y="72" class="cyc-lbl">621</text>
+  <rect x="918" y="80" width="59" height="350" fill="#ffffff" opacity="0.6" />
+  <line x1="918" y1="80" x2="918" y2="430" stroke="#e2e8f0" stroke-width="1" />
+  <text x="947.5" y="72" class="cyc-lbl">622</text>
+  <rect x="977" y="80" width="59" height="350" fill="#ffffff" opacity="0.6" />
+  <line x1="977" y1="80" x2="977" y2="430" stroke="#e2e8f0" stroke-width="1" />
+  <text x="1006.5" y="72" class="cyc-lbl">623</text>
+  <rect x="1036" y="80" width="59" height="350" fill="#ffffff" opacity="0.6" />
+  <line x1="1036" y1="80" x2="1036" y2="430" stroke="#e2e8f0" stroke-width="1" />
+  <text x="1065.5" y="72" class="cyc-lbl">624</text>
+  <rect x="1095" y="80" width="59" height="350" fill="#ffffff" opacity="0.6" />
+  <line x1="1095" y1="80" x2="1095" y2="430" stroke="#e2e8f0" stroke-width="1" />
+  <text x="1124.5" y="72" class="cyc-lbl">625</text>
+  <text x="35" y="104" class="sig-lbl">FetchPC</text>
+  <text x="140" y="104" class="sig-sub">Fetch stage PC</text>
+  <rect x="212" y="92" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="239.5" y="104" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0204</text>
+  <rect x="271" y="92" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="298.5" y="104" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0204</text>
+  <rect x="330" y="92" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="357.5" y="104" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0204</text>
+  <rect x="389" y="92" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="416.5" y="104" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0204</text>
+  <rect x="448" y="92" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="475.5" y="104" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0204</text>
+  <rect x="507" y="92" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="534.5" y="104" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0204</text>
+  <rect x="566" y="92" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="593.5" y="104" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0204</text>
+  <rect x="625" y="92" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="652.5" y="104" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0204</text>
+  <rect x="684" y="92" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="711.5" y="104" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0208</text>
+  <rect x="743" y="92" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="770.5" y="104" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0034</text>
+  <rect x="802" y="92" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="829.5" y="104" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0038</text>
+  <rect x="861" y="92" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="888.5" y="104" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0038</text>
+  <rect x="920" y="92" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="947.5" y="104" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0038</text>
+  <rect x="979" y="92" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="1006.5" y="104" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0x004C</text>
+  <rect x="1038" y="92" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="1065.5" y="104" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0x004C</text>
+  <rect x="1097" y="92" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="1124.5" y="104" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0x004C</text>
+  <text x="35" y="130" class="sig-lbl">IcacheState</text>
+  <text x="140" y="130" class="sig-sub">I-cache state (3=MISS)</text>
+  <rect x="212" y="118" width="55" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="239.5" y="130" font-size="8" font-family="monospace" fill="#7c3aed" text-anchor="middle">READ</text>
+  <rect x="271" y="118" width="55" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="298.5" y="130" font-size="8" font-family="monospace" fill="#7c3aed" text-anchor="middle">MISS</text>
+  <rect x="330" y="118" width="55" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="357.5" y="130" font-size="8" font-family="monospace" fill="#7c3aed" text-anchor="middle">MISS</text>
+  <rect x="389" y="118" width="55" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="416.5" y="130" font-size="8" font-family="monospace" fill="#7c3aed" text-anchor="middle">MISS</text>
+  <rect x="448" y="118" width="55" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="475.5" y="130" font-size="8" font-family="monospace" fill="#7c3aed" text-anchor="middle">MISS</text>
+  <rect x="507" y="118" width="55" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="534.5" y="130" font-size="8" font-family="monospace" fill="#7c3aed" text-anchor="middle">MISS</text>
+  <rect x="566" y="118" width="55" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="593.5" y="130" font-size="8" font-family="monospace" fill="#7c3aed" text-anchor="middle">MISS</text>
+  <rect x="625" y="118" width="55" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="652.5" y="130" font-size="8" font-family="monospace" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="684" y="118" width="55" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="711.5" y="130" font-size="8" font-family="monospace" fill="#7c3aed" text-anchor="middle">READ</text>
+  <rect x="743" y="118" width="55" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="770.5" y="130" font-size="8" font-family="monospace" fill="#7c3aed" text-anchor="middle">READ</text>
+  <rect x="802" y="118" width="55" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="829.5" y="130" font-size="8" font-family="monospace" fill="#7c3aed" text-anchor="middle">READ</text>
+  <rect x="861" y="118" width="55" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="888.5" y="130" font-size="8" font-family="monospace" fill="#7c3aed" text-anchor="middle">MISS</text>
+  <rect x="920" y="118" width="55" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="947.5" y="130" font-size="8" font-family="monospace" fill="#7c3aed" text-anchor="middle">MISS</text>
+  <rect x="979" y="118" width="55" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="1006.5" y="130" font-size="8" font-family="monospace" fill="#7c3aed" text-anchor="middle">MISS</text>
+  <rect x="1038" y="118" width="55" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="1065.5" y="130" font-size="8" font-family="monospace" fill="#7c3aed" text-anchor="middle">MISS</text>
+  <rect x="1097" y="118" width="55" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="1124.5" y="130" font-size="8" font-family="monospace" fill="#7c3aed" text-anchor="middle">MISS</text>
+  <text x="35" y="156" class="sig-lbl">IcacheMiss</text>
+  <text x="140" y="156" class="sig-sub">I-cache miss signal</text>
+  <rect x="214" y="144" width="51" height="14" fill="#dc2626" rx="2" />
+  <rect x="273" y="154" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="332" y="154" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="391" y="154" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="450" y="154" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="509" y="154" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="568" y="154" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="627" y="154" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="686" y="154" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="745" y="154" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="804" y="144" width="51" height="14" fill="#dc2626" rx="2" />
+  <rect x="863" y="154" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="922" y="154" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="981" y="154" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="1040" y="154" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="1099" y="154" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <text x="35" y="182" class="sig-lbl">AxiARValid</text>
+  <text x="140" y="182" class="sig-sub">AXI read address valid</text>
+  <rect x="214" y="180" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="273" y="170" width="51" height="14" fill="#0284c7" rx="2" />
+  <rect x="332" y="180" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="391" y="180" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="450" y="180" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="509" y="180" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="568" y="180" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="627" y="180" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="686" y="180" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="745" y="180" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="804" y="180" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="863" y="170" width="51" height="14" fill="#0284c7" rx="2" />
+  <rect x="922" y="180" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="981" y="180" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="1040" y="180" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="1099" y="180" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <text x="35" y="208" class="sig-lbl">AxiARAddr</text>
+  <text x="140" y="208" class="sig-sub">AXI read address</text>
+  <rect x="212" y="196" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="239.5" y="208" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0</text>
+  <rect x="271" y="196" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="298.5" y="208" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0200</text>
+  <rect x="330" y="196" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="357.5" y="208" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0</text>
+  <rect x="389" y="196" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="416.5" y="208" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0</text>
+  <rect x="448" y="196" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="475.5" y="208" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0</text>
+  <rect x="507" y="196" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="534.5" y="208" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0</text>
+  <rect x="566" y="196" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="593.5" y="208" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0</text>
+  <rect x="625" y="196" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="652.5" y="208" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0</text>
+  <rect x="684" y="196" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="711.5" y="208" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0</text>
+  <rect x="743" y="196" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="770.5" y="208" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0</text>
+  <rect x="802" y="196" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="829.5" y="208" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0</text>
+  <rect x="861" y="196" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="888.5" y="208" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0030</text>
+  <rect x="920" y="196" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="947.5" y="208" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0</text>
+  <rect x="979" y="196" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="1006.5" y="208" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0</text>
+  <rect x="1038" y="196" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="1065.5" y="208" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0</text>
+  <rect x="1097" y="196" width="55" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="1124.5" y="208" font-size="8" font-family="monospace" fill="#0284c7" text-anchor="middle">0</text>
+  <text x="35" y="234" class="sig-lbl">AxiRValid</text>
+  <text x="140" y="234" class="sig-sub">AXI read data valid</text>
+  <rect x="214" y="232" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="273" y="232" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="332" y="232" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="391" y="222" width="51" height="14" fill="#16a34a" rx="2" />
+  <rect x="450" y="222" width="51" height="14" fill="#16a34a" rx="2" />
+  <rect x="509" y="222" width="51" height="14" fill="#16a34a" rx="2" />
+  <rect x="568" y="232" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="627" y="232" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="686" y="232" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="745" y="232" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="804" y="232" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="863" y="232" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="922" y="232" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="981" y="222" width="51" height="14" fill="#16a34a" rx="2" />
+  <rect x="1040" y="222" width="51" height="14" fill="#16a34a" rx="2" />
+  <rect x="1099" y="222" width="51" height="14" fill="#16a34a" rx="2" />
+  <text x="35" y="260" class="sig-lbl">CommitPC0</text>
+  <text x="140" y="260" class="sig-sub">Retired PC</text>
+  <rect x="212" y="248" width="55" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="239.5" y="260" font-size="8" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
+  <rect x="271" y="248" width="55" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="298.5" y="260" font-size="8" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
+  <rect x="330" y="248" width="55" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="357.5" y="260" font-size="8" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
+  <rect x="389" y="248" width="55" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="416.5" y="260" font-size="8" font-family="monospace" fill="#16a34a" text-anchor="middle">0x0048 JALR s0,t6 (call 2)</text>
+  <rect x="448" y="248" width="55" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="475.5" y="260" font-size="8" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
+  <rect x="507" y="248" width="55" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="534.5" y="260" font-size="8" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
+  <rect x="566" y="248" width="55" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="593.5" y="260" font-size="8" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
+  <rect x="625" y="248" width="55" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="652.5" y="260" font-size="8" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
+  <rect x="684" y="248" width="55" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="711.5" y="260" font-size="8" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
+  <rect x="743" y="248" width="55" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="770.5" y="260" font-size="8" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
+  <rect x="802" y="248" width="55" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="829.5" y="260" font-size="8" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
+  <rect x="861" y="248" width="55" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="888.5" y="260" font-size="8" font-family="monospace" fill="#16a34a" text-anchor="middle">0x0200 ADDI a0 (sub)</text>
+  <rect x="920" y="248" width="55" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="947.5" y="260" font-size="8" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
+  <rect x="979" y="248" width="55" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="1006.5" y="260" font-size="8" font-family="monospace" fill="#16a34a" text-anchor="middle">0x0204 JR s0 (ret)</text>
+  <rect x="1038" y="248" width="55" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="1065.5" y="260" font-size="8" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
+  <rect x="1097" y="248" width="55" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="1124.5" y="260" font-size="8" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
+  <text x="35" y="286" class="sig-lbl">CommitAck0</text>
+  <text x="140" y="286" class="sig-sub">Commit acknowledge</text>
+  <rect x="214" y="284" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="273" y="284" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="332" y="284" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="391" y="274" width="51" height="14" fill="#16a34a" rx="2" />
+  <rect x="450" y="284" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="509" y="284" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="568" y="284" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="627" y="284" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="686" y="284" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="745" y="284" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="804" y="284" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="863" y="274" width="51" height="14" fill="#16a34a" rx="2" />
+  <rect x="922" y="284" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="981" y="274" width="51" height="14" fill="#16a34a" rx="2" />
+  <rect x="1040" y="284" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="1099" y="284" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <text x="35" y="312" class="sig-lbl">GprWe0</text>
+  <text x="140" y="312" class="sig-sub">Register write enable</text>
+  <rect x="214" y="310" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="273" y="310" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="332" y="310" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="391" y="300" width="51" height="14" fill="#059669" rx="2" />
+  <rect x="450" y="310" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="509" y="310" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="568" y="310" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="627" y="310" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="686" y="310" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="745" y="310" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="804" y="310" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="863" y="300" width="51" height="14" fill="#059669" rx="2" />
+  <rect x="922" y="310" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="981" y="300" width="51" height="14" fill="#059669" rx="2" />
+  <rect x="1040" y="310" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="1099" y="310" width="51" height="4" fill="#cbd5e1" rx="2" />
+  <text x="35" y="338" class="sig-lbl">GprWaddr0</text>
+  <text x="140" y="338" class="sig-sub">Writeback register destination</text>
+  <rect x="212" y="326" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="239.5" y="338" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">0x0005</text>
+  <rect x="271" y="326" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="298.5" y="338" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">0x0005</text>
+  <rect x="330" y="326" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="357.5" y="338" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">0x0008</text>
+  <rect x="389" y="326" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="416.5" y="338" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">0x0008</text>
+  <rect x="448" y="326" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="475.5" y="338" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">0x0005</text>
+  <rect x="507" y="326" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="534.5" y="338" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">0x0005</text>
+  <rect x="566" y="326" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="593.5" y="338" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">0x0005</text>
+  <rect x="625" y="326" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="652.5" y="338" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">0x0005</text>
+  <rect x="684" y="326" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="711.5" y="338" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">0x0005</text>
+  <rect x="743" y="326" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="770.5" y="338" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">0x0005</text>
+  <rect x="802" y="326" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="829.5" y="338" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">0x000A</text>
+  <rect x="861" y="326" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="888.5" y="338" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">0x000A</text>
+  <rect x="920" y="326" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="947.5" y="338" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">0</text>
+  <rect x="979" y="326" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="1006.5" y="338" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">0</text>
+  <rect x="1038" y="326" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="1065.5" y="338" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">0</text>
+  <rect x="1097" y="326" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="1124.5" y="338" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">0</text>
+  <text x="35" y="364" class="sig-lbl">GprWdata0</text>
+  <text x="140" y="364" class="sig-sub">Writeback data value</text>
+  <rect x="212" y="352" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="239.5" y="364" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">1047527424 (0x3E700000)</text>
+  <rect x="271" y="352" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="298.5" y="364" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">1047527424 (0x3E700000)</text>
+  <rect x="330" y="352" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="357.5" y="364" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">0</text>
+  <rect x="389" y="352" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="416.5" y="364" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">2147483724 (0x8000004C)</text>
+  <rect x="448" y="352" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="475.5" y="364" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">1047528723 (0x3E700513)</text>
+  <rect x="507" y="352" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="534.5" y="364" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">1047528723 (0x3E700513)</text>
+  <rect x="566" y="352" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="593.5" y="364" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">1047528723 (0x3E700513)</text>
+  <rect x="625" y="352" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="652.5" y="364" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">1047528723 (0x3E700513)</text>
+  <rect x="684" y="352" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="711.5" y="364" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">1047528723 (0x3E700513)</text>
+  <rect x="743" y="352" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="770.5" y="364" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">1047528723 (0x3E700513)</text>
+  <rect x="802" y="352" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="829.5" y="364" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">999 (0x3E7)</text>
+  <rect x="861" y="352" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="888.5" y="364" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">999 (0x3E7)</text>
+  <rect x="920" y="352" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="947.5" y="364" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">0</text>
+  <rect x="979" y="352" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="1006.5" y="364" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">2147484168 (0x80000208)</text>
+  <rect x="1038" y="352" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="1065.5" y="364" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">0</text>
+  <rect x="1097" y="352" width="55" height="18" fill="#f1f5f9" stroke="#059669" stroke-width="1" rx="2" />
+  <text x="1124.5" y="364" font-size="8" font-family="monospace" fill="#059669" text-anchor="middle">0</text>
+  <rect x="40" y="450" width="1120" height="55" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="4" />
+  <text x="55" y="468" class="ann-title">Microarchitectural Analysis (Cyc 613 – 621):</text>
+  <text x="55" y="484" class="ann-body">• Cyc 613: JALR at 0x8000_0048 commits, branching to 0x8000_0200. Because FENCE.I invalidated tags, I-Cache encounters compulsory miss (IcacheMiss=1).
+• Cyc 614–618: Core triggers AXI burst reload to 0x8000_0200, fetching the rewritten instruction (addi a0, 999). At Cyc 621, addi commits and writes 999 into GPR x10!</text>
+</svg>
