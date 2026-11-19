@@ -1,8 +1,8 @@
 # ============================================================================
 # Author: Alireza Sotodeh
-# Date & Time: 2026-11-17 23:45:00 +03:30
-# Status: NEW FILE
-# Reason / Modification: Script generator for setup_cva6_project.tcl
+# Date & Time: 2026-11-19 10:37:00 +03:30
+# Status: MODIFIED FILE
+# Reason / Modification: Updated wave configuration paths to WaveConfigs/ subdirectory
 # ============================================================================
 
 import xml.etree.ElementTree as ET
@@ -80,11 +80,11 @@ lines.append('puts "============================================================
 lines.append('set sim_file_list [list \\')
 lines.append('    [file normalize [file join $PROJ_DIR "sim" "tb_cva6.sv"]] \\')
 lines.append('    [file normalize [file join $PROJ_DIR "sim" "tb_test2_cva6.sv"]] \\')
-lines.append('    [file normalize [file join $PROJ_DIR "tb_cva6_behav.wcfg"]] \\')
-lines.append('    [file normalize [file join $PROJ_DIR "tb_test2_cva6_behav.wcfg"]] \\')
-lines.append('    [file normalize [file join $PROJ_DIR "cva6_architecture_analysis.wcfg"]] \\')
-lines.append('    [file normalize [file join $PROJ_DIR "cva6_behav.wcfg"]] \\')
-lines.append('    [file normalize [file join $PROJ_DIR "tb1_cva6_mine.wcfg"]] \\')
+lines.append('    [file normalize [file join $PROJ_DIR "WaveConfigs" "tb_cva6_behav.wcfg"]] \\')
+lines.append('    [file normalize [file join $PROJ_DIR "WaveConfigs" "tb_test2_cva6_behav.wcfg"]] \\')
+lines.append('    [file normalize [file join $PROJ_DIR "WaveConfigs" "cva6_architecture_analysis.wcfg"]] \\')
+lines.append('    [file normalize [file join $PROJ_DIR "WaveConfigs" "cva6_behav.wcfg"]] \\')
+lines.append('    [file normalize [file join $PROJ_DIR "WaveConfigs" "tb1_cva6_mine.wcfg"]] \\')
 lines.append(']')
 lines.append('add_files -norecurse -fileset [get_filesets sim_1] $sim_file_list')
 lines.append('')

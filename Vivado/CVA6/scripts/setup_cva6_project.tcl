@@ -1,8 +1,8 @@
 # ============================================================================
 # Author: Alireza Sotodeh
-# Date & Time: 2026-11-17 23:45:00 +03:30
-# Status: NEW FILE
-# Reason / Modification: Automated registration of local CVA6 RTL and Sim sources in CVA6.xpr
+# Date & Time: 2026-11-19 10:37:00 +03:30
+# Status: MODIFIED FILE
+# Reason / Modification: Updated wave configuration paths to WaveConfigs/ subdirectory
 # ============================================================================
 
 set SCRIPT_DIR [file normalize [file dirname [info script]]]
@@ -196,11 +196,11 @@ puts "====================================================================="
 set sim_file_list [list \
     [file normalize [file join $PROJ_DIR "sim" "tb_cva6.sv"]] \
     [file normalize [file join $PROJ_DIR "sim" "tb_test2_cva6.sv"]] \
-    [file normalize [file join $PROJ_DIR "tb_cva6_behav.wcfg"]] \
-    [file normalize [file join $PROJ_DIR "tb_test2_cva6_behav.wcfg"]] \
-    [file normalize [file join $PROJ_DIR "cva6_architecture_analysis.wcfg"]] \
-    [file normalize [file join $PROJ_DIR "cva6_behav.wcfg"]] \
-    [file normalize [file join $PROJ_DIR "tb1_cva6_mine.wcfg"]] \
+    [file normalize [file join $PROJ_DIR "WaveConfigs" "tb_cva6_behav.wcfg"]] \
+    [file normalize [file join $PROJ_DIR "WaveConfigs" "tb_test2_cva6_behav.wcfg"]] \
+    [file normalize [file join $PROJ_DIR "WaveConfigs" "cva6_architecture_analysis.wcfg"]] \
+    [file normalize [file join $PROJ_DIR "WaveConfigs" "cva6_behav.wcfg"]] \
+    [file normalize [file join $PROJ_DIR "WaveConfigs" "tb1_cva6_mine.wcfg"]] \
 ]
 add_files -norecurse -fileset [get_filesets sim_1] $sim_file_list
 
