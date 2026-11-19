@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560">
+<defs>
+  <style type="text/css">
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }
+    .sig-sub { font-size: 9px; fill: #64748b; }
+    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }
+    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }
+    .hex-lbl { font-size: 9px; font-family: monospace; text-anchor: middle; }
+    .sec-hdr { font-size: 14px; font-weight: 700; fill: #0f172a; }
+    .sec-sub { font-size: 11px; fill: #475569; }
+  </style>
+  <linearGradient id="grid-grad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#f8fafc" />
+    <stop offset="100%" stop-color="#f1f5f9" />
+  </linearGradient>
+</defs>
+<rect width="1200" height="560" fill="#ffffff" />
+<text x="30" y="32" class="sec-hdr">CVA6 Suite 8: Timer Interrupt (MTIP) Masking, Unmasking &amp; Vectored Trap</text>
+<text x="30" y="50" class="sec-sub">time_irq asserting while mstatus.MIE=0; delayed trap upon csrsi mstatus, 8; mtvec vectoring and MRET</text>
+<rect x="200" y="65" width="970" height="20" fill="#f1f5f9" rx="2" />
+<text x="211.82926829268294" y="79" class="cyc-lbl">265</text>
+<text x="306.4634146341463" y="79" class="cyc-lbl">269</text>
+<text x="401.0975609756097" y="79" class="cyc-lbl">273</text>
+<text x="495.7317073170732" y="79" class="cyc-lbl">277</text>
+<text x="590.3658536585366" y="79" class="cyc-lbl">281</text>
+<text x="685.0000000000001" y="79" class="cyc-lbl">285</text>
+<text x="779.6341463414635" y="79" class="cyc-lbl">289</text>
+<text x="874.2682926829269" y="79" class="cyc-lbl">293</text>
+<text x="968.9024390243903" y="79" class="cyc-lbl">297</text>
+<text x="1063.5365853658536" y="79" class="cyc-lbl">301</text>
+<text x="1158.1707317073171" y="79" class="cyc-lbl">305</text>
+<text x="20" y="110" class="sig-lbl">Commit PC</text>
+<text x="20" y="121" class="sig-sub">Retired instruction PC</text>
+<rect x="200" y="95" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="97" width="68.97560975609757" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="271.9756097560976" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="282.8048780487805" y="111" class="box-lbl" fill="#1e293b">0x80000000</text>
+<rect x="295.6341463414634" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="319.2926829268293" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="330.1219512195122" y="111" class="box-lbl" fill="#1e293b">0x80000004</text>
+<rect x="342.95121951219517" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="353.7804878048781" y="111" class="box-lbl" fill="#1e293b">0x80000008</text>
+<rect x="366.609756097561" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="377.4390243902439" y="111" class="box-lbl" fill="#1e293b">0x8000000C</text>
+<rect x="390.2682926829268" y="97" width="139.95121951219514" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="532.219512195122" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="543.048780487805" y="111" class="box-lbl" fill="#1e293b">0x80000010</text>
+<rect x="555.8780487804878" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="579.5365853658536" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="590.3658536585366" y="111" class="box-lbl" fill="#1e293b">0x80000014</text>
+<rect x="603.1951219512196" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="614.0243902439025" y="111" class="box-lbl" fill="#1e293b">0x80000018</text>
+<rect x="626.8536585365854" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="637.6829268292684" y="111" class="box-lbl" fill="#1e293b">0x8000001C</text>
+<rect x="650.5121951219512" y="97" width="139.95121951219514" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="792.4634146341464" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="803.2926829268293" y="111" class="box-lbl" fill="#1e293b">0x80000020</text>
+<rect x="816.1219512195122" y="97" width="139.95121951219514" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="958.0731707317074" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="968.9024390243903" y="111" class="box-lbl" fill="#1e293b">0x80000024</text>
+<rect x="981.7317073170732" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="992.5609756097562" y="111" class="box-lbl" fill="#1e293b">0x80000028</text>
+<rect x="1005.3902439024391" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="1016.2195121951221" y="111" class="box-lbl" fill="#1e293b">0x8000002C</text>
+<rect x="1029.0487804878048" y="97" width="139.95121951219514" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="148" class="sig-lbl">Trap Valid &amp; Cause</text>
+<text x="20" y="159" class="sig-sub">Exception/Interrupt Trigger</text>
+<rect x="200" y="133" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="135" width="968.0000000000001" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="186" class="sig-lbl">MRET Instruction</text>
+<text x="20" y="197" class="sig-sub">Privileged Return Executed</text>
+<rect x="200" y="171" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="173" width="968.0000000000001" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="224" class="sig-lbl">WFI Sleep &amp; Halt</text>
+<text x="20" y="235" class="sig-sub">wfi_q / halt_csr_o</text>
+<rect x="200" y="209" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="211" width="968.0000000000001" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="262" class="sig-lbl">time_irq Pin</text>
+<text x="20" y="273" class="sig-sub">Top-level Timer Interrupt</text>
+<rect x="200" y="247" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="249" width="589.4634146341464" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="495.7317073170732" y="263" class="box-lbl" fill="#1e293b">0</text>
+<rect x="792.4634146341464" y="249" width="376.5365853658537" height="24" rx="2" fill="#fef08a" stroke="#cbd5e1" />
+<text x="980.7317073170732" y="263" class="box-lbl" fill="#1e293b">TIME_IRQ=1</text>
+<text x="20" y="300" class="sig-lbl">irq[0] External Pin</text>
+<text x="20" y="311" class="sig-sub">Platform External Interrupt</text>
+<rect x="200" y="285" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="287" width="968.0000000000001" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="685.0" y="301" class="box-lbl" fill="#1e293b">0</text>
+<text x="20" y="338" class="sig-lbl">mstatus.MIE</text>
+<text x="20" y="349" class="sig-sub">Global Interrupt Enable Flag</text>
+<rect x="200" y="323" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="325" width="968.0000000000001" height="24" rx="2" fill="#fecdd3" stroke="#cbd5e1" />
+<text x="685.0" y="339" class="box-lbl" fill="#1e293b">MIE=0 (MASKED)</text>
+<text x="20" y="376" class="sig-lbl">mip.MTIP / MEIP</text>
+<text x="20" y="387" class="sig-sub">Pending Interrupt Bits in CSR</text>
+<rect x="200" y="361" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="363" width="613.1219512195122" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="816.1219512195122" y="363" width="352.8780487804878" height="24" rx="2" fill="#fbcfe8" stroke="#cbd5e1" />
+<text x="992.560975609756" y="377" class="box-lbl" fill="#1e293b">MTIP=1</text>
+<text x="20" y="414" class="sig-lbl">GPR Write</text>
+<text x="20" y="425" class="sig-sub">Register File Writeback</text>
+<rect x="200" y="399" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="401" width="45.31707317073171" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="248.3170731707317" y="401" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="271.9756097560976" y="401" width="21.658536585365855" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="295.6341463414634" y="401" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="319.2926829268293" y="401" width="21.658536585365855" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="342.95121951219517" y="401" width="21.658536585365855" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="366.609756097561" y="401" width="21.658536585365855" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="390.2682926829268" y="401" width="116.29268292682927" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="508.5609756097561" y="401" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="532.219512195122" y="401" width="21.658536585365855" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="555.8780487804878" y="401" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="579.5365853658536" y="401" width="21.658536585365855" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="603.1951219512196" y="401" width="21.658536585365855" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="626.8536585365854" y="401" width="21.658536585365855" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="650.5121951219512" y="401" width="116.29268292682927" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="768.8048780487806" y="401" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="792.4634146341464" y="401" width="21.658536585365855" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="816.1219512195122" y="401" width="116.29268292682927" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="934.4146341463415" y="401" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="958.0731707317074" y="401" width="21.658536585365855" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="981.7317073170732" y="401" width="21.658536585365855" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="1005.3902439024391" y="401" width="21.658536585365855" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="1029.0487804878048" y="401" width="116.29268292682927" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1147.3414634146343" y="401" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+</svg>

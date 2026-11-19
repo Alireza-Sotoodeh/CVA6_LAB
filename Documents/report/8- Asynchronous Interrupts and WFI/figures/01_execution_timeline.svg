@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560">
+<defs>
+  <style type="text/css">
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }
+    .sig-sub { font-size: 9px; fill: #64748b; }
+    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }
+    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }
+    .hex-lbl { font-size: 9px; font-family: monospace; text-anchor: middle; }
+    .sec-hdr { font-size: 14px; font-weight: 700; fill: #0f172a; }
+    .sec-sub { font-size: 11px; fill: #475569; }
+  </style>
+  <linearGradient id="grid-grad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#f8fafc" />
+    <stop offset="100%" stop-color="#f1f5f9" />
+  </linearGradient>
+</defs>
+<rect width="1200" height="560" fill="#ffffff" />
+<text x="30" y="32" class="sec-hdr">CVA6 Suite 8: Asynchronous Interrupts, WFI Sleep &amp; Return Resumption Timeline</text>
+<text x="30" y="50" class="sec-sub">Overview of Timer MTIP, mstatus.MIE masking, trap vectoring, WFI halt state, and External MEIP wakeup</text>
+<rect x="200" y="65" width="970" height="20" fill="#f1f5f9" rx="2" />
+<text x="204.8019801980198" y="79" class="cyc-lbl">260</text>
+<text x="243.21782178217822" y="79" class="cyc-lbl">264</text>
+<text x="281.63366336633663" y="79" class="cyc-lbl">268</text>
+<text x="320.049504950495" y="79" class="cyc-lbl">272</text>
+<text x="358.46534653465346" y="79" class="cyc-lbl">276</text>
+<text x="396.8811881188119" y="79" class="cyc-lbl">280</text>
+<text x="435.2970297029703" y="79" class="cyc-lbl">284</text>
+<text x="473.7128712871287" y="79" class="cyc-lbl">288</text>
+<text x="512.1287128712871" y="79" class="cyc-lbl">292</text>
+<text x="550.5445544554456" y="79" class="cyc-lbl">296</text>
+<text x="588.960396039604" y="79" class="cyc-lbl">300</text>
+<text x="627.3762376237623" y="79" class="cyc-lbl">304</text>
+<text x="665.7920792079208" y="79" class="cyc-lbl">308</text>
+<text x="704.2079207920792" y="79" class="cyc-lbl">312</text>
+<text x="742.6237623762376" y="79" class="cyc-lbl">316</text>
+<text x="781.039603960396" y="79" class="cyc-lbl">320</text>
+<text x="819.4554455445544" y="79" class="cyc-lbl">324</text>
+<text x="857.8712871287129" y="79" class="cyc-lbl">328</text>
+<text x="896.2871287128713" y="79" class="cyc-lbl">332</text>
+<text x="934.7029702970297" y="79" class="cyc-lbl">336</text>
+<text x="973.1188118811881" y="79" class="cyc-lbl">340</text>
+<text x="1011.5346534653465" y="79" class="cyc-lbl">344</text>
+<text x="1049.9504950495048" y="79" class="cyc-lbl">348</text>
+<text x="1088.3663366336632" y="79" class="cyc-lbl">352</text>
+<text x="1126.7821782178216" y="79" class="cyc-lbl">356</text>
+<text x="1165.19801980198" y="79" class="cyc-lbl">360</text>
+<text x="20" y="110" class="sig-lbl">Commit PC</text>
+<text x="20" y="121" class="sig-sub">Retired instruction PC</text>
+<rect x="200" y="95" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="97" width="74.83168316831683" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="277.83168316831683" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="281.63366336633663" y="111" class="box-lbl" fill="#1e293b">0x80000000</text>
+<rect x="287.43564356435644" y="97" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="297.03960396039605" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="300.84158415841586" y="111" class="box-lbl" fill="#1e293b">0x80000004</text>
+<rect x="306.6435643564356" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="310.4455445544554" y="111" class="box-lbl" fill="#1e293b">0x80000008</text>
+<rect x="316.2475247524752" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="320.049504950495" y="111" class="box-lbl" fill="#1e293b">0x8000000C</text>
+<rect x="325.8514851485148" y="97" width="55.62376237623762" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="383.4752475247525" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="387.2772277227723" y="111" class="box-lbl" fill="#1e293b">0x80000010</text>
+<rect x="393.0792079207921" y="97" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="402.6831683168317" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="406.4851485148515" y="111" class="box-lbl" fill="#1e293b">0x80000014</text>
+<rect x="412.28712871287127" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="416.08910891089107" y="111" class="box-lbl" fill="#1e293b">0x80000018</text>
+<rect x="421.8910891089109" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="425.6930693069307" y="111" class="box-lbl" fill="#1e293b">0x8000001C</text>
+<rect x="431.4950495049505" y="97" width="55.62376237623762" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="489.1188118811881" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="492.9207920792079" y="111" class="box-lbl" fill="#1e293b">0x80000020</text>
+<rect x="498.7227722772277" y="97" width="55.62376237623762" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="556.3465346534654" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="560.1485148514852" y="111" class="box-lbl" fill="#1e293b">0x80000024</text>
+<rect x="565.950495049505" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="569.7524752475248" y="111" class="box-lbl" fill="#1e293b">0x80000028</text>
+<rect x="575.5544554455446" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="579.3564356435644" y="111" class="box-lbl" fill="#1e293b">0x8000002C</text>
+<rect x="585.1584158415842" y="97" width="55.62376237623762" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="642.7821782178218" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="646.5841584158416" y="111" class="box-lbl" fill="#1e293b">0x80000030</text>
+<rect x="652.3861386138614" y="97" width="218.89108910891088" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="873.2772277227723" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="877.0792079207921" y="111" class="box-lbl" fill="#1e293b">0x80000050</text>
+<rect x="882.8811881188119" y="97" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="892.4851485148515" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="896.2871287128713" y="111" class="box-lbl" fill="#1e293b">0x80000054</text>
+<rect x="902.089108910891" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="905.8910891089108" y="111" class="box-lbl" fill="#1e293b">0x80000058</text>
+<rect x="911.6930693069306" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="915.4950495049504" y="111" class="box-lbl" fill="#1e293b">0x8000005C</text>
+<rect x="921.2970297029702" y="97" width="132.45544554455444" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1055.7524752475247" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="1059.5544554455444" y="111" class="box-lbl" fill="#1e293b">0x80000074</text>
+<rect x="1065.3564356435643" y="97" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1074.960396039604" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="1078.7623762376236" y="111" class="box-lbl" fill="#1e293b">0x80000078</text>
+<rect x="1084.5643564356435" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="1088.3663366336632" y="111" class="box-lbl" fill="#1e293b">0x8000007C</text>
+<rect x="1094.1683168316831" y="97" width="55.62376237623762" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1151.7920792079208" y="97" width="7.603960396039604" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
+<text x="1155.5940594059405" y="111" class="box-lbl" fill="#1e293b">0x80000080</text>
+<rect x="1161.3960396039604" y="97" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="148" class="sig-lbl">Trap Valid &amp; Cause</text>
+<text x="20" y="159" class="sig-sub">Exception/Interrupt Trigger</text>
+<rect x="200" y="133" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="135" width="497.4059405940594" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="700.4059405940594" y="135" width="7.603960396039604" height="24" rx="2" fill="#fecaca" stroke="#cbd5e1" />
+<text x="704.2079207920792" y="149" class="box-lbl" fill="#1e293b">TRAP: 0x80000007</text>
+<rect x="710.0099009900989" y="135" width="458.990099009901" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="186" class="sig-lbl">MRET Instruction</text>
+<text x="20" y="197" class="sig-sub">Privileged Return Executed</text>
+<rect x="200" y="171" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="173" width="948.7920792079208" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1151.7920792079208" y="173" width="7.603960396039604" height="24" rx="2" fill="#fed7aa" stroke="#cbd5e1" />
+<text x="1155.5940594059405" y="187" class="box-lbl" fill="#1e293b">MRET</text>
+<rect x="1161.3960396039604" y="173" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="224" class="sig-lbl">WFI Sleep &amp; Halt</text>
+<text x="20" y="235" class="sig-sub">wfi_q / halt_csr_o</text>
+<rect x="200" y="209" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="211" width="968.0" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="262" class="sig-lbl">time_irq Pin</text>
+<text x="20" y="273" class="sig-sub">Top-level Timer Interrupt</text>
+<rect x="200" y="247" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="249" width="286.1188118811881" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="344.05940594059405" y="263" class="box-lbl" fill="#1e293b">0</text>
+<rect x="489.1188118811881" y="249" width="228.4950495049505" height="24" rx="2" fill="#fef08a" stroke="#cbd5e1" />
+<text x="603.3663366336633" y="263" class="box-lbl" fill="#1e293b">TIME_IRQ=1</text>
+<rect x="719.6138613861386" y="249" width="449.38613861386136" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="944.3069306930693" y="263" class="box-lbl" fill="#1e293b">0</text>
+<text x="20" y="300" class="sig-lbl">irq[0] External Pin</text>
+<text x="20" y="311" class="sig-sub">Platform External Interrupt</text>
+<rect x="200" y="285" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="287" width="968.0" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="685.0" y="301" class="box-lbl" fill="#1e293b">0</text>
+<text x="20" y="338" class="sig-lbl">mstatus.MIE</text>
+<text x="20" y="349" class="sig-sub">Global Interrupt Enable Flag</text>
+<rect x="200" y="323" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="325" width="449.38613861386136" height="24" rx="2" fill="#fecdd3" stroke="#cbd5e1" />
+<text x="425.6930693069307" y="339" class="box-lbl" fill="#1e293b">MIE=0 (MASKED)</text>
+<rect x="652.3861386138614" y="325" width="55.62376237623762" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
+<text x="680.1980198019802" y="339" class="box-lbl" fill="#1e293b">MIE=1 (ENABLED)</text>
+<rect x="710.0099009900989" y="325" width="449.38613861386136" height="24" rx="2" fill="#fecdd3" stroke="#cbd5e1" />
+<text x="934.7029702970297" y="339" class="box-lbl" fill="#1e293b">MIE=0 (MASKED)</text>
+<rect x="1161.3960396039604" y="325" width="7.603960396039604" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
+<text x="1165.19801980198" y="339" class="box-lbl" fill="#1e293b">MIE=1 (ENABLED)</text>
+<text x="20" y="376" class="sig-lbl">mip.MTIP / MEIP</text>
+<text x="20" y="387" class="sig-sub">Pending Interrupt Bits in CSR</text>
+<rect x="200" y="361" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="363" width="295.7227722772277" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="498.7227722772277" y="363" width="228.4950495049505" height="24" rx="2" fill="#fbcfe8" stroke="#cbd5e1" />
+<text x="612.9702970297029" y="377" class="box-lbl" fill="#1e293b">MTIP=1</text>
+<rect x="729.2178217821782" y="363" width="439.78217821782175" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<text x="20" y="414" class="sig-lbl">GPR Write</text>
+<text x="20" y="425" class="sig-sub">Register File Writeback</text>
+<rect x="200" y="399" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
+<rect x="201.0" y="401" width="65.22772277227722" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="268.2277227722772" y="401" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="277.83168316831683" y="401" width="7.603960396039604" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="287.43564356435644" y="401" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="297.03960396039605" y="401" width="7.603960396039604" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="306.6435643564356" y="401" width="7.603960396039604" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="316.2475247524752" y="401" width="7.603960396039604" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="325.8514851485148" y="401" width="46.01980198019802" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="373.8712871287129" y="401" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="383.4752475247525" y="401" width="7.603960396039604" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="393.0792079207921" y="401" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="402.6831683168317" y="401" width="7.603960396039604" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="412.28712871287127" y="401" width="7.603960396039604" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="421.8910891089109" y="401" width="7.603960396039604" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="431.4950495049505" y="401" width="46.01980198019802" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="479.5148514851485" y="401" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="489.1188118811881" y="401" width="7.603960396039604" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="498.7227722772277" y="401" width="46.01980198019802" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="546.7425742574258" y="401" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="556.3465346534654" y="401" width="7.603960396039604" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="565.950495049505" y="401" width="7.603960396039604" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="575.5544554455446" y="401" width="7.603960396039604" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="585.1584158415842" y="401" width="46.01980198019802" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="633.1782178217821" y="401" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="642.7821782178218" y="401" width="7.603960396039604" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="652.3861386138614" y="401" width="46.01980198019802" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="700.4059405940594" y="401" width="161.26732673267327" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="863.6732673267327" y="401" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="873.2772277227723" y="401" width="7.603960396039604" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="882.8811881188119" y="401" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="892.4851485148515" y="401" width="7.603960396039604" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="902.089108910891" y="401" width="7.603960396039604" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="911.6930693069306" y="401" width="7.603960396039604" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="921.2970297029702" y="401" width="122.85148514851485" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1046.148514851485" y="401" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1055.7524752475247" y="401" width="7.603960396039604" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="1065.3564356435643" y="401" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1074.960396039604" y="401" width="7.603960396039604" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="1084.5643564356435" y="401" width="7.603960396039604" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="1094.1683168316831" y="401" width="46.01980198019802" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1142.1881188118812" y="401" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<rect x="1151.7920792079208" y="401" width="7.603960396039604" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
+<rect x="1161.3960396039604" y="401" width="7.603960396039604" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+</svg>
