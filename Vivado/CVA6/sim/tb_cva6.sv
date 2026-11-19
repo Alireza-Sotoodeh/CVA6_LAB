@@ -1,10 +1,10 @@
 // ============================================================================
 // Author: Alireza Sotodeh
-// Date & Time: 2026-11-19 10:28:30 +03:30
+// Date & Time: 2026-11-19 10:48:30 +03:30
 // Status: MODIFIED FILE
-// Reason / Modification: Expanded CSV trace logger to 60 comprehensive microarchitectural
-//                        pipeline signals across all core stages (Fetch, I-Cache flush,
-//                        D-Cache, Issue FU/Op, EX, Branch, LSU, AXI, Commit/Ctrl).
+// Reason / Modification: Added diagnostic probes (I-Cache enable, cl_hit, paddr_is_nc,
+//                        kill_s1/s2, mem_data_req/ack, frontend replay, axi_arlen)
+//                        for root cause identification of I-Cache misses and CPI degradation.
 // ============================================================================
 
 `timescale 1ns / 1ps
@@ -166,6 +166,17 @@ module tb_cva6;
   wire        probe_csr_valid                 = u_dut.csr_valid_id_ex[0];
   wire [11:0] probe_csr_addr                  = u_dut.csr_addr_ex_csr;
   wire        probe_commit_drop               = u_dut.commit_drop_id_commit[0];
+
+  // Group 9: Diagnostic Probes (added for finding bug)
+  wire        probe_icache_en                 = u_dut.icache_en_csr;                                                      // added for finding bug
+  wire [1:0]  probe_icache_cl_hit             = u_dut.gen_cache_wt.i_cache_subsystem.i_cva6_icache.cl_hit;               // added for finding bug
+  wire        probe_icache_paddr_is_nc        = u_dut.gen_cache_wt.i_cache_subsystem.i_cva6_icache.paddr_is_nc;          // added for finding bug
+  wire        probe_icache_kill_s1            = u_dut.gen_cache_wt.i_cache_subsystem.i_cva6_icache.dreq_i.kill_s1;       // added for finding bug
+  wire        probe_icache_kill_s2            = u_dut.gen_cache_wt.i_cache_subsystem.i_cva6_icache.dreq_i.kill_s2;       // added for finding bug
+  wire        probe_icache_mem_data_req       = u_dut.gen_cache_wt.i_cache_subsystem.i_cva6_icache.mem_data_req_o;       // added for finding bug
+  wire        probe_icache_mem_data_ack       = u_dut.gen_cache_wt.i_cache_subsystem.i_cva6_icache.mem_data_ack_i;       // added for finding bug
+  wire        probe_frontend_replay           = u_dut.i_frontend.replay;                                                  // added for finding bug
+  wire [7:0]  probe_axi_ar_len                = noc_req.ar.len;                                                           // added for finding bug
 
   // ----------------------------------------------------------------------------
   // 4. Memory Preload with Standard 19-Instruction RV32I Test Program
@@ -415,7 +426,7 @@ module tb_cva6;
   initial begin
     csv_fd = $fopen("cva6_trace.csv", "w");
     if (csv_fd) begin
-      $fdisplay(csv_fd, "Time_ps,Cycle,InstRet,FetchPC,FetchReq,FetchValid,FetchInstr,FeIdValid,IdFeReady,InstrQueueUsage,HaltFrontend,IcacheState,IcacheMiss,IcacheReady,IcacheFlushEn,IcacheFlushDone,IcacheFlushCnt,IcacheWren,DcacheMiss,WbufEmpty,StallStPending,NoStPending,IssuePC,IssueFU,IssueOp,IsCompressed,AluValid,AluResult,FluValid,FluReady,MultValid,CsrValid,CsrAddr,BranchValid,BranchPredict,BranchResolvedValid,BranchResolvedTaken,BranchMispredict,BranchTarget,LsuValid,LsuReady,LoadValid,LoadResult,StoreValid,StoreResult,AxiARValid,AxiARAddr,AxiRValid,AxiAWValid,AxiAWAddr,AxiWValid,AxiBValid,CommitAck,CommitPC,CommitDrop,GprWe,GprWaddr,GprWdata,SbFull,PipelineFlush");
+      $fdisplay(csv_fd, "Time_ps,Cycle,InstRet,FetchPC,FetchReq,FetchValid,FetchInstr,FeIdValid,IdFeReady,InstrQueueUsage,HaltFrontend,IcacheState,IcacheMiss,IcacheReady,IcacheFlushEn,IcacheFlushDone,IcacheFlushCnt,IcacheWren,DcacheMiss,WbufEmpty,StallStPending,NoStPending,IssuePC,IssueFU,IssueOp,IsCompressed,AluValid,AluResult,FluValid,FluReady,MultValid,CsrValid,CsrAddr,BranchValid,BranchPredict,BranchResolvedValid,BranchResolvedTaken,BranchMispredict,BranchTarget,LsuValid,LsuReady,LoadValid,LoadResult,StoreValid,StoreResult,AxiARValid,AxiARAddr,AxiRValid,AxiAWValid,AxiAWAddr,AxiWValid,AxiBValid,CommitAck,CommitPC,CommitDrop,GprWe,GprWaddr,GprWdata,SbFull,PipelineFlush,IcacheEn,IcacheClHit,IcachePaddrIsNc,IcacheKillS1,IcacheKillS2,IcacheMemDataReq,IcacheMemDataAck,FrontendReplay,AxiARLen");
     end else begin
       $display("[TB_WARNING] Could not open cva6_trace.csv for writing.");
     end
@@ -425,7 +436,7 @@ module tb_cva6;
     cycle_count++;
 
     if (csv_fd) begin
-      $fdisplay(csv_fd, "%0t,%0d,%0d,0x%08h,%b,%b,0x%08h,%b,%b,%0d,%b,%0d,%b,%b,%b,%b,%0d,%b,%b,%b,%b,%b,0x%08h,%0d,%0d,%b,%b,0x%08h,%b,%b,%b,%b,0x%03h,%b,%b,%b,%b,%b,0x%08h,%b,%b,%b,0x%08h,%b,0x%08h,%b,0x%08h,%b,%b,0x%08h,%b,%b,%b,0x%08h,%b,%b,%0d,0x%08h,%b,%b",
+      $fdisplay(csv_fd, "%0t,%0d,%0d,0x%08h,%b,%b,0x%08h,%b,%b,%0d,%b,%0d,%b,%b,%b,%b,%0d,%b,%b,%b,%b,%b,0x%08h,%0d,%0d,%b,%b,0x%08h,%b,%b,%b,%b,0x%03h,%b,%b,%b,%b,%b,0x%08h,%b,%b,%b,0x%08h,%b,0x%08h,%b,0x%08h,%b,%b,0x%08h,%b,%b,%b,0x%08h,%b,%b,%0d,0x%08h,%b,%b,%b,%b,%b,%b,%b,%b,%b,%b,%0d",
                 $time,
                 cycle_count,
                 instret_count,
@@ -485,7 +496,16 @@ module tb_cva6;
                 probe_we_gpr ? probe_waddr_gpr : 5'd0,
                 probe_we_gpr ? probe_wdata_gpr : 32'd0,
                 probe_sb_full,
-                probe_pipeline_flush);
+                probe_pipeline_flush,
+                probe_icache_en,              // added for finding bug
+                probe_icache_cl_hit,          // added for finding bug
+                probe_icache_paddr_is_nc,     // added for finding bug
+                probe_icache_kill_s1,         // added for finding bug
+                probe_icache_kill_s2,         // added for finding bug
+                probe_icache_mem_data_req,    // added for finding bug
+                probe_icache_mem_data_ack,    // added for finding bug
+                probe_frontend_replay,        // added for finding bug
+                probe_axi_ar_len);            // added for finding bug
     end
   end
 
