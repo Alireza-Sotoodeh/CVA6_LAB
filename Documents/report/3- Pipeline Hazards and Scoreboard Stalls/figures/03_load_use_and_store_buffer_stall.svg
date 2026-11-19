@@ -1,0 +1,889 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500">
+<defs>
+  <style type="text/css">
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }
+    .sig-sub { font-size: 9px; fill: #64748b; }
+    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }
+    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }
+    .ann-title { font-size: 11px; font-weight: 700; fill: #0f172a; }
+    .ann-body { font-size: 10px; fill: #334155; }
+  </style>
+</defs>
+<rect width="1200" height="500" fill="#f8fafc" />
+  <text x="30" y="30" font-size="15" font-weight="700" fill="#0f172a">CVA6 Load-Use Scoreboard Delay &amp; Store Buffer Address Matching (Cycles 293 – 324)</text>
+  <text x="30" y="48" font-size="11" fill="#475569">Inspection of memory hazard stalls: (1) Load-Use dependency on LW 0(x1) stalling ADDI, and (2) Store-to-Load address collision where page_offset match holds LSU in WAIT_PAGE_OFFSET.</text>
+  <rect x="220" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="234.5" y="73" font-size="9" class="cyc-lbl">293</text>
+  <rect x="249" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="263.5" y="73" font-size="9" class="cyc-lbl">294</text>
+  <rect x="278" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="292.5" y="73" font-size="9" class="cyc-lbl">295</text>
+  <rect x="307" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="321.5" y="73" font-size="9" class="cyc-lbl">296</text>
+  <rect x="336" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="350.5" y="73" font-size="9" class="cyc-lbl">297</text>
+  <rect x="365" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="379.5" y="73" font-size="9" class="cyc-lbl">298</text>
+  <rect x="394" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="408.5" y="73" font-size="9" class="cyc-lbl">299</text>
+  <rect x="423" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="437.5" y="73" font-size="9" class="cyc-lbl">300</text>
+  <rect x="452" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="466.5" y="73" font-size="9" class="cyc-lbl">301</text>
+  <rect x="481" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="495.5" y="73" font-size="9" class="cyc-lbl">302</text>
+  <rect x="510" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="524.5" y="73" font-size="9" class="cyc-lbl">303</text>
+  <rect x="539" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="553.5" y="73" font-size="9" class="cyc-lbl">304</text>
+  <rect x="568" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="582.5" y="73" font-size="9" class="cyc-lbl">305</text>
+  <rect x="597" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="611.5" y="73" font-size="9" class="cyc-lbl">306</text>
+  <rect x="626" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="640.5" y="73" font-size="9" class="cyc-lbl">307</text>
+  <rect x="655" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="669.5" y="73" font-size="9" class="cyc-lbl">308</text>
+  <rect x="684" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="698.5" y="73" font-size="9" class="cyc-lbl">309</text>
+  <rect x="713" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="727.5" y="73" font-size="9" class="cyc-lbl">310</text>
+  <rect x="742" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="756.5" y="73" font-size="9" class="cyc-lbl">311</text>
+  <rect x="771" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="785.5" y="73" font-size="9" class="cyc-lbl">312</text>
+  <rect x="800" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="814.5" y="73" font-size="9" class="cyc-lbl">313</text>
+  <rect x="829" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="843.5" y="73" font-size="9" class="cyc-lbl">314</text>
+  <rect x="858" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="872.5" y="73" font-size="9" class="cyc-lbl">315</text>
+  <rect x="887" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="901.5" y="73" font-size="9" class="cyc-lbl">316</text>
+  <rect x="916" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="930.5" y="73" font-size="9" class="cyc-lbl">317</text>
+  <rect x="945" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="959.5" y="73" font-size="9" class="cyc-lbl">318</text>
+  <rect x="974" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="988.5" y="73" font-size="9" class="cyc-lbl">319</text>
+  <rect x="1003" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="1017.5" y="73" font-size="9" class="cyc-lbl">320</text>
+  <rect x="1032" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="1046.5" y="73" font-size="9" class="cyc-lbl">321</text>
+  <rect x="1061" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="1075.5" y="73" font-size="9" class="cyc-lbl">322</text>
+  <rect x="1090" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="1104.5" y="73" font-size="9" class="cyc-lbl">323</text>
+  <rect x="1119" y="60" width="29" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />
+  <text x="1133.5" y="73" font-size="9" class="cyc-lbl">324</text>
+  <rect x="30" y="80" width="1140" height="28" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5" />
+  <text x="35" y="95" class="sig-lbl">CommitAck0</text>
+  <text x="35" y="105" class="sig-sub">Commit Port 0 Ack</text>
+  <rect x="222" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="234.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="251" y="84" width="25" height="18" fill="#16a34a" rx="2" />
+  <text x="263.5" y="97" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="280" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="292.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="309" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="321.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="338" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="350.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="367" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="379.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="396" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="408.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="425" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="437.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="454" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="466.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="483" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="495.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="512" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="524.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="541" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="553.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="570" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="582.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="599" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="611.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="628" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="640.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="657" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="669.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="686" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="698.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="715" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="727.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="744" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="756.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="773" y="84" width="25" height="18" fill="#16a34a" rx="2" />
+  <text x="785.5" y="97" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="802" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="814.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="831" y="84" width="25" height="18" fill="#16a34a" rx="2" />
+  <text x="843.5" y="97" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="860" y="84" width="25" height="18" fill="#16a34a" rx="2" />
+  <text x="872.5" y="97" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="889" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="901.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="918" y="84" width="25" height="18" fill="#16a34a" rx="2" />
+  <text x="930.5" y="97" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="947" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="959.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="976" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="988.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1005" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1017.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1034" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1046.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1063" y="84" width="25" height="18" fill="#16a34a" rx="2" />
+  <text x="1075.5" y="97" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1092" y="84" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1104.5" y="97" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1121" y="84" width="25" height="18" fill="#16a34a" rx="2" />
+  <text x="1133.5" y="97" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="30" y="108" width="1140" height="28" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.5" />
+  <text x="35" y="123" class="sig-lbl">CommitPC0</text>
+  <text x="35" y="133" class="sig-sub">Commit Port 0 PC</text>
+  <rect x="221" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="234.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="250" y="112" width="27" height="18" fill="#eff6ff" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="263.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x002C SW x10</text>
+  <rect x="279" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="292.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="308" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="321.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="337" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="350.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="366" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="379.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="395" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="408.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="424" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="437.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="453" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="466.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="482" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="495.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="511" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="524.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="540" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="553.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="569" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="582.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="598" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="611.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="627" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="640.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="656" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="669.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="685" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="698.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="714" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="727.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="743" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="756.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="772" y="112" width="27" height="18" fill="#eff6ff" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="785.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0030 LW x11</text>
+  <rect x="801" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="814.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="830" y="112" width="27" height="18" fill="#eff6ff" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="843.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0034 ADDI x12,201</text>
+  <rect x="859" y="112" width="27" height="18" fill="#eff6ff" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="872.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0038 ADD x13,216</text>
+  <rect x="888" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="901.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="917" y="112" width="27" height="18" fill="#eff6ff" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="930.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x003C SW x13</text>
+  <rect x="946" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="959.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="975" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="988.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="1004" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="1017.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="1033" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="1046.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="1062" y="112" width="27" height="18" fill="#eff6ff" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="1075.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0040 LW x14</text>
+  <rect x="1091" y="112" width="27" height="18" fill="#f8fafc" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="1104.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0000</text>
+  <rect x="1120" y="112" width="27" height="18" fill="#eff6ff" stroke="#0f172a" stroke-width="0.5" rx="2" />
+  <text x="1133.5" y="124" font-size="7" font-weight="600" fill="#0f172a" text-anchor="middle">0x0044 ADDI x15,226</text>
+  <rect x="30" y="136" width="1140" height="28" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5" />
+  <text x="35" y="151" class="sig-lbl">IssueValid0</text>
+  <text x="35" y="161" class="sig-sub">Scoreboard Issue Valid</text>
+  <rect x="222" y="140" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="234.5" y="153" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="251" y="140" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="263.5" y="153" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="280" y="140" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="292.5" y="153" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="309" y="140" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="321.5" y="153" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="338" y="140" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="350.5" y="153" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="367" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="379.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="396" y="140" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="408.5" y="153" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="425" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="437.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="454" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="466.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="483" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="495.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="512" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="524.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="541" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="553.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="570" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="582.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="599" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="611.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="628" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="640.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="657" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="669.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="686" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="698.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="715" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="727.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="744" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="756.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="773" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="785.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="802" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="814.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="831" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="843.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="860" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="872.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="889" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="901.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="918" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="930.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="947" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="959.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="976" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="988.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1005" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="1017.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1034" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="1046.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1063" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="1075.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1092" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="1104.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1121" y="140" width="25" height="18" fill="#6366f1" rx="2" />
+  <text x="1133.5" y="153" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="30" y="164" width="1140" height="28" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.5" />
+  <text x="35" y="179" class="sig-lbl">IssueAck0</text>
+  <text x="35" y="189" class="sig-sub">Scoreboard Issue Ack</text>
+  <rect x="222" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="234.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="251" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="263.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="280" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="292.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="309" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="321.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="338" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="350.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="367" y="168" width="25" height="18" fill="#0284c7" rx="2" />
+  <text x="379.5" y="181" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="396" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="408.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="425" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="437.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="454" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="466.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="483" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="495.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="512" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="524.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="541" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="553.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="570" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="582.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="599" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="611.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="628" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="640.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="657" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="669.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="686" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="698.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="715" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="727.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="744" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="756.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="773" y="168" width="25" height="18" fill="#0284c7" rx="2" />
+  <text x="785.5" y="181" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="802" y="168" width="25" height="18" fill="#0284c7" rx="2" />
+  <text x="814.5" y="181" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="831" y="168" width="25" height="18" fill="#0284c7" rx="2" />
+  <text x="843.5" y="181" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="860" y="168" width="25" height="18" fill="#0284c7" rx="2" />
+  <text x="872.5" y="181" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="889" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="901.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="918" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="930.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="947" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="959.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="976" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="988.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1005" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1017.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1034" y="168" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1046.5" y="181" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1063" y="168" width="25" height="18" fill="#0284c7" rx="2" />
+  <text x="1075.5" y="181" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1092" y="168" width="25" height="18" fill="#0284c7" rx="2" />
+  <text x="1104.5" y="181" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1121" y="168" width="25" height="18" fill="#0284c7" rx="2" />
+  <text x="1133.5" y="181" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="30" y="192" width="1140" height="28" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5" />
+  <text x="35" y="207" class="sig-lbl">StallIssue</text>
+  <text x="35" y="217" class="sig-sub">Issue Stage Stall</text>
+  <rect x="222" y="196" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="234.5" y="209" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="251" y="196" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="263.5" y="209" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="280" y="196" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="292.5" y="209" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="309" y="196" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="321.5" y="209" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="338" y="196" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="350.5" y="209" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="367" y="196" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="379.5" y="209" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="396" y="196" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="408.5" y="209" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="425" y="196" width="25" height="18" fill="#ef4444" rx="2" />
+  <text x="437.5" y="209" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="454" y="196" width="25" height="18" fill="#ef4444" rx="2" />
+  <text x="466.5" y="209" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="483" y="196" width="25" height="18" fill="#ef4444" rx="2" />
+  <text x="495.5" y="209" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="512" y="196" width="25" height="18" fill="#ef4444" rx="2" />
+  <text x="524.5" y="209" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="541" y="196" width="25" height="18" fill="#ef4444" rx="2" />
+  <text x="553.5" y="209" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="570" y="196" width="25" height="18" fill="#ef4444" rx="2" />
+  <text x="582.5" y="209" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="599" y="196" width="25" height="18" fill="#ef4444" rx="2" />
+  <text x="611.5" y="209" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="628" y="196" width="25" height="18" fill="#ef4444" rx="2" />
+  <text x="640.5" y="209" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="657" y="196" width="25" height="18" fill="#ef4444" rx="2" />
+  <text x="669.5" y="209" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="686" y="196" width="25" height="18" fill="#ef4444" rx="2" />
+  <text x="698.5" y="209" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="715" y="196" width="25" height="18" fill="#ef4444" rx="2" />
+  <text x="727.5" y="209" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="744" y="196" width="25" height="18" fill="#ef4444" rx="2" />
+  <text x="756.5" y="209" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="773" y="196" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="785.5" y="209" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="802" y="196" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="814.5" y="209" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="831" y="196" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="843.5" y="209" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="860" y="196" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="872.5" y="209" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="889" y="196" width="25" height="18" fill="#ef4444" rx="2" />
+  <text x="901.5" y="209" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="918" y="196" width="25" height="18" fill="#ef4444" rx="2" />
+  <text x="930.5" y="209" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="947" y="196" width="25" height="18" fill="#ef4444" rx="2" />
+  <text x="959.5" y="209" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="976" y="196" width="25" height="18" fill="#ef4444" rx="2" />
+  <text x="988.5" y="209" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1005" y="196" width="25" height="18" fill="#ef4444" rx="2" />
+  <text x="1017.5" y="209" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1034" y="196" width="25" height="18" fill="#ef4444" rx="2" />
+  <text x="1046.5" y="209" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1063" y="196" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1075.5" y="209" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1092" y="196" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1104.5" y="209" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1121" y="196" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1133.5" y="209" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="30" y="220" width="1140" height="28" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.5" />
+  <text x="35" y="235" class="sig-lbl">StallRaw</text>
+  <text x="35" y="245" class="sig-sub">RAW Scoreboard Stall</text>
+  <rect x="222" y="224" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="234.5" y="237" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="251" y="224" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="263.5" y="237" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="280" y="224" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="292.5" y="237" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="309" y="224" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="321.5" y="237" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="338" y="224" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="350.5" y="237" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="367" y="224" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="379.5" y="237" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="396" y="224" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="408.5" y="237" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="425" y="224" width="25" height="18" fill="#dc2626" rx="2" />
+  <text x="437.5" y="237" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="454" y="224" width="25" height="18" fill="#dc2626" rx="2" />
+  <text x="466.5" y="237" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="483" y="224" width="25" height="18" fill="#dc2626" rx="2" />
+  <text x="495.5" y="237" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="512" y="224" width="25" height="18" fill="#dc2626" rx="2" />
+  <text x="524.5" y="237" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="541" y="224" width="25" height="18" fill="#dc2626" rx="2" />
+  <text x="553.5" y="237" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="570" y="224" width="25" height="18" fill="#dc2626" rx="2" />
+  <text x="582.5" y="237" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="599" y="224" width="25" height="18" fill="#dc2626" rx="2" />
+  <text x="611.5" y="237" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="628" y="224" width="25" height="18" fill="#dc2626" rx="2" />
+  <text x="640.5" y="237" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="657" y="224" width="25" height="18" fill="#dc2626" rx="2" />
+  <text x="669.5" y="237" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="686" y="224" width="25" height="18" fill="#dc2626" rx="2" />
+  <text x="698.5" y="237" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="715" y="224" width="25" height="18" fill="#dc2626" rx="2" />
+  <text x="727.5" y="237" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="744" y="224" width="25" height="18" fill="#dc2626" rx="2" />
+  <text x="756.5" y="237" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="773" y="224" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="785.5" y="237" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="802" y="224" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="814.5" y="237" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="831" y="224" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="843.5" y="237" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="860" y="224" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="872.5" y="237" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="889" y="224" width="25" height="18" fill="#dc2626" rx="2" />
+  <text x="901.5" y="237" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="918" y="224" width="25" height="18" fill="#dc2626" rx="2" />
+  <text x="930.5" y="237" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="947" y="224" width="25" height="18" fill="#dc2626" rx="2" />
+  <text x="959.5" y="237" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="976" y="224" width="25" height="18" fill="#dc2626" rx="2" />
+  <text x="988.5" y="237" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1005" y="224" width="25" height="18" fill="#dc2626" rx="2" />
+  <text x="1017.5" y="237" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1034" y="224" width="25" height="18" fill="#dc2626" rx="2" />
+  <text x="1046.5" y="237" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1063" y="224" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1075.5" y="237" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1092" y="224" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1104.5" y="237" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1121" y="224" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1133.5" y="237" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="30" y="248" width="1140" height="28" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5" />
+  <text x="35" y="263" class="sig-lbl">StallRs1</text>
+  <text x="35" y="273" class="sig-sub">RS1 Operand Stall</text>
+  <rect x="222" y="252" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="234.5" y="265" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="251" y="252" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="263.5" y="265" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="280" y="252" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="292.5" y="265" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="309" y="252" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="321.5" y="265" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="338" y="252" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="350.5" y="265" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="367" y="252" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="379.5" y="265" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="396" y="252" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="408.5" y="265" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="425" y="252" width="25" height="18" fill="#b91c1c" rx="2" />
+  <text x="437.5" y="265" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="454" y="252" width="25" height="18" fill="#b91c1c" rx="2" />
+  <text x="466.5" y="265" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="483" y="252" width="25" height="18" fill="#b91c1c" rx="2" />
+  <text x="495.5" y="265" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="512" y="252" width="25" height="18" fill="#b91c1c" rx="2" />
+  <text x="524.5" y="265" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="541" y="252" width="25" height="18" fill="#b91c1c" rx="2" />
+  <text x="553.5" y="265" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="570" y="252" width="25" height="18" fill="#b91c1c" rx="2" />
+  <text x="582.5" y="265" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="599" y="252" width="25" height="18" fill="#b91c1c" rx="2" />
+  <text x="611.5" y="265" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="628" y="252" width="25" height="18" fill="#b91c1c" rx="2" />
+  <text x="640.5" y="265" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="657" y="252" width="25" height="18" fill="#b91c1c" rx="2" />
+  <text x="669.5" y="265" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="686" y="252" width="25" height="18" fill="#b91c1c" rx="2" />
+  <text x="698.5" y="265" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="715" y="252" width="25" height="18" fill="#b91c1c" rx="2" />
+  <text x="727.5" y="265" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="744" y="252" width="25" height="18" fill="#b91c1c" rx="2" />
+  <text x="756.5" y="265" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="773" y="252" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="785.5" y="265" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="802" y="252" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="814.5" y="265" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="831" y="252" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="843.5" y="265" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="860" y="252" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="872.5" y="265" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="889" y="252" width="25" height="18" fill="#b91c1c" rx="2" />
+  <text x="901.5" y="265" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="918" y="252" width="25" height="18" fill="#b91c1c" rx="2" />
+  <text x="930.5" y="265" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="947" y="252" width="25" height="18" fill="#b91c1c" rx="2" />
+  <text x="959.5" y="265" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="976" y="252" width="25" height="18" fill="#b91c1c" rx="2" />
+  <text x="988.5" y="265" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1005" y="252" width="25" height="18" fill="#b91c1c" rx="2" />
+  <text x="1017.5" y="265" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1034" y="252" width="25" height="18" fill="#b91c1c" rx="2" />
+  <text x="1046.5" y="265" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1063" y="252" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1075.5" y="265" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1092" y="252" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1104.5" y="265" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1121" y="252" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1133.5" y="265" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="30" y="276" width="1140" height="28" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.5" />
+  <text x="35" y="291" class="sig-lbl">ForwardRs1</text>
+  <text x="35" y="301" class="sig-sub">RS1 Operand Forwarded</text>
+  <rect x="222" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="234.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="251" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="263.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="280" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="292.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="309" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="321.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="338" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="350.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="367" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="379.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="396" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="408.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="425" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="437.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="454" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="466.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="483" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="495.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="512" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="524.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="541" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="553.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="570" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="582.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="599" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="611.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="628" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="640.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="657" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="669.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="686" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="698.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="715" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="727.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="744" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="756.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="773" y="280" width="25" height="18" fill="#2563eb" rx="2" />
+  <text x="785.5" y="293" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="802" y="280" width="25" height="18" fill="#2563eb" rx="2" />
+  <text x="814.5" y="293" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="831" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="843.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="860" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="872.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="889" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="901.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="918" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="930.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="947" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="959.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="976" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="988.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1005" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1017.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1034" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1046.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1063" y="280" width="25" height="18" fill="#2563eb" rx="2" />
+  <text x="1075.5" y="293" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1092" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1104.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1121" y="280" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1133.5" y="293" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="30" y="304" width="1140" height="28" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5" />
+  <text x="35" y="319" class="sig-lbl">LsuValidId</text>
+  <text x="35" y="329" class="sig-sub">LSU Issue Valid</text>
+  <rect x="222" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="234.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="251" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="263.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="280" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="292.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="309" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="321.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="338" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="350.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="367" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="379.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="396" y="308" width="25" height="18" fill="#0891b2" rx="2" />
+  <text x="408.5" y="321" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="425" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="437.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="454" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="466.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="483" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="495.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="512" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="524.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="541" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="553.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="570" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="582.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="599" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="611.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="628" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="640.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="657" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="669.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="686" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="698.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="715" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="727.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="744" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="756.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="773" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="785.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="802" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="814.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="831" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="843.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="860" y="308" width="25" height="18" fill="#0891b2" rx="2" />
+  <text x="872.5" y="321" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="889" y="308" width="25" height="18" fill="#0891b2" rx="2" />
+  <text x="901.5" y="321" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="918" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="930.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="947" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="959.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="976" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="988.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1005" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1017.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1034" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1046.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1063" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1075.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1092" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1104.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1121" y="308" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1133.5" y="321" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="30" y="332" width="1140" height="28" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.5" />
+  <text x="35" y="347" class="sig-lbl">LoadUnitState</text>
+  <text x="35" y="357" class="sig-sub">Load Unit State (3=WAIT_PAGE)</text>
+  <rect x="221" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="234.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="250" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="263.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="279" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="292.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="308" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="321.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="337" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="350.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="366" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="379.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="395" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="408.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="424" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="437.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">2</text>
+  <rect x="453" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="466.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="482" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="495.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="511" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="524.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="540" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="553.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="569" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="582.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="598" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="611.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="627" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="640.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="656" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="669.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="685" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="698.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="714" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="727.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="743" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="756.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="772" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="785.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="801" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="814.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="830" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="843.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="859" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="872.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="888" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="901.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="917" y="336" width="27" height="18" fill="#ede9fe" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="930.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">WAIT_PAGE</text>
+  <rect x="946" y="336" width="27" height="18" fill="#ede9fe" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="959.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">WAIT_PAGE</text>
+  <rect x="975" y="336" width="27" height="18" fill="#ede9fe" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="988.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">WAIT_PAGE</text>
+  <rect x="1004" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="1017.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">1</text>
+  <rect x="1033" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="1046.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">2</text>
+  <rect x="1062" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="1075.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="1091" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="1104.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="1120" y="336" width="27" height="18" fill="#f8fafc" stroke="#7c3aed" stroke-width="1" rx="2" />
+  <text x="1133.5" y="348" font-size="7" font-weight="700" fill="#7c3aed" text-anchor="middle">IDLE</text>
+  <rect x="30" y="360" width="1140" height="28" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.5" />
+  <text x="35" y="375" class="sig-lbl">PageOffsetMatches</text>
+  <text x="35" y="385" class="sig-sub">Store-Load Offset Match</text>
+  <rect x="222" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="234.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="251" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="263.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="280" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="292.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="309" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="321.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="338" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="350.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="367" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="379.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="396" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="408.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="425" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="437.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="454" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="466.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="483" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="495.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="512" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="524.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="541" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="553.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="570" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="582.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="599" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="611.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="628" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="640.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="657" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="669.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="686" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="698.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="715" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="727.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="744" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="756.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="773" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="785.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="802" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="814.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="831" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="843.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="860" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="872.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="889" y="364" width="25" height="18" fill="#ea580c" rx="2" />
+  <text x="901.5" y="377" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="918" y="364" width="25" height="18" fill="#ea580c" rx="2" />
+  <text x="930.5" y="377" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="947" y="364" width="25" height="18" fill="#ea580c" rx="2" />
+  <text x="959.5" y="377" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="976" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="988.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1005" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1017.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1034" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1046.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1063" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1075.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1092" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1104.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="1121" y="364" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="1133.5" y="377" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="30" y="388" width="1140" height="28" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.5" />
+  <text x="35" y="403" class="sig-lbl">StoreBufEmpty</text>
+  <text x="35" y="413" class="sig-sub">Store Buffer Empty</text>
+  <rect x="222" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="234.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="251" y="392" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="263.5" y="405" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="280" y="392" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="292.5" y="405" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="309" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="321.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="338" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="350.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="367" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="379.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="396" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="408.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="425" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="437.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="454" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="466.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="483" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="495.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="512" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="524.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="541" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="553.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="570" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="582.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="599" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="611.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="628" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="640.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="657" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="669.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="686" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="698.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="715" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="727.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="744" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="756.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="773" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="785.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="802" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="814.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="831" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="843.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="860" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="872.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="889" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="901.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="918" y="392" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="930.5" y="405" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="947" y="392" width="25" height="18" fill="#cbd5e1" rx="2" />
+  <text x="959.5" y="405" class="box-lbl" fill="#94a3b8">0</text>
+  <rect x="976" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="988.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1005" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="1017.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1034" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="1046.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1063" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="1075.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1092" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="1104.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="1121" y="392" width="25" height="18" fill="#10b981" rx="2" />
+  <text x="1133.5" y="405" class="box-lbl" fill="#ffffff">1</text>
+  <rect x="30" y="431" width="1140" height="55" fill="#fefce8" stroke="#fef08a" stroke-width="1" rx="5" />
+  <text x="45" y="449" class="ann-title">Microarchitectural Insight: Memory Dependency Resolution</text>
+  <text x="45" y="463" class="ann-body">1. Load-Use Delay: Between cycles 295 and 312, instruction ADDI x12 is held in scoreboard issue (StallRaw=1, StallRs1=1) until LW 0(x1) returns data from D-cache at cycle 312. ForwardRs1 asserts at cycle 313, and ADDI executes immediately.</text>
+  <text x="45" y="477" class="ann-body">2. Store Buffer Hazard: Following SW 4(x1) at cycle 317, LW 4(x1) accesses the exact same byte offset. PageOffsetMatches asserts, forcing LoadUnitState into WAIT_PAGE_OFFSET (3) until the store buffer commits and drains to memory.</text>
+</svg>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360">
+<defs>
+  <style type="text/css">
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }
+    .sig-sub { font-size: 9px; fill: #64748b; }
+    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }
+    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }
+    .ann-title { font-size: 11px; font-weight: 700; fill: #0f172a; }
+    .ann-body { font-size: 10px; fill: #334155; }
+  </style>
+</defs>
+<rect width="1200" height="360" fill="#f8fafc" />
+  <text x="30" y="32" font-size="16" font-weight="700" fill="#0f172a">CVA6 Suite 2: Pipeline Hazards & Scoreboard Stalls — Execution Timeline</text>
+  <text x="30" y="50" font-size="11" fill="#475569">Retirement milestones from cold boot (cycle 0) to terminal self-loop commit (cycle 349). Total cycles run: 389.</text>
+  <g transform="translate(40, 100)">
+    <rect width="768" height="60" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5" rx="5" />
+    <text x="384.0" y="24" class="box-lbl" fill="#94a3b8">Phase 0: Cold Boot &amp; Fetch</text>
+    <text x="384.0" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 0–266</text>
+  </g>
+  <g transform="translate(808, 100)">
+    <rect width="40" height="60" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" rx="5" />
+    <text x="20.0" y="24" class="box-lbl" fill="#2563eb">Phase 1: RAW Forwarding Burst</text>
+    <text x="20.0" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 267–280</text>
+  </g>
+  <g transform="translate(848, 100)">
+    <rect width="71" height="60" fill="#fef3c7" stroke="#d97706" stroke-width="1.5" rx="5" />
+    <text x="35.5" y="24" class="box-lbl" fill="#d97706">Phase 2: Load-Use Hazard</text>
+    <text x="35.5" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 281–305</text>
+  </g>
+  <g transform="translate(919, 100)">
+    <rect width="57" height="60" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" rx="5" />
+    <text x="28.5" y="24" class="box-lbl" fill="#ea580c">Phase 3: Store Buffer Stall</text>
+    <text x="28.5" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 306–325</text>
+  </g>
+  <g transform="translate(976, 100)">
+    <rect width="57" height="60" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5" rx="5" />
+    <text x="28.5" y="24" class="box-lbl" fill="#dc2626">Phase 4: DIV Structural Contention</text>
+    <text x="28.5" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 326–345</text>
+  </g>
+  <g transform="translate(1033, 100)">
+    <rect width="126" height="60" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" rx="5" />
+    <text x="63.0" y="24" class="box-lbl" fill="#16a34a">Phase 5: Multiplier &amp; Self-Loop</text>
+    <text x="63.0" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 346–389</text>
+  </g>
+  <rect x="40" y="190" width="1120" height="140" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" rx="6" />
+  <rect x="40" y="190" width="1120" height="28" fill="#f1f5f9" rx="6" />
+  <text x="55" y="208" class="sig-lbl">Phase</text>
+  <text x="250" y="208" class="sig-lbl">Cycle Span</text>
+  <text x="350" y="208" class="sig-lbl">Microarchitectural Mechanism</text>
+  <text x="750" y="208" class="sig-lbl">Hardware Signals &amp; Evidence</text>
+  <text x="1030" y="208" class="sig-lbl">Measured CPI / Impact</text>
+  <text x="55" y="234" font-size="10" font-weight="600" fill="#1e293b">Phase 1: RAW ALU Forwarding</text>
+  <text x="250" y="234" font-size="10" fill="#475569">267 – 280</text>
+  <text x="350" y="234" font-size="10" fill="#334155">Scoreboard operand bypass directly from EX writeback</text>
+  <text x="750" y="234" font-size="10" font-family="monospace" fill="#0369a1">forward_rs1=1, forward_rs2=1, stall_raw=0</text>
+  <text x="1030" y="234" font-size="10" font-weight="600" fill="#047857">CPI = 1.00 (Zero stall bubbles)</text>
+  <text x="55" y="254" font-size="10" font-weight="600" fill="#1e293b">Phase 2: Load-Use Scoreboard Stall</text>
+  <text x="250" y="254" font-size="10" fill="#475569">281 – 305</text>
+  <text x="350" y="254" font-size="10" fill="#334155">D-cache latency stalls consumer instruction</text>
+  <text x="750" y="254" font-size="10" font-family="monospace" fill="#0369a1">stall_raw=1, stall_rs1=1, issue_ack=0</text>
+  <text x="1030" y="254" font-size="10" font-weight="600" fill="#047857">19 stall cycles while awaiting LW</text>
+  <text x="55" y="274" font-size="10" font-weight="600" fill="#1e293b">Phase 3: Store Buffer Collision</text>
+  <text x="250" y="274" font-size="10" fill="#475569">306 – 325</text>
+  <text x="350" y="274" font-size="10" fill="#334155">Store-to-Load address alias (same page offset)</text>
+  <text x="750" y="274" font-size="10" font-family="monospace" fill="#0369a1">page_offset_matches=1, state_q=WAIT_PAGE_OFFSET</text>
+  <text x="1030" y="274" font-size="10" font-weight="600" fill="#047857">4 stall cycles until store drains</text>
+  <text x="55" y="294" font-size="10" font-weight="600" fill="#1e293b">Phase 4: DIV Structural Contention</text>
+  <text x="250" y="294" font-size="10" fill="#475569">326 – 345</text>
+  <text x="350" y="294" font-size="10" fill="#334155">Fixed-Latency Unit (FLU) blocked by serial divider</text>
+  <text x="750" y="294" font-size="10" font-family="monospace" fill="#0369a1">flu_ready=0, fus_busy[0].alu=1, in_rdy_o=0</text>
+  <text x="1030" y="294" font-size="10" font-weight="600" fill="#047857">14 stall cycles on independent ALUs</text>
+  <text x="55" y="314" font-size="10" font-weight="600" fill="#1e293b">Phase 5: MUL &amp; Terminal Self-Loop</text>
+  <text x="250" y="314" font-size="10" fill="#475569">346 – 389</text>
+  <text x="350" y="314" font-size="10" fill="#334155">Single-cycle multiplier execution &amp; self-loop commit</text>
+  <text x="750" y="314" font-size="10" font-family="monospace" fill="#0369a1">mul_valid=1, commit_pc=0x8000_006c at cyc 349</text>
+  <text x="1030" y="314" font-size="10" font-weight="600" fill="#047857">Active CPI across hazard run = 2.02</text>
+</svg>
