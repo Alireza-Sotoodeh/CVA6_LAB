@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="380" viewBox="0 0 1200 380">
+<defs>
+  <style type="text/css">
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }
+    .sig-sub { font-size: 9px; fill: #64748b; }
+    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }
+    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }
+    .ann-title { font-size: 11px; font-weight: 700; fill: #0f172a; }
+    .ann-body { font-size: 10px; fill: #334155; }
+  </style>
+</defs>
+<rect width="1200" height="380" fill="#f8fafc" />
+  <text x="30" y="32" font-size="16" font-weight="700" fill="#0f172a">CVA6 Suite 4: Traps, Exceptions & Privilege Architecture — Execution Timeline</text>
+  <text x="30" y="50" font-size="11" fill="#475569">Chronological progression of 4 synchronous traps, CSR state capture, full pipeline flushes, and MRET returns. Total cycles: 615, Committed instrs: 115.</text>
+  <g transform="translate(40, 95)">
+    <rect width="486" height="60" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5" rx="5" />
+    <text x="243.0" y="24" class="box-lbl" fill="#94a3b8">Phase 0: Boot &amp; MTVEC Setup</text>
+    <text x="243.0" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 0–266</text>
+  </g>
+  <g transform="translate(526, 95)">
+    <rect width="254" height="60" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5" rx="5" />
+    <text x="127.0" y="24" class="box-lbl" fill="#dc2626">Phase 1: Trap 1 (ILLEGAL_INSTR)</text>
+    <text x="127.0" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 267–406</text>
+  </g>
+  <g transform="translate(780, 95)">
+    <rect width="94" height="60" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" rx="5" />
+    <text x="47.0" y="24" class="box-lbl" fill="#ea580c">Phase 2: Trap 2 (BREAKPOINT / EBREAK)</text>
+    <text x="47.0" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 407–458</text>
+  </g>
+  <g transform="translate(874, 95)">
+    <rect width="109" height="60" fill="#fef3c7" stroke="#d97706" stroke-width="1.5" rx="5" />
+    <text x="54.5" y="24" class="box-lbl" fill="#d97706">Phase 3: Trap 3 (MISALIGNED_JUMP)</text>
+    <text x="54.5" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 459–518</text>
+  </g>
+  <g transform="translate(983, 95)">
+    <rect width="81" height="60" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" rx="5" />
+    <text x="40.5" y="24" class="box-lbl" fill="#2563eb">Phase 4: Trap 4 (ENV_CALL_MMODE)</text>
+    <text x="40.5" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 519–563</text>
+  </g>
+  <g transform="translate(1064, 95)">
+    <rect width="94" height="60" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" rx="5" />
+    <text x="47.0" y="24" class="box-lbl" fill="#16a34a">Phase 5: Self-Loop &amp; Verification</text>
+    <text x="47.0" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 564–615</text>
+  </g>
+  <rect x="40" y="185" width="1120" height="175" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" rx="6" />
+  <rect x="40" y="185" width="1120" height="26" fill="#f1f5f9" rx="6" />
+  <text x="55" y="202" class="sig-lbl">Trap / Event</text>
+  <text x="210" y="202" class="sig-lbl">Trigger PC</text>
+  <text x="310" y="202" class="sig-lbl">Cycle Trigger</text>
+  <text x="410" y="202" class="sig-lbl">Exception Cause</text>
+  <text x="590" y="202" class="sig-lbl">CSR State (mcause / mepc / mtval)</text>
+  <text x="890" y="202" class="sig-lbl">Return Cycle (MRET)</text>
+  <text x="1030" y="202" class="sig-lbl">Flushes (Full / BP)</text>
+  <text x="55" y="229" font-size="10" font-weight="600" fill="#1e293b">Trap 1: ILLEGAL_INSTR</text>
+  <text x="210" y="229" font-size="10" font-family="monospace" fill="#0369a1">0x8000_0064</text>
+  <text x="310" y="229" font-size="10" fill="#475569">Cyc 334</text>
+  <text x="410" y="229" font-size="10" fill="#334155">Cause 2 (Illegal instruction)</text>
+  <text x="590" y="229" font-size="10" font-family="monospace" fill="#7c3aed">mcause=2, mepc=0x8000_0064, mtval=0</text>
+  <text x="890" y="229" font-size="10" fill="#475569">Cyc 403 (mepc+=4 -&gt; 0x8000_0068)</text>
+  <text x="1030" y="229" font-size="10" font-weight="600" fill="#047857">Full=2, BP=2</text>
+  <text x="55" y="255" font-size="10" font-weight="600" fill="#1e293b">Trap 2: BREAKPOINT (ebreak)</text>
+  <text x="210" y="255" font-size="10" font-family="monospace" fill="#0369a1">0x8000_0070</text>
+  <text x="310" y="255" font-size="10" fill="#475569">Cyc 417</text>
+  <text x="410" y="255" font-size="10" fill="#334155">Cause 3 (Breakpoint)</text>
+  <text x="590" y="255" font-size="10" font-family="monospace" fill="#7c3aed">mcause=3, mepc=0x8000_0070, mtval=0x8000_0070</text>
+  <text x="890" y="255" font-size="10" fill="#475569">Cyc 454 (mepc+=4 -&gt; 0x8000_0074)</text>
+  <text x="1030" y="255" font-size="10" font-weight="600" fill="#047857">Full=2, BP=2</text>
+  <text x="55" y="281" font-size="10" font-weight="600" fill="#1e293b">Trap 3: MISALIGNED_JUMP</text>
+  <text x="210" y="281" font-size="10" font-family="monospace" fill="#0369a1">0x8000_0080</text>
+  <text x="310" y="281" font-size="10" fill="#475569">Cyc 470</text>
+  <text x="410" y="281" font-size="10" fill="#334155">Cause 0 (Instr addr misaligned)</text>
+  <text x="590" y="281" font-size="10" font-family="monospace" fill="#7c3aed">mcause=0, mepc=0x8000_0080, mtval=0x8000_0402</text>
+  <text x="890" y="281" font-size="10" fill="#475569">Cyc 514 (mepc+=4 -&gt; 0x8000_0084)</text>
+  <text x="1030" y="281" font-size="10" font-weight="600" fill="#047857">Full=2, BP=2</text>
+  <text x="55" y="307" font-size="10" font-weight="600" fill="#1e293b">Trap 4: ECALL (M-Mode)</text>
+  <text x="210" y="307" font-size="10" font-family="monospace" fill="#0369a1">0x8000_008c</text>
+  <text x="310" y="307" font-size="10" fill="#475569">Cyc 523</text>
+  <text x="410" y="307" font-size="10" fill="#334155">Cause 11 (Environment call M-mode)</text>
+  <text x="590" y="307" font-size="10" font-family="monospace" fill="#7c3aed">mcause=11, mepc=0x8000_008c, mtval=0</text>
+  <text x="890" y="307" font-size="10" fill="#475569">Cyc 559 (mepc+=4 -&gt; 0x8000_0090)</text>
+  <text x="1030" y="307" font-size="10" font-weight="600" fill="#047857">Full=2, BP=2</text>
+  <text x="55" y="333" font-size="10" font-weight="600" fill="#1e293b">Terminal Self-Loop Commit</text>
+  <text x="210" y="333" font-size="10" font-family="monospace" fill="#0369a1">0x8000_0098</text>
+  <text x="310" y="333" font-size="10" fill="#475569">Cyc 575</text>
+  <text x="410" y="333" font-size="10" fill="#334155">Normal commit (j end_loop)</text>
+  <text x="590" y="333" font-size="10" font-family="monospace" fill="#7c3aed">Final markers: x19=401, x20=999, trap_cnt=4</text>
+  <text x="890" y="333" font-size="10" fill="#475569">Simulation end @ Cyc 615</text>
+  <text x="1030" y="333" font-size="10" font-weight="600" fill="#047857">Active CPI = 2.69</text>
+</svg>

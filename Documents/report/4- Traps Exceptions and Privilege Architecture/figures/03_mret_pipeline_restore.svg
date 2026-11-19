@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500">
+<defs>
+  <style type="text/css">
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }
+    .sig-sub { font-size: 9px; fill: #64748b; }
+    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }
+    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }
+    .ann-title { font-size: 11px; font-weight: 700; fill: #0f172a; }
+    .ann-body { font-size: 10px; fill: #334155; }
+  </style>
+</defs>
+<rect width="1200" height="500" fill="#f8fafc" />
+  <text x="30" y="30" font-size="15" font-weight="700" fill="#0f172a">CVA6 MRET Instruction Execution & Pipeline Restore Waveform (Cycles 450 – 462)</text>
+  <text x="30" y="48" font-size="11" fill="#475569">Execution of MRET at 0x8000_0110 (Cyc 454) asserts Eret=1, flushes the entire pipeline, and restores FetchPC from mepc (0x8000_0074) to resume main code at Cyc 461.</text>
+  <rect x="210" y="80" width="73" height="330" fill="#ffffff" opacity="0.6" />
+  <line x1="210" y1="80" x2="210" y2="410" stroke="#e2e8f0" stroke-width="1" />
+  <text x="246.5" y="72" class="cyc-lbl">450</text>
+  <rect x="283" y="80" width="73" height="330" fill="#ffffff" opacity="0.6" />
+  <line x1="283" y1="80" x2="283" y2="410" stroke="#e2e8f0" stroke-width="1" />
+  <text x="319.5" y="72" class="cyc-lbl">451</text>
+  <rect x="356" y="80" width="73" height="330" fill="#ffffff" opacity="0.6" />
+  <line x1="356" y1="80" x2="356" y2="410" stroke="#e2e8f0" stroke-width="1" />
+  <text x="392.5" y="72" class="cyc-lbl">452</text>
+  <rect x="429" y="80" width="73" height="330" fill="#ffffff" opacity="0.6" />
+  <line x1="429" y1="80" x2="429" y2="410" stroke="#e2e8f0" stroke-width="1" />
+  <text x="465.5" y="72" class="cyc-lbl">453</text>
+  <rect x="502" y="80" width="73" height="330" fill="#fef3c7" opacity="0.6" />
+  <line x1="502" y1="80" x2="502" y2="410" stroke="#e2e8f0" stroke-width="1" />
+  <text x="538.5" y="72" class="cyc-lbl">454</text>
+  <rect x="575" y="80" width="73" height="330" fill="#ffffff" opacity="0.6" />
+  <line x1="575" y1="80" x2="575" y2="410" stroke="#e2e8f0" stroke-width="1" />
+  <text x="611.5" y="72" class="cyc-lbl">455</text>
+  <rect x="648" y="80" width="73" height="330" fill="#ffffff" opacity="0.6" />
+  <line x1="648" y1="80" x2="648" y2="410" stroke="#e2e8f0" stroke-width="1" />
+  <text x="684.5" y="72" class="cyc-lbl">456</text>
+  <rect x="721" y="80" width="73" height="330" fill="#ffffff" opacity="0.6" />
+  <line x1="721" y1="80" x2="721" y2="410" stroke="#e2e8f0" stroke-width="1" />
+  <text x="757.5" y="72" class="cyc-lbl">457</text>
+  <rect x="794" y="80" width="73" height="330" fill="#ffffff" opacity="0.6" />
+  <line x1="794" y1="80" x2="794" y2="410" stroke="#e2e8f0" stroke-width="1" />
+  <text x="830.5" y="72" class="cyc-lbl">458</text>
+  <rect x="867" y="80" width="73" height="330" fill="#ffffff" opacity="0.6" />
+  <line x1="867" y1="80" x2="867" y2="410" stroke="#e2e8f0" stroke-width="1" />
+  <text x="903.5" y="72" class="cyc-lbl">459</text>
+  <rect x="940" y="80" width="73" height="330" fill="#ffffff" opacity="0.6" />
+  <line x1="940" y1="80" x2="940" y2="410" stroke="#e2e8f0" stroke-width="1" />
+  <text x="976.5" y="72" class="cyc-lbl">460</text>
+  <rect x="1013" y="80" width="73" height="330" fill="#dcfce7" opacity="0.6" />
+  <line x1="1013" y1="80" x2="1013" y2="410" stroke="#e2e8f0" stroke-width="1" />
+  <text x="1049.5" y="72" class="cyc-lbl">461</text>
+  <rect x="1086" y="80" width="73" height="330" fill="#ffffff" opacity="0.6" />
+  <line x1="1086" y1="80" x2="1086" y2="410" stroke="#e2e8f0" stroke-width="1" />
+  <text x="1122.5" y="72" class="cyc-lbl">462</text>
+  <text x="35" y="104" class="sig-lbl">FetchPC</text>
+  <text x="140" y="104" class="sig-sub">Fetch stage PC</text>
+  <rect x="212" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="246.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0114</text>
+  <rect x="285" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="319.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0110</text>
+  <rect x="358" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="392.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0114</text>
+  <rect x="431" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="465.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0110</text>
+  <rect x="504" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="538.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0114</text>
+  <rect x="577" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="611.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0074</text>
+  <rect x="650" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="684.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0078</text>
+  <rect x="723" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="757.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x007C</text>
+  <rect x="796" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="830.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0080</text>
+  <rect x="869" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="903.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0084</text>
+  <rect x="942" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="976.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0084</text>
+  <rect x="1015" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="1049.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0084</text>
+  <rect x="1088" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
+  <text x="1122.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0084</text>
+  <text x="35" y="130" class="sig-lbl">CommitPC0</text>
+  <text x="140" y="130" class="sig-sub">Retired instruction PC</text>
+  <rect x="212" y="118" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="246.5" y="130" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
+  <rect x="285" y="118" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="319.5" y="130" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0x0108 ADDI t4,t4,4</text>
+  <rect x="358" y="118" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="392.5" y="130" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0x010C CSRW mepc,t4</text>
+  <rect x="431" y="118" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="465.5" y="130" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
+  <rect x="504" y="118" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="538.5" y="130" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0x0110 MRET</text>
+  <rect x="577" y="118" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="611.5" y="130" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
+  <rect x="650" y="118" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="684.5" y="130" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
+  <rect x="723" y="118" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="757.5" y="130" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
+  <rect x="796" y="118" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="830.5" y="130" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
+  <rect x="869" y="118" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="903.5" y="130" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
+  <rect x="942" y="118" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="976.5" y="130" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
+  <rect x="1015" y="118" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="1049.5" y="130" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0x0074 LI t1,201</text>
+  <rect x="1088" y="118" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
+  <text x="1122.5" y="130" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0x0078 LI t2,300</text>
+  <text x="35" y="156" class="sig-lbl">CommitAck0</text>
+  <text x="140" y="156" class="sig-sub">Instruction retired</text>
+  <rect x="214" y="154" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="287" y="144" width="65" height="14" fill="#16a34a" rx="2" />
+  <rect x="360" y="144" width="65" height="14" fill="#16a34a" rx="2" />
+  <rect x="433" y="154" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="506" y="144" width="65" height="14" fill="#16a34a" rx="2" />
+  <rect x="579" y="154" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="652" y="154" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="725" y="154" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="798" y="154" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="871" y="154" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="944" y="154" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="1017" y="144" width="65" height="14" fill="#16a34a" rx="2" />
+  <rect x="1090" y="144" width="65" height="14" fill="#16a34a" rx="2" />
+  <text x="35" y="182" class="sig-lbl">Eret</text>
+  <text x="140" y="182" class="sig-sub">MRET instruction retired</text>
+  <rect x="214" y="180" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="287" y="180" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="360" y="180" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="433" y="180" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="506" y="170" width="65" height="14" fill="#d97706" rx="2" />
+  <rect x="579" y="180" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="652" y="180" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="725" y="180" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="798" y="180" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="871" y="180" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="944" y="180" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="1017" y="180" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="1090" y="180" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <text x="35" y="208" class="sig-lbl">CsrEpc</text>
+  <text x="140" y="208" class="sig-sub">Exception PC target</text>
+  <rect x="212" y="196" width="69" height="18" fill="#f1f5f9" stroke="#d97706" stroke-width="1" rx="2" />
+  <text x="246.5" y="208" font-size="8.5" font-family="monospace" fill="#d97706" text-anchor="middle">0x0070</text>
+  <rect x="285" y="196" width="69" height="18" fill="#f1f5f9" stroke="#d97706" stroke-width="1" rx="2" />
+  <text x="319.5" y="208" font-size="8.5" font-family="monospace" fill="#d97706" text-anchor="middle">0x0070</text>
+  <rect x="358" y="196" width="69" height="18" fill="#f1f5f9" stroke="#d97706" stroke-width="1" rx="2" />
+  <text x="392.5" y="208" font-size="8.5" font-family="monospace" fill="#d97706" text-anchor="middle">0x0070</text>
+  <rect x="431" y="196" width="69" height="18" fill="#f1f5f9" stroke="#d97706" stroke-width="1" rx="2" />
+  <text x="465.5" y="208" font-size="8.5" font-family="monospace" fill="#d97706" text-anchor="middle">0x0074</text>
+  <rect x="504" y="196" width="69" height="18" fill="#f1f5f9" stroke="#d97706" stroke-width="1" rx="2" />
+  <text x="538.5" y="208" font-size="8.5" font-family="monospace" fill="#d97706" text-anchor="middle">0x0074</text>
+  <rect x="577" y="196" width="69" height="18" fill="#f1f5f9" stroke="#d97706" stroke-width="1" rx="2" />
+  <text x="611.5" y="208" font-size="8.5" font-family="monospace" fill="#d97706" text-anchor="middle">0x0074</text>
+  <rect x="650" y="196" width="69" height="18" fill="#f1f5f9" stroke="#d97706" stroke-width="1" rx="2" />
+  <text x="684.5" y="208" font-size="8.5" font-family="monospace" fill="#d97706" text-anchor="middle">0x0074</text>
+  <rect x="723" y="196" width="69" height="18" fill="#f1f5f9" stroke="#d97706" stroke-width="1" rx="2" />
+  <text x="757.5" y="208" font-size="8.5" font-family="monospace" fill="#d97706" text-anchor="middle">0x0074</text>
+  <rect x="796" y="196" width="69" height="18" fill="#f1f5f9" stroke="#d97706" stroke-width="1" rx="2" />
+  <text x="830.5" y="208" font-size="8.5" font-family="monospace" fill="#d97706" text-anchor="middle">0x0074</text>
+  <rect x="869" y="196" width="69" height="18" fill="#f1f5f9" stroke="#d97706" stroke-width="1" rx="2" />
+  <text x="903.5" y="208" font-size="8.5" font-family="monospace" fill="#d97706" text-anchor="middle">0x0074</text>
+  <rect x="942" y="196" width="69" height="18" fill="#f1f5f9" stroke="#d97706" stroke-width="1" rx="2" />
+  <text x="976.5" y="208" font-size="8.5" font-family="monospace" fill="#d97706" text-anchor="middle">0x0074</text>
+  <rect x="1015" y="196" width="69" height="18" fill="#f1f5f9" stroke="#d97706" stroke-width="1" rx="2" />
+  <text x="1049.5" y="208" font-size="8.5" font-family="monospace" fill="#d97706" text-anchor="middle">0x0074</text>
+  <rect x="1088" y="196" width="69" height="18" fill="#f1f5f9" stroke="#d97706" stroke-width="1" rx="2" />
+  <text x="1122.5" y="208" font-size="8.5" font-family="monospace" fill="#d97706" text-anchor="middle">0x0074</text>
+  <text x="35" y="234" class="sig-lbl">FlushBP</text>
+  <text x="140" y="234" class="sig-sub">Branch predictor flush</text>
+  <rect x="214" y="232" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="287" y="232" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="360" y="232" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="433" y="232" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="506" y="222" width="65" height="14" fill="#e11d48" rx="2" />
+  <rect x="579" y="232" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="652" y="232" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="725" y="232" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="798" y="232" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="871" y="232" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="944" y="232" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="1017" y="232" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="1090" y="232" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <text x="35" y="260" class="sig-lbl">FlushIF</text>
+  <text x="140" y="260" class="sig-sub">Instruction fetch flush</text>
+  <rect x="214" y="258" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="287" y="258" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="360" y="258" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="433" y="258" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="506" y="248" width="65" height="14" fill="#e11d48" rx="2" />
+  <rect x="579" y="258" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="652" y="258" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="725" y="258" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="798" y="258" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="871" y="258" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="944" y="258" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="1017" y="258" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="1090" y="258" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <text x="35" y="286" class="sig-lbl">FlushID</text>
+  <text x="140" y="286" class="sig-sub">Instruction decode flush</text>
+  <rect x="214" y="284" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="287" y="284" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="360" y="284" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="433" y="284" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="506" y="274" width="65" height="14" fill="#e11d48" rx="2" />
+  <rect x="579" y="284" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="652" y="284" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="725" y="284" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="798" y="284" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="871" y="284" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="944" y="284" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="1017" y="284" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="1090" y="284" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <text x="35" y="312" class="sig-lbl">FlushEX</text>
+  <text x="140" y="312" class="sig-sub">Execute stage flush</text>
+  <rect x="214" y="310" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="287" y="310" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="360" y="310" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="433" y="310" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="506" y="300" width="65" height="14" fill="#e11d48" rx="2" />
+  <rect x="579" y="310" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="652" y="310" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="725" y="310" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="798" y="310" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="871" y="310" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="944" y="310" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="1017" y="310" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <rect x="1090" y="310" width="65" height="4" fill="#cbd5e1" rx="2" />
+  <text x="35" y="338" class="sig-lbl">CsrMepc</text>
+  <text x="140" y="338" class="sig-sub">CSR mepc (return address)</text>
+  <rect x="212" y="326" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
+  <text x="246.5" y="338" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0070</text>
+  <rect x="285" y="326" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
+  <text x="319.5" y="338" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0070</text>
+  <rect x="358" y="326" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
+  <text x="392.5" y="338" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0070</text>
+  <rect x="431" y="326" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
+  <text x="465.5" y="338" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0074</text>
+  <rect x="504" y="326" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
+  <text x="538.5" y="338" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0074</text>
+  <rect x="577" y="326" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
+  <text x="611.5" y="338" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0074</text>
+  <rect x="650" y="326" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
+  <text x="684.5" y="338" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0074</text>
+  <rect x="723" y="326" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
+  <text x="757.5" y="338" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0074</text>
+  <rect x="796" y="326" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
+  <text x="830.5" y="338" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0074</text>
+  <rect x="869" y="326" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
+  <text x="903.5" y="338" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0074</text>
+  <rect x="942" y="326" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
+  <text x="976.5" y="338" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0074</text>
+  <rect x="1015" y="326" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
+  <text x="1049.5" y="338" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0074</text>
+  <rect x="1088" y="326" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
+  <text x="1122.5" y="338" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0074</text>
+  <text x="35" y="364" class="sig-lbl">CsrMstatus</text>
+  <text x="140" y="364" class="sig-sub">CSR mstatus register</text>
+  <rect x="212" y="352" width="69" height="18" fill="#f1f5f9" stroke="#475569" stroke-width="1" rx="2" />
+  <text x="246.5" y="364" font-size="8.5" font-family="monospace" fill="#475569" text-anchor="middle">0x1800</text>
+  <rect x="285" y="352" width="69" height="18" fill="#f1f5f9" stroke="#475569" stroke-width="1" rx="2" />
+  <text x="319.5" y="364" font-size="8.5" font-family="monospace" fill="#475569" text-anchor="middle">0x1800</text>
+  <rect x="358" y="352" width="69" height="18" fill="#f1f5f9" stroke="#475569" stroke-width="1" rx="2" />
+  <text x="392.5" y="364" font-size="8.5" font-family="monospace" fill="#475569" text-anchor="middle">0x1800</text>
+  <rect x="431" y="352" width="69" height="18" fill="#f1f5f9" stroke="#475569" stroke-width="1" rx="2" />
+  <text x="465.5" y="364" font-size="8.5" font-family="monospace" fill="#475569" text-anchor="middle">0x1800</text>
+  <rect x="504" y="352" width="69" height="18" fill="#f1f5f9" stroke="#475569" stroke-width="1" rx="2" />
+  <text x="538.5" y="364" font-size="8.5" font-family="monospace" fill="#475569" text-anchor="middle">0x1800</text>
+  <rect x="577" y="352" width="69" height="18" fill="#f1f5f9" stroke="#475569" stroke-width="1" rx="2" />
+  <text x="611.5" y="364" font-size="8.5" font-family="monospace" fill="#475569" text-anchor="middle">0x0080</text>
+  <rect x="650" y="352" width="69" height="18" fill="#f1f5f9" stroke="#475569" stroke-width="1" rx="2" />
+  <text x="684.5" y="364" font-size="8.5" font-family="monospace" fill="#475569" text-anchor="middle">0x0080</text>
+  <rect x="723" y="352" width="69" height="18" fill="#f1f5f9" stroke="#475569" stroke-width="1" rx="2" />
+  <text x="757.5" y="364" font-size="8.5" font-family="monospace" fill="#475569" text-anchor="middle">0x0080</text>
+  <rect x="796" y="352" width="69" height="18" fill="#f1f5f9" stroke="#475569" stroke-width="1" rx="2" />
+  <text x="830.5" y="364" font-size="8.5" font-family="monospace" fill="#475569" text-anchor="middle">0x0080</text>
+  <rect x="869" y="352" width="69" height="18" fill="#f1f5f9" stroke="#475569" stroke-width="1" rx="2" />
+  <text x="903.5" y="364" font-size="8.5" font-family="monospace" fill="#475569" text-anchor="middle">0x0080</text>
+  <rect x="942" y="352" width="69" height="18" fill="#f1f5f9" stroke="#475569" stroke-width="1" rx="2" />
+  <text x="976.5" y="364" font-size="8.5" font-family="monospace" fill="#475569" text-anchor="middle">0x0080</text>
+  <rect x="1015" y="352" width="69" height="18" fill="#f1f5f9" stroke="#475569" stroke-width="1" rx="2" />
+  <text x="1049.5" y="364" font-size="8.5" font-family="monospace" fill="#475569" text-anchor="middle">0x0080</text>
+  <rect x="1088" y="352" width="69" height="18" fill="#f1f5f9" stroke="#475569" stroke-width="1" rx="2" />
+  <text x="1122.5" y="364" font-size="8.5" font-family="monospace" fill="#475569" text-anchor="middle">0x0080</text>
+  <rect x="40" y="430" width="1120" height="55" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="4" />
+  <text x="55" y="448" class="ann-title">Microarchitectural Analysis (Cyc 450 – 461):</text>
+  <text x="55" y="464" class="ann-body">• Cyc 451–452: Handler increments return PC (addi t4, t4, 4) and writes mepc=0x8000_0074 via csrw mepc, t4.
+• Cyc 454: MRET commits at 0x8000_0110. Eret=1 triggers controller.sv to flush all pipeline stages (BP/IF/ID/EX) and vector FetchPC to CsrEpc=0x8000_0074. Main code commits at Cyc 461.</text>
+</svg>
