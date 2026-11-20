@@ -1,175 +1,442 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560">
-<defs>
-  <style type="text/css">
-    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }
-    .sig-sub { font-size: 9px; fill: #64748b; }
-    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }
-    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }
-    .hex-lbl { font-size: 9px; font-family: monospace; text-anchor: middle; }
-    .sec-hdr { font-size: 14px; font-weight: 700; fill: #0f172a; }
-    .sec-sub { font-size: 11px; fill: #475569; }
-  </style>
-  <linearGradient id="grid-grad" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#f8fafc" />
-    <stop offset="100%" stop-color="#f1f5f9" />
-  </linearGradient>
-</defs>
-<rect width="1200" height="560" fill="#ffffff" />
-<text x="30" y="32" class="sec-hdr">CVA6 Suite 11: Multiplier Upper-Word Operations (MUL, MULH, MULHU, MULHSU)</text>
-<text x="30" y="50" class="sec-sub">Upper 32-bit products: signed x signed (-1), unsigned x unsigned (0xFFFFFFFE), and signed x unsigned (0xFFFFFFFF)</text>
-<rect x="200" y="65" width="970" height="20" fill="#f1f5f9" rx="2" />
-<text x="211.82926829268294" y="79" class="cyc-lbl">315</text>
-<text x="306.4634146341463" y="79" class="cyc-lbl">319</text>
-<text x="401.0975609756097" y="79" class="cyc-lbl">323</text>
-<text x="495.7317073170732" y="79" class="cyc-lbl">327</text>
-<text x="590.3658536585366" y="79" class="cyc-lbl">331</text>
-<text x="685.0000000000001" y="79" class="cyc-lbl">335</text>
-<text x="779.6341463414635" y="79" class="cyc-lbl">339</text>
-<text x="874.2682926829269" y="79" class="cyc-lbl">343</text>
-<text x="968.9024390243903" y="79" class="cyc-lbl">347</text>
-<text x="1063.5365853658536" y="79" class="cyc-lbl">351</text>
-<text x="1158.1707317073171" y="79" class="cyc-lbl">355</text>
-<text x="20" y="110" class="sig-lbl">Commit PC</text>
-<text x="20" y="121" class="sig-sub">Retired instruction PC</text>
-<rect x="200" y="95" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
-<rect x="201.0" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="224.65853658536585" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
-<text x="235.4878048780488" y="111" class="box-lbl" fill="#1e293b">0x80000044</text>
-<rect x="248.3170731707317" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="271.9756097560976" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
-<text x="282.8048780487805" y="111" class="box-lbl" fill="#1e293b">0x80000048</text>
-<rect x="295.6341463414634" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
-<text x="306.4634146341463" y="111" class="box-lbl" fill="#1e293b">0x8000004C</text>
-<rect x="319.2926829268293" y="97" width="92.63414634146342" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="413.9268292682927" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
-<text x="424.7560975609756" y="111" class="box-lbl" fill="#1e293b">0x80000050</text>
-<rect x="437.5853658536586" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="461.2439024390244" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
-<text x="472.0731707317073" y="111" class="box-lbl" fill="#1e293b">0x80000054</text>
-<rect x="484.9024390243903" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
-<text x="495.7317073170732" y="111" class="box-lbl" fill="#1e293b">0x80000058</text>
-<rect x="508.5609756097561" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="532.219512195122" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
-<text x="543.048780487805" y="111" class="box-lbl" fill="#1e293b">0x8000005C</text>
-<rect x="555.8780487804878" y="97" width="116.29268292682927" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="674.1707317073171" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
-<text x="685.0000000000001" y="111" class="box-lbl" fill="#1e293b">0x80000060</text>
-<rect x="697.829268292683" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="721.4878048780488" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
-<text x="732.3170731707318" y="111" class="box-lbl" fill="#1e293b">0x80000064</text>
-<rect x="745.1463414634146" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
-<text x="755.9756097560976" y="111" class="box-lbl" fill="#1e293b">0x80000068</text>
-<rect x="768.8048780487806" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="792.4634146341464" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
-<text x="803.2926829268293" y="111" class="box-lbl" fill="#1e293b">0x8000006C</text>
-<rect x="816.1219512195122" y="97" width="92.63414634146342" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="910.7560975609756" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
-<text x="921.5853658536586" y="111" class="box-lbl" fill="#1e293b">0x80000070</text>
-<rect x="934.4146341463415" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="958.0731707317074" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
-<text x="968.9024390243903" y="111" class="box-lbl" fill="#1e293b">0x80000074</text>
-<rect x="981.7317073170732" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="1005.3902439024391" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
-<text x="1016.2195121951221" y="111" class="box-lbl" fill="#1e293b">0x80000074</text>
-<rect x="1029.0487804878048" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="1052.7073170731708" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
-<text x="1063.5365853658536" y="111" class="box-lbl" fill="#1e293b">0x80000074</text>
-<rect x="1076.3658536585367" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="1100.0243902439024" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
-<text x="1110.8536585365853" y="111" class="box-lbl" fill="#1e293b">0x80000074</text>
-<rect x="1123.6829268292684" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="1147.3414634146343" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
-<text x="1158.1707317073171" y="111" class="box-lbl" fill="#1e293b">0x80000074</text>
-<text x="20" y="148" class="sig-lbl">GPR Write</text>
-<text x="20" y="159" class="sig-sub">Destination reg &amp; result</text>
-<rect x="200" y="133" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
-<rect x="201.0" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="224.65853658536585" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
-<rect x="248.3170731707317" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="271.9756097560976" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
-<rect x="295.6341463414634" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
-<rect x="319.2926829268293" y="135" width="45.31707317073171" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="366.609756097561" y="135" width="45.31707317073171" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="413.9268292682927" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
-<rect x="437.5853658536586" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="461.2439024390244" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
-<rect x="484.9024390243903" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
-<rect x="508.5609756097561" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="532.219512195122" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
-<rect x="555.8780487804878" y="135" width="68.97560975609757" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="626.8536585365854" y="135" width="45.31707317073171" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="674.1707317073171" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
-<rect x="697.829268292683" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="721.4878048780488" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
-<rect x="745.1463414634146" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
-<rect x="768.8048780487806" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="792.4634146341464" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
-<rect x="816.1219512195122" y="135" width="68.97560975609757" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="887.0975609756098" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="910.7560975609756" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
-<rect x="934.4146341463415" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="958.0731707317074" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
-<rect x="981.7317073170732" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="1005.3902439024391" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
-<rect x="1029.0487804878048" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="1052.7073170731708" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
-<rect x="1076.3658536585367" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="1100.0243902439024" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
-<rect x="1123.6829268292684" y="135" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="1147.3414634146343" y="135" width="21.658536585365855" height="24" rx="2" fill="#e0f2fe" stroke="#cbd5e1" />
-<text x="20" y="186" class="sig-lbl">div_valid_op</text>
-<text x="20" y="197" class="sig-sub">Divider active request</text>
-<rect x="200" y="171" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
-<rect x="201.0" y="173" width="968.0000000000001" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<text x="20" y="224" class="sig-lbl">mul_valid_op</text>
-<text x="20" y="235" class="sig-sub">Multiplier active request</text>
-<rect x="200" y="209" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
-<rect x="201.0" y="211" width="163.609756097561" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="366.609756097561" y="211" width="21.658536585365855" height="24" rx="2" fill="#fbcfe8" stroke="#cbd5e1" />
-<text x="377.4390243902439" y="225" class="box-lbl" fill="#1e293b">MUL_OP</text>
-<rect x="390.2682926829268" y="211" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="413.9268292682927" y="211" width="21.658536585365855" height="24" rx="2" fill="#fbcfe8" stroke="#cbd5e1" />
-<text x="424.7560975609756" y="225" class="box-lbl" fill="#1e293b">MUL_OP</text>
-<rect x="437.5853658536586" y="211" width="45.31707317073171" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="484.9024390243903" y="211" width="21.658536585365855" height="24" rx="2" fill="#fbcfe8" stroke="#cbd5e1" />
-<text x="495.7317073170732" y="225" class="box-lbl" fill="#1e293b">MUL_OP</text>
-<rect x="508.5609756097561" y="211" width="116.29268292682927" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="626.8536585365854" y="211" width="21.658536585365855" height="24" rx="2" fill="#fbcfe8" stroke="#cbd5e1" />
-<text x="637.6829268292684" y="225" class="box-lbl" fill="#1e293b">MUL_OP</text>
-<rect x="650.5121951219512" y="211" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="674.1707317073171" y="211" width="21.658536585365855" height="24" rx="2" fill="#fbcfe8" stroke="#cbd5e1" />
-<text x="685.0000000000001" y="225" class="box-lbl" fill="#1e293b">MUL_OP</text>
-<rect x="697.829268292683" y="211" width="45.31707317073171" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="745.1463414634146" y="211" width="21.658536585365855" height="24" rx="2" fill="#fbcfe8" stroke="#cbd5e1" />
-<text x="755.9756097560976" y="225" class="box-lbl" fill="#1e293b">MUL_OP</text>
-<rect x="768.8048780487806" y="211" width="400.19512195121956" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<text x="20" y="262" class="sig-lbl">serdiv_op_b_zero</text>
-<text x="20" y="273" class="sig-sub">Div-by-zero detection</text>
-<rect x="200" y="247" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
-<rect x="201.0" y="249" width="968.0000000000001" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<text x="20" y="300" class="sig-lbl">serdiv_op_b_neg_one</text>
-<text x="20" y="311" class="sig-sub">Signed overflow (-1 divisor)</text>
-<rect x="200" y="285" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
-<rect x="201.0" y="287" width="968.0000000000001" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<text x="20" y="338" class="sig-lbl">serdiv_div_res_zero</text>
-<text x="20" y="349" class="sig-sub">|opB| &gt; |opA| detected</text>
-<rect x="200" y="323" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
-<rect x="201.0" y="325" width="968.0000000000001" height="24" rx="2" fill="#ddd6fe" stroke="#cbd5e1" />
-<text x="685.0" y="339" class="box-lbl" fill="#1e293b">|opB|&gt;|opA| ZERO</text>
-<text x="20" y="376" class="sig-lbl">serdiv_state</text>
-<text x="20" y="387" class="sig-sub">0:IDLE, 1:DIVIDE, 2:FINISH</text>
-<rect x="200" y="361" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
-<rect x="201.0" y="363" width="21.658536585365855" height="24" rx="2" fill="#fde68a" stroke="#cbd5e1" />
-<text x="211.82926829268294" y="377" class="box-lbl" fill="#1e293b">DIVIDE</text>
-<rect x="224.65853658536585" y="363" width="944.3414634146342" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<text x="696.829268292683" y="377" class="box-lbl" fill="#1e293b">IDLE</text>
-<text x="20" y="414" class="sig-lbl">flu_ready</text>
-<text x="20" y="425" class="sig-sub">Fixed Latency Unit Ready</text>
-<rect x="200" y="399" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
-<rect x="201.0" y="401" width="21.658536585365855" height="24" rx="2" fill="#fee2e2" stroke="#cbd5e1" />
-<text x="211.82926829268294" y="415" class="box-lbl" fill="#1e293b">STALLED</text>
-<rect x="224.65853658536585" y="401" width="944.3414634146342" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
-<text x="696.829268292683" y="415" class="box-lbl" fill="#1e293b">FLU_READY</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 366" width="1200" height="366">
+<defs><style>
+  text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .title { font-size: 15px; font-weight: 700; fill: #0f172a; }
+  .subtitle { font-size: 11px; fill: #475569; }
+  .sig-name { font-size: 11px; font-weight: 600; fill: #1e293b; }
+  .sig-sub { font-size: 9px; fill: #64748b; }
+  .bus { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 8.5px; font-weight: 600; text-anchor: middle; fill: #0f172a; }
+  .bit { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 9px; font-weight: 600; text-anchor: middle; }
+  .cyc { font-size: 9px; fill: #475569; font-weight: 600; text-anchor: middle; }
+  .ann-title { font-size: 11px; font-weight: 700; fill: #0f172a; }
+  .ann-body { font-size: 9.5px; fill: #334155; }
+  .tag-lbl { font-size: 9px; font-weight: 700; text-anchor: middle; fill: #ffffff; }
+</style></defs>
+<rect width="1200" height="366" fill="#f8fafc" rx="8" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="20" y="12" width="1160" height="46" rx="6" fill="#1e293b"/>
+<text x="35" y="32" font-size="14" font-weight="700" fill="#f8fafc">Multiplier Upper-Word Operations (MUL, MULH, MULHU, MULHSU) (Cycles 318 to 344)</text>
+<text x="35" y="48" font-size="10.5" fill="#94a3b8">Single-cycle and pipelined multiplication across signed-signed, unsigned-unsigned, and signed-unsigned upper 32-bit products</text>
+<rect x="240.0" y="75" width="34.4" height="196" fill="#f1f5f9"/>
+<line x1="240.0" y1="75" x2="240.0" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="257.2" y="69" class="cyc" fill="#475569">C318</text>
+<rect x="274.4" y="75" width="34.4" height="196" fill="#f1f5f9"/>
+<line x1="274.4" y1="75" x2="274.4" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="291.7" y="69" class="cyc" fill="#475569">C319</text>
+<rect x="308.9" y="75" width="34.4" height="196" fill="#f8fafc"/>
+<line x1="308.9" y1="75" x2="308.9" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="326.1" y="69" class="cyc" fill="#475569">C320</text>
+<rect x="343.3" y="75" width="34.4" height="196" fill="#ffffff"/>
+<line x1="343.3" y1="75" x2="343.3" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<rect x="377.8" y="75" width="34.4" height="196" fill="#f1f5f9"/>
+<line x1="377.8" y1="75" x2="377.8" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="395.0" y="69" class="cyc" fill="#475569">C322</text>
+<rect x="412.2" y="75" width="34.4" height="196" fill="#ffffff"/>
+<line x1="412.2" y1="75" x2="412.2" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<rect x="446.7" y="75" width="34.4" height="196" fill="#f1f5f9"/>
+<line x1="446.7" y1="75" x2="446.7" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="463.9" y="69" class="cyc" fill="#475569">C324</text>
+<rect x="481.1" y="75" width="34.4" height="196" fill="#ffffff"/>
+<line x1="481.1" y1="75" x2="481.1" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<rect x="515.6" y="75" width="34.4" height="196" fill="#f1f5f9"/>
+<line x1="515.6" y1="75" x2="515.6" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="532.8" y="69" class="cyc" fill="#475569">C326</text>
+<rect x="550.0" y="75" width="34.4" height="196" fill="#f1f5f9"/>
+<line x1="550.0" y1="75" x2="550.0" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="567.2" y="69" class="cyc" fill="#475569">C327</text>
+<rect x="584.4" y="75" width="34.4" height="196" fill="#f8fafc"/>
+<line x1="584.4" y1="75" x2="584.4" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="601.7" y="69" class="cyc" fill="#475569">C328</text>
+<rect x="618.9" y="75" width="34.4" height="196" fill="#f1f5f9"/>
+<line x1="618.9" y1="75" x2="618.9" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="636.1" y="69" class="cyc" fill="#475569">C329</text>
+<rect x="653.3" y="75" width="34.4" height="196" fill="#f8fafc"/>
+<line x1="653.3" y1="75" x2="653.3" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="670.6" y="69" class="cyc" fill="#475569">C330</text>
+<rect x="687.8" y="75" width="34.4" height="196" fill="#ffffff"/>
+<line x1="687.8" y1="75" x2="687.8" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<rect x="722.2" y="75" width="34.4" height="196" fill="#f8fafc"/>
+<line x1="722.2" y1="75" x2="722.2" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="739.4" y="69" class="cyc" fill="#475569">C332</text>
+<rect x="756.7" y="75" width="34.4" height="196" fill="#f1f5f9"/>
+<line x1="756.7" y1="75" x2="756.7" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="773.9" y="69" class="cyc" fill="#475569">C333</text>
+<rect x="791.1" y="75" width="34.4" height="196" fill="#f8fafc"/>
+<line x1="791.1" y1="75" x2="791.1" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="808.3" y="69" class="cyc" fill="#475569">C334</text>
+<rect x="825.6" y="75" width="34.4" height="196" fill="#f1f5f9"/>
+<line x1="825.6" y1="75" x2="825.6" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="842.8" y="69" class="cyc" fill="#475569">C335</text>
+<rect x="860.0" y="75" width="34.4" height="196" fill="#f8fafc"/>
+<line x1="860.0" y1="75" x2="860.0" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="877.2" y="69" class="cyc" fill="#475569">C336</text>
+<rect x="894.4" y="75" width="34.4" height="196" fill="#f1f5f9"/>
+<line x1="894.4" y1="75" x2="894.4" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="911.7" y="69" class="cyc" fill="#475569">C337</text>
+<rect x="928.9" y="75" width="34.4" height="196" fill="#f1f5f9"/>
+<line x1="928.9" y1="75" x2="928.9" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="946.1" y="69" class="cyc" fill="#475569">C338</text>
+<rect x="963.3" y="75" width="34.4" height="196" fill="#ffffff"/>
+<line x1="963.3" y1="75" x2="963.3" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<rect x="997.8" y="75" width="34.4" height="196" fill="#f1f5f9"/>
+<line x1="997.8" y1="75" x2="997.8" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="1015.0" y="69" class="cyc" fill="#475569">C340</text>
+<rect x="1032.2" y="75" width="34.4" height="196" fill="#ffffff"/>
+<line x1="1032.2" y1="75" x2="1032.2" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<rect x="1066.7" y="75" width="34.4" height="196" fill="#f8fafc"/>
+<line x1="1066.7" y1="75" x2="1066.7" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="1083.9" y="69" class="cyc" fill="#475569">C342</text>
+<rect x="1101.1" y="75" width="34.4" height="196" fill="#ffffff"/>
+<line x1="1101.1" y1="75" x2="1101.1" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<rect x="1135.6" y="75" width="34.4" height="196" fill="#f8fafc"/>
+<line x1="1135.6" y1="75" x2="1135.6" y2="271" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="1152.8" y="69" class="cyc" fill="#475569">C344</text>
+<line x1="20" y1="103" x2="1180" y2="103" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="88" class="sig-name">Commit PC</text>
+<text x="25" y="98" class="sig-sub">Commit Port 0 PC</text>
+<polygon points="243.0,89.0 246.0,81.0 268.4,81.0 271.4,89.0 268.4,97.0 246.0,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="257.2" y="92.5" class="bus">0x048</text>
+<polygon points="277.4,89.0 280.4,81.0 302.9,81.0 305.9,89.0 302.9,97.0 280.4,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="291.7" y="92.5" class="bus">0x04C</text>
+<polygon points="311.9,89.0 314.9,81.0 440.7,81.0 443.7,89.0 440.7,97.0 314.9,97.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="449.7,89.0 452.7,81.0 475.1,81.0 478.1,89.0 475.1,97.0 452.7,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="463.9" y="92.5" class="bus">MUL</text>
+<polygon points="484.1,89.0 487.1,81.0 509.6,81.0 512.6,89.0 509.6,97.0 487.1,97.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="518.6,89.0 521.6,81.0 544.0,81.0 547.0,89.0 544.0,97.0 521.6,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="532.8" y="92.5" class="bus">MULH</text>
+<polygon points="553.0,89.0 556.0,81.0 578.4,81.0 581.4,89.0 578.4,97.0 556.0,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="567.2" y="92.5" class="bus">0x058</text>
+<polygon points="587.4,89.0 590.4,81.0 612.9,81.0 615.9,89.0 612.9,97.0 590.4,97.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="621.9,89.0 624.9,81.0 647.3,81.0 650.3,89.0 647.3,97.0 624.9,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="636.1" y="92.5" class="bus">MUL</text>
+<polygon points="656.3,89.0 659.3,81.0 819.6,81.0 822.6,89.0 819.6,97.0 659.3,97.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="828.6,89.0 831.6,81.0 854.0,81.0 857.0,89.0 854.0,97.0 831.6,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="842.8" y="92.5" class="bus">MULHU</text>
+<polygon points="863.0,89.0 866.0,81.0 888.4,81.0 891.4,89.0 888.4,97.0 866.0,97.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="897.4,89.0 900.4,81.0 922.9,81.0 925.9,89.0 922.9,97.0 900.4,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="911.7" y="92.5" class="bus">MULH…</text>
+<polygon points="931.9,89.0 934.9,81.0 957.3,81.0 960.3,89.0 957.3,97.0 934.9,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="946.1" y="92.5" class="bus">0x068</text>
+<polygon points="966.3,89.0 969.3,81.0 991.8,81.0 994.8,89.0 991.8,97.0 969.3,97.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="1000.8,89.0 1003.8,81.0 1026.2,81.0 1029.2,89.0 1026.2,97.0 1003.8,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="1015.0" y="92.5" class="bus">MULH</text>
+<polygon points="1035.2,89.0 1038.2,81.0 1164.0,81.0 1167.0,89.0 1164.0,97.0 1038.2,97.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="20" y1="131" x2="1180" y2="131" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="116" class="sig-name">Commit Ack</text>
+<text x="25" y="126" class="sig-sub">Instruction Retired</text>
+<line x1="240.0" y1="109.0" x2="274.4" y2="109.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="257.2" y="120.5" class="bit" fill="#16a34a">1</text>
+<line x1="274.4" y1="109.0" x2="308.9" y2="109.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="291.7" y="120.5" class="bit" fill="#16a34a">1</text>
+<line x1="308.9" y1="109.0" x2="308.9" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<line x1="308.9" y1="125.0" x2="343.3" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="326.1" y="120.5" class="bit" fill="#16a34a">0</text>
+<line x1="343.3" y1="125.0" x2="377.8" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="360.6" y="120.5" class="bit" fill="#16a34a">0</text>
+<line x1="377.8" y1="125.0" x2="412.2" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="395.0" y="120.5" class="bit" fill="#16a34a">0</text>
+<line x1="412.2" y1="125.0" x2="446.7" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="429.4" y="120.5" class="bit" fill="#16a34a">0</text>
+<line x1="446.7" y1="125.0" x2="446.7" y2="109.0" stroke="#16a34a" stroke-width="1.8"/>
+<line x1="446.7" y1="109.0" x2="481.1" y2="109.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="463.9" y="120.5" class="bit" fill="#16a34a">1</text>
+<line x1="481.1" y1="109.0" x2="481.1" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<line x1="481.1" y1="125.0" x2="515.6" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="498.3" y="120.5" class="bit" fill="#16a34a">0</text>
+<line x1="515.6" y1="125.0" x2="515.6" y2="109.0" stroke="#16a34a" stroke-width="1.8"/>
+<line x1="515.6" y1="109.0" x2="550.0" y2="109.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="532.8" y="120.5" class="bit" fill="#16a34a">1</text>
+<line x1="550.0" y1="109.0" x2="584.4" y2="109.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="567.2" y="120.5" class="bit" fill="#16a34a">1</text>
+<line x1="584.4" y1="109.0" x2="584.4" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<line x1="584.4" y1="125.0" x2="618.9" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="601.7" y="120.5" class="bit" fill="#16a34a">0</text>
+<line x1="618.9" y1="125.0" x2="618.9" y2="109.0" stroke="#16a34a" stroke-width="1.8"/>
+<line x1="618.9" y1="109.0" x2="653.3" y2="109.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="636.1" y="120.5" class="bit" fill="#16a34a">1</text>
+<line x1="653.3" y1="109.0" x2="653.3" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<line x1="653.3" y1="125.0" x2="687.8" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="670.6" y="120.5" class="bit" fill="#16a34a">0</text>
+<line x1="687.8" y1="125.0" x2="722.2" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="705.0" y="120.5" class="bit" fill="#16a34a">0</text>
+<line x1="722.2" y1="125.0" x2="756.7" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="739.4" y="120.5" class="bit" fill="#16a34a">0</text>
+<line x1="756.7" y1="125.0" x2="791.1" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="773.9" y="120.5" class="bit" fill="#16a34a">0</text>
+<line x1="791.1" y1="125.0" x2="825.6" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="808.3" y="120.5" class="bit" fill="#16a34a">0</text>
+<line x1="825.6" y1="125.0" x2="825.6" y2="109.0" stroke="#16a34a" stroke-width="1.8"/>
+<line x1="825.6" y1="109.0" x2="860.0" y2="109.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="842.8" y="120.5" class="bit" fill="#16a34a">1</text>
+<line x1="860.0" y1="109.0" x2="860.0" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<line x1="860.0" y1="125.0" x2="894.4" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="877.2" y="120.5" class="bit" fill="#16a34a">0</text>
+<line x1="894.4" y1="125.0" x2="894.4" y2="109.0" stroke="#16a34a" stroke-width="1.8"/>
+<line x1="894.4" y1="109.0" x2="928.9" y2="109.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="911.7" y="120.5" class="bit" fill="#16a34a">1</text>
+<line x1="928.9" y1="109.0" x2="963.3" y2="109.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="946.1" y="120.5" class="bit" fill="#16a34a">1</text>
+<line x1="963.3" y1="109.0" x2="963.3" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<line x1="963.3" y1="125.0" x2="997.8" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="980.6" y="120.5" class="bit" fill="#16a34a">0</text>
+<line x1="997.8" y1="125.0" x2="997.8" y2="109.0" stroke="#16a34a" stroke-width="1.8"/>
+<line x1="997.8" y1="109.0" x2="1032.2" y2="109.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="1015.0" y="120.5" class="bit" fill="#16a34a">1</text>
+<line x1="1032.2" y1="109.0" x2="1032.2" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<line x1="1032.2" y1="125.0" x2="1066.7" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="1049.4" y="120.5" class="bit" fill="#16a34a">0</text>
+<line x1="1066.7" y1="125.0" x2="1101.1" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="1083.9" y="120.5" class="bit" fill="#16a34a">0</text>
+<line x1="1101.1" y1="125.0" x2="1135.6" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="1118.3" y="120.5" class="bit" fill="#16a34a">0</text>
+<line x1="1135.6" y1="125.0" x2="1170.0" y2="125.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="1152.8" y="120.5" class="bit" fill="#16a34a">0</text>
+<line x1="20" y1="159" x2="1180" y2="159" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="144" class="sig-name">GPR Waddr</text>
+<text x="25" y="154" class="sig-sub">Destination Register</text>
+<polygon points="243.0,145.0 246.0,137.0 268.4,137.0 271.4,145.0 268.4,153.0 246.0,153.0" fill="#e0f2fe" stroke="#475569" stroke-width="1"/>
+<text x="257.2" y="148.5" class="bus">x7</text>
+<polygon points="277.4,145.0 280.4,137.0 302.9,137.0 305.9,145.0 302.9,153.0 280.4,153.0" fill="#e0f2fe" stroke="#475569" stroke-width="1"/>
+<text x="291.7" y="148.5" class="bus">x28</text>
+<polygon points="311.9,145.0 314.9,137.0 440.7,137.0 443.7,145.0 440.7,153.0 314.9,153.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="449.7,145.0 452.7,137.0 475.1,137.0 478.1,145.0 475.1,153.0 452.7,153.0" fill="#e0f2fe" stroke="#475569" stroke-width="1"/>
+<text x="463.9" y="148.5" class="bus">x22</text>
+<polygon points="484.1,145.0 487.1,137.0 509.6,137.0 512.6,145.0 509.6,153.0 487.1,153.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="518.6,145.0 521.6,137.0 544.0,137.0 547.0,145.0 544.0,153.0 521.6,153.0" fill="#e0f2fe" stroke="#475569" stroke-width="1"/>
+<text x="532.8" y="148.5" class="bus">x23</text>
+<polygon points="553.0,145.0 556.0,137.0 578.4,137.0 581.4,145.0 578.4,153.0 556.0,153.0" fill="#e0f2fe" stroke="#475569" stroke-width="1"/>
+<text x="567.2" y="148.5" class="bus">x29</text>
+<polygon points="587.4,145.0 590.4,137.0 612.9,137.0 615.9,145.0 612.9,153.0 590.4,153.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="621.9,145.0 624.9,137.0 647.3,137.0 650.3,145.0 647.3,153.0 624.9,153.0" fill="#e0f2fe" stroke="#475569" stroke-width="1"/>
+<text x="636.1" y="148.5" class="bus">x24</text>
+<polygon points="656.3,145.0 659.3,137.0 819.6,137.0 822.6,145.0 819.6,153.0 659.3,153.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="828.6,145.0 831.6,137.0 854.0,137.0 857.0,145.0 854.0,153.0 831.6,153.0" fill="#e0f2fe" stroke="#475569" stroke-width="1"/>
+<text x="842.8" y="148.5" class="bus">x25</text>
+<polygon points="863.0,145.0 866.0,137.0 888.4,137.0 891.4,145.0 888.4,153.0 866.0,153.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="897.4,145.0 900.4,137.0 922.9,137.0 925.9,145.0 922.9,153.0 900.4,153.0" fill="#e0f2fe" stroke="#475569" stroke-width="1"/>
+<text x="911.7" y="148.5" class="bus">x27</text>
+<polygon points="931.9,145.0 934.9,137.0 957.3,137.0 960.3,145.0 957.3,153.0 934.9,153.0" fill="#e0f2fe" stroke="#475569" stroke-width="1"/>
+<text x="946.1" y="148.5" class="bus">x30</text>
+<polygon points="966.3,145.0 969.3,137.0 991.8,137.0 994.8,145.0 991.8,153.0 969.3,153.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="1000.8,145.0 1003.8,137.0 1026.2,137.0 1029.2,145.0 1026.2,153.0 1003.8,153.0" fill="#e0f2fe" stroke="#475569" stroke-width="1"/>
+<text x="1015.0" y="148.5" class="bus">x31</text>
+<polygon points="1035.2,145.0 1038.2,137.0 1164.0,137.0 1167.0,145.0 1164.0,153.0 1038.2,153.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="20" y1="187" x2="1180" y2="187" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="172" class="sig-name">GPR Wdata</text>
+<text x="25" y="182" class="sig-sub">Written Result</text>
+<polygon points="243.0,173.0 246.0,165.0 268.4,165.0 271.4,173.0 268.4,181.0 246.0,181.0" fill="#e0f2fe" stroke="#059669" stroke-width="1"/>
+<text x="257.2" y="176.5" class="bus">0xFF…</text>
+<polygon points="277.4,173.0 280.4,165.0 302.9,165.0 305.9,173.0 302.9,181.0 280.4,181.0" fill="#e0f2fe" stroke="#059669" stroke-width="1"/>
+<text x="291.7" y="176.5" class="bus">0x3</text>
+<polygon points="311.9,173.0 314.9,165.0 440.7,165.0 443.7,173.0 440.7,181.0 314.9,181.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="449.7,173.0 452.7,165.0 475.1,165.0 478.1,173.0 475.1,181.0 452.7,181.0" fill="#e0f2fe" stroke="#059669" stroke-width="1"/>
+<text x="463.9" y="176.5" class="bus">0xFF…</text>
+<polygon points="484.1,173.0 487.1,165.0 509.6,165.0 512.6,173.0 509.6,181.0 487.1,181.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="518.6,173.0 521.6,165.0 578.4,165.0 581.4,173.0 578.4,181.0 521.6,181.0" fill="#e0f2fe" stroke="#059669" stroke-width="1"/>
+<text x="550.0" y="176.5" class="bus">0xFFFFFFFF</text>
+<polygon points="587.4,173.0 590.4,165.0 612.9,165.0 615.9,173.0 612.9,181.0 590.4,181.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="621.9,173.0 624.9,165.0 647.3,165.0 650.3,173.0 647.3,181.0 624.9,181.0" fill="#e0f2fe" stroke="#059669" stroke-width="1"/>
+<text x="636.1" y="176.5" class="bus">0x1</text>
+<polygon points="656.3,173.0 659.3,165.0 819.6,165.0 822.6,173.0 819.6,181.0 659.3,181.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="828.6,173.0 831.6,165.0 854.0,165.0 857.0,173.0 854.0,181.0 831.6,181.0" fill="#e0f2fe" stroke="#059669" stroke-width="1"/>
+<text x="842.8" y="176.5" class="bus">0xFF…</text>
+<polygon points="863.0,173.0 866.0,165.0 888.4,165.0 891.4,173.0 888.4,181.0 866.0,181.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="897.4,173.0 900.4,165.0 922.9,165.0 925.9,173.0 922.9,181.0 900.4,181.0" fill="#e0f2fe" stroke="#059669" stroke-width="1"/>
+<text x="911.7" y="176.5" class="bus">0xFF…</text>
+<polygon points="931.9,173.0 934.9,165.0 957.3,165.0 960.3,173.0 957.3,181.0 934.9,181.0" fill="#e0f2fe" stroke="#059669" stroke-width="1"/>
+<text x="946.1" y="176.5" class="bus">0x40…</text>
+<polygon points="966.3,173.0 969.3,165.0 991.8,165.0 994.8,173.0 991.8,181.0 969.3,181.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="1000.8,173.0 1003.8,165.0 1026.2,165.0 1029.2,173.0 1026.2,181.0 1003.8,181.0" fill="#e0f2fe" stroke="#059669" stroke-width="1"/>
+<text x="1015.0" y="176.5" class="bus">0xE0…</text>
+<polygon points="1035.2,173.0 1038.2,165.0 1164.0,165.0 1167.0,173.0 1164.0,181.0 1038.2,181.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="20" y1="215" x2="1180" y2="215" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="200" class="sig-name">mul_valid_op</text>
+<text x="25" y="210" class="sig-sub">Multiplier Issue Request</text>
+<line x1="240.0" y1="209.0" x2="274.4" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="257.2" y="204.5" class="bit" fill="#2563eb">0</text>
+<line x1="274.4" y1="209.0" x2="308.9" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="291.7" y="204.5" class="bit" fill="#2563eb">0</text>
+<line x1="308.9" y1="209.0" x2="343.3" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="326.1" y="204.5" class="bit" fill="#2563eb">0</text>
+<line x1="343.3" y1="209.0" x2="377.8" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="360.6" y="204.5" class="bit" fill="#2563eb">0</text>
+<line x1="377.8" y1="209.0" x2="377.8" y2="193.0" stroke="#2563eb" stroke-width="1.8"/>
+<line x1="377.8" y1="193.0" x2="412.2" y2="193.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="395.0" y="204.5" class="bit" fill="#2563eb">1</text>
+<line x1="412.2" y1="193.0" x2="412.2" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<line x1="412.2" y1="209.0" x2="446.7" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="429.4" y="204.5" class="bit" fill="#2563eb">0</text>
+<line x1="446.7" y1="209.0" x2="446.7" y2="193.0" stroke="#2563eb" stroke-width="1.8"/>
+<line x1="446.7" y1="193.0" x2="481.1" y2="193.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="463.9" y="204.5" class="bit" fill="#2563eb">1</text>
+<line x1="481.1" y1="193.0" x2="481.1" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<line x1="481.1" y1="209.0" x2="515.6" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="498.3" y="204.5" class="bit" fill="#2563eb">0</text>
+<line x1="515.6" y1="209.0" x2="550.0" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="532.8" y="204.5" class="bit" fill="#2563eb">0</text>
+<line x1="550.0" y1="209.0" x2="550.0" y2="193.0" stroke="#2563eb" stroke-width="1.8"/>
+<line x1="550.0" y1="193.0" x2="584.4" y2="193.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="567.2" y="204.5" class="bit" fill="#2563eb">1</text>
+<line x1="584.4" y1="193.0" x2="584.4" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<line x1="584.4" y1="209.0" x2="618.9" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="601.7" y="204.5" class="bit" fill="#2563eb">0</text>
+<line x1="618.9" y1="209.0" x2="653.3" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="636.1" y="204.5" class="bit" fill="#2563eb">0</text>
+<line x1="653.3" y1="209.0" x2="687.8" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="670.6" y="204.5" class="bit" fill="#2563eb">0</text>
+<line x1="687.8" y1="209.0" x2="722.2" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="705.0" y="204.5" class="bit" fill="#2563eb">0</text>
+<line x1="722.2" y1="209.0" x2="756.7" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="739.4" y="204.5" class="bit" fill="#2563eb">0</text>
+<line x1="756.7" y1="209.0" x2="756.7" y2="193.0" stroke="#2563eb" stroke-width="1.8"/>
+<line x1="756.7" y1="193.0" x2="791.1" y2="193.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="773.9" y="204.5" class="bit" fill="#2563eb">1</text>
+<line x1="791.1" y1="193.0" x2="791.1" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<line x1="791.1" y1="209.0" x2="825.6" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="808.3" y="204.5" class="bit" fill="#2563eb">0</text>
+<line x1="825.6" y1="209.0" x2="825.6" y2="193.0" stroke="#2563eb" stroke-width="1.8"/>
+<line x1="825.6" y1="193.0" x2="860.0" y2="193.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="842.8" y="204.5" class="bit" fill="#2563eb">1</text>
+<line x1="860.0" y1="193.0" x2="860.0" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<line x1="860.0" y1="209.0" x2="894.4" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="877.2" y="204.5" class="bit" fill="#2563eb">0</text>
+<line x1="894.4" y1="209.0" x2="928.9" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="911.7" y="204.5" class="bit" fill="#2563eb">0</text>
+<line x1="928.9" y1="209.0" x2="928.9" y2="193.0" stroke="#2563eb" stroke-width="1.8"/>
+<line x1="928.9" y1="193.0" x2="963.3" y2="193.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="946.1" y="204.5" class="bit" fill="#2563eb">1</text>
+<line x1="963.3" y1="193.0" x2="963.3" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<line x1="963.3" y1="209.0" x2="997.8" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="980.6" y="204.5" class="bit" fill="#2563eb">0</text>
+<line x1="997.8" y1="209.0" x2="1032.2" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="1015.0" y="204.5" class="bit" fill="#2563eb">0</text>
+<line x1="1032.2" y1="209.0" x2="1066.7" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="1049.4" y="204.5" class="bit" fill="#2563eb">0</text>
+<line x1="1066.7" y1="209.0" x2="1101.1" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="1083.9" y="204.5" class="bit" fill="#2563eb">0</text>
+<line x1="1101.1" y1="209.0" x2="1135.6" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="1118.3" y="204.5" class="bit" fill="#2563eb">0</text>
+<line x1="1135.6" y1="209.0" x2="1170.0" y2="209.0" stroke="#2563eb" stroke-width="1.8"/>
+<text x="1152.8" y="204.5" class="bit" fill="#2563eb">0</text>
+<line x1="20" y1="243" x2="1180" y2="243" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="228" class="sig-name">dual_commit</text>
+<text x="25" y="238" class="sig-sub">Dual Commit Active</text>
+<line x1="240.0" y1="237.0" x2="274.4" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="257.2" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="274.4" y1="237.0" x2="308.9" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="291.7" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="308.9" y1="237.0" x2="343.3" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="326.1" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="343.3" y1="237.0" x2="377.8" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="360.6" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="377.8" y1="237.0" x2="412.2" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="395.0" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="412.2" y1="237.0" x2="446.7" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="429.4" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="446.7" y1="237.0" x2="481.1" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="463.9" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="481.1" y1="237.0" x2="515.6" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="498.3" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="515.6" y1="237.0" x2="550.0" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="532.8" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="550.0" y1="237.0" x2="584.4" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="567.2" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="584.4" y1="237.0" x2="618.9" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="601.7" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="618.9" y1="237.0" x2="653.3" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="636.1" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="653.3" y1="237.0" x2="687.8" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="670.6" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="687.8" y1="237.0" x2="722.2" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="705.0" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="722.2" y1="237.0" x2="756.7" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="739.4" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="756.7" y1="237.0" x2="791.1" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="773.9" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="791.1" y1="237.0" x2="825.6" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="808.3" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="825.6" y1="237.0" x2="860.0" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="842.8" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="860.0" y1="237.0" x2="894.4" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="877.2" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="894.4" y1="237.0" x2="928.9" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="911.7" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="928.9" y1="237.0" x2="963.3" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="946.1" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="963.3" y1="237.0" x2="997.8" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="980.6" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="997.8" y1="237.0" x2="1032.2" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="1015.0" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="1032.2" y1="237.0" x2="1066.7" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="1049.4" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="1066.7" y1="237.0" x2="1101.1" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="1083.9" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="1101.1" y1="237.0" x2="1135.6" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="1118.3" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="1135.6" y1="237.0" x2="1170.0" y2="237.0" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="1152.8" y="232.5" class="bit" fill="#7c3aed">0</text>
+<line x1="20" y1="271" x2="1180" y2="271" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="256" class="sig-name">flu_ready</text>
+<text x="25" y="266" class="sig-sub">Fixed Latency Unit Ready</text>
+<line x1="240.0" y1="249.0" x2="274.4" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="257.2" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="274.4" y1="249.0" x2="308.9" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="291.7" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="308.9" y1="249.0" x2="343.3" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="326.1" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="343.3" y1="249.0" x2="377.8" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="360.6" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="377.8" y1="249.0" x2="412.2" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="395.0" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="412.2" y1="249.0" x2="446.7" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="429.4" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="446.7" y1="249.0" x2="481.1" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="463.9" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="481.1" y1="249.0" x2="515.6" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="498.3" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="515.6" y1="249.0" x2="550.0" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="532.8" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="550.0" y1="249.0" x2="584.4" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="567.2" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="584.4" y1="249.0" x2="618.9" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="601.7" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="618.9" y1="249.0" x2="653.3" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="636.1" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="653.3" y1="249.0" x2="687.8" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="670.6" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="687.8" y1="249.0" x2="722.2" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="705.0" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="722.2" y1="249.0" x2="756.7" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="739.4" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="756.7" y1="249.0" x2="791.1" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="773.9" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="791.1" y1="249.0" x2="825.6" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="808.3" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="825.6" y1="249.0" x2="860.0" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="842.8" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="860.0" y1="249.0" x2="894.4" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="877.2" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="894.4" y1="249.0" x2="928.9" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="911.7" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="928.9" y1="249.0" x2="963.3" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="946.1" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="963.3" y1="249.0" x2="997.8" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="980.6" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="997.8" y1="249.0" x2="1032.2" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="1015.0" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="1032.2" y1="249.0" x2="1066.7" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="1049.4" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="1066.7" y1="249.0" x2="1101.1" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="1083.9" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="1101.1" y1="249.0" x2="1135.6" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="1118.3" y="260.5" class="bit" fill="#16a34a">1</text>
+<line x1="1135.6" y1="249.0" x2="1170.0" y2="249.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="1152.8" y="260.5" class="bit" fill="#16a34a">1</text>
+<rect x="20" y="283" width="1160" height="75" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" rx="6"/>
+<text x="35" y="301" class="ann-title">Microarchitectural Analysis:</text>
+<text x="35" y="317" class="ann-body">
+  <tspan x="35" dy="0">• Full 64-bit Multiplication: CVA6 ALU/multiplier computes the full 64-bit product in hardware and selects upper/lower slice based on opcode.</tspan>
+  <tspan x="35" dy="16">• Signed vs Unsigned: MULH (-2 * 3) yields upper word 0xFFFFFFFF (-1); MULHU (-1 * -1) yields 0xFFFFFFFE (unsigned max * max).</tspan>
+  <tspan x="35" dy="16">• Cross-Sign Precision: MULHSU (-1 * 0xFFFFFFFF) computes signed(-1) * unsigned(2^32-1) = -(2^32-1), yielding upper word 0xFFFFFFFF.</tspan>
+</text>
 </svg>
