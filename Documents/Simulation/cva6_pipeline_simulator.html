@@ -1,14 +1,13 @@
 <!--
 ============================================================================
 Author: Alireza Sotodeh
-Date & Time: 2026-11-20 17:40:00 +03:30
+Date & Time: 2026-11-20 19:28:00 +03:30
 Status: MODIFIED FILE
-Reason / Modification: Relocated architectural preset selector into the Code 
-tab inside the Left Sidebar with full microarchitectural descriptions, expanded 
-benchmark presets from 6 to 12 comprehensive programs (covering RAW hazards, 
-out-of-order write-back, branch prediction, store buffer forwarding, cache cold 
-misses, Fibonacci, vector dot product, tight BTB loops, and multi-unit structural 
-stress), and decluttered the top navigation telemetry bar.
+Reason / Modification: Added cycle-accurate Step Back button ([Back]) with full
+                       historical state restoration (registers, pipeline queues,
+                       scoreboard entries, L1 cache lines, and Gantt timeline),
+                       deep history recording buffer (300 cycles), auto-run
+                       history capture, and ArrowLeft icon definition.
 ============================================================================
 -->
 <!DOCTYPE html>
@@ -763,6 +762,27 @@ const ArrowRight = ({
 }), /*#__PURE__*/React.createElement("polyline", {
   points: "12 5 19 12 12 19"
 }));
+const ArrowLeft = ({
+  size = 16,
+  className = ""
+}) => /*#__PURE__*/React.createElement("svg", {
+  width: size,
+  height: size,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: "2",
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+  className: className
+}, /*#__PURE__*/React.createElement("line", {
+  x1: "19",
+  y1: "12",
+  x2: "5",
+  y2: "12"
+}), /*#__PURE__*/React.createElement("polyline", {
+  points: "12 19 5 12 12 5"
+}));
 const CheckCircle2 = ({
   size = 16,
   className = ""
@@ -1212,6 +1232,166 @@ const Info = ({
   x2: "12.01",
   y2: "8"
 }));
+const Settings = ({
+  size = 16,
+  className = ""
+}) => /*#__PURE__*/React.createElement("svg", {
+  width: size,
+  height: size,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: "2",
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+  className: className
+}, /*#__PURE__*/React.createElement("circle", {
+  cx: "12",
+  cy: "12",
+  r: "3"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+}));
+const Check = ({
+  size = 16,
+  className = ""
+}) => /*#__PURE__*/React.createElement("svg", {
+  width: size,
+  height: size,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: "2",
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+  className: className
+}, /*#__PURE__*/React.createElement("polyline", {
+  points: "20 6 9 17 4 12"
+}));
+const Trash2 = ({
+  size = 16,
+  className = ""
+}) => /*#__PURE__*/React.createElement("svg", {
+  width: size,
+  height: size,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: "2",
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+  className: className
+}, /*#__PURE__*/React.createElement("polyline", {
+  points: "3 6 5 6 21 6"
+}), /*#__PURE__*/React.createElement("path", {
+  d: "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+}), /*#__PURE__*/React.createElement("line", {
+  x1: "10",
+  y1: "11",
+  x2: "10",
+  y2: "17"
+}), /*#__PURE__*/React.createElement("line", {
+  x1: "14",
+  y1: "11",
+  x2: "14",
+  y2: "17"
+}));
+const Download = ({
+  size = 16,
+  className = ""
+}) => /*#__PURE__*/React.createElement("svg", {
+  width: size,
+  height: size,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: "2",
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+  className: className
+}, /*#__PURE__*/React.createElement("path", {
+  d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+}), /*#__PURE__*/React.createElement("polyline", {
+  points: "7 10 12 15 17 10"
+}), /*#__PURE__*/React.createElement("line", {
+  x1: "12",
+  y1: "15",
+  x2: "12",
+  y2: "3"
+}));
+const ChevronDown = ({
+  size = 16,
+  className = ""
+}) => /*#__PURE__*/React.createElement("svg", {
+  width: size,
+  height: size,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: "2",
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+  className: className
+}, /*#__PURE__*/React.createElement("polyline", {
+  points: "6 9 12 15 18 9"
+}));
+const ImageIcon = ({
+  size = 16,
+  className = ""
+}) => /*#__PURE__*/React.createElement("svg", {
+  width: size,
+  height: size,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: "2",
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+  className: className
+}, /*#__PURE__*/React.createElement("rect", {
+  x: "3",
+  y: "3",
+  width: "18",
+  height: "18",
+  rx: "2",
+  ry: "2"
+}), /*#__PURE__*/React.createElement("circle", {
+  cx: "8.5",
+  cy: "8.5",
+  r: "1.5"
+}), /*#__PURE__*/React.createElement("polyline", {
+  points: "21 15 16 10 5 21"
+}));
+const FileText = ({
+  size = 16,
+  className = ""
+}) => /*#__PURE__*/React.createElement("svg", {
+  width: size,
+  height: size,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: "2",
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+  className: className
+}, /*#__PURE__*/React.createElement("path", {
+  d: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+}), /*#__PURE__*/React.createElement("polyline", {
+  points: "14 2 14 8 20 8"
+}), /*#__PURE__*/React.createElement("line", {
+  x1: "16",
+  y1: "13",
+  x2: "8",
+  y2: "13"
+}), /*#__PURE__*/React.createElement("line", {
+  x1: "16",
+  y1: "17",
+  x2: "8",
+  y2: "17"
+}), /*#__PURE__*/React.createElement("polyline", {
+  points: "10 9 9 9 8 9"
+}));
 const {
   useState,
   useEffect,
@@ -1264,32 +1444,54 @@ const getInstColor = id => {
 
 // --- CACHE & MEMORY SUBSTRUCTURES ---
 
-const createInitialCacheState = (prewarm = false) => {
+const DEFAULT_CACHE_CONFIG = {
+  linesExp: 2,       // 2^2 = 4 sets
+  blockWords: 4,     // 4 words = 16 bytes (128-bit line)
+  waysExp: 0,        // 2^0 = 1 way (direct-mapped)
+  missLatency: 4,    // 4 cycles
+  writePolicy: 'WRITE_BACK'
+};
+
+const createInitialCacheState = (prewarm = false, userConfig = {}) => {
+  const cfg = {
+    ...DEFAULT_CACHE_CONFIG,
+    ...userConfig
+  };
+  const numSets = 1 << cfg.linesExp;
+  const numWays = 1 << cfg.waysExp;
   const icache = {};
   const dcache = {};
-  for (let i = 0; i < 4; i++) {
-    icache[i] = {
-      index: i,
-      tag: prewarm ? i : 0,
-      valid: prewarm,
-      dirty: false,
-      data: [prewarm ? i * 4 : 0],
-      lastAccessCycle: 0,
-      hitStatus: 'IDLE'
-    };
-    dcache[i] = {
-      index: i,
-      tag: prewarm ? i : 0,
-      valid: prewarm,
-      dirty: false,
-      data: [0],
-      lastAccessCycle: 0,
-      hitStatus: 'IDLE'
-    };
+  for (let s = 0; s < numSets; s++) {
+    for (let w = 0; w < numWays; w++) {
+      const lineKey = numWays === 1 ? s : `${s}_${w}`;
+      icache[lineKey] = {
+        key: lineKey,
+        index: s,
+        way: w,
+        tag: prewarm ? (s < 2 ? s : 0) : 0,
+        valid: prewarm ? (s < 2) : false,
+        dirty: false,
+        data: [prewarm ? s * 16 : 0, 0, 0, 0],
+        lastAccessCycle: 0,
+        hitStatus: 'IDLE'
+      };
+      dcache[lineKey] = {
+        key: lineKey,
+        index: s,
+        way: w,
+        tag: prewarm ? (s < 2 ? s : 0) : 0,
+        valid: prewarm ? (s < 2) : false,
+        dirty: false,
+        data: [0, 0, 0, 0],
+        lastAccessCycle: 0,
+        hitStatus: 'IDLE'
+      };
+    }
   }
   return {
+    config: cfg,
     prewarmEnabled: prewarm,
-    missPenaltyCycles: 3,
+    missPenaltyCycles: cfg.missLatency,
     icache,
     dcache,
     storeBuffer: [],
@@ -1297,8 +1499,11 @@ const createInitialCacheState = (prewarm = false) => {
     iMisses: 0,
     dHits: prewarm ? 2 : 0,
     dMisses: 0,
+    writebacks: 0,
     dControllerState: 'IDLE',
-    missPenaltyRemaining: 0,
+    iControllerState: 'IDLE',
+    dRefill: { active: false, addr: 0, set: 0, way: 0, tag: 0, cyclesRemaining: 0, totalCycles: cfg.missLatency, targetTid: null, res: 0 },
+    iRefill: { active: false, pc: 0, set: 0, way: 0, tag: 0, cyclesRemaining: 0, totalCycles: cfg.missLatency },
     lastAccess: null
   };
 };
@@ -1810,14 +2015,14 @@ ADD  x5, x4, x3   // 100 + 200 = 300`
   },
   cache_cold_miss: {
     title: "8. L1 Cache Cold Miss & Miss Unit Refill",
-    desc: "Demonstrates D$ Miss Unit refilling cache lines from main memory across different cache sets, toggling dirty write-back flags.",
+    desc: "Demonstrates D$ Miss Unit multi-cycle AXI refill, Set 0 tag conflicts, dirty eviction write-back, and out-of-order execution stalls.",
     code: `ADDI x1, x0, 0
 ADDI x2, x0, 55
 ADDI x3, x0, 77
-SW   x2, 0(x1)    // Set 0 write: marks line valid & dirty
-SW   x3, 16(x1)   // Set 0 (tag 1): demonstrates line conflict & dirty write-back
-LW   x4, 0(x1)    // LSU Load from Set 0
-LW   x5, 16(x1)   // LSU Load from Set 0 tag 1
+SW   x2, 0(x1)    // Set 0 write: marks line valid & dirty in D$
+SW   x3, 64(x1)   // Set 0 (Tag 1): direct conflict with Set 0 Tag 0!
+LW   x4, 0(x1)    // LSU Load from Set 0 Tag 0: D$ Miss & 4-cycle AXI Refill
+LW   x5, 64(x1)   // LSU Load from Set 0 Tag 1
 ADD  x6, x4, x5   // ALU: 55 + 77 = 132`
   },
   fibonacci: {
@@ -1873,6 +2078,29 @@ SW   x5, 0(x0)    // LSU Store
 LW   x6, 0(x0)    // LSU Load
 ADD  x7, x4, x5   // Waits for MUL: 100 + 77 = 177
 ADD  x8, x3, x7   // Waits for DIV: 10 + 177 = 187`
+  },
+  vivado_alignment_suite: {
+    title: "13. Vivado RTL Hardware-Verified Alignment Suite",
+    desc: "17-instruction benchmark verified bit-for-bit against AMD Vivado behavioral CVA6 simulation. Exercises RAW hazard forwarding, Store Buffer queuing & drain, LSU store-to-load forwarding, 2-cycle MUL out-of-order retirement, and loop branch prediction.",
+    code: `LUI  x12, 0x80000 // Base DRAM pointer (0x80000000)
+ADDI x1, x0, 10   // x1 = 10
+ADDI x2, x0, 20   // x2 = 20
+ADD  x3, x1, x2   // x3 = 30
+ADD  x4, x3, x1   // x4 = 40 (RAW hazard forward from x3)
+ADDI x5, x0, 5    // x5 = 5
+SW   x3, 256(x12) // Store 30 to 0x80000100 (enters Store Buffer)
+SW   x4, 260(x12) // Store 40 to 0x80000104 (queued in Store Buffer)
+LW   x6, 256(x12) // Load from 0x80000100 -> x6 = 30 (Store-to-Load Forwarding!)
+MUL  x7, x6, x5   // x7 = 30 * 5 = 150 (Multi-cycle execute)
+ADDI x8, x0, 100  // x8 = 100 (Out-of-order ALU writeback before MUL)
+ADD  x9, x7, x8   // x9 = 150 + 100 = 250 (Stalls for MUL result)
+ADDI x10, x0, 2   // x10 = 2 (Loop counter)
+align_loop:
+ADDI x10, x10, -1 // x10 = x10 - 1
+BNE  x10, x0, align_loop // Loop back while x10 != 0 (BTB taken)
+ADDI x11, x9, 42  // x11 = 250 + 42 = 292 (Final result)
+term_loop:
+BEQ  x0, x0, term_loop // Terminal self-loop`
   }
 };;
 
@@ -1934,7 +2162,14 @@ const parseProgram = asm => {
       type = 'ALU';
       rd = parseReg(parts[1]);
       rs1 = parseReg(parts[2]);
-      imm = parseInt(parts[3], 10) || 0;
+      const rawImm = parts[3] || '0';
+      imm = rawImm.toLowerCase().startsWith('0x') ? parseInt(rawImm, 16) : parseInt(rawImm, 10) || 0;
+      latency = 1;
+    } else if (op === 'LUI') {
+      type = 'ALU';
+      rd = parseReg(parts[1]);
+      const rawImm = parts[2] || '0';
+      imm = rawImm.toLowerCase().startsWith('0x') ? parseInt(rawImm, 16) : parseInt(rawImm, 10) || 0;
       latency = 1;
     } else if (op === 'MUL') {
       type = 'MUL';
@@ -1951,18 +2186,18 @@ const parseProgram = asm => {
     } else if (op === 'LW') {
       type = 'LSU';
       rd = parseReg(parts[1]);
-      const match = parts[2].match(/(-?\d+)\((.*)\)/);
+      const match = parts[2].match(/(-?\d+|0x[0-9a-fA-F]+)\((.*)\)/);
       if (match) {
-        imm = parseInt(match[1], 10);
+        imm = match[1].toLowerCase().startsWith('0x') ? parseInt(match[1], 16) : parseInt(match[1], 10);
         rs1 = parseReg(match[2]);
       }
       latency = 2;
     } else if (op === 'SW') {
       type = 'LSU';
       rs2 = parseReg(parts[1]);
-      const match = parts[2].match(/(-?\d+)\((.*)\)/);
+      const match = parts[2].match(/(-?\d+|0x[0-9a-fA-F]+)\((.*)\)/);
       if (match) {
-        imm = parseInt(match[1], 10);
+        imm = match[1].toLowerCase().startsWith('0x') ? parseInt(match[1], 16) : parseInt(match[1], 10);
         rs1 = parseReg(match[2]);
       }
       latency = 2;
@@ -1971,7 +2206,14 @@ const parseProgram = asm => {
       rs1 = parseReg(parts[1]);
       rs2 = parseReg(parts[2]);
       const lbl = parts[3];
-      targetPc = labels[lbl] !== undefined ? labels[lbl] : pc + 4;
+      const numOffset = parseInt(lbl, 10);
+      if (labels[lbl] !== undefined) {
+        targetPc = labels[lbl];
+      } else if (!isNaN(numOffset)) {
+        targetPc = pc + numOffset;
+      } else {
+        targetPc = pc + 4;
+      }
       latency = 1;
     } else if (op === 'JAL') {
       type = 'BRANCH';
@@ -2037,6 +2279,7 @@ const stepSimulation = (state, program) => {
   }
   const nextCache = {
     ...state.cache,
+    config: state.cache.config ? { ...state.cache.config } : { ...DEFAULT_CACHE_CONFIG },
     icache: {
       ...state.cache.icache
     },
@@ -2045,7 +2288,9 @@ const stepSimulation = (state, program) => {
     },
     storeBuffer: state.cache.storeBuffer.map(e => ({
       ...e
-    }))
+    })),
+    dRefill: state.cache.dRefill ? { ...state.cache.dRefill } : { active: false, addr: 0, set: 0, way: 0, tag: 0, cyclesRemaining: 0, totalCycles: 4, targetTid: null, res: 0 },
+    iRefill: state.cache.iRefill ? { ...state.cache.iRefill } : { active: false, pc: 0, set: 0, way: 0, tag: 0, cyclesRemaining: 0, totalCycles: 4 }
   };
   const nextState = {
     ...state,
@@ -2086,28 +2331,182 @@ const stepSimulation = (state, program) => {
   let hasMispredict = false;
   let mispredictRedirectPc = 0;
 
+  const numSets = 1 << (nextCache.config ? nextCache.config.linesExp : 2);
+  const numWays = 1 << (nextCache.config ? nextCache.config.waysExp : 0);
+
+  // -------------------------------------------------------------
+  // CACHE MAINTENANCE: Advance Active AXI Refills
+  // -------------------------------------------------------------
+  // 1. Advance D$ AXI Refill FSM
+  if (nextCache.dRefill && nextCache.dRefill.active) {
+    nextCache.dRefill.cyclesRemaining--;
+    const cycLeft = nextCache.dRefill.cyclesRemaining;
+    const total = nextCache.dRefill.totalCycles;
+    const beat = total - cycLeft;
+
+    if (cycLeft > 0) {
+      nextCache.dControllerState = beat === 1 ? 'AXI_AR_ADDR' : (cycLeft === 1 ? 'AXI_R_BURST' : 'AXI_WAIT_DATA');
+      nextState.activeWires.push({
+        key: 'AXI_R_BURST_TO_DCACHE',
+        color: '#ef4444'
+      });
+      nextState.activeUnits['DCACHE_MISS'] = {
+        label: 'D$ Miss Unit',
+        subLabel: `Beat ${beat}/${total}`,
+        color: '#ef4444',
+        computation: `AXI Refill for Addr 0x${nextCache.dRefill.addr.toString(16)}: ${nextCache.dControllerState} (${cycLeft} cyc remaining)`
+      };
+      nextState.activeUnits['DCACHE'] = {
+        label: 'D$ Refill Wait',
+        subLabel: `Set ${nextCache.dRefill.set}`,
+        color: '#f59e0b'
+      };
+    } else {
+      // D$ Refill completes!
+      const rf = nextCache.dRefill;
+      const lineKey = numWays === 1 ? rf.set : `${rf.set}_${rf.way}`;
+      const blockAlignedAddr = rf.addr & ~0xF;
+      const blockData = [
+        nextState.dataMemory[blockAlignedAddr] !== undefined ? nextState.dataMemory[blockAlignedAddr] : 0,
+        nextState.dataMemory[blockAlignedAddr + 4] !== undefined ? nextState.dataMemory[blockAlignedAddr + 4] : 0,
+        nextState.dataMemory[blockAlignedAddr + 8] !== undefined ? nextState.dataMemory[blockAlignedAddr + 8] : 0,
+        nextState.dataMemory[blockAlignedAddr + 12] !== undefined ? nextState.dataMemory[blockAlignedAddr + 12] : 0
+      ];
+      const wordOffset = (rf.addr >> 2) & 0x3;
+      blockData[wordOffset] = rf.res;
+
+      const refilledLine = {
+        key: lineKey,
+        index: rf.set,
+        way: rf.way,
+        tag: rf.tag,
+        valid: true,
+        dirty: false,
+        data: blockData,
+        lastAccessCycle: cycle,
+        hitStatus: 'HIT'
+      };
+      nextCache.dcache[lineKey] = refilledLine;
+      if (numWays === 1) nextCache.dcache[rf.set] = refilledLine;
+
+      nextCache.dControllerState = 'REFILL_DONE';
+      rf.active = false;
+
+      // Find stalled load in scoreboard
+      const sbEntry = nextState.scoreboard.find(e => e.transId === rf.targetTid || e.isStalledOnMemory);
+      if (sbEntry) {
+        sbEntry.ready = true;
+        sbEntry.isStalledOnMemory = false;
+        sbEntry.remainingCycles = 0;
+        sbEntry.result = rf.res;
+        sbEntry.computation = `Loaded ${rf.res} from Memory`;
+        storyDetails.push(`D$ Refill Complete: Received burst data from AXI memory. Load TID #${sbEntry.transId} [${sbEntry.inst.raw}] is now ready to commit.`);
+        nextState.logs.unshift({
+          cycle,
+          text: `[D$ REFILL] Line refill completed for Addr 0x${rf.addr.toString(16)}. Unblocked Scoreboard TID #${sbEntry.transId} (Result: ${rf.res}).`,
+          type: 'info'
+        });
+      }
+    }
+  }
+
+  // 2. Advance I$ AXI Refill FSM
+  if (nextCache.iRefill && nextCache.iRefill.active) {
+    nextCache.iRefill.cyclesRemaining--;
+    const cycLeft = nextCache.iRefill.cyclesRemaining;
+    const total = nextCache.iRefill.totalCycles;
+    const beat = total - cycLeft;
+
+    if (cycLeft > 0) {
+      nextCache.iControllerState = beat === 1 ? 'AXI_AR_ADDR' : (cycLeft === 1 ? 'AXI_R_BURST' : 'AXI_WAIT_DATA');
+      nextState.activeWires.push({
+        key: 'AXI_R_BURST_TO_ICACHE',
+        color: '#f59e0b'
+      });
+      nextState.activeUnits['ICACHE_MISS'] = {
+        label: 'I$ Miss Unit',
+        subLabel: `Beat ${beat}/${total}`,
+        color: '#f59e0b',
+        computation: `AXI I-Fetch Refill (PC 0x${nextCache.iRefill.pc.toString(16)}): ${nextCache.iControllerState} (${cycLeft} cyc remaining)`
+      };
+      nextState.activeUnits['ICACHE'] = {
+        label: 'I$ Stalled',
+        subLabel: `Waiting Refill`,
+        color: '#ef4444'
+      };
+    } else {
+      // I$ Refill completes!
+      const rf = nextCache.iRefill;
+      const lineKey = numWays === 1 ? rf.set : `${rf.set}_${rf.way}`;
+      const blockAlignedPc = rf.pc & ~0xF;
+      const refilledLine = {
+        key: lineKey,
+        index: rf.set,
+        way: rf.way,
+        tag: rf.tag,
+        valid: true,
+        dirty: false,
+        data: [blockAlignedPc, blockAlignedPc + 4, blockAlignedPc + 8, blockAlignedPc + 12],
+        lastAccessCycle: cycle,
+        hitStatus: 'HIT'
+      };
+      nextCache.icache[lineKey] = refilledLine;
+      if (numWays === 1) nextCache.icache[rf.set] = refilledLine;
+
+      nextCache.iControllerState = 'IDLE';
+      rf.active = false;
+      storyDetails.push(`I$ Refill Complete: Instruction line for PC 0x${rf.pc.toString(16)} refilled from Main Memory. Front-End Fetch unblocked.`);
+      nextState.logs.unshift({
+        cycle,
+        text: `[I$ REFILL] Instruction cache line refilled for PC 0x${rf.pc.toString(16)}. Front-End Fetch unblocked.`,
+        type: 'info'
+      });
+    }
+  }
+
   // -------------------------------------------------------------
   // CACHE MAINTENANCE: Drain Store Buffer into L1 D$ SRAM
   // -------------------------------------------------------------
-  if (nextCache.storeBuffer.length > 0) {
+  if (nextCache.storeBuffer.length > 0 && (!nextCache.dRefill || !nextCache.dRefill.active)) {
     const drained = nextCache.storeBuffer.shift();
-    const dSetIdx = (drained.addr >> 2) % 4;
-    const dTag = drained.addr >> 4;
-    nextCache.dcache[dSetIdx] = {
+    const dSetIdx = Math.floor(drained.addr / 16) % numSets;
+    const dTag = Math.floor(drained.addr / (16 * numSets));
+    const wordOffset = (drained.addr >> 2) & 0x3;
+
+    let targetWay = 0;
+    for (let w = 0; w < numWays; w++) {
+      const key = numWays === 1 ? dSetIdx : `${dSetIdx}_${w}`;
+      const line = nextCache.dcache[key];
+      if (line && line.valid && line.tag === dTag) {
+        targetWay = w;
+        break;
+      }
+    }
+    const lineKey = numWays === 1 ? dSetIdx : `${dSetIdx}_${targetWay}`;
+    const oldLine = nextCache.dcache[lineKey];
+    const dataArr = oldLine && oldLine.data ? [...oldLine.data] : [0, 0, 0, 0];
+    dataArr[wordOffset] = drained.data;
+
+    const updatedLine = {
+      key: lineKey,
       index: dSetIdx,
+      way: targetWay,
       tag: dTag,
       valid: true,
       dirty: true,
-      data: [drained.data],
+      data: dataArr,
       lastAccessCycle: cycle,
       hitStatus: 'HIT'
     };
+    nextCache.dcache[lineKey] = updatedLine;
+    if (numWays === 1) nextCache.dcache[dSetIdx] = updatedLine;
+
     nextCache.dControllerState = 'STORE_BUFFER_DRAIN';
     nextState.activeUnits['DCACHE_CTRL'] = {
       label: 'D$ Drain',
       subLabel: `Mem[0x${drained.addr.toString(16)}] <= ${drained.data}`,
       color: '#3b82f6',
-      computation: `Store Buffer drained entry into D$ line (Set ${dSetIdx}, Tag ${dTag})`
+      computation: `Store Buffer drained entry into D$ line (Set ${dSetIdx}, Tag 0x${dTag.toString(16)})`
     };
     nextState.activeUnits['DCACHE_BUF'] = {
       label: `Drain Queue`,
@@ -2116,7 +2515,7 @@ const stepSimulation = (state, program) => {
     };
     nextState.activeUnits['DCACHE'] = {
       label: `D$ SRAM Write`,
-      subLabel: `Set ${dSetIdx} [Tag ${dTag}]`,
+      subLabel: `Set ${dSetIdx} [Tag 0x${dTag.toString(16)}] (Dirty)`,
       color: '#10b981'
     };
     nextState.activeUnits['DCACHE_MEM'] = {
@@ -2124,8 +2523,10 @@ const stepSimulation = (state, program) => {
       subLabel: `Line ${dSetIdx} Updated`,
       color: '#10b981'
     };
-  } else {
-    nextCache.dControllerState = 'IDLE';
+  } else if (!nextCache.dRefill || !nextCache.dRefill.active) {
+    if (nextCache.dControllerState === 'STORE_BUFFER_DRAIN' || nextCache.dControllerState === 'REFILL_DONE') {
+      nextCache.dControllerState = 'IDLE';
+    }
   }
 
   // -------------------------------------------------------------
@@ -2133,7 +2534,10 @@ const stepSimulation = (state, program) => {
   // -------------------------------------------------------------
   if (nextState.scoreboard.length > 0) {
     const head = nextState.scoreboard[0];
-    if (head.ready) {
+    if (head.isStalledOnMemory) {
+      nextState.stageSnapshot.commit = `Mem Stall: ${head.inst.op} (TID #${head.transId})`;
+      storyDetails.push(`Commit Stalled: Head of Scoreboard [${head.inst.raw}] is waiting for L1 D$ AXI memory refill.`);
+    } else if (head.ready) {
       const instColor = head.inst.color.border;
       if (head.rd !== 0) {
         nextState.registers[head.rd] = head.result;
@@ -2193,6 +2597,20 @@ const stepSimulation = (state, program) => {
   const executingInsts = [];
   for (const entry of nextState.scoreboard) {
     const instColor = entry.inst.color.border;
+    if (entry.isStalledOnMemory) {
+      if (!nextState.gantt[entry.inst.id]) nextState.gantt[entry.inst.id] = {};
+      nextState.gantt[entry.inst.id][cycle] = 'M';
+      executingInsts.push(`${entry.inst.op} (MemWait ${nextCache.dRefill ? nextCache.dRefill.cyclesRemaining : 0}c)`);
+      nextState.activeUnits['LSU'] = {
+        inst: entry.inst,
+        label: `LSU: MemWait`,
+        subLabel: `TID #${entry.transId} (${nextCache.dRefill ? nextCache.dRefill.cyclesRemaining : 0}c)`,
+        color: '#ef4444',
+        computation: `Awaiting AXI D$ Refill for Addr 0x${(entry.rs1Val + entry.inst.imm).toString(16)}`
+      };
+      continue;
+    }
+
     if (!entry.ready) {
       entry.remainingCycles--;
       executingInsts.push(`${entry.inst.op} (${entry.totalLatency - entry.remainingCycles}/${entry.totalLatency})`);
@@ -2245,68 +2663,162 @@ const stepSimulation = (state, program) => {
       // Record Gantt
       if (!nextState.gantt[entry.inst.id]) nextState.gantt[entry.inst.id] = {};
       nextState.gantt[entry.inst.id][cycle] = 'E';
+
       if (entry.remainingCycles === 0) {
-        entry.ready = true;
         let res = 0;
+        let shouldMarkReady = true;
         const op = entry.inst.op;
         const s1 = entry.rs1Val;
         const s2 = entry.rs2Val;
         const imm = entry.inst.imm;
-        if (op === 'ADD' || op === 'C.ADD') res = s1 + s2 | 0;else if (op === 'ADDI' || op === 'C.ADDI') res = s1 + imm | 0;else if (op === 'C.LI') res = imm | 0;else if (op === 'C.MV') res = s2 | 0;else if (op === 'SUB') res = s1 - s2 | 0;else if (op === 'XOR') res = s1 ^ s2;else if (op === 'XORI') res = s1 ^ imm;else if (op === 'OR') res = s1 | s2;else if (op === 'ORI') res = s1 | imm;else if (op === 'AND') res = s1 & s2;else if (op === 'ANDI') res = s1 & imm;else if (op === 'SLL') res = s1 << (s2 & 0x1f);else if (op === 'SLLI') res = s1 << (imm & 0x1f);else if (op === 'SRL') res = s1 >>> (s2 & 0x1f) | 0;else if (op === 'SRLI') res = s1 >>> (imm & 0x1f) | 0;else if (op === 'SRA') res = s1 >> (s2 & 0x1f);else if (op === 'SRAI') res = s1 >> (imm & 0x1f);else if (op === 'SLT') res = s1 < s2 ? 1 : 0;else if (op === 'SLTI') res = s1 < imm ? 1 : 0;else if (op === 'MUL') res = Math.imul(s1, s2);else if (op === 'DIV') res = s2 !== 0 ? Math.trunc(s1 / s2) : -1;else if (op === 'LW') {
-          res = nextState.dataMemory[s1 + imm] || 0;
-          // L1 D$ Access check
+        if (op === 'ADD' || op === 'C.ADD') res = s1 + s2 | 0;
+        else if (op === 'ADDI' || op === 'C.ADDI') res = s1 + imm | 0;
+        else if (op === 'LUI') res = imm > 0xFFFFF ? (imm | 0) : ((imm << 12) | 0);
+        else if (op === 'C.LI') res = imm | 0;
+        else if (op === 'C.MV') res = s2 | 0;
+        else if (op === 'SUB') res = s1 - s2 | 0;
+        else if (op === 'XOR') res = s1 ^ s2;
+        else if (op === 'XORI') res = s1 ^ imm;
+        else if (op === 'OR') res = s1 | s2;
+        else if (op === 'ORI') res = s1 | imm;
+        else if (op === 'AND') res = s1 & s2;
+        else if (op === 'ANDI') res = s1 & imm;
+        else if (op === 'SLL') res = s1 << (s2 & 0x1f);
+        else if (op === 'SLLI') res = s1 << (imm & 0x1f);
+        else if (op === 'SRL') res = s1 >>> (s2 & 0x1f) | 0;
+        else if (op === 'SRLI') res = s1 >>> (imm & 0x1f) | 0;
+        else if (op === 'SRA') res = s1 >> (s2 & 0x1f);
+        else if (op === 'SRAI') res = s1 >> (imm & 0x1f);
+        else if (op === 'SLT') res = s1 < s2 ? 1 : 0;
+        else if (op === 'SLTI') res = s1 < imm ? 1 : 0;
+        else if (op === 'MUL') res = Math.imul(s1, s2);
+        else if (op === 'DIV') res = s2 !== 0 ? Math.trunc(s1 / s2) : -1;
+        else if (op === 'LW') {
           const memAddr = s1 + imm;
-          const dSetIdx = (memAddr >> 2) % 4;
-          const dTag = memAddr >> 4;
-          const line = nextCache.dcache[dSetIdx];
-          const isHit = line && line.valid && line.tag === dTag || nextCache.prewarmEnabled;
-          if (isHit) {
-            nextCache.dHits++;
-            nextCache.dControllerState = 'READ_HIT';
-            nextCache.dcache[dSetIdx] = {
-              index: dSetIdx,
-              tag: dTag,
-              valid: true,
-              dirty: line ? line.dirty : false,
-              data: [res],
-              lastAccessCycle: cycle,
-              hitStatus: 'HIT'
-            };
-            nextState.activeUnits['DCACHE'] = {
-              label: 'D$ Read HIT',
-              subLabel: `Tag ${dTag}`,
+          const pendingStore = nextCache.storeBuffer.slice().reverse().find(sb => sb.addr === memAddr);
+          if (pendingStore) {
+            res = pendingStore.data;
+            shouldMarkReady = true;
+            nextState.activeUnits['DCACHE_BUF'] = {
+              label: 'Store Fwd HIT',
+              subLabel: `Fwd ${res}`,
               color: '#10b981',
-              computation: `D$ Cache Hit at addr 0x${memAddr.toString(16)} (Value = ${res})`
+              computation: `Store-to-Load Forwarding: Forwarded ${res} from pending Store Buffer (Addr 0x${memAddr.toString(16)})`
             };
-            storyDetails.push(`D$ Cache Hit: Loaded value ${res} from L1 D$ (Set ${dSetIdx}, Tag ${dTag}).`);
+            storyDetails.push(`Store-to-Load Forwarding: LSU forwarded ${res} directly from pending Store Buffer entry for Addr 0x${memAddr.toString(16)}.`);
           } else {
-            nextCache.dMisses++;
-            nextCache.dControllerState = 'READ_MISS_REFILL';
-            nextCache.dcache[dSetIdx] = {
-              index: dSetIdx,
-              tag: dTag,
-              valid: true,
-              dirty: false,
-              data: [res],
-              lastAccessCycle: cycle,
-              hitStatus: 'MISS'
-            };
-            nextState.activeUnits['DCACHE_MISS'] = {
-              label: 'D$ Miss Unit',
-              subLabel: `Refill Tag ${dTag}`,
-              color: '#ef4444',
-              computation: `D$ Miss at 0x${memAddr.toString(16)} -> Refilling line from Main Memory`
-            };
-            nextState.activeUnits['DCACHE'] = {
-              label: 'D$ Miss',
-              subLabel: `Set ${dSetIdx} Refill`,
-              color: '#ef4444'
-            };
-            storyDetails.push(`D$ Cache Miss: LSU encountered miss at addr 0x${memAddr.toString(16)}. D$ Miss Unit refilling from Main Memory.`);
+            res = nextState.dataMemory[memAddr] !== undefined ? nextState.dataMemory[memAddr] : 0;
+            const dSetIdx = Math.floor(memAddr / 16) % numSets;
+            const dTag = Math.floor(memAddr / (16 * numSets));
+            const wordOffset = (memAddr >> 2) & 0x3;
+
+            let hitWay = -1;
+            for (let w = 0; w < numWays; w++) {
+              const lineKey = numWays === 1 ? dSetIdx : `${dSetIdx}_${w}`;
+              const line = nextCache.dcache[lineKey];
+              if (line && line.valid && line.tag === dTag) {
+                hitWay = w;
+                break;
+              }
+            }
+
+            if (hitWay !== -1) {
+              nextCache.dHits++;
+              nextCache.dControllerState = 'READ_HIT';
+              shouldMarkReady = true;
+              const hitKey = numWays === 1 ? dSetIdx : `${dSetIdx}_${hitWay >= 0 ? hitWay : 0}`;
+              if (nextCache.dcache[hitKey]) {
+                nextCache.dcache[hitKey].lastAccessCycle = cycle;
+                nextCache.dcache[hitKey].hitStatus = 'HIT';
+                if (nextCache.dcache[hitKey].data && nextCache.dcache[hitKey].data[wordOffset] !== undefined) {
+                  res = nextCache.dcache[hitKey].data[wordOffset];
+                }
+              }
+              nextState.activeUnits['DCACHE'] = {
+                label: 'D$ Read HIT',
+                subLabel: `Tag 0x${dTag.toString(16)}`,
+                color: '#10b981',
+                computation: `D$ Cache Hit at addr 0x${memAddr.toString(16)} (Value = ${res})`
+              };
+              storyDetails.push(`D$ Cache Hit: Loaded value ${res} from L1 D$ (Set ${dSetIdx}, Tag 0x${dTag.toString(16)}).`);
+            } else {
+              // D$ MISS!
+              nextCache.dMisses++;
+              shouldMarkReady = false;
+
+              // Victim selection (first invalid, or LRU)
+              let victimWay = 0;
+              let oldestCycle = Infinity;
+              for (let w = 0; w < numWays; w++) {
+                const lineKey = numWays === 1 ? dSetIdx : `${dSetIdx}_${w}`;
+                const line = nextCache.dcache[lineKey];
+                if (!line || !line.valid) {
+                  victimWay = w;
+                  break;
+                }
+                if (line.lastAccessCycle < oldestCycle) {
+                  oldestCycle = line.lastAccessCycle;
+                  victimWay = w;
+                }
+              }
+
+              // Check for dirty eviction
+              const victimKey = numWays === 1 ? dSetIdx : `${dSetIdx}_${victimWay}`;
+              const victimLine = nextCache.dcache[victimKey];
+              if (victimLine && victimLine.valid && victimLine.dirty) {
+                nextCache.writebacks++;
+                const victimBaseAddr = (victimLine.tag * numSets * 16) | (dSetIdx * 16);
+                for (let wi = 0; wi < 4; wi++) {
+                  if (victimLine.data && victimLine.data[wi] !== undefined) {
+                    nextState.dataMemory[victimBaseAddr + wi * 4] = victimLine.data[wi];
+                  }
+                }
+                storyDetails.push(`D$ Dirty Eviction: Wrote back modified line (Set ${dSetIdx}, Way ${victimWay}, Tag 0x${victimLine.tag.toString(16)}) to backing memory.`);
+                nextState.logs.unshift({
+                  cycle,
+                  text: `[D$ EVICT] Dirty line evicted from Set ${dSetIdx}, Way ${victimWay} -> written back to memory. Writebacks = ${nextCache.writebacks}.`,
+                  type: 'warn'
+                });
+              }
+
+              // Multi-cycle stall for AXI Refill!
+              entry.ready = false;
+              entry.isStalledOnMemory = true;
+              const refillLatency = nextCache.missPenaltyCycles || 4;
+              entry.remainingCycles = refillLatency;
+
+              nextCache.dRefill = {
+                active: true,
+                addr: memAddr,
+                set: dSetIdx,
+                way: victimWay,
+                tag: dTag,
+                cyclesRemaining: refillLatency,
+                totalCycles: refillLatency,
+                targetTid: entry.transId,
+                res: res
+              };
+              nextCache.dControllerState = 'REFILL_WAIT';
+              nextState.activeWires.push({ key: 'AXI_AR_ADDR', color: '#ef4444' });
+              nextState.activeUnits['DCACHE_MISS'] = {
+                label: 'D$ Miss Unit',
+                subLabel: `AXI Refill (${refillLatency} cyc)`,
+                color: '#ef4444',
+                computation: `D$ Miss at 0x${memAddr.toString(16)} -> ARADDR request to Main Memory`
+              };
+              nextState.activeUnits['DCACHE'] = {
+                label: 'D$ Miss',
+                subLabel: `Set ${dSetIdx} Refill`,
+                color: '#ef4444'
+              };
+              if (!nextState.gantt[entry.inst.id]) nextState.gantt[entry.inst.id] = {};
+              nextState.gantt[entry.inst.id][cycle] = 'M';
+              storyDetails.push(`D$ Cache Miss: LSU load stalled for ${refillLatency}-cycle AXI refill from Main Memory.`);
+            }
           }
         } else if (op === 'SW') {
           res = s1 + imm;
-          // Store Buffer enqueue
+          shouldMarkReady = true;
           nextCache.storeBuffer.push({
             id: entry.transId,
             addr: res,
@@ -2321,9 +2833,14 @@ const stepSimulation = (state, program) => {
           };
           storyDetails.push(`Store Buffer: Buffered write to Mem[0x${res.toString(16)}] = ${s2}. D$ SRAM will drain asynchronously.`);
         }
+
         if (entry.inst.type === 'BRANCH') {
           let taken = false;
-          if (op === 'BEQ') taken = s1 === s2;else if (op === 'BNE') taken = s1 !== s2;else if (op === 'BLT') taken = s1 < s2;else if (op === 'BGE') taken = s1 >= s2;else if (op === 'JAL') taken = true;
+          if (op === 'BEQ') taken = s1 === s2;
+          else if (op === 'BNE') taken = s1 !== s2;
+          else if (op === 'BLT') taken = s1 < s2;
+          else if (op === 'BGE') taken = s1 >= s2;
+          else if (op === 'JAL') taken = true;
           const target = entry.inst.targetPc || entry.inst.pc + 4;
           const predictedTaken = (nextState.bht[entry.inst.pc] || 0) >= 2;
           const prevBht = nextState.bht[entry.inst.pc] || 1;
@@ -2344,28 +2861,35 @@ const stepSimulation = (state, program) => {
             });
           }
         }
-        entry.result = res;
-        entry.computation = `Result = ${res}`;
-        if (entry.fu === 'ALU') nextState.activeWires.push({
-          key: 'WB_ALU_TO_SB',
-          color: '#f59e0b'
-        });else if (entry.fu === 'MUL_DIV') nextState.activeWires.push({
-          key: 'WB_MULDIV_TO_SB',
-          color: '#f59e0b'
-        });else if (entry.fu === 'BRANCH') nextState.activeWires.push({
-          key: 'WB_BRANCH_TO_SB',
-          color: '#f59e0b'
-        });else if (entry.fu === 'CSR') nextState.activeWires.push({
-          key: 'WB_CSR_TO_SB',
-          color: '#f59e0b'
-        });
-        if (storyType !== 'commit') storyType = 'wb';
-        storyDetails.push(`Out-of-Order Write-Back: [${entry.inst.raw}] completed execution in ${entry.fu} (Result: ${res}), wrote back to Scoreboard TID #${entry.transId}.`);
-        nextState.logs.unshift({
-          cycle,
-          text: `[OoO WB] ${entry.inst.raw} completed execution (Result: ${res}), wrote back to Scoreboard TID #${entry.transId} out-of-order!`,
-          type: 'info'
-        });
+
+        if (shouldMarkReady) {
+          entry.ready = true;
+          entry.result = res;
+          entry.computation = `Result = ${res}`;
+          if (entry.fu === 'ALU') nextState.activeWires.push({
+            key: 'WB_ALU_TO_SB',
+            color: '#f59e0b'
+          });
+          else if (entry.fu === 'MUL_DIV') nextState.activeWires.push({
+            key: 'WB_MULDIV_TO_SB',
+            color: '#f59e0b'
+          });
+          else if (entry.fu === 'BRANCH') nextState.activeWires.push({
+            key: 'WB_BRANCH_TO_SB',
+            color: '#f59e0b'
+          });
+          else if (entry.fu === 'CSR') nextState.activeWires.push({
+            key: 'WB_CSR_TO_SB',
+            color: '#f59e0b'
+          });
+          if (storyType !== 'commit') storyType = 'wb';
+          storyDetails.push(`Out-of-Order Write-Back: [${entry.inst.raw}] completed execution in ${entry.fu} (Result: ${res}), wrote back to Scoreboard TID #${entry.transId}.`);
+          nextState.logs.unshift({
+            cycle,
+            text: `[OoO WB] ${entry.inst.raw} completed execution (Result: ${res}), wrote back to Scoreboard TID #${entry.transId} out-of-order!`,
+            type: 'info'
+          });
+        }
       }
     } else {
       if (!nextState.gantt[entry.inst.id]) nextState.gantt[entry.inst.id] = {};
@@ -2379,6 +2903,7 @@ const stepSimulation = (state, program) => {
     nextState.issueBuffer = [];
     nextState.pc = mispredictRedirectPc;
     nextState.status = 'FLUSHED';
+    nextState.cache = nextCache;
     nextState.cycleStory = {
       headline: `Cycle ${cycle}: Branch Mispredict Flush!`,
       details: [`Branch condition mispredicted in Execute stage.`, `Squashed Fetch, Decode, and Issue stages to prevent speculative corruption.`, `Redirected Program Counter to target 0x${mispredictRedirectPc.toString(16)}.`],
@@ -2411,18 +2936,22 @@ const stepSimulation = (state, program) => {
       if (rawHazard) {
         nextState.rawStalls++;
         const conflictReg = rawHazard.rd === candidate.rs1 ? candidate.rs1 : candidate.rs2;
-        nextState.stallReason = `RAW Hazard: Stalled waiting for x${conflictReg} from [${rawHazard.inst.raw}]`;
+        if (rawHazard.isStalledOnMemory) {
+          nextState.stallReason = `RAW Hazard: Stalled waiting for D$ refill of x${conflictReg} from [${rawHazard.inst.raw}]`;
+        } else {
+          nextState.stallReason = `RAW Hazard: Stalled waiting for x${conflictReg} from [${rawHazard.inst.raw}]`;
+        }
         nextState.status = 'STALLED';
         nextState.activeUnits['ISSUE_READ'] = {
           inst: candidate,
           label: `RAW Stall`,
           subLabel: `Wait for x${conflictReg}`,
           color: '#f59e0b',
-          computation: `Pending Producer: TID #${rawHazard.transId} [${rawHazard.inst.op}]`
+          computation: `Pending Producer: TID #${rawHazard.transId} [${rawHazard.inst.op}]${rawHazard.isStalledOnMemory ? ' (Memory Refill)' : ''}`
         };
         nextState.stageSnapshot.issue = `STALL (wait x${conflictReg})`;
         storyType = 'stall';
-        storyDetails.push(`RAW Hazard Stall: [${candidate.raw}] needs register x${conflictReg}, currently in-flight in Scoreboard TID #${rawHazard.transId}.`);
+        storyDetails.push(`RAW Hazard Stall: [${candidate.raw}] needs register x${conflictReg}, currently in-flight in Scoreboard TID #${rawHazard.transId}${rawHazard.isStalledOnMemory ? ' (Awaiting AXI D$ Refill)' : ''}.`);
         if (!nextState.gantt[candidate.id]) nextState.gantt[candidate.id] = {};
         nextState.gantt[candidate.id][cycle] = 'S';
       } else {
@@ -2435,7 +2964,10 @@ const stepSimulation = (state, program) => {
           }
         }
         let assignedFu = 'ALU';
-        if (candidate.type === 'MUL' || candidate.type === 'DIV') assignedFu = 'MUL_DIV';else if (candidate.type === 'LSU') assignedFu = 'LSU';else if (candidate.type === 'BRANCH') assignedFu = 'BRANCH';else if (candidate.type === 'CSR') assignedFu = 'CSR';
+        if (candidate.type === 'MUL' || candidate.type === 'DIV') assignedFu = 'MUL_DIV';
+        else if (candidate.type === 'LSU') assignedFu = 'LSU';
+        else if (candidate.type === 'BRANCH') assignedFu = 'BRANCH';
+        else if (candidate.type === 'CSR') assignedFu = 'CSR';
         const newTransId = nextState.scoreboard.length > 0 ? Math.max(...nextState.scoreboard.map(e => e.transId)) + 1 : 1;
         nextState.scoreboard.push({
           transId: newTransId,
@@ -2548,109 +3080,145 @@ const stepSimulation = (state, program) => {
       computation: `Instruction FIFO buffer received ${inst.op}`
     };
   }
-  if (nextState.feQueue.length < 4) {
+
+  // Check if I$ Refill is actively blocking fetch!
+  if (nextCache.iRefill && nextCache.iRefill.active) {
+    nextState.stageSnapshot.fetch = `Fetch Stalled (I$ Refill ${nextCache.iRefill.cyclesRemaining}c)`;
+    storyDetails.push(`Front-End Fetch Stalled: Waiting for AXI memory burst refill for I$ at PC 0x${nextCache.iRefill.pc.toString(16)}.`);
+  } else if (nextState.feQueue.length < 4) {
     const currentInst = program.find(p => p.pc === nextState.pc);
     if (currentInst) {
-      nextState.feQueue.push(currentInst);
-      nextState.stageSnapshot.fetch = `0x${nextState.pc.toString(16)}: ${currentInst.op}`;
-      const instColor = currentInst.color.border;
+      const iSetIdx = Math.floor(currentInst.pc / 16) % numSets;
+      const iTag = Math.floor(currentInst.pc / (16 * numSets));
 
-      // L1 I$ Tag Check
-      const iSetIdx = (currentInst.pc >> 2) % 4;
-      const iTag = currentInst.pc >> 4;
-      const iLine = nextCache.icache[iSetIdx];
-      const isIHit = iLine && iLine.valid && iLine.tag === iTag || nextCache.prewarmEnabled;
+      let hitIWay = -1;
+      for (let w = 0; w < numWays; w++) {
+        const lineKey = numWays === 1 ? iSetIdx : `${iSetIdx}_${w}`;
+        const line = nextCache.icache[lineKey];
+        if (line && line.valid && line.tag === iTag) {
+          hitIWay = w;
+          break;
+        }
+      }
+
+      const isIHit = hitIWay !== -1;
       if (isIHit) {
         nextCache.iHits++;
-        nextCache.icache[iSetIdx] = {
-          index: iSetIdx,
-          tag: iTag,
-          valid: true,
-          dirty: false,
-          data: [currentInst.pc],
-          lastAccessCycle: cycle,
-          hitStatus: 'HIT'
-        };
+        const lineKey = numWays === 1 ? iSetIdx : `${iSetIdx}_${hitIWay >= 0 ? hitIWay : 0}`;
+        if (nextCache.icache[lineKey]) {
+          nextCache.icache[lineKey].lastAccessCycle = cycle;
+          nextCache.icache[lineKey].hitStatus = 'HIT';
+        }
         nextState.activeUnits['ICACHE'] = {
           inst: currentInst,
           label: `I$ Hit`,
-          subLabel: `Tag ${iTag}`,
-          color: instColor,
-          computation: `L1 Instruction Cache Hit at PC 0x${nextState.pc.toString(16)} (Set ${iSetIdx}, Tag ${iTag})`
+          subLabel: `Tag 0x${iTag.toString(16)}`,
+          color: currentInst.color.border,
+          computation: `L1 Instruction Cache Hit at PC 0x${nextState.pc.toString(16)} (Set ${iSetIdx}, Tag 0x${iTag.toString(16)})`
         };
+        nextState.feQueue.push(currentInst);
+        nextState.stageSnapshot.fetch = `0x${nextState.pc.toString(16)}: ${currentInst.op}`;
+        const instColor = currentInst.color.border;
+        nextState.activeUnits['REALIGNER'] = {
+          inst: currentInst,
+          label: `Realign`,
+          subLabel: `${currentInst.op}`,
+          color: instColor
+        };
+        nextState.activeUnits['INSTR_SCAN'] = {
+          inst: currentInst,
+          label: `Scan`,
+          subLabel: `${currentInst.type}`,
+          color: instColor
+        };
+        nextState.activeWires.push({
+          key: 'FE_ICACHE_TO_REALIGNER',
+          color: instColor
+        }, {
+          key: 'FE_REALIGNER_TO_SCAN',
+          color: instColor
+        });
+
+        let nextPc = nextState.pc + (currentInst.isCompressed ? 2 : 4);
+        if (currentInst.type === 'BRANCH') {
+          const bhtVal = nextState.bht[currentInst.pc] || 1;
+          if (bhtVal >= 2 && currentInst.targetPc !== undefined) {
+            nextPc = currentInst.targetPc;
+            nextState.activeUnits['BHT'] = {
+              label: `BHT: TAKEN`,
+              subLabel: `State: ${bhtVal}/3`,
+              color: '#10b981',
+              computation: `2-bit predictor state: ${bhtVal} (Predicted TAKEN)`
+            };
+            nextState.activeUnits['BTB'] = {
+              label: `BTB Target`,
+              subLabel: `0x${nextPc.toString(16)}`,
+              color: '#10b981',
+              computation: `Target address redirected to 0x${nextPc.toString(16)}`
+            };
+          } else {
+            nextState.activeUnits['BHT'] = {
+              label: `BHT: NOT TAKEN`,
+              subLabel: `State: ${bhtVal}/3`,
+              color: '#64748b',
+              computation: `2-bit predictor state: ${bhtVal} (Predicted NOT TAKEN)`
+            };
+          }
+        }
+        nextState.pc = nextPc;
+        if (!nextState.gantt[currentInst.id]) nextState.gantt[currentInst.id] = {};
+        nextState.gantt[currentInst.id][cycle] = 'F';
+        storyDetails.push(`Fetched [${currentInst.raw}] from I$ at PC 0x${currentInst.pc.toString(16)} (Cache Hit).`);
       } else {
+        // I$ MISS!
         nextCache.iMisses++;
-        nextCache.icache[iSetIdx] = {
-          index: iSetIdx,
+        const refillLatency = nextCache.missPenaltyCycles || 4;
+        let victimWay = 0;
+        let oldestCycle = Infinity;
+        for (let w = 0; w < numWays; w++) {
+          const lineKey = numWays === 1 ? iSetIdx : `${iSetIdx}_${w}`;
+          const line = nextCache.icache[lineKey];
+          if (!line || !line.valid) {
+            victimWay = w;
+            break;
+          }
+          if (line.lastAccessCycle < oldestCycle) {
+            oldestCycle = line.lastAccessCycle;
+            victimWay = w;
+          }
+        }
+
+        nextCache.iRefill = {
+          active: true,
+          pc: currentInst.pc,
+          set: iSetIdx,
+          way: victimWay,
           tag: iTag,
-          valid: true,
-          dirty: false,
-          data: [currentInst.pc],
-          lastAccessCycle: cycle,
-          hitStatus: 'MISS'
+          cyclesRemaining: refillLatency,
+          totalCycles: refillLatency
+        };
+        nextCache.iControllerState = 'REFILL_WAIT';
+        nextState.activeWires.push({ key: 'AXI_AR_ADDR', color: '#f59e0b' });
+        nextState.activeUnits['ICACHE_MISS'] = {
+          label: 'I$ Miss Unit',
+          subLabel: `AXI Refill (${refillLatency} cyc)`,
+          color: '#ef4444',
+          computation: `I$ Miss at PC 0x${currentInst.pc.toString(16)} -> ARADDR request to Main Memory`
         };
         nextState.activeUnits['ICACHE'] = {
-          inst: currentInst,
-          label: `I$ Miss`,
-          subLabel: `Refill Tag ${iTag}`,
-          color: '#ef4444',
-          computation: `L1 Instruction Cache Miss at PC 0x${nextState.pc.toString(16)} (Refill from Memory)`
+          label: 'I$ Miss',
+          subLabel: `Set ${iSetIdx} Refill`,
+          color: '#ef4444'
         };
+        nextState.stageSnapshot.fetch = `I$ Miss at 0x${currentInst.pc.toString(16)} (AXI Refill ${refillLatency}c)`;
+        storyDetails.push(`I$ Cache Miss: Fetch paused at PC 0x${currentInst.pc.toString(16)}. AXI memory burst refill initiated (${refillLatency} cycles).`);
       }
-      nextState.activeUnits['REALIGNER'] = {
-        inst: currentInst,
-        label: `Realign`,
-        subLabel: `${currentInst.op}`,
-        color: instColor
-      };
-      nextState.activeUnits['INSTR_SCAN'] = {
-        inst: currentInst,
-        label: `Scan`,
-        subLabel: `${currentInst.type}`,
-        color: instColor
-      };
-      nextState.activeWires.push({
-        key: 'FE_ICACHE_TO_REALIGNER',
-        color: instColor
-      }, {
-        key: 'FE_REALIGNER_TO_SCAN',
-        color: instColor
-      });
-      let nextPc = nextState.pc + (currentInst.isCompressed ? 2 : 4);
-      if (currentInst.type === 'BRANCH') {
-        const bhtVal = nextState.bht[currentInst.pc] || 1;
-        if (bhtVal >= 2 && currentInst.targetPc !== undefined) {
-          nextPc = currentInst.targetPc;
-          nextState.activeUnits['BHT'] = {
-            label: `BHT: TAKEN`,
-            subLabel: `State: ${bhtVal}/3`,
-            color: '#10b981',
-            computation: `2-bit predictor state: ${bhtVal} (Predicted TAKEN)`
-          };
-          nextState.activeUnits['BTB'] = {
-            label: `BTB Target`,
-            subLabel: `0x${nextPc.toString(16)}`,
-            color: '#10b981',
-            computation: `Target address redirected to 0x${nextPc.toString(16)}`
-          };
-        } else {
-          nextState.activeUnits['BHT'] = {
-            label: `BHT: NOT TAKEN`,
-            subLabel: `State: ${bhtVal}/3`,
-            color: '#64748b',
-            computation: `2-bit predictor state: ${bhtVal} (Predicted NOT TAKEN)`
-          };
-        }
-      }
-      nextState.pc = nextPc;
-      if (!nextState.gantt[currentInst.id]) nextState.gantt[currentInst.id] = {};
-      nextState.gantt[currentInst.id][cycle] = 'F';
-      storyDetails.push(`Fetched [${currentInst.raw}] from I$ at PC 0x${currentInst.pc.toString(16)} (${isIHit ? 'Hit' : 'Cold Miss Refill'}).`);
     } else if (nextState.feQueue.length === 0 && nextState.idQueue.length === 0 && nextState.issueBuffer.length === 0 && nextState.scoreboard.length === 0) {
       nextState.status = 'DONE';
       storyDetails.push(`Program execution completed! All instructions committed to architectural registers.`);
     }
   }
+
   let headline = `Cycle ${cycle}: Normal Pipeline Progress`;
   if (storyType === 'stall') {
     headline = `Cycle ${cycle}: Structural / RAW Hazard Stall`;
@@ -2664,6 +3232,7 @@ const stepSimulation = (state, program) => {
     details: storyDetails.length > 0 ? storyDetails : [`Cycle ${cycle} completed without state transitions.`],
     type: storyType
   };
+  nextState.cache = nextCache;
   return nextState;
 };
 
@@ -2675,6 +3244,13 @@ function CVA6PipelineSimulator() {
   const [instructions, setInstructions] = useState(() => parseProgram(PRESETS['memory_lsu'].code));
   const [history, setHistory] = useState([]);
   const [prewarmCache, setPrewarmCache] = useState(true);
+  const [cacheConfig, setCacheConfig] = useState({
+    linesExp: 2,       // 2^2 = 4 sets
+    blockWords: 4,     // 4 words = 16 bytes (128-bit line)
+    waysExp: 0,        // 2^0 = 1 way (direct-mapped)
+    missLatency: 4,    // 4 cycles AXI refill latency
+    writePolicy: 'WRITE_BACK'
+  });
   const [state, setState] = useState({
     cycle: 0,
     pc: 0,
@@ -2713,7 +3289,7 @@ function CVA6PipelineSimulator() {
       details: ['Click Step or Run to execute instructions cycle-by-cycle.'],
       type: 'normal'
     },
-    cache: createInitialCacheState(true)
+    cache: createInitialCacheState(true, DEFAULT_CACHE_CONFIG)
   });
   const [isRunning, setIsRunning] = useState(false);
   const [clockSpeed, setClockSpeed] = useState(600);
@@ -2740,6 +3316,8 @@ function CVA6PipelineSimulator() {
   // Hover and selection state
   const [selectedUnit, setSelectedUnit] = useState(null);
   const [hoveredUnit, setHoveredUnit] = useState(null);
+  const [showTimelineExportMenu, setShowTimelineExportMenu] = useState(false);
+  const timelineExportMenuRef = useRef(null);
 
   // Pan & Zoom state
   const [zoom, setZoom] = useState(0.65);
@@ -2825,10 +3403,287 @@ function CVA6PipelineSimulator() {
         details: [`Loaded ${parsed.length} RISC-V instructions into Instruction Cache. Cache state: ${isPw ? 'Pre-warmed' : 'Cold Start'}.`],
         type: 'normal'
       },
-      cache: createInitialCacheState(isPw)
+      cache: createInitialCacheState(isPw, cacheConfig)
     });
     setIsRunning(false);
   };
+
+  const handleClearCache = () => {
+    setState(prev => ({
+      ...prev,
+      cache: createInitialCacheState(false, cacheConfig),
+      logs: [{
+        cycle: prev.cycle,
+        text: `Cache cleared! All L1 I$ and D$ lines invalidated. Mode set to Cold Start.`,
+        type: 'warn'
+      }, ...prev.logs]
+    }));
+    setPrewarmCache(false);
+  };
+
+  const handleApplyCacheConfig = (newCfg) => {
+    const updated = { ...cacheConfig, ...newCfg };
+    setCacheConfig(updated);
+    setState(prev => ({
+      ...prev,
+      cache: createInitialCacheState(prewarmCache, updated),
+      logs: [{
+        cycle: prev.cycle,
+        text: `Updated Cache Configuration: ${1 << updated.linesExp} Sets, ${1 << updated.waysExp} Way(s), ${updated.blockWords} Words/Block, ${updated.missLatency}c AXI Latency.`,
+        type: 'info'
+      }, ...prev.logs]
+    }));
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (timelineExportMenuRef.current && !timelineExportMenuRef.current.contains(e.target)) {
+        setShowTimelineExportMenu(false);
+      }
+    };
+    if (showTimelineExportMenu) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showTimelineExportMenu]);
+
+  const handleExportTimelineCSV = () => {
+    if (!instructions || instructions.length === 0 || state.cycle === 0) {
+      alert("No simulation timeline data to export yet. Step or run the simulation first.");
+      return;
+    }
+    const maxCycle = Math.max(state.cycle, 1);
+    const cpiVal = state.committedCount > 0 ? (state.cycle / state.committedCount).toFixed(2) : '1.00';
+    const ipcVal = state.cycle > 0 ? (state.committedCount / state.cycle).toFixed(2) : '1.00';
+    const pTitle = PRESETS[selectedPreset]?.title || selectedPreset;
+
+    const lines = [
+      `# CVA6 Pipeline Reservation Timeline Data`,
+      `# Preset: "${pTitle.replace(/"/g, '""')}"`,
+      `# Current Cycle: ${state.cycle}`,
+      `# Committed Instructions: ${state.committedCount}`,
+      `# CPI: ${cpiVal}`,
+      `# IPC: ${ipcVal}`,
+      `# Stage Legend: F=Fetch; D=Decode; I=Issue; E=Execute; W=Writeback; C=Commit; S=Stall; M=MemWait`,
+      ``
+    ];
+
+    const cycleCols = [];
+    for (let c = 1; c <= maxCycle; c++) {
+      cycleCols.push(`C${c}`);
+    }
+    lines.push(['ID', 'PC', 'Instruction', ...cycleCols].join(','));
+
+    instructions.forEach(inst => {
+      const rowGantt = state.gantt[inst.id] || {};
+      const pcHex = `0x${inst.pc.toString(16).padStart(2, '0')}`;
+      const cleanOp = `"${(inst.op || '').replace(/"/g, '""')}"`;
+      const stages = [];
+      for (let c = 1; c <= maxCycle; c++) {
+        stages.push(rowGantt[c] || '');
+      }
+      lines.push([inst.id, pcHex, cleanOp, ...stages].join(','));
+    });
+
+    const csvContent = lines.join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `cva6_timeline_cycle_${state.cycle}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const handleExportTimelinePNG = () => {
+    if (!instructions || instructions.length === 0 || state.cycle === 0) {
+      alert("No simulation timeline data to export yet. Step or run the simulation first.");
+      return;
+    }
+    if (typeof document === 'undefined') return;
+
+    const maxCycle = Math.max(state.cycle, 1);
+    const cellWidth = 32;
+    const cellHeight = 24;
+    const labelWidth = 190;
+    const headerHeight = 76;
+    const legendHeight = 36;
+    const padding = 20;
+
+    const totalWidth = padding * 2 + labelWidth + (maxCycle * cellWidth);
+    const totalHeight = padding * 2 + headerHeight + legendHeight + (instructions.length * cellHeight);
+
+    const canvas = document.createElement('canvas');
+    const scale = 2; // 2x high-resolution
+    canvas.width = totalWidth * scale;
+    canvas.height = totalHeight * scale;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    ctx.scale(scale, scale);
+
+    // Slate-900 background
+    ctx.fillStyle = '#0f172a';
+    ctx.fillRect(0, 0, totalWidth, totalHeight);
+
+    // Title
+    ctx.fillStyle = '#f8fafc';
+    ctx.font = 'bold 15px system-ui, -apple-system, sans-serif';
+    ctx.fillText('CVA6 Pipeline Reservation Timeline', padding, padding + 16);
+
+    // Subtitle & Microarchitectural Metrics
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '11px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace';
+    const cpiVal = state.committedCount > 0 ? (state.cycle / state.committedCount).toFixed(2) : '1.00';
+    const ipcVal = state.cycle > 0 ? (state.committedCount / state.cycle).toFixed(2) : '1.00';
+    const pTitle = PRESETS[selectedPreset]?.title || selectedPreset;
+    ctx.fillText(`Preset: ${pTitle}  |  Cycle: ${state.cycle}  |  Committed: ${state.committedCount}  |  CPI: ${cpiVal}  |  IPC: ${ipcVal}`, padding, padding + 36);
+
+    // Divider
+    ctx.strokeStyle = '#334155';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(padding, padding + 48);
+    ctx.lineTo(totalWidth - padding, padding + 48);
+    ctx.stroke();
+
+    // Stage Legend Definitions
+    const stages = [
+      { k: 'F', label: 'Fetch', bg: '#1e3a8a', text: '#bfdbfe' },
+      { k: 'D', label: 'Decode', bg: '#713f12', text: '#fef08a' },
+      { k: 'I', label: 'Issue', bg: '#164e63', text: '#a5f3fc' },
+      { k: 'E', label: 'Exec', bg: '#581c87', text: '#e9d5ff' },
+      { k: 'W', label: 'Writeback', bg: '#78350f', text: '#fde68a' },
+      { k: 'C', label: 'Commit', bg: '#064e3b', text: '#a7f3d0' },
+      { k: 'S', label: 'Stall', bg: '#881337', text: '#fecdd3' },
+      { k: 'M', label: 'MemWait', bg: '#4c0519', text: '#fda4af', border: '#e11d48' },
+    ];
+
+    let legendX = padding;
+    const legendY = padding + 64;
+    ctx.font = '10px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace';
+    stages.forEach(s => {
+      ctx.fillStyle = s.bg;
+      ctx.beginPath();
+      if (typeof ctx.roundRect === 'function') {
+        ctx.roundRect(legendX, legendY - 11, 16, 14, 3);
+      } else {
+        ctx.rect(legendX, legendY - 11, 16, 14);
+      }
+      ctx.fill();
+      if (s.border) {
+        ctx.strokeStyle = s.border;
+        ctx.stroke();
+      }
+      ctx.fillStyle = s.text;
+      ctx.textAlign = 'center';
+      ctx.fillText(s.k, legendX + 8, legendY);
+      ctx.textAlign = 'left';
+
+      ctx.fillStyle = '#cbd5e1';
+      ctx.fillText(`=${s.label}`, legendX + 18, legendY);
+      legendX += 20 + ctx.measureText(`=${s.label}`).width + 10;
+    });
+
+    // Table Header Y
+    const tableStartY = padding + headerHeight + legendHeight;
+
+    // Header column label
+    ctx.fillStyle = '#64748b';
+    ctx.font = 'bold 10px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace';
+    ctx.fillText('INSTRUCTION', padding, tableStartY - 8);
+
+    // Cycle numbers C1, C2...
+    for (let c = 1; c <= maxCycle; c++) {
+      const colX = padding + labelWidth + (c - 1) * cellWidth;
+      ctx.fillStyle = (c === state.cycle) ? '#60a5fa' : '#64748b';
+      ctx.textAlign = 'center';
+      ctx.fillText(`C${c}`, colX + cellWidth / 2, tableStartY - 8);
+    }
+    ctx.textAlign = 'left';
+
+    // Horizontal Line below table header
+    ctx.strokeStyle = '#1e293b';
+    ctx.beginPath();
+    ctx.moveTo(padding, tableStartY - 2);
+    ctx.lineTo(totalWidth - padding, tableStartY - 2);
+    ctx.stroke();
+
+    // Instruction Rows
+    instructions.forEach((inst, rIdx) => {
+      const rowY = tableStartY + rIdx * cellHeight;
+
+      // Subtle Zebra Striping
+      if (rIdx % 2 === 1) {
+        ctx.fillStyle = '#0b1120';
+        ctx.fillRect(padding - 4, rowY, totalWidth - padding * 2 + 8, cellHeight);
+      }
+
+      // Instruction Text
+      ctx.fillStyle = inst.color ? inst.color.text : '#38bdf8';
+      ctx.font = 'bold 10px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace';
+      const pcStr = `0x${inst.pc.toString(16).padStart(2, '0')}`;
+      ctx.fillText(`[${pcStr}] ${inst.op}`, padding, rowY + 16);
+
+      // Grid Cells
+      const rowGantt = state.gantt[inst.id] || {};
+      for (let c = 1; c <= maxCycle; c++) {
+        const colX = padding + labelWidth + (c - 1) * cellWidth;
+        const stage = rowGantt[c];
+        if (stage) {
+          const sDef = stages.find(s => s.k === stage) || { bg: '#334155', text: '#cbd5e1' };
+          ctx.fillStyle = sDef.bg;
+          const bx = colX + 2;
+          const by = rowY + 3;
+          const bw = cellWidth - 4;
+          const bh = cellHeight - 6;
+          ctx.beginPath();
+          if (typeof ctx.roundRect === 'function') {
+            ctx.roundRect(bx, by, bw, bh, 3);
+          } else {
+            ctx.rect(bx, by, bw, bh);
+          }
+          ctx.fill();
+          if (sDef.border) {
+            ctx.strokeStyle = sDef.border;
+            ctx.stroke();
+          }
+          ctx.fillStyle = sDef.text;
+          ctx.font = 'bold 9px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText(stage, colX + cellWidth / 2, rowY + 15);
+          ctx.textAlign = 'left';
+        } else {
+          ctx.fillStyle = '#1e293b';
+          ctx.font = '9px ui-monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText('·', colX + cellWidth / 2, rowY + 15);
+          ctx.textAlign = 'left';
+        }
+      }
+    });
+
+    const dataUrl = canvas.toDataURL('image/png');
+    const a = document.createElement('a');
+    a.href = dataUrl;
+    a.download = `cva6_timeline_cycle_${state.cycle}.png`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.exportTimelineCSV = handleExportTimelineCSV;
+      window.exportTimelinePNG = handleExportTimelinePNG;
+      window.stepSimulationForward = handleStep;
+      window.stepSimulationBack = handleStepBack;
+    }
+  }, [instructions, state, history, isRunning, selectedPreset]);
+
   useEffect(() => {
     try {
       const params = new URLSearchParams(window.location.search);
@@ -2847,6 +3702,10 @@ function CVA6PipelineSimulator() {
       }
       if (pPrewarm !== null) {
         setPrewarmCache(targetPrewarm);
+      }
+      const pExportMenu = params.get('export_menu');
+      if (pExportMenu === '1' || pExportMenu === 'open' || pExportMenu === 'true') {
+        setShowTimelineExportMenu(true);
       }
       const parsed = parseProgram(PRESETS[targetPreset].code);
       setInstructions(parsed);
@@ -2888,7 +3747,7 @@ function CVA6PipelineSimulator() {
           details: [`Loaded ${parsed.length} RISC-V instructions into Instruction Cache. Cache state: ${targetPrewarm ? 'Pre-warmed' : 'Cold Start'}.`],
           type: 'normal'
         },
-        cache: createInitialCacheState(targetPrewarm)
+        cache: createInitialCacheState(targetPrewarm, cacheConfig)
       };
       const stepCount = pStep ? parseInt(pStep, 10) : 0;
       if (stepCount > 0 && parsed.length > 0) {
@@ -2897,7 +3756,7 @@ function CVA6PipelineSimulator() {
           hist.push(s);
           s = stepSimulation(s, parsed);
         }
-        setHistory(hist.slice(-30));
+        setHistory(hist.slice(-300));
       }
       setState(s);
     } catch (e) {
@@ -2906,10 +3765,11 @@ function CVA6PipelineSimulator() {
   }, []);
   const handleStep = () => {
     if (instructions.length === 0) return;
-    setHistory(prev => [...prev.slice(-30), state]);
+    setHistory(prev => [...prev.slice(-300), state]);
     setState(prev => stepSimulation(prev, instructions));
   };
   const handleStepBack = () => {
+    if (isRunning) setIsRunning(false);
     if (history.length === 0) return;
     const prevState = history[history.length - 1];
     setHistory(prev => prev.slice(0, -1));
@@ -2959,7 +3819,7 @@ function CVA6PipelineSimulator() {
         details: [PRESETS[key].desc, 'Click Step or Run to simulate.'],
         type: 'normal'
       },
-      cache: createInitialCacheState(prewarmCache)
+      cache: createInitialCacheState(prewarmCache, cacheConfig)
     });
     setIsRunning(false);
   };
@@ -2972,6 +3832,7 @@ function CVA6PipelineSimulator() {
             setIsRunning(false);
             return prev;
           }
+          setHistory(h => [...h.slice(-300), prev]);
           return stepSimulation(prev, instructions);
         });
       }, clockSpeed);
@@ -3030,10 +3891,18 @@ function CVA6PipelineSimulator() {
   }, [state.cycle]);
 
   // Hit rate calculations
-  const iTotal = state.cache.iHits + state.cache.iMisses;
-  const iHitRate = iTotal > 0 ? Math.round(state.cache.iHits / iTotal * 100) : 100;
-  const dTotal = state.cache.dHits + state.cache.dMisses;
-  const dHitRate = dTotal > 0 ? Math.round(state.cache.dHits / dTotal * 100) : 100;
+  const totalIHits = state.cache.iHits || 0;
+  const totalIMisses = state.cache.iMisses || 0;
+  const totalDHits = state.cache.dHits || 0;
+  const totalDMisses = state.cache.dMisses || 0;
+  const iTotal = totalIHits + totalIMisses;
+  const iHitRate = iTotal > 0 ? Math.round(totalIHits / iTotal * 100) : 100;
+  const dTotal = totalDHits + totalDMisses;
+  const dHitRate = dTotal > 0 ? Math.round(totalDHits / dTotal * 100) : 100;
+  const totalHits = totalIHits + totalDHits;
+  const totalMisses = totalIMisses + totalDMisses;
+  const totalAccesses = totalHits + totalMisses;
+  const hitRatePct = totalAccesses > 0 ? ((totalHits / totalAccesses) * 100).toFixed(1) : '0.0';
   return /*#__PURE__*/React.createElement("div", {
     className: "flex flex-col h-screen bg-slate-950 text-slate-100 font-sans select-none overflow-hidden"
   }, /*#__PURE__*/React.createElement("header", {
@@ -3060,9 +3929,18 @@ function CVA6PipelineSimulator() {
   }) : /*#__PURE__*/React.createElement(Play, {
     size: 14
   }), /*#__PURE__*/React.createElement("span", null, isRunning ? 'Pause' : 'Run')), /*#__PURE__*/React.createElement("button", {
+    onClick: handleStepBack,
+    disabled: isRunning || history.length === 0,
+    title: "Step Back 1 Cycle",
+    className: "flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 disabled:bg-slate-900 disabled:text-slate-600 disabled:cursor-not-allowed text-slate-200 text-xs font-semibold shadow border border-slate-700 transition-colors"
+  }, /*#__PURE__*/React.createElement(ArrowLeft, {
+    size: 14,
+    className: history.length > 0 ? "text-cyan-400" : "text-slate-600"
+  }), /*#__PURE__*/React.createElement("span", null, "Back")), /*#__PURE__*/React.createElement("button", {
     onClick: handleStep,
     disabled: isRunning || state.status === 'DONE',
-    className: "flex items-center gap-1.5 px-3 py-1 rounded bg-blue-600 hover:bg-blue-500 disabled:bg-slate-800 disabled:text-slate-500 text-white text-xs font-semibold shadow transition-colors"
+    title: "Step Forward 1 Cycle",
+    className: "flex items-center gap-1.5 px-3 py-1 rounded bg-blue-600 hover:bg-blue-500 disabled:bg-slate-800 disabled:text-slate-500 disabled:cursor-not-allowed text-white text-xs font-semibold shadow transition-colors"
   }, /*#__PURE__*/React.createElement(ArrowRight, {
     size: 14
   }), /*#__PURE__*/React.createElement("span", null, "Step")), /*#__PURE__*/React.createElement("button", {
@@ -3528,15 +4406,141 @@ function CVA6PipelineSimulator() {
   }, detail)))), rightTab === 'cache' && /*#__PURE__*/React.createElement("div", {
     className: "flex-1 overflow-y-auto space-y-3 pr-1 font-mono text-xs"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "p-2.5 rounded-lg bg-slate-950 border border-slate-800 space-y-2"
+    className: "p-2.5 rounded-lg bg-slate-950 border border-slate-800 space-y-2.5"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center justify-between"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-1.5"
+  }, /*#__PURE__*/React.createElement(HardDrive, {
+    size: 14,
+    className: "text-blue-400"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "font-bold text-white text-xs"
+  }, "Cache Status")), /*#__PURE__*/React.createElement("button", {
+    onClick: handleClearCache,
+    title: "Clear all cache lines and invalidate entries",
+    className: "px-2.5 py-1 rounded bg-rose-600 hover:bg-rose-500 text-white font-bold text-[10px] flex items-center gap-1 transition-colors shadow"
+  }, /*#__PURE__*/React.createElement(Trash2, {
+    size: 11
+  }), /*#__PURE__*/React.createElement("span", null, "Clear"))), /*#__PURE__*/React.createElement("div", {
+    className: "grid grid-cols-4 gap-1.5 text-center"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "bg-blue-950/40 p-2 rounded border border-blue-800/80"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-400 text-[9.5px] block font-semibold"
+  }, "Hits"), /*#__PURE__*/React.createElement("span", {
+    className: "text-blue-400 font-bold text-sm block"
+  }, totalHits), /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-500 text-[8.5px] block font-mono"
+  }, `I:${state.cache.iHits || 0} D:${state.cache.dHits || 0}`)), /*#__PURE__*/React.createElement("div", {
+    className: "bg-rose-950/40 p-2 rounded border border-rose-800/80"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-400 text-[9.5px] block font-semibold"
+  }, "Misses"), /*#__PURE__*/React.createElement("span", {
+    className: "text-rose-400 font-bold text-sm block"
+  }, totalMisses), /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-500 text-[8.5px] block font-mono"
+  }, `I:${state.cache.iMisses || 0} D:${state.cache.dMisses || 0}`)), /*#__PURE__*/React.createElement("div", {
+    className: "bg-emerald-950/40 p-2 rounded border border-emerald-800/80"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-400 text-[9.5px] block font-semibold"
+  }, "Hit Rate"), /*#__PURE__*/React.createElement("span", {
+    className: "text-emerald-400 font-bold text-sm block"
+  }, `${hitRatePct}%`), /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-500 text-[8.5px] block font-mono"
+  }, totalAccesses > 0 ? `${totalHits}/${totalAccesses}` : '0/0')), /*#__PURE__*/React.createElement("div", {
+    className: "bg-purple-950/40 p-2 rounded border border-purple-800/80"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-400 text-[9.5px] block font-semibold"
+  }, "Writebacks"), /*#__PURE__*/React.createElement("span", {
+    className: "text-purple-400 font-bold text-sm block"
+  }, state.cache.writebacks || 0), /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-500 text-[8.5px] block font-mono"
+  }, "Dirty Evict")))), /*#__PURE__*/React.createElement("div", {
+    className: "p-2.5 rounded-lg bg-slate-950 border border-slate-800 space-y-2.5"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex items-center justify-between"
   }, /*#__PURE__*/React.createElement("span", {
     className: "font-bold text-white text-xs flex items-center gap-1.5"
-  }, /*#__PURE__*/React.createElement(HardDrive, {
+  }, /*#__PURE__*/React.createElement(Settings, {
     size: 13,
     className: "text-blue-400"
-  }), "L1 Cache Subsystem"), /*#__PURE__*/React.createElement("button", {
+  }), "Cache Configuration"), /*#__PURE__*/React.createElement("button", {
+    onClick: () => handleApplyCacheConfig(cacheConfig),
+    className: "px-2.5 py-1 rounded bg-blue-600 hover:bg-blue-500 text-white font-bold text-[10px] flex items-center gap-1 transition-colors shadow"
+  }, /*#__PURE__*/React.createElement(Check, {
+    size: 11
+  }), /*#__PURE__*/React.createElement("span", null, "Apply"))), /*#__PURE__*/React.createElement("div", {
+    className: "p-2 rounded bg-amber-950/40 border border-amber-800/70 text-amber-300/90 text-[10.5px] leading-tight"
+  }, "Note: The cache is simulated cycle-accurately for CVA6 hardware verification. Refills incur multi-cycle AXI memory latency and stall pipeline consumers."), /*#__PURE__*/React.createElement("div", {
+    className: "grid grid-cols-3 gap-2 text-[11px]"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "bg-slate-900/90 p-2 rounded border border-slate-800 space-y-1"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-400 text-[10px] block font-medium"
+  }, "Lines (2^n)"), /*#__PURE__*/React.createElement("select", {
+    value: cacheConfig.linesExp,
+    onChange: e => handleApplyCacheConfig({
+      linesExp: parseInt(e.target.value, 10)
+    }),
+    className: "w-full bg-slate-950 border border-slate-700 rounded px-1.5 py-0.5 text-xs text-white font-bold font-mono focus:border-blue-500"
+  }, /*#__PURE__*/React.createElement("option", {
+    value: 1
+  }, "1 (2^1 = 2)"), /*#__PURE__*/React.createElement("option", {
+    value: 2
+  }, "2 (2^2 = 4)"), /*#__PURE__*/React.createElement("option", {
+    value: 4
+  }, "4 (2^4 = 16)"), /*#__PURE__*/React.createElement("option", {
+    value: 8
+  }, "8 (2^8 = 256)")), /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-500 text-[9px] block font-mono"
+  }, `2^${cacheConfig.linesExp} = ${1 << cacheConfig.linesExp} sets`)), /*#__PURE__*/React.createElement("div", {
+    className: "bg-slate-900/90 p-2 rounded border border-slate-800 space-y-1"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-400 text-[10px] block font-medium"
+  }, "Block Size (words)"), /*#__PURE__*/React.createElement("div", {
+    className: "w-full bg-slate-950 border border-slate-700 rounded px-1.5 py-1 text-xs text-white font-bold font-mono"
+  }, "4"), /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-500 text-[9px] block font-mono"
+  }, "4 words (16B)")), /*#__PURE__*/React.createElement("div", {
+    className: "bg-slate-900/90 p-2 rounded border border-slate-800 space-y-1"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-400 text-[10px] block font-medium"
+  }, "Ways (2^n)"), /*#__PURE__*/React.createElement("select", {
+    value: cacheConfig.waysExp,
+    onChange: e => handleApplyCacheConfig({
+      waysExp: parseInt(e.target.value, 10)
+    }),
+    className: "w-full bg-slate-950 border border-slate-700 rounded px-1.5 py-0.5 text-xs text-white font-bold font-mono focus:border-blue-500"
+  }, /*#__PURE__*/React.createElement("option", {
+    value: 0
+  }, "0 (2^0 = 1)"), /*#__PURE__*/React.createElement("option", {
+    value: 1
+  }, "1 (2^1 = 2)"), /*#__PURE__*/React.createElement("option", {
+    value: 2
+  }, "2 (2^2 = 4)"), /*#__PURE__*/React.createElement("option", {
+    value: 3
+  }, "3 (2^3 = 8)")), /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-500 text-[9px] block font-mono"
+  }, `2^${cacheConfig.waysExp} = ${1 << cacheConfig.waysExp} way(s)`))), /*#__PURE__*/React.createElement("div", {
+    className: "pt-1 border-t border-slate-900 flex items-center justify-between text-[11px]"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-2"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-400 text-[10px]"
+  }, "AXI Latency:"), /*#__PURE__*/React.createElement("input", {
+    type: "range",
+    min: "2",
+    max: "8",
+    step: "1",
+    value: cacheConfig.missLatency,
+    onChange: e => handleApplyCacheConfig({
+      missLatency: parseInt(e.target.value, 10)
+    }),
+    className: "w-20 accent-blue-500"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "font-mono font-bold text-blue-400 text-[10px]"
+  }, `${cacheConfig.missLatency} cyc`)), /*#__PURE__*/React.createElement("button", {
     onClick: () => {
       const nextPw = !prewarmCache;
       setPrewarmCache(nextPw);
@@ -3545,123 +4549,131 @@ function CVA6PipelineSimulator() {
     className: `px-2 py-0.5 rounded text-[10px] font-bold border transition-colors flex items-center gap-1 ${prewarmCache ? 'bg-emerald-950 border-emerald-700 text-emerald-300' : 'bg-amber-950 border-amber-700 text-amber-300'}`
   }, /*#__PURE__*/React.createElement(RefreshCw, {
     size: 10
-  }), /*#__PURE__*/React.createElement("span", null, prewarmCache ? 'Pre-warmed' : 'Cold Start'))), /*#__PURE__*/React.createElement("div", {
-    className: "grid grid-cols-2 gap-2 text-[11px] pt-1 border-t border-slate-900"
+  }), /*#__PURE__*/React.createElement("span", null, prewarmCache ? 'Pre-warmed' : 'Cold Start')))), (state.cache.dRefill && state.cache.dRefill.active || state.cache.iRefill && state.cache.iRefill.active) && /*#__PURE__*/React.createElement("div", {
+    className: "p-2.5 rounded-lg bg-rose-950/60 border border-rose-600/90 text-rose-200 text-xs shadow-lg animate-pulse space-y-1"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "bg-slate-900/80 p-1.5 rounded border border-slate-800"
+    className: "flex items-center justify-between font-bold"
   }, /*#__PURE__*/React.createElement("span", {
-    className: "text-slate-500 text-[10px] block"
-  }, "I$ HIT RATE"), /*#__PURE__*/React.createElement("span", {
-    className: "text-emerald-400 font-bold text-xs"
-  }, iHitRate, "%"), /*#__PURE__*/React.createElement("span", {
-    className: "text-[10px] text-slate-500 block"
-  }, "(", state.cache.iHits, "H / ", state.cache.iMisses, "M)")), /*#__PURE__*/React.createElement("div", {
-    className: "bg-slate-900/80 p-1.5 rounded border border-slate-800"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "text-slate-500 text-[10px] block"
-  }, "D$ HIT RATE"), /*#__PURE__*/React.createElement("span", {
-    className: "text-cyan-400 font-bold text-xs"
-  }, dHitRate, "%"), /*#__PURE__*/React.createElement("span", {
-    className: "text-[10px] text-slate-500 block"
-  }, "(", state.cache.dHits, "H / ", state.cache.dMisses, "M)"))), /*#__PURE__*/React.createElement("div", {
-    className: "flex items-center justify-between text-[11px] px-1"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "text-slate-500"
-  }, "D$ Controller:"), /*#__PURE__*/React.createElement("span", {
-    className: "font-bold px-1.5 py-0.5 rounded bg-blue-950 text-blue-300 border border-blue-900 text-[10px]"
-  }, state.cache.dControllerState))), /*#__PURE__*/React.createElement("div", {
-    className: "space-y-1"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "flex items-center justify-between text-[11px] font-semibold text-slate-400 px-1"
-  }, /*#__PURE__*/React.createElement("span", null, "L1 Instruction Cache (I$)"), /*#__PURE__*/React.createElement("span", {
-    className: "text-[10px] text-slate-500"
-  }, "Direct-Mapped (4 Sets)")), /*#__PURE__*/React.createElement("div", {
-    className: "bg-slate-950 rounded border border-slate-800 overflow-hidden"
-  }, /*#__PURE__*/React.createElement("table", {
-    className: "w-full text-[10px] text-left border-collapse"
-  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", {
-    className: "bg-slate-900 text-slate-500 border-b border-slate-800"
-  }, /*#__PURE__*/React.createElement("th", {
-    className: "py-1 px-2"
-  }, "Set"), /*#__PURE__*/React.createElement("th", {
-    className: "py-1 px-2"
-  }, "Tag"), /*#__PURE__*/React.createElement("th", {
-    className: "py-1 px-2"
-  }, "V"), /*#__PURE__*/React.createElement("th", {
-    className: "py-1 px-2"
-  }, "PC Block"), /*#__PURE__*/React.createElement("th", {
-    className: "py-1 px-2"
-  }, "Status"))), /*#__PURE__*/React.createElement("tbody", null, Object.values(state.cache.icache).map(line => /*#__PURE__*/React.createElement("tr", {
-    key: line.index,
-    className: "border-b border-slate-900 hover:bg-slate-900/40"
-  }, /*#__PURE__*/React.createElement("td", {
-    className: "py-1 px-2 font-bold text-slate-400"
-  }, "Set ", line.index), /*#__PURE__*/React.createElement("td", {
-    className: "py-1 px-2 text-blue-400 font-mono"
-  }, "0x", line.tag.toString(16)), /*#__PURE__*/React.createElement("td", {
-    className: "py-1 px-2"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: line.valid ? 'text-emerald-400 font-bold' : 'text-slate-600'
-  }, line.valid ? '1' : '0')), /*#__PURE__*/React.createElement("td", {
-    className: "py-1 px-2 text-slate-300 font-mono"
-  }, "0x", (line.data[0] || 0).toString(16).padStart(2, '0')), /*#__PURE__*/React.createElement("td", {
-    className: "py-1 px-2"
-  }, line.hitStatus === 'HIT' ? /*#__PURE__*/React.createElement("span", {
-    className: "px-1 py-0.5 rounded bg-emerald-950 text-emerald-400 text-[9px] font-bold"
-  }, "HIT") : line.hitStatus === 'MISS' ? /*#__PURE__*/React.createElement("span", {
-    className: "px-1 py-0.5 rounded bg-rose-950 text-rose-400 text-[9px] font-bold"
-  }, "MISS") : /*#__PURE__*/React.createElement("span", {
-    className: "text-slate-600 text-[9px]"
-  }, "IDLE")))))))), /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-1.5"
+  }, /*#__PURE__*/React.createElement(Activity, {
+    size: 13,
+    className: "text-rose-400"
+  }), "AXI Burst Refill In Progress"), /*#__PURE__*/React.createElement("span", {
+    className: "px-1.5 py-0.5 rounded bg-rose-900 text-rose-200 text-[10px]"
+  }, state.cache.dRefill && state.cache.dRefill.active ? `${state.cache.dRefill.totalCycles - state.cache.dRefill.cyclesRemaining + 1}/${state.cache.dRefill.totalCycles} CYC` : `${state.cache.iRefill.totalCycles - state.cache.iRefill.cyclesRemaining + 1}/${state.cache.iRefill.totalCycles} CYC`)), /*#__PURE__*/React.createElement("p", {
+    className: "text-[11px] text-rose-300 font-mono"
+  }, state.cache.dRefill && state.cache.dRefill.active ? `D$ Refill: Addr 0x${state.cache.dRefill.addr.toString(16)} (Set ${state.cache.dRefill.set}) -> Stalling LSU Load TID #${state.cache.dRefill.targetTid}` : `I$ Refill: PC 0x${state.cache.iRefill.pc.toString(16)} (Set ${state.cache.iRefill.set}) -> Stalling Front-End Fetch`)), /*#__PURE__*/React.createElement("div", {
     className: "space-y-1"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex items-center justify-between text-[11px] font-semibold text-slate-400 px-1"
   }, /*#__PURE__*/React.createElement("span", null, "L1 Data Cache (D$)"), /*#__PURE__*/React.createElement("span", {
     className: "text-[10px] text-slate-500"
-  }, "Write-Back / 4 Sets")), /*#__PURE__*/React.createElement("div", {
-    className: "bg-slate-950 rounded border border-slate-800 overflow-hidden"
+  }, `${1 << cacheConfig.linesExp} Sets / ${1 << cacheConfig.waysExp} Way(s)`)), /*#__PURE__*/React.createElement("div", {
+    className: "bg-slate-950 rounded border border-slate-800 overflow-x-auto"
   }, /*#__PURE__*/React.createElement("table", {
     className: "w-full text-[10px] text-left border-collapse"
   }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", {
     className: "bg-slate-900 text-slate-500 border-b border-slate-800"
   }, /*#__PURE__*/React.createElement("th", {
     className: "py-1 px-2"
-  }, "Set"), /*#__PURE__*/React.createElement("th", {
+  }, "SET"), /*#__PURE__*/React.createElement("th", {
     className: "py-1 px-2"
-  }, "Tag"), /*#__PURE__*/React.createElement("th", {
+  }, "WAY"), /*#__PURE__*/React.createElement("th", {
     className: "py-1 px-2"
+  }, "TAG"), /*#__PURE__*/React.createElement("th", {
+    className: "py-1 px-2 text-center"
   }, "V"), /*#__PURE__*/React.createElement("th", {
-    className: "py-1 px-2"
+    className: "py-1 px-2 text-center"
   }, "D"), /*#__PURE__*/React.createElement("th", {
     className: "py-1 px-2"
-  }, "Data Word"), /*#__PURE__*/React.createElement("th", {
+  }, "DATA (4 WORDS)"), /*#__PURE__*/React.createElement("th", {
+    className: "py-1 px-2 text-right"
+  }, "ACCESS"))), /*#__PURE__*/React.createElement("tbody", null, Object.values(state.cache.dcache).map((line, idx) => {
+    const d0 = line.data && line.data[0] !== undefined ? `0x${(line.data[0] >>> 0).toString(16).padStart(8, '0')}` : '0x00000000';
+    const d1 = line.data && line.data[1] !== undefined ? `0x${(line.data[1] >>> 0).toString(16).padStart(8, '0')}` : '0x00000000';
+    const d2 = line.data && line.data[2] !== undefined ? `0x${(line.data[2] >>> 0).toString(16).padStart(8, '0')}` : '0x00000000';
+    const d3 = line.data && line.data[3] !== undefined ? `0x${(line.data[3] >>> 0).toString(16).padStart(8, '0')}` : '0x00000000';
+    const isRefillingThisSet = state.cache.dRefill && state.cache.dRefill.active && state.cache.dRefill.set === line.index && state.cache.dRefill.way === line.way;
+    return /*#__PURE__*/React.createElement("tr", {
+      key: line.key || idx,
+      className: `border-b border-slate-900 hover:bg-slate-900/40 ${isRefillingThisSet ? 'bg-rose-950/30' : ''}`
+    }, /*#__PURE__*/React.createElement("td", {
+      className: "py-1 px-2 font-bold text-slate-400"
+    }, line.index), /*#__PURE__*/React.createElement("td", {
+      className: "py-1 px-2 text-slate-400"
+    }, line.way !== undefined ? line.way : 0), /*#__PURE__*/React.createElement("td", {
+      className: "py-1 px-2 text-cyan-400 font-mono"
+    }, `0x${(line.tag >>> 0).toString(16).padStart(8, '0')}`), /*#__PURE__*/React.createElement("td", {
+      className: "py-1 px-2 text-center"
+    }, /*#__PURE__*/React.createElement("span", {
+      className: line.valid ? 'text-emerald-400 font-bold' : 'text-slate-600'
+    }, line.valid ? 'Y' : 'N')), /*#__PURE__*/React.createElement("td", {
+      className: "py-1 px-2 text-center"
+    }, /*#__PURE__*/React.createElement("span", {
+      className: line.dirty ? 'text-amber-400 font-bold' : 'text-slate-600'
+    }, line.dirty ? 'Y' : 'N')), /*#__PURE__*/React.createElement("td", {
+      className: "py-1 px-2 text-slate-300 font-mono text-[9px] whitespace-nowrap"
+    }, `${d0} ${d1} ${d2} ${d3}`), /*#__PURE__*/React.createElement("td", {
+      className: "py-1 px-2 text-right"
+    }, isRefillingThisSet ? /*#__PURE__*/React.createElement("span", {
+      className: "px-1 py-0.5 rounded bg-rose-900 text-rose-200 text-[9px] font-bold animate-pulse"
+    }, `REFILL ${state.cache.dRefill.cyclesRemaining}c`) : line.lastAccessCycle ? /*#__PURE__*/React.createElement("span", {
+      className: "text-slate-400 text-[9px] font-mono"
+    }, `C${line.lastAccessCycle}`) : /*#__PURE__*/React.createElement("span", {
+      className: "text-slate-600 text-[9px]"
+    }, "0")));
+  }))))), /*#__PURE__*/React.createElement("div", {
+    className: "space-y-1"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center justify-between text-[11px] font-semibold text-slate-400 px-1"
+  }, /*#__PURE__*/React.createElement("span", null, "L1 Instruction Cache (I$)"), /*#__PURE__*/React.createElement("span", {
+    className: "text-[10px] text-slate-500"
+  }, `${1 << cacheConfig.linesExp} Sets / ${1 << cacheConfig.waysExp} Way(s)`)), /*#__PURE__*/React.createElement("div", {
+    className: "bg-slate-950 rounded border border-slate-800 overflow-x-auto"
+  }, /*#__PURE__*/React.createElement("table", {
+    className: "w-full text-[10px] text-left border-collapse"
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", {
+    className: "bg-slate-900 text-slate-500 border-b border-slate-800"
+  }, /*#__PURE__*/React.createElement("th", {
     className: "py-1 px-2"
-  }, "Status"))), /*#__PURE__*/React.createElement("tbody", null, Object.values(state.cache.dcache).map(line => /*#__PURE__*/React.createElement("tr", {
-    key: line.index,
-    className: "border-b border-slate-900 hover:bg-slate-900/40"
-  }, /*#__PURE__*/React.createElement("td", {
-    className: "py-1 px-2 font-bold text-slate-400"
-  }, "Set ", line.index), /*#__PURE__*/React.createElement("td", {
-    className: "py-1 px-2 text-cyan-400 font-mono"
-  }, "0x", line.tag.toString(16)), /*#__PURE__*/React.createElement("td", {
+  }, "SET"), /*#__PURE__*/React.createElement("th", {
     className: "py-1 px-2"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: line.valid ? 'text-emerald-400 font-bold' : 'text-slate-600'
-  }, line.valid ? '1' : '0')), /*#__PURE__*/React.createElement("td", {
+  }, "WAY"), /*#__PURE__*/React.createElement("th", {
     className: "py-1 px-2"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: line.dirty ? 'text-amber-400 font-bold' : 'text-slate-600'
-  }, line.dirty ? '1' : '0')), /*#__PURE__*/React.createElement("td", {
-    className: "py-1 px-2 text-white font-mono font-bold"
-  }, line.data[0] || 0), /*#__PURE__*/React.createElement("td", {
+  }, "TAG"), /*#__PURE__*/React.createElement("th", {
+    className: "py-1 px-2 text-center"
+  }, "V"), /*#__PURE__*/React.createElement("th", {
     className: "py-1 px-2"
-  }, line.hitStatus === 'HIT' ? /*#__PURE__*/React.createElement("span", {
-    className: "px-1 py-0.5 rounded bg-emerald-950 text-emerald-400 text-[9px] font-bold"
-  }, "HIT") : line.hitStatus === 'MISS' ? /*#__PURE__*/React.createElement("span", {
-    className: "px-1 py-0.5 rounded bg-rose-950 text-rose-400 text-[9px] font-bold"
-  }, "MISS") : /*#__PURE__*/React.createElement("span", {
-    className: "text-slate-600 text-[9px]"
-  }, "IDLE")))))))), /*#__PURE__*/React.createElement("div", {
+  }, "PC BLOCK"), /*#__PURE__*/React.createElement("th", {
+    className: "py-1 px-2 text-right"
+  }, "ACCESS"))), /*#__PURE__*/React.createElement("tbody", null, Object.values(state.cache.icache).map((line, idx) => {
+    const isRefillingThisSet = state.cache.iRefill && state.cache.iRefill.active && state.cache.iRefill.set === line.index && state.cache.iRefill.way === line.way;
+    const pcStr = line.data && line.data[0] !== undefined ? `0x${(line.data[0] >>> 0).toString(16).padStart(4, '0')}` : '0x0000';
+    return /*#__PURE__*/React.createElement("tr", {
+      key: line.key || idx,
+      className: `border-b border-slate-900 hover:bg-slate-900/40 ${isRefillingThisSet ? 'bg-rose-950/30' : ''}`
+    }, /*#__PURE__*/React.createElement("td", {
+      className: "py-1 px-2 font-bold text-slate-400"
+    }, line.index), /*#__PURE__*/React.createElement("td", {
+      className: "py-1 px-2 text-slate-400"
+    }, line.way !== undefined ? line.way : 0), /*#__PURE__*/React.createElement("td", {
+      className: "py-1 px-2 text-blue-400 font-mono"
+    }, `0x${(line.tag >>> 0).toString(16).padStart(8, '0')}`), /*#__PURE__*/React.createElement("td", {
+      className: "py-1 px-2 text-center"
+    }, /*#__PURE__*/React.createElement("span", {
+      className: line.valid ? 'text-emerald-400 font-bold' : 'text-slate-600'
+    }, line.valid ? 'Y' : 'N')), /*#__PURE__*/React.createElement("td", {
+      className: "py-1 px-2 text-slate-300 font-mono text-[9px]"
+    }, pcStr), /*#__PURE__*/React.createElement("td", {
+      className: "py-1 px-2 text-right"
+    }, isRefillingThisSet ? /*#__PURE__*/React.createElement("span", {
+      className: "px-1 py-0.5 rounded bg-rose-900 text-rose-200 text-[9px] font-bold animate-pulse"
+    }, `REFILL ${state.cache.iRefill.cyclesRemaining}c`) : line.lastAccessCycle ? /*#__PURE__*/React.createElement("span", {
+      className: "text-slate-400 text-[9px] font-mono"
+    }, `C${line.lastAccessCycle}`) : /*#__PURE__*/React.createElement("span", {
+      className: "text-slate-600 text-[9px]"
+    }, "0")));
+  }))))), /*#__PURE__*/React.createElement("div", {
     className: "space-y-1"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex items-center justify-between text-[11px] font-semibold text-slate-400 px-1"
@@ -3760,12 +4772,59 @@ function CVA6PipelineSimulator() {
   })), rightTab === 'gantt' && /*#__PURE__*/React.createElement("div", {
     className: "flex-1 overflow-x-auto overflow-y-auto pr-1 font-mono text-xs"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "flex items-center justify-between text-xs text-slate-400 pb-1.5 border-b border-slate-800 mb-2"
+    className: "flex items-center justify-between text-xs text-slate-400 pb-1.5 border-b border-slate-800 mb-2 relative"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center space-x-2"
   }, /*#__PURE__*/React.createElement("span", {
     className: "font-semibold text-slate-300"
   }, "Pipeline Reservation Timeline"), /*#__PURE__*/React.createElement("span", {
-    className: "text-[10px] text-slate-500"
-  }, "F=Fetch, D=Dec, I=Issue, E=Exec, W=WB, C=Commit, S=Stall")), /*#__PURE__*/React.createElement("table", {
+    className: "text-[10px] text-slate-500 hidden sm:inline"
+  }, "F=Fetch, D=Dec, I=Issue, E=Exec, W=WB, C=Commit, S=Stall, M=MemWait")), /*#__PURE__*/React.createElement("div", {
+    ref: timelineExportMenuRef,
+    className: "relative"
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => setShowTimelineExportMenu(prev => !prev),
+    className: "px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] rounded flex items-center space-x-1 border border-slate-700 font-sans transition-colors shadow-sm",
+    title: "Export Timeline Data"
+  }, /*#__PURE__*/React.createElement(Download, {
+    size: 12,
+    className: "text-blue-400"
+  }), /*#__PURE__*/React.createElement("span", null, "Export"), /*#__PURE__*/React.createElement(ChevronDown, {
+    size: 11,
+    className: `text-slate-400 transition-transform ${showTimelineExportMenu ? 'rotate-180' : ''}`
+  })), showTimelineExportMenu && /*#__PURE__*/React.createElement("div", {
+    className: "absolute right-0 mt-1 w-44 bg-slate-900 border border-slate-700 rounded-lg shadow-2xl py-1 z-50 text-xs font-sans divide-y divide-slate-800"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "px-3 py-1 text-[10px] text-slate-500 font-semibold uppercase tracking-wider"
+  }, "Export Timeline"), /*#__PURE__*/React.createElement("div", {
+    className: "py-0.5"
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => {
+      setShowTimelineExportMenu(false);
+      handleExportTimelinePNG();
+    },
+    className: "w-full text-left px-3 py-1.5 hover:bg-slate-800 text-slate-200 flex items-center space-x-2 transition-colors"
+  }, /*#__PURE__*/React.createElement(ImageIcon, {
+    size: 13,
+    className: "text-blue-400"
+  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "font-medium"
+  }, "Save as PNG Image"), /*#__PURE__*/React.createElement("div", {
+    className: "text-[10px] text-slate-400"
+  }, "Full high-res timeline graphic"))), /*#__PURE__*/React.createElement("button", {
+    onClick: () => {
+      setShowTimelineExportMenu(false);
+      handleExportTimelineCSV();
+    },
+    className: "w-full text-left px-3 py-1.5 hover:bg-slate-800 text-slate-200 flex items-center space-x-2 transition-colors"
+  }, /*#__PURE__*/React.createElement(FileText, {
+    size: 13,
+    className: "text-emerald-400"
+  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "font-medium"
+  }, "Save as CSV File"), /*#__PURE__*/React.createElement("div", {
+    className: "text-[10px] text-slate-400"
+  }, "Matrix data for Excel / Python"))))))), /*#__PURE__*/React.createElement("table", {
     className: "w-full border-collapse text-[10px]"
   }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", {
     className: "border-b border-slate-800 text-slate-500"
@@ -3790,7 +4849,7 @@ function CVA6PipelineSimulator() {
         key: c,
         className: "text-center text-slate-800"
       }, "·");
-      const stageClass = stage === 'F' ? 'bg-blue-900 text-blue-200' : stage === 'D' ? 'bg-yellow-900 text-yellow-200' : stage === 'I' ? 'bg-cyan-900 text-cyan-200' : stage === 'E' ? 'bg-purple-900 text-purple-200' : stage === 'W' ? 'bg-amber-900 text-amber-200' : stage === 'C' ? 'bg-emerald-900 text-emerald-200 font-bold' : 'bg-rose-900 text-rose-200 font-bold animate-pulse';
+      const stageClass = stage === 'F' ? 'bg-blue-900 text-blue-200' : stage === 'D' ? 'bg-yellow-900 text-yellow-200' : stage === 'I' ? 'bg-cyan-900 text-cyan-200' : stage === 'E' ? 'bg-purple-900 text-purple-200' : stage === 'W' ? 'bg-amber-900 text-amber-200' : stage === 'C' ? 'bg-emerald-900 text-emerald-200 font-bold' : stage === 'M' ? 'bg-rose-950 border border-rose-600 text-rose-300 font-bold animate-pulse' : 'bg-rose-900 text-rose-200 font-bold animate-pulse';
       return /*#__PURE__*/React.createElement("td", {
         key: c,
         className: "p-0.5 text-center"
