@@ -1,8 +1,8 @@
 ---
 author: Alireza Sotodeh
-date: 2026-11-19 15:40:00 +03:30
+date: 2026-11-20 19:22:00 +03:30
 status: MODIFIED FILE
-reason: Harmonized report with tb_cva6_warm_cache ground-truth trace findings (including Commit PC addresses, 8-category 24-cycle budget breakdown, 4-phase simulation classification, and standardized Dual-Commit / English technical keywords).
+reason: Added comprehensive architectural cache shape diagram (Mermaid schematic, 32-bit address field decomposition, and 2-way set-associative hardware organization) below I-Cache introductory line in Section 2.
 ---
 
 # گزارش روند شبیه‌سازی پردازنده CVA6 و بررسی عملکرد کش و شاخص CPI
@@ -10,6 +10,15 @@ reason: Harmonized report with tb_cva6_warm_cache ground-truth trace findings (i
 **پروژه:** شتاب‌دهنده سخت‌افزاری رمزنگاری پساکوانتومی (PQC Hardware Accelerator)  
 **نگارنده:** علیرضا ستوده  
 **محیط اجرا:** لینوکس، نرم‌افزار Vivado 2025.1 و شبیه‌ساز Verilator  
+
+---
+# سایت های استفاده شده برای شبیه سازی:
+برای شبیه سازی و برسی کد های اسمبلی (emulator):
+https://riscv-simulator-five.vercel.app/
+![[Emulator1.png]]
+
+برای تبدیل hex به دسیمال و برعکس:
+https://www.binaryhexconverter.com/hex-to-decimal-converter
 
 ---
 
@@ -41,6 +50,61 @@ reason: Harmonized report with tb_cva6_warm_cache ground-truth trace findings (i
 ## ۲. چرا سخت‌افزار کش ۱۰۰٪ سالمه؟ (تحلیل خطاهای کش)
 
 بیایید نگاهی به نحوه کار حافظه نهان دستورات (I-Cache) در CVA6 بندازیم:
+![[cacheSizeAndSetting.png]]
+
+### شکل و دیاگرام معماری سخت‌افزاری حافظه نهان (CVA6 2-Way Set-Associative I-Cache Architecture)
+
+برای اینکه معماری داخلی، تفکیک بیت‌های آدرس و مسیر داده‌ها کاملاً ملموس و شفاف باشه، دیاگرام جامع سخت‌افزاری کش CVA6 رو به صورت شکل زیر ترسیم کردم:
+
+```mermaid
+flowchart TD
+    subgraph ADDR ["تفکیک بیت‌های آدرس ۳۲ بیتی واکشی (32-bit Fetch PC / Address)"]
+        direction LR
+        TAG_BITS["تگ: Tag [31:12]<br/>(20 بیت)"]
+        IDX_BITS["شاخص سطر: Index [11:4]<br/>(8 بیت = 256 سطر)"]
+        OFF_BITS["آفست درون خط: Offset [3:0]<br/>(4 بیت = 16 بایت)"]
+    end
+
+    subgraph CACHE_ARRAY ["حافظه سطرهای کش (256 Sets × 2 Ways = 8 KB)"]
+        direction TB
+        subgraph WAY0 ["راه اول: Way 0 (حجم 4KB)"]
+            V0["بیت اعتبار: Valid [1b]"]
+            TAG0["مخزن تگ: Tag SRAM [20b]"]
+            DATA0["مخزن داده: Data SRAM [128b]<br/>(4 دستور ۳۲ بیتی: Word 0..3)"]
+        end
+        subgraph WAY1 ["راه دوم: Way 1 (حجم 4KB)"]
+            V1["بیت اعتبار: Valid [1b]"]
+            TAG1["مخزن تگ: Tag SRAM [20b]"]
+            DATA1["مخزن داده: Data SRAM [128b]<br/>(4 دستور ۳۲ بیتی: Word 0..3)"]
+        end
+    end
+
+    IDX_BITS -->|"انتخاب سطر (Set Index 0..255)"| WAY0
+    IDX_BITS -->|"انتخاب سطر (Set Index 0..255)"| WAY1
+
+    TAG_BITS --> CMP0["مقایسه‌گر تگ Way 0<br/>(Tag Match Comparator)"]
+    TAG0 --> CMP0
+    V0 --> CMP0
+
+    TAG_BITS --> CMP1["مقایسه‌گر تگ Way 1<br/>(Tag Match Comparator)"]
+    TAG1 --> CMP1
+    V1 --> CMP1
+
+    CMP0 -->|"Hit Way 0"| HIT_LOGIC["کنترلر اصابت و خطا<br/>(Hit / Miss Logic)"]
+    CMP1 -->|"Hit Way 1"| HIT_LOGIC
+
+    HIT_LOGIC -->|"اصابت کش (Hit = 1)"| WAY_MUX["مالتی‌پلسکر انتخاب راه<br/>(Way MUX 128-bit)"]
+    HIT_LOGIC -->|"خطای کش (Miss = 1)"| AXI_MISS["واحد مدیریت خطا (Miss Unit)<br/>درخواست واکشی ۴ کلمه‌ای از AXI4"]
+
+    DATA0 --> WAY_MUX
+    DATA1 --> WAY_MUX
+
+    WAY_MUX -->|"خط ۱۲۸ بیتی انتخاب‌شده"| WORD_MUX["مالتی‌پلسکر انتخاب کلمه دستور<br/>(Word MUX 32-bit)"]
+    OFF_BITS -->|"انتخاب دستور: Offset[3:2]"| WORD_MUX
+
+    WORD_MUX -->|"دستور ۳۲ بیتی واکشی‌شده"| FETCH_OUT["خروجی به صف و پایپ‌لاین واکشی<br/>(To Fetch Stage / Decode Queue)"]
+```
+
 * حافظه کش  (2Way Set-Associative) با حجم ۸ کیلوبایته.
 * **عرض هر خط کش ۱۶ بایته (یعنی ۴ تا دستور ۳۲ بیتی RISC-V):**
  
@@ -76,6 +140,7 @@ $$\text{Instructions per Cache Line} = \frac{128\text{ bits}}{32\text{ bits/inst
   localparam ICACHE_CL_IDX_WIDTH = $clog2(ICACHE_NUM_WORDS);
   // = 8 bits (Index for the 256 sets)
 ```
+
 * برنامه تستی ما کلاً **۱۹ دستور** متوالی بود که بدون هیچ حلقه‌ای از آدرس `0x8000_0000` پشت سر هم اجرا شدن.
 ```systemverilog
     // Instruction sequence (code in words 0..18, data in words 64 and 128)
@@ -99,6 +164,27 @@ $$\text{Instructions per Cache Line} = \frac{128\text{ bits}}{32\text{ bits/inst
     mem[17] = 32'h20f02023; // 0x44: SW   x15, 512(x0)(Store 42 at addr 512 = word 128)
     mem[18] = 32'h00000063; // 0x48: BEQ  x0, x0, 0   (Infinite self-loop)
   end
+```
+
+``` assembly
+ADDI x1, x0, 10
+ADDI x2, x0, 20
+ADD  x3, x1, x2
+SUB  x4, x2, x1
+XOR  x5, x3, x4
+OR   x6, x1, x2 
+AND  x7, x1, x6
+SLTI x8, x1, 15
+SLLI x9, x8, 4
+SW   x3, 256(x0)
+LW   x10, 256(x0)
+BEQ  x3, x10, +8 
+ADDI x11, x0, 99 
+ADDI x12, x0, 1
+JAL  x13, +8 
+ADDI x14, x0, 88
+ADDI x15, x0, 42
+BEQ  x0, x0, 0 
 ```
 
 ۱۹ تا دستور یعنی ۷۶ بایت کد. وقتی خط کش ۱۶ بایته، این ۷۶ بایت کد حداقل به **۵ تا خط کش مجزا** نیاز داره:
@@ -159,16 +245,46 @@ $$\text{Instructions per Cache Line} = \frac{128\text{ bits}}{32\text{ bits/inst
 | **دستورات مفید واقعاً اجرا شده (مسیر اجرای خالص)** | **۱۶** | ۱۶ دستور commit شده در سیکل‌های ۲۷۶ تا ۳۲۴ | **عدد اصلی برای محاسبه CPI کار مفید برنامه** ($18 - 2 = 16$). |
 | **تکرارهای حلقه توقف پایانی** | **۴+** | ۴ بار اجرای دستور `0x48` (`BEQ x0, x0, 0`) | پردازنده ۴ بار در سیکل‌های ۳۳۲، ۳۴۰، ۳۴۲ و ۳۴۴ در حلقه چرخید. |
 | **کل پالس‌های Commit در لاگ شبیه‌سازی** | **۲۰** | مجموع کل رویدادهای `CommitAck=1` در فایل CSV | حاصل جمع ۱۶ دستور مفید به علاوه ۴ بار اجرای حلقه ($16 + 4 = 20$). |
+```systemverilog
+
+    // Instruction sequence (code in words 0..18, data in words 64 and 128)
+    mem[0]  = 32'h00a00093; // 0x00: ADDI x1, x0, 10
+    mem[1]  = 32'h01400113; // 0x04: ADDI x2, x0, 20
+    mem[2]  = 32'h002081b3; // 0x08: ADD  x3, x1, x2  (= 30)
+    mem[3]  = 32'h40110233; // 0x0c: SUB  x4, x2, x1  (= 10)
+    mem[4]  = 32'h0041c2b3; // 0x10: XOR  x5, x3, x4  (= 20)
+    mem[5]  = 32'h0020e333; // 0x14: OR   x6, x1, x2  (= 30)
+    mem[6]  = 32'h0060f3b3; // 0x18: AND  x7, x1, x6  (= 10)
+    mem[7]  = 32'h00f0a413; // 0x1c: SLTI x8, x1, 15  (= 1)
+    mem[8]  = 32'h00441493; // 0x20: SLLI x9, x8, 4   (= 16)
+    mem[9]  = 32'h10302023; // 0x24: SW   x3, 256(x0) (Store 30 at addr 256 = word 64)
+    mem[10] = 32'h10002503; // 0x28: LW   x10, 256(x0)(Load 30 into x10 from addr 256)
+    mem[11] = 32'h00a18463; // 0x2c: BEQ  x3, x10, +8 (Branch over next instr)
+    mem[12] = 32'h06300593; // 0x30: ADDI x11, x0, 99 (SKIPPED!)
+    mem[13] = 32'h00100613; // 0x34: ADDI x12, x0, 1   (Target of BEQ)
+    mem[14] = 32'h008006ef; // 0x38: JAL  x13, +8     (Jump over next instr)
+    mem[15] = 32'h05800713; // 0x3c: ADDI x14, x0, 88 (SKIPPED!)
+    mem[16] = 32'h02a00793; // 0x40: ADDI x15, x0, 42  (Target of JAL)
+    mem[17] = 32'h20f02023; // 0x44: SW   x15, 512(x0)(Store 42 at addr 512 = word 128)
+    mem[18] = 32'h00000063; // 0x48: BEQ  x0, x0, 0   (Infinite self-loop)
+    
+    // 19 total instructions
+    // 1 infinte loop at 0x48
+    // 18 instrctions
+    // 2 skipped instruction 
+    // 18 - 2 = 16 instructions have been ran. 
+```
 
 ---
 
 ### ۳.۲. چرا برنامه محاسباتی در سیکل ۳۲۴ تمام شد؟
-برنامه تستی ما ۱۸ دستور مفید محاسباتی داشت که با کسر ۲ دستور رد شده، دقیقاً **۱۶ دستور مفید** در مسیر اجرا قرار گرفتند. آخرین دستور مفید، دستور شماره ۱۷ یعنی `SW x15, 512(x0)` در آدرس `0x8000_0044` بود که نتیجه نهایی محاسبات (عدد ۴۲) رو در آدرس ۵۱۲ حافظه ذخیره کرد.
+برنامه تستی ما ۱۸ دستور مفید محاسباتی داشت که با کسر ۲ دستور رد شده (skipped instructions)، دقیقاً **۱۶ دستور مفید** در مسیر اجرا قرار گرفتند. آخرین دستور مفید، دستور شماره ۱۷ یعنی `SW x15, 512(x0)` در آدرس `0x8000_0044` بود که نتیجه نهایی محاسبات (عدد ۴۲) رو در آدرس ۵۱۲ حافظه ذخیره کرد.
 با نگاه به لاگ دقیق commit:
 ```
 Cycle 324: CommitAck = 1 | CommitPC = 0x8000_0044 | SW x15, 512(x0)
 ```
 یعنی تمام محاسبات و دسترسی‌های حافظه برنامه در سیکل ۳۲۴ با موفقیت ۱۰۰٪ کامل شد! بعد از این دستور، فقط یک دستور توقف (`BEQ x0, x0, 0` در آدرس `0x48`) قرار داشت که یک حلقه بی‌نهایت برای متوقف نگه داشتن پردازنده در کدهای Bare-Metal است.
+![[commitOn324Cycle.png]]
 
 علاوه بر این، تست‌بنچ در خط ۵۴۳ فایل `tb_cva6_smoke_cold_startup.sv` این دستور رو اجرا کرده بود:
 ```systemverilog
@@ -220,6 +336,7 @@ flowchart TD
 در این نمودار، پایان پاک‌سازی تگ، تقاضای آدرس `0x8000_0000`، پالس خطای کش در سیکل ۲۶۷، دریافت داده‌ها از AXI و commit دستورات اولیه (`x1=10`, `x2=20`, `x3=30`, `x4=10`) با شاخص لحظه‌ای $\text{CPI}=1.25$ به وضوح مشخصه:
 
 ![شکل‌موج ۱: اولین خطای سرد و پر شدن کش](figures/cva6_wave_01_refill.svg)
+![[265-284Cycle.png]]
 
 ---
 
@@ -227,6 +344,7 @@ flowchart TD
 در این بخش، خطوط بعدی کش واکشی میشن و دستورات منطقی با نرخ $\text{CPI}=1.00$ اجرا میشن. سپس واحد حافظه (LSU) عدد ۳۰ رو با دستور `SW` در آدرس ۲۵۶ ذخیره می‌کنه و با دستور `LW` همون مقدار رو با موفقیت داخل ثبات `x10` برمی‌گردونه:
 
 ![شکل‌موج ۲: اجرای دستورات منطقی و دسترسی داده](figures/cva6_wave_02_memory.svg)
+![[265-312Cycle.png]]
 
 ---
 
@@ -234,12 +352,12 @@ flowchart TD
 این نمودار عملکرد هوشمندانه کنترلر کش رو نشون میده: بعد از تایید انشعاب `BEQ` و پرش `JAL`، واکشی‌های تخمینی فراتر از کد (`0x8000_0050`) با ورود موقت به حالت ۵ (`KILL_MISS`) لغو میشن. در ادامه، عدد ۴۲ در آدرس ۵۱۲ ذخیره میشه و پردازنده وارد حلقه پایدار با اصابت ۱۰۰٪ کش (`Hit=01`) و عدم وقوع هیچ‌گونه میس میشه:
 
 ![شکل‌موج ۳: حل انشعاب و حلقه پایدار با اصابت کامل](figures/cva6_wave_03_branch_loop.svg)
+![[312-338Cycle.png]]
 
 ---
 
 ## ۶. کاربرد این نتایج اولیه در پروژه شتاب‌دهنده PQC
 
-این یافته‌ها سه تا دستاورد مستقیم برای ادامه پروژه‌مون دارن:
 1. **اطمینان کامل از پایداری هسته میزبان:** پردازنده CVA6 بدون هیچ مشکلی می‌تونه پروتکل اصلی و کنترل شتاب‌دهنده سخت‌افزاری رمزنگاری رو به عهده بگیره.
 2. **روش صحیح ارزیابی کارایی PQC:** در زمان اجرای الگوریتم‌هایی مثل Kyber یا Dilithium، حتماً باید زمان‌سنجی بعد از فاز گرم‌کردن کش (Warm-up) انجام بشه تا زمان‌های اولیه لودینگ با زمان اجرای خالص الگوریتم مخلوط نشن.
 3. **اتصال شتاب‌دهنده سخت‌افزاری:** ماژول سخت‌افزاری شتاب‌دهنده PQC (شامل واحدهای NTT و Keccak) رو می‌تونیم از طریق درگاه استاندارد **CV-X-IF** یا گذرگاه **AXI4** مستقیماً به این هسته وصل کنیم و دستورات سفارشی رمزنگاری رو روی اون فراخوانی کنیم.
@@ -255,10 +373,59 @@ flowchart TD
 ## ۸. اثبات تجربی و قطعی در تست‌بنچ دوم (tb_cva6_warm_cache): سنجش دقیق کارایی در حالت کش گرم (Steady-State WARM CPI)
 
 برای اینکه فرضیه معماری ما به طور ۱۰۰٪ قطعی و تجربی در عمل ثابت بشه و ببینیم پردازنده CVA6 در غیاب خطاهای شروع سرد (دام اولیه کش) چه کارایی واقعی از خودش نشون میده، تست‌بنچ اختصاصی و جدیدی به نام **[`tb_cva6_warm_cache.sv`](../../Vivado/CVA6/sim/tb_cva6_warm_cache.sv)** نوشتم. در این تست‌بنچ، هسته پردازشی ۱۸ دستوری رو درون یک حلقه ۱۰ تکراره قرار دادم تا رفتار پردازنده رو در دو فاز کاملاً تفکیک‌شده ارزیابی کنم:
+
+```systemverilog
+    mem[0]  = 32'h00a00813; // 0x00: ADDI x16, x0, 10    (Init loop counter = 10)
+    mem[1]  = 32'h00a00093; // 0x04: ADDI x1, x0, 10     (LOOP START)
+    mem[2]  = 32'h01400113; // 0x08: ADDI x2, x0, 20
+    mem[3]  = 32'h002081b3; // 0x0c: ADD  x3, x1, x2     (= 30)
+    mem[4]  = 32'h40110233; // 0x10: SUB  x4, x2, x1     (= 10)
+    mem[5]  = 32'h0041c2b3; // 0x14: XOR  x5, x3, x4     (= 20)
+    mem[6]  = 32'h0020e333; // 0x18: OR   x6, x1, x2     (= 30)
+    mem[7]  = 32'h0060f3b3; // 0x1c: AND  x7, x1, x6     (= 10)
+    mem[8]  = 32'h00f0a413; // 0x20: SLTI x8, x1, 15     (= 1)
+    mem[9]  = 32'h00441493; // 0x24: SLLI x9, x8, 4      (= 16)
+    mem[10] = 32'h10302023; // 0x28: SW   x3, 256(x0)    (Store 30 at addr 256 = word 64)
+    mem[11] = 32'h10002503; // 0x2c: LW   x10, 256(x0)   (Load 30 into x10 from addr 256)
+    mem[12] = 32'h00a18463; // 0x30: BEQ  x3, x10, +8    (Branch over next instr -> target 0x38 = mem[14])
+    mem[13] = 32'h06300593; // 0x34: ADDI x11, x0, 99    (SKIPPED!)
+    mem[14] = 32'h00100613; // 0x38: ADDI x12, x0, 1     (Target of BEQ)
+	    mem[15] = 32'h008006ef; // 0x3c: JAL  x13, +8        (Jump over next instr -> target 0x44 = mem[17])
+    mem[16] = 32'h05800713; // 0x40: ADDI x14, x0, 88    (SKIPPED!)
+    mem[17] = 32'h02a00793; // 0x44: ADDI x15, x0, 42    (Target of JAL)
+    mem[18] = 32'h20f02023; // 0x48: SW   x15, 512(x0)   (Store 42 at addr 512 = word 128)
+    mem[19] = 32'hfff80813; // 0x4c: ADDI x16, x16, -1   (Decrement loop counter)
+    mem[20] = 32'hfa081ae3; // 0x50: BNE  x16, x0, -76   (Branch back to 0x04 while x16 != 0)
+    mem[21] = 32'h00000063; // 0x54: BEQ  x0, x0, 0      (Infinite self-loop when loop terminates)
+```
+
+```assembly
+ADDI x16, x0, 10
+ADDI x1, x0, 10
+ADD  x3, x1, x2
+SUB  x4, x2, x1
+XOR  x5, x3, x4
+OR   x6, x1, x2
+AND  x7, x1, x6
+SLTI x8, x1, 15
+SLLI x9, x8, 4
+SW   x3, 256(x0)
+LW   x10, 256(x0)
+BEQ  x3, x10, +8
+ADDI x11, x0, 99
+ADDI x12, x0, 1
+JAL  x13, +8
+ADDI x14, x0, 88
+ADDI x15, x0, 42
+SW   x15, 512(x0)
+ADDI x16, x16, -1
+BNE  x16, x0, -76
+BEQ  x0, x0, 0
+```
+![[warm_cache_instructions.png]]
+
 * **فاز شروع سرد (دور اول):** خطوط کش رو از حافظه AXI پر می‌کنه و جدول تاریخچه انشعابات (BHT) رو آموزش میده.
 * **فاز پایدار کش گرم (دورهای ۲ تا ۱۰):** اجرای دستورات درون کش کاملاً گرم با **نرخ اصابت ۱۰۰٪ و بدون حتی یک خطای کش ثانویه**.
-
-تمام اطلاعات این شبیه‌سازی با ۶۹ سیگنال حیاتی به طور مستقل در فایل [`cva6_warm_trace.csv`](../../Vivado/CVA6/cva6_warm_trace.csv) و لاگ RVFI پردازنده در فایل `trace_hart_0.dasm` در طول ۵۸۹ سیکل با دقت چرخه‌به‌چرخه ذخیره و تحلیل شد.
 
 ---
 
