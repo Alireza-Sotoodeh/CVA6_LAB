@@ -1,107 +1,434 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560">
-<defs>
-  <style type="text/css">
-    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }
-    .sig-sub { font-size: 9px; fill: #64748b; }
-    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }
-    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }
-    .hex-lbl { font-size: 9px; font-family: monospace; text-anchor: middle; }
-    .sec-hdr { font-size: 14px; font-weight: 700; fill: #0f172a; }
-    .sec-sub { font-size: 11px; fill: #475569; }
-  </style>
-  <linearGradient id="grid-grad" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#f8fafc" />
-    <stop offset="100%" stop-color="#f1f5f9" />
-  </linearGradient>
-</defs>
-<rect width="1200" height="560" fill="#ffffff" />
-<text x="30" y="32" class="sec-hdr">CVA6 Suite 8: WFI Sleep State, Pipeline Halt &amp; External Interrupt (MEIP) Wakeup</text>
-<text x="30" y="50" class="sec-sub">Execution of WFI entering halt (halt_csr_o=1); assertion of irq[0]; un-halting and vectoring to mtvec</text>
-<rect x="200" y="65" width="970" height="20" fill="#f1f5f9" rx="2" />
-<text x="211.82926829268294" y="79" class="cyc-lbl">305</text>
-<text x="306.4634146341463" y="79" class="cyc-lbl">309</text>
-<text x="401.0975609756097" y="79" class="cyc-lbl">313</text>
-<text x="495.7317073170732" y="79" class="cyc-lbl">317</text>
-<text x="590.3658536585366" y="79" class="cyc-lbl">321</text>
-<text x="685.0000000000001" y="79" class="cyc-lbl">325</text>
-<text x="779.6341463414635" y="79" class="cyc-lbl">329</text>
-<text x="874.2682926829269" y="79" class="cyc-lbl">333</text>
-<text x="968.9024390243903" y="79" class="cyc-lbl">337</text>
-<text x="1063.5365853658536" y="79" class="cyc-lbl">341</text>
-<text x="1158.1707317073171" y="79" class="cyc-lbl">345</text>
-<text x="20" y="110" class="sig-lbl">Commit PC</text>
-<text x="20" y="121" class="sig-sub">Retired instruction PC</text>
-<rect x="200" y="95" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
-<rect x="201.0" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="224.65853658536585" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
-<text x="235.4878048780488" y="111" class="box-lbl" fill="#1e293b">0x80000030</text>
-<rect x="248.3170731707317" y="97" width="542.1463414634146" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="792.4634146341464" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
-<text x="803.2926829268293" y="111" class="box-lbl" fill="#1e293b">0x80000050</text>
-<rect x="816.1219512195122" y="97" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="839.7804878048781" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
-<text x="850.6097560975611" y="111" class="box-lbl" fill="#1e293b">0x80000054</text>
-<rect x="863.439024390244" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
-<text x="874.2682926829269" y="111" class="box-lbl" fill="#1e293b">0x80000058</text>
-<rect x="887.0975609756098" y="97" width="21.658536585365855" height="24" rx="2" fill="#dcfce7" stroke="#cbd5e1" />
-<text x="897.9268292682927" y="111" class="box-lbl" fill="#1e293b">0x8000005C</text>
-<rect x="910.7560975609756" y="97" width="258.2439024390244" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<text x="20" y="148" class="sig-lbl">Trap Valid &amp; Cause</text>
-<text x="20" y="159" class="sig-sub">Exception/Interrupt Trigger</text>
-<rect x="200" y="133" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
-<rect x="201.0" y="135" width="163.609756097561" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="366.609756097561" y="135" width="21.658536585365855" height="24" rx="2" fill="#fecaca" stroke="#cbd5e1" />
-<text x="377.4390243902439" y="149" class="box-lbl" fill="#1e293b">TRAP: 0x80000007</text>
-<rect x="390.2682926829268" y="135" width="778.7317073170732" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<text x="20" y="186" class="sig-lbl">MRET Instruction</text>
-<text x="20" y="197" class="sig-sub">Privileged Return Executed</text>
-<rect x="200" y="171" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
-<rect x="201.0" y="173" width="968.0000000000001" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<text x="20" y="224" class="sig-lbl">WFI Sleep &amp; Halt</text>
-<text x="20" y="235" class="sig-sub">wfi_q / halt_csr_o</text>
-<rect x="200" y="209" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
-<rect x="201.0" y="211" width="968.0000000000001" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<text x="20" y="262" class="sig-lbl">time_irq Pin</text>
-<text x="20" y="273" class="sig-sub">Top-level Timer Interrupt</text>
-<rect x="200" y="247" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
-<rect x="201.0" y="249" width="210.9268292682927" height="24" rx="2" fill="#fef08a" stroke="#cbd5e1" />
-<text x="306.4634146341464" y="263" class="box-lbl" fill="#1e293b">TIME_IRQ=1</text>
-<rect x="413.9268292682927" y="249" width="755.0731707317074" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<text x="791.4634146341464" y="263" class="box-lbl" fill="#1e293b">0</text>
-<text x="20" y="300" class="sig-lbl">irq[0] External Pin</text>
-<text x="20" y="311" class="sig-sub">Platform External Interrupt</text>
-<rect x="200" y="285" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
-<rect x="201.0" y="287" width="968.0000000000001" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<text x="685.0" y="301" class="box-lbl" fill="#1e293b">0</text>
-<text x="20" y="338" class="sig-lbl">mstatus.MIE</text>
-<text x="20" y="349" class="sig-sub">Global Interrupt Enable Flag</text>
-<rect x="200" y="323" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
-<rect x="201.0" y="325" width="45.31707317073171" height="24" rx="2" fill="#fecdd3" stroke="#cbd5e1" />
-<text x="223.65853658536585" y="339" class="box-lbl" fill="#1e293b">MIE=0 (MASKED)</text>
-<rect x="248.3170731707317" y="325" width="139.95121951219514" height="24" rx="2" fill="#bbf7d0" stroke="#cbd5e1" />
-<text x="318.2926829268293" y="339" class="box-lbl" fill="#1e293b">MIE=1 (ENABLED)</text>
-<rect x="390.2682926829268" y="325" width="778.7317073170732" height="24" rx="2" fill="#fecdd3" stroke="#cbd5e1" />
-<text x="779.6341463414634" y="339" class="box-lbl" fill="#1e293b">MIE=0 (MASKED)</text>
-<text x="20" y="376" class="sig-lbl">mip.MTIP / MEIP</text>
-<text x="20" y="387" class="sig-sub">Pending Interrupt Bits in CSR</text>
-<rect x="200" y="361" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
-<rect x="201.0" y="363" width="234.58536585365854" height="24" rx="2" fill="#fbcfe8" stroke="#cbd5e1" />
-<text x="318.2926829268293" y="377" class="box-lbl" fill="#1e293b">MTIP=1</text>
-<rect x="437.5853658536586" y="363" width="731.4146341463415" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<text x="20" y="414" class="sig-lbl">GPR Write</text>
-<text x="20" y="425" class="sig-sub">Register File Writeback</text>
-<rect x="200" y="399" width="970" height="28" fill="#f8fafc" stroke="#e2e8f0" rx="3" />
-<rect x="201.0" y="401" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="224.65853658536585" y="401" width="21.658536585365855" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
-<rect x="248.3170731707317" y="401" width="116.29268292682927" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="366.609756097561" y="401" width="400.19512195121956" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="768.8048780487806" y="401" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="792.4634146341464" y="401" width="21.658536585365855" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
-<rect x="816.1219512195122" y="401" width="21.658536585365855" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
-<rect x="839.7804878048781" y="401" width="21.658536585365855" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
-<rect x="863.439024390244" y="401" width="21.658536585365855" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
-<rect x="887.0975609756098" y="401" width="21.658536585365855" height="24" rx="2" fill="#e2e8f0" stroke="#cbd5e1" />
-<rect x="910.7560975609756" y="401" width="258.2439024390244" height="24" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 394" width="1200" height="394">
+<defs><style>
+  text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .title { font-size: 15px; font-weight: 700; fill: #0f172a; }
+  .subtitle { font-size: 11px; fill: #475569; }
+  .sig-name { font-size: 11px; font-weight: 600; fill: #1e293b; }
+  .sig-sub { font-size: 9px; fill: #64748b; }
+  .bus { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 8.5px; font-weight: 600; text-anchor: middle; fill: #0f172a; }
+  .bit { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 9px; font-weight: 600; text-anchor: middle; }
+  .cyc { font-size: 9px; fill: #475569; font-weight: 600; text-anchor: middle; }
+  .ann-title { font-size: 11px; font-weight: 700; fill: #0f172a; }
+  .ann-body { font-size: 9.5px; fill: #334155; }
+  .tag-lbl { font-size: 9px; font-weight: 700; text-anchor: middle; fill: #ffffff; }
+</style></defs>
+<rect width="1200" height="394" fill="#f8fafc" rx="8" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="20" y="12" width="1160" height="46" rx="6" fill="#1e293b"/>
+<text x="35" y="32" font-size="14" font-weight="700" fill="#f8fafc">WFI Sleep State, Pipeline Halt &amp; External Interrupt (MEIP) Wakeup (Cycles 308 to 334)</text>
+<text x="35" y="48" font-size="10.5" fill="#94a3b8">WFI commits entering low-power halt (halt_csr_o=1); assertion of external IRQ wakes core and vectors to mtvec</text>
+<rect x="240.0" y="75" width="34.4" height="224" fill="#fee2e2"/>
+<line x1="240.0" y1="75" x2="240.0" y2="299" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="240.0" y1="75" x2="240.0" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="257.2" y="69" class="cyc" fill="#dc2626">C308</text>
+<rect x="274.4" y="75" width="34.4" height="224" fill="#fee2e2"/>
+<line x1="274.4" y1="75" x2="274.4" y2="299" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="274.4" y1="75" x2="274.4" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="291.7" y="69" class="cyc" fill="#dc2626">C309</text>
+<rect x="308.9" y="75" width="34.4" height="224" fill="#fee2e2"/>
+<line x1="308.9" y1="75" x2="308.9" y2="299" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="308.9" y1="75" x2="308.9" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="326.1" y="69" class="cyc" fill="#dc2626">C310</text>
+<rect x="343.3" y="75" width="34.4" height="224" fill="#fee2e2"/>
+<line x1="343.3" y1="75" x2="343.3" y2="299" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="343.3" y1="75" x2="343.3" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="360.6" y="69" class="cyc" fill="#dc2626">C311</text>
+<rect x="377.8" y="75" width="34.4" height="224" fill="#fee2e2"/>
+<line x1="377.8" y1="75" x2="377.8" y2="299" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="377.8" y1="75" x2="377.8" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="395.0" y="69" class="cyc" fill="#dc2626">C312</text>
+<rect x="412.2" y="75" width="34.4" height="224" fill="#fee2e2"/>
+<line x1="412.2" y1="75" x2="412.2" y2="299" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="412.2" y1="75" x2="412.2" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="429.4" y="69" class="cyc" fill="#dc2626">C313</text>
+<rect x="446.7" y="75" width="34.4" height="224" fill="#f8fafc"/>
+<line x1="446.7" y1="75" x2="446.7" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="463.9" y="69" class="cyc" fill="#475569">C314</text>
+<rect x="481.1" y="75" width="34.4" height="224" fill="#ffffff"/>
+<line x1="481.1" y1="75" x2="481.1" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<rect x="515.6" y="75" width="34.4" height="224" fill="#f8fafc"/>
+<line x1="515.6" y1="75" x2="515.6" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="532.8" y="69" class="cyc" fill="#475569">C316</text>
+<rect x="550.0" y="75" width="34.4" height="224" fill="#ffffff"/>
+<line x1="550.0" y1="75" x2="550.0" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<rect x="584.4" y="75" width="34.4" height="224" fill="#f8fafc"/>
+<line x1="584.4" y1="75" x2="584.4" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="601.7" y="69" class="cyc" fill="#475569">C318</text>
+<rect x="618.9" y="75" width="34.4" height="224" fill="#ffffff"/>
+<line x1="618.9" y1="75" x2="618.9" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<rect x="653.3" y="75" width="34.4" height="224" fill="#f8fafc"/>
+<line x1="653.3" y1="75" x2="653.3" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="670.6" y="69" class="cyc" fill="#475569">C320</text>
+<rect x="687.8" y="75" width="34.4" height="224" fill="#ffffff"/>
+<line x1="687.8" y1="75" x2="687.8" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<rect x="722.2" y="75" width="34.4" height="224" fill="#f8fafc"/>
+<line x1="722.2" y1="75" x2="722.2" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="739.4" y="69" class="cyc" fill="#475569">C322</text>
+<rect x="756.7" y="75" width="34.4" height="224" fill="#ffffff"/>
+<line x1="756.7" y1="75" x2="756.7" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<rect x="791.1" y="75" width="34.4" height="224" fill="#f8fafc"/>
+<line x1="791.1" y1="75" x2="791.1" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="808.3" y="69" class="cyc" fill="#475569">C324</text>
+<rect x="825.6" y="75" width="34.4" height="224" fill="#ffffff"/>
+<line x1="825.6" y1="75" x2="825.6" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<rect x="860.0" y="75" width="34.4" height="224" fill="#f8fafc"/>
+<line x1="860.0" y1="75" x2="860.0" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="877.2" y="69" class="cyc" fill="#475569">C326</text>
+<rect x="894.4" y="75" width="34.4" height="224" fill="#ffffff"/>
+<line x1="894.4" y1="75" x2="894.4" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<rect x="928.9" y="75" width="34.4" height="224" fill="#f8fafc"/>
+<line x1="928.9" y1="75" x2="928.9" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="946.1" y="69" class="cyc" fill="#475569">C328</text>
+<rect x="963.3" y="75" width="34.4" height="224" fill="#ffffff"/>
+<line x1="963.3" y1="75" x2="963.3" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<rect x="997.8" y="75" width="34.4" height="224" fill="#f8fafc"/>
+<line x1="997.8" y1="75" x2="997.8" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="1015.0" y="69" class="cyc" fill="#475569">C330</text>
+<rect x="1032.2" y="75" width="34.4" height="224" fill="#ffffff"/>
+<line x1="1032.2" y1="75" x2="1032.2" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<rect x="1066.7" y="75" width="34.4" height="224" fill="#f8fafc"/>
+<line x1="1066.7" y1="75" x2="1066.7" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="1083.9" y="69" class="cyc" fill="#475569">C332</text>
+<rect x="1101.1" y="75" width="34.4" height="224" fill="#ffffff"/>
+<line x1="1101.1" y1="75" x2="1101.1" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<rect x="1135.6" y="75" width="34.4" height="224" fill="#f8fafc"/>
+<line x1="1135.6" y1="75" x2="1135.6" y2="299" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="1152.8" y="69" class="cyc" fill="#475569">C334</text>
+<line x1="20" y1="103" x2="1180" y2="103" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="88" class="sig-name">FetchPC</text>
+<text x="25" y="98" class="sig-sub">Fetch Stage PC</text>
+<polygon points="243.0,89.0 246.0,81.0 268.4,81.0 271.4,89.0 268.4,97.0 246.0,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="257.2" y="92.5" class="bus">J END</text>
+<polygon points="277.4,89.0 280.4,81.0 302.9,81.0 305.9,89.0 302.9,97.0 280.4,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="291.7" y="92.5" class="bus">0x03C</text>
+<polygon points="311.9,89.0 314.9,81.0 337.3,81.0 340.3,89.0 337.3,97.0 314.9,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="326.1" y="92.5" class="bus">0x040</text>
+<polygon points="346.3,89.0 349.3,81.0 406.2,81.0 409.2,89.0 406.2,97.0 349.3,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="377.8" y="92.5" class="bus">0x0044</text>
+<polygon points="415.2,89.0 418.2,81.0 612.9,81.0 615.9,89.0 612.9,97.0 418.2,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="515.6" y="92.5" class="bus">0x0050</text>
+<polygon points="621.9,89.0 624.9,81.0 888.4,81.0 891.4,89.0 888.4,97.0 624.9,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="756.7" y="92.5" class="bus">0x0054</text>
+<polygon points="897.4,89.0 900.4,81.0 922.9,81.0 925.9,89.0 922.9,97.0 900.4,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="911.7" y="92.5" class="bus">0x058</text>
+<polygon points="931.9,89.0 934.9,81.0 957.3,81.0 960.3,89.0 957.3,97.0 934.9,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="946.1" y="92.5" class="bus">0x05C</text>
+<polygon points="966.3,89.0 969.3,81.0 991.8,81.0 994.8,89.0 991.8,97.0 969.3,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="980.6" y="92.5" class="bus">0x060</text>
+<polygon points="1000.8,89.0 1003.8,81.0 1129.6,81.0 1132.6,89.0 1129.6,97.0 1003.8,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="1066.7" y="92.5" class="bus">0x0064</text>
+<polygon points="1138.6,89.0 1141.6,81.0 1164.0,81.0 1167.0,89.0 1164.0,97.0 1141.6,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="1152.8" y="92.5" class="bus">0x074</text>
+<line x1="20" y1="131" x2="1180" y2="131" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="116" class="sig-name">CommitPC0</text>
+<text x="25" y="126" class="sig-sub">Commit Port 0 PC</text>
+<polygon points="243.0,117.0 246.0,109.0 991.8,109.0 994.8,117.0 991.8,125.0 246.0,125.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="1000.8,117.0 1003.8,109.0 1026.2,109.0 1029.2,117.0 1026.2,125.0 1003.8,125.0" fill="#e0f2fe" stroke="#16a34a" stroke-width="1"/>
+<text x="1015.0" y="120.5" class="bus">0x050</text>
+<polygon points="1035.2,117.0 1038.2,109.0 1060.7,109.0 1063.7,117.0 1060.7,125.0 1038.2,125.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="1069.7,117.0 1072.7,109.0 1095.1,109.0 1098.1,117.0 1095.1,125.0 1072.7,125.0" fill="#e0f2fe" stroke="#16a34a" stroke-width="1"/>
+<text x="1083.9" y="120.5" class="bus">0x054</text>
+<polygon points="1104.1,117.0 1107.1,109.0 1129.6,109.0 1132.6,117.0 1129.6,125.0 1107.1,125.0" fill="#e0f2fe" stroke="#16a34a" stroke-width="1"/>
+<text x="1118.3" y="120.5" class="bus">0x058</text>
+<polygon points="1138.6,117.0 1141.6,109.0 1164.0,109.0 1167.0,117.0 1164.0,125.0 1141.6,125.0" fill="#e0f2fe" stroke="#16a34a" stroke-width="1"/>
+<text x="1152.8" y="120.5" class="bus">0x05C</text>
+<line x1="20" y1="159" x2="1180" y2="159" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="144" class="sig-name">CommitAck0</text>
+<text x="25" y="154" class="sig-sub">Commit Instruction Ack</text>
+<line x1="240.0" y1="153.0" x2="274.4" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="257.2" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="274.4" y1="153.0" x2="308.9" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="291.7" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="308.9" y1="153.0" x2="343.3" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="326.1" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="343.3" y1="153.0" x2="377.8" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="360.6" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="377.8" y1="153.0" x2="412.2" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="395.0" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="412.2" y1="153.0" x2="446.7" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="429.4" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="446.7" y1="153.0" x2="481.1" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="463.9" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="481.1" y1="153.0" x2="515.6" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="498.3" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="515.6" y1="153.0" x2="550.0" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="532.8" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="550.0" y1="153.0" x2="584.4" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="567.2" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="584.4" y1="153.0" x2="618.9" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="601.7" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="618.9" y1="153.0" x2="653.3" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="636.1" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="653.3" y1="153.0" x2="687.8" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="670.6" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="687.8" y1="153.0" x2="722.2" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="705.0" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="722.2" y1="153.0" x2="756.7" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="739.4" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="756.7" y1="153.0" x2="791.1" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="773.9" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="791.1" y1="153.0" x2="825.6" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="808.3" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="825.6" y1="153.0" x2="860.0" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="842.8" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="860.0" y1="153.0" x2="894.4" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="877.2" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="894.4" y1="153.0" x2="928.9" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="911.7" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="928.9" y1="153.0" x2="963.3" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="946.1" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="963.3" y1="153.0" x2="997.8" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="980.6" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="997.8" y1="153.0" x2="997.8" y2="137.0" stroke="#16a34a" stroke-width="1.8"/>
+<line x1="997.8" y1="137.0" x2="1032.2" y2="137.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="1015.0" y="148.5" class="bit" fill="#16a34a">1</text>
+<line x1="1032.2" y1="137.0" x2="1032.2" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<line x1="1032.2" y1="153.0" x2="1066.7" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="1049.4" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="1066.7" y1="153.0" x2="1066.7" y2="137.0" stroke="#16a34a" stroke-width="1.8"/>
+<line x1="1066.7" y1="137.0" x2="1101.1" y2="137.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="1083.9" y="148.5" class="bit" fill="#16a34a">1</text>
+<line x1="1101.1" y1="137.0" x2="1135.6" y2="137.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="1118.3" y="148.5" class="bit" fill="#16a34a">1</text>
+<line x1="1135.6" y1="137.0" x2="1170.0" y2="137.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="1152.8" y="148.5" class="bit" fill="#16a34a">1</text>
+<line x1="20" y1="187" x2="1180" y2="187" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="172" class="sig-name">HaltCsrO</text>
+<text x="25" y="182" class="sig-sub">WFI Pipeline Halt Strobe</text>
+<line x1="240.0" y1="181.0" x2="274.4" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="257.2" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="274.4" y1="181.0" x2="308.9" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="291.7" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="308.9" y1="181.0" x2="343.3" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="326.1" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="343.3" y1="181.0" x2="377.8" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="360.6" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="377.8" y1="181.0" x2="412.2" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="395.0" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="412.2" y1="181.0" x2="446.7" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="429.4" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="446.7" y1="181.0" x2="481.1" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="463.9" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="481.1" y1="181.0" x2="515.6" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="498.3" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="515.6" y1="181.0" x2="550.0" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="532.8" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="550.0" y1="181.0" x2="584.4" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="567.2" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="584.4" y1="181.0" x2="618.9" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="601.7" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="618.9" y1="181.0" x2="653.3" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="636.1" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="653.3" y1="181.0" x2="687.8" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="670.6" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="687.8" y1="181.0" x2="722.2" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="705.0" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="722.2" y1="181.0" x2="756.7" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="739.4" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="756.7" y1="181.0" x2="791.1" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="773.9" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="791.1" y1="181.0" x2="825.6" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="808.3" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="825.6" y1="181.0" x2="860.0" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="842.8" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="860.0" y1="181.0" x2="894.4" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="877.2" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="894.4" y1="181.0" x2="928.9" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="911.7" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="928.9" y1="181.0" x2="963.3" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="946.1" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="963.3" y1="181.0" x2="997.8" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="980.6" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="997.8" y1="181.0" x2="1032.2" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="1015.0" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="1032.2" y1="181.0" x2="1066.7" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="1049.4" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="1066.7" y1="181.0" x2="1101.1" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="1083.9" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="1101.1" y1="181.0" x2="1135.6" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="1118.3" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="1135.6" y1="181.0" x2="1170.0" y2="181.0" stroke="#ea580c" stroke-width="1.8"/>
+<text x="1152.8" y="176.5" class="bit" fill="#ea580c">0</text>
+<line x1="20" y1="215" x2="1180" y2="215" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="200" class="sig-name">ExtIrq</text>
+<text x="25" y="210" class="sig-sub">External Interrupt Strobe</text>
+<line x1="240.0" y1="209.0" x2="274.4" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="257.2" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="274.4" y1="209.0" x2="308.9" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="291.7" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="308.9" y1="209.0" x2="343.3" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="326.1" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="343.3" y1="209.0" x2="377.8" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="360.6" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="377.8" y1="209.0" x2="412.2" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="395.0" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="412.2" y1="209.0" x2="446.7" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="429.4" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="446.7" y1="209.0" x2="481.1" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="463.9" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="481.1" y1="209.0" x2="515.6" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="498.3" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="515.6" y1="209.0" x2="550.0" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="532.8" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="550.0" y1="209.0" x2="584.4" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="567.2" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="584.4" y1="209.0" x2="618.9" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="601.7" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="618.9" y1="209.0" x2="653.3" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="636.1" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="653.3" y1="209.0" x2="687.8" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="670.6" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="687.8" y1="209.0" x2="722.2" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="705.0" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="722.2" y1="209.0" x2="756.7" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="739.4" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="756.7" y1="209.0" x2="791.1" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="773.9" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="791.1" y1="209.0" x2="825.6" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="808.3" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="825.6" y1="209.0" x2="860.0" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="842.8" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="860.0" y1="209.0" x2="894.4" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="877.2" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="894.4" y1="209.0" x2="928.9" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="911.7" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="928.9" y1="209.0" x2="963.3" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="946.1" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="963.3" y1="209.0" x2="997.8" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="980.6" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="997.8" y1="209.0" x2="1032.2" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="1015.0" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="1032.2" y1="209.0" x2="1066.7" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="1049.4" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="1066.7" y1="209.0" x2="1101.1" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="1083.9" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="1101.1" y1="209.0" x2="1135.6" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="1118.3" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="1135.6" y1="209.0" x2="1170.0" y2="209.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="1152.8" y="204.5" class="bit" fill="#dc2626">0</text>
+<line x1="20" y1="243" x2="1180" y2="243" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="228" class="sig-name">ExValid</text>
+<text x="25" y="238" class="sig-sub">Trap Valid Strobe</text>
+<line x1="240.0" y1="237.0" x2="274.4" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="257.2" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="274.4" y1="237.0" x2="308.9" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="291.7" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="308.9" y1="237.0" x2="343.3" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="326.1" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="343.3" y1="237.0" x2="377.8" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="360.6" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="377.8" y1="237.0" x2="412.2" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="395.0" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="412.2" y1="237.0" x2="446.7" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="429.4" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="446.7" y1="237.0" x2="481.1" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="463.9" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="481.1" y1="237.0" x2="515.6" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="498.3" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="515.6" y1="237.0" x2="550.0" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="532.8" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="550.0" y1="237.0" x2="584.4" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="567.2" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="584.4" y1="237.0" x2="618.9" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="601.7" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="618.9" y1="237.0" x2="653.3" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="636.1" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="653.3" y1="237.0" x2="687.8" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="670.6" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="687.8" y1="237.0" x2="722.2" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="705.0" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="722.2" y1="237.0" x2="756.7" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="739.4" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="756.7" y1="237.0" x2="791.1" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="773.9" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="791.1" y1="237.0" x2="825.6" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="808.3" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="825.6" y1="237.0" x2="860.0" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="842.8" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="860.0" y1="237.0" x2="894.4" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="877.2" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="894.4" y1="237.0" x2="928.9" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="911.7" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="928.9" y1="237.0" x2="963.3" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="946.1" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="963.3" y1="237.0" x2="997.8" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="980.6" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="997.8" y1="237.0" x2="1032.2" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="1015.0" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="1032.2" y1="237.0" x2="1066.7" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="1049.4" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="1066.7" y1="237.0" x2="1101.1" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="1083.9" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="1101.1" y1="237.0" x2="1135.6" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="1118.3" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="1135.6" y1="237.0" x2="1170.0" y2="237.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="1152.8" y="232.5" class="bit" fill="#dc2626">0</text>
+<line x1="20" y1="271" x2="1180" y2="271" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="256" class="sig-name">CsrMcause</text>
+<text x="25" y="266" class="sig-sub">Trap Cause Register</text>
+<polygon points="243.0,257.0 246.0,249.0 1164.0,249.0 1167.0,257.0 1164.0,265.0 246.0,265.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="20" y1="299" x2="1180" y2="299" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="284" class="sig-name">FlushIF</text>
+<text x="25" y="294" class="sig-sub">Fetch Stage Flush</text>
+<line x1="240.0" y1="293.0" x2="274.4" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="257.2" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="274.4" y1="293.0" x2="308.9" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="291.7" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="308.9" y1="293.0" x2="343.3" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="326.1" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="343.3" y1="293.0" x2="377.8" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="360.6" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="377.8" y1="293.0" x2="412.2" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="395.0" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="412.2" y1="293.0" x2="446.7" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="429.4" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="446.7" y1="293.0" x2="481.1" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="463.9" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="481.1" y1="293.0" x2="515.6" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="498.3" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="515.6" y1="293.0" x2="550.0" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="532.8" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="550.0" y1="293.0" x2="584.4" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="567.2" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="584.4" y1="293.0" x2="618.9" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="601.7" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="618.9" y1="293.0" x2="653.3" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="636.1" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="653.3" y1="293.0" x2="687.8" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="670.6" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="687.8" y1="293.0" x2="722.2" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="705.0" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="722.2" y1="293.0" x2="756.7" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="739.4" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="756.7" y1="293.0" x2="791.1" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="773.9" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="791.1" y1="293.0" x2="825.6" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="808.3" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="825.6" y1="293.0" x2="860.0" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="842.8" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="860.0" y1="293.0" x2="894.4" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="877.2" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="894.4" y1="293.0" x2="928.9" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="911.7" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="928.9" y1="293.0" x2="963.3" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="946.1" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="963.3" y1="293.0" x2="997.8" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="980.6" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="997.8" y1="293.0" x2="1032.2" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1015.0" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="1032.2" y1="293.0" x2="1066.7" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1049.4" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="1066.7" y1="293.0" x2="1101.1" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1083.9" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="1101.1" y1="293.0" x2="1135.6" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1118.3" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="1135.6" y1="293.0" x2="1170.0" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1152.8" y="288.5" class="bit" fill="#e11d48">0</text>
+<rect x="20" y="311" width="1160" height="75" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" rx="6"/>
+<text x="35" y="329" class="ann-title">Microarchitectural Analysis:</text>
+<text x="35" y="345" class="ann-body">
+  <tspan x="35" dy="0">• Cycle 312: WFI instruction commits at 0x8000_0030. Controller halts instruction fetch and decode (HaltCsrO=1).</tspan>
+  <tspan x="35" dy="16">• Power Conservation: Pipeline remains frozen in zero-activity state until external event arrives.</tspan>
+  <tspan x="35" dy="16">• Cycle 328: External interrupt (irq_i[11]) asserts. Core un-halts immediately and vectors to handler with mcause=0x8000_000B.</tspan>
+</text>
 </svg>
