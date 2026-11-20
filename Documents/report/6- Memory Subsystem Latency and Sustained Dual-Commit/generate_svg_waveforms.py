@@ -332,19 +332,19 @@ def generate_dual_commit_burst(rows):
 
     # Annotation box
     ann_y = y_top + len(signals) * row_h + 15
-    svg.append(f'<rect x="20" y="{ann_y}" width="{width-40}" height="80" rx="8" '
+    svg.append(f'<rect x="20" y="{ann_y}" width="{width-40}" height="85" rx="8" '
                f'fill="#eff6ff" stroke="#3b82f6" stroke-width="1" />')
     svg.append(f'<text x="35" y="{ann_y+20}" class="ann-title">'
                'Microarchitectural Analysis of Sustained Dual-Commit Burst:</text>')
-    svg.append(f'<text x="35" y="{ann_y+38}" class="ann-body">'
-               '1. Cycle 335: Port 0 commits "LW x9, 0(x1)" (x9=42) while Port 1 simultaneously commits '
-               '"ADDI x10, x10, 4" (x10=4). Scoreboard resolved both without dependency conflict.</text>')
-    svg.append(f'<text x="35" y="{ann_y+54}" class="ann-body">'
-               '2. Cycle 336: Immediate next cycle commits independent pair "ADD x11, x6, x7" (x11=3) on Port 0 '
-               'and "ADD x12, x8, x10" (x12=7) on Port 1, achieving back-to-back Dual-Commit (4 instrs in 2 cycs, IPC = 2.0!).</text>')
-    svg.append(f'<text x="35" y="{ann_y+70}" class="ann-body">'
-               '3. Front-End vs Back-End Decoupling: Issue stage issues at most 1 instruction/cycle, while Commit stage '
-               'drains up to 2 instructions/cycle from the Scoreboard once data hazards resolve.</text>')
+    notes = [
+        "1. Cycle 335: Port 0 commits 'LW x9, 0(x1)' (x9=42) while Port 1 simultaneously commits 'ADDI x10, x10, 4' (x10=4). Scoreboard resolved both without dependency conflict.",
+        "2. Cycle 336: Immediate next cycle commits independent pair 'ADD x11, x6, x7' (x11=3) on Port 0 and 'ADD x12, x8, x10' (x12=7) on Port 1, achieving back-to-back Dual-Commit (4 instrs in 2 cycs, IPC = 2.0!).",
+        "3. Front-End vs Back-End Decoupling: Issue stage issues at most 1 instruction/cycle, while Commit stage drains up to 2 instructions/cycle from the Scoreboard once data hazards resolve.",
+    ]
+    svg.append(f'<text x="35" y="{ann_y+38}" class="ann-body">')
+    for l_idx, line in enumerate(notes):
+        svg.append(f'  <tspan x="35" dy="{0 if l_idx==0 else 16}">{xesc(line)}</tspan>')
+    svg.append('</text>')
 
     svg.append("</svg>")
     path = os.path.join(FIG_DIR, "02_sustained_dual_commit_burst.svg")
@@ -522,7 +522,7 @@ def generate_scoreboard_ports_diagram(rows):
 
     svg.append(f'<rect x="{fe_x+20}" y="{fe_y+265}" width="{fe_w-40}" height="55" rx="6" fill="#fef2f2" stroke="#ef4444" />')
     svg.append(f'<text x="{fe_x+fe_w/2}" y="{fe_y+285}" font-size="10" font-weight="700" fill="#b91c1c" text-anchor="middle">Front-End Ceiling</text>')
-    svg.append(f'<text x="{fe_x+fe_w/2}" y="{fe_y+302}" font-size="8.5" fill="#7f1d1d" text-anchor="middle">Long-term sustained IPC &le; 1.0</text>')
+    svg.append(f'<text x="{fe_x+fe_w/2}" y="{fe_y+302}" font-size="8.5" fill="#7f1d1d" text-anchor="middle">Long-term sustained IPC ≤ 1.0</text>')
 
     # Arrow from FE to Scoreboard
     svg.append(f'<line x1="{fe_x+fe_w}" y1="{fe_y+212}" x2="{fe_x+fe_w+60}" y2="{fe_y+212}" stroke="#2563eb" stroke-width="2.5" />')
@@ -557,7 +557,7 @@ def generate_scoreboard_ports_diagram(rows):
     svg.append(f'<text x="{sb_x+25}" y="{sy+40}" font-size="9" fill="#334155">• Rule 1: Slot 0 must be marked valid and completed (trans_id done).</text>')
     svg.append(f'<text x="{sb_x+25}" y="{sy+54}" font-size="9" fill="#334155">• Rule 2: Slot 1 must also be valid &amp; completed without pending RAW hazard.</text>')
     svg.append(f'<text x="{sb_x+25}" y="{sy+68}" font-size="9" fill="#334155">• Rule 3: No exception, trap, or CSR flush pending on either instruction.</text>')
-    svg.append(f'<text x="{sb_x+25}" y="{sy+82}" font-size="9" fill="#16a34a" font-weight="600">✓ If all met: Slot 0 &rarr; Port 0, Slot 1 &rarr; Port 1 in SAME cycle!</text>')
+    svg.append(f'<text x="{sb_x+25}" y="{sy+82}" font-size="9" fill="#16a34a" font-weight="600">✓ If all met: Slot 0 → Port 0, Slot 1 → Port 1 in SAME cycle!</text>')
 
     # Dual commit output arrows
     svg.append(f'<line x1="{sb_x+sb_w}" y1="{sb_y+62}" x2="{sb_x+sb_w+60}" y2="{sb_y+100}" stroke="#16a34a" stroke-width="2.5" />')
@@ -584,7 +584,7 @@ def generate_scoreboard_ports_diagram(rows):
     svg.append(f'<rect x="{cm_x+15}" y="{cm_y+140}" width="{cm_w-30}" height="70" rx="6" fill="#faf5ff" stroke="#9333ea" stroke-width="1.5" />')
     svg.append(f'<text x="{cm_x+25}" y="{cm_y+162}" font-size="11" font-weight="700" fill="#7e22ce">Commit Port 1 (Secondary)</text>')
     svg.append(f'<text x="{cm_x+25}" y="{cm_y+178}" font-size="9.5" fill="#6b21a8">commit_ack[1] = 1 | PC = 0x8000004C (ADDI)</text>')
-    svg.append(f'<text x="{cm_x+25}" y="{cm_y+194}" font-size="9.5" fill="#6b21a8">GPR Write: x6 &larr; 0x00000001 (Updated!)</text>')
+    svg.append(f'<text x="{cm_x+25}" y="{cm_y+194}" font-size="9.5" fill="#6b21a8">GPR Write: x6 ← 0x00000001 (Updated!)</text>')
 
     svg.append(f'<rect x="{cm_x+15}" y="{cm_y+230}" width="{cm_w-30}" height="90" rx="6" fill="#ffffff" stroke="#cbd5e1" />')
     svg.append(f'<text x="{cm_x+25}" y="{cm_y+252}" font-size="10.5" font-weight="700" fill="#0f172a">Architectural Result:</text>')
