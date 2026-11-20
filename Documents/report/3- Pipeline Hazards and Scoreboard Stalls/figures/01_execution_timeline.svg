@@ -1,79 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360">
-<defs>
-  <style type="text/css">
-    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }
-    .sig-sub { font-size: 9px; fill: #64748b; }
-    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }
-    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }
-    .ann-title { font-size: 11px; font-weight: 700; fill: #0f172a; }
-    .ann-body { font-size: 10px; fill: #334155; }
-  </style>
-</defs>
-<rect width="1200" height="360" fill="#f8fafc" />
-  <text x="30" y="32" font-size="16" font-weight="700" fill="#0f172a">CVA6 Suite 2: Pipeline Hazards & Scoreboard Stalls — Execution Timeline</text>
-  <text x="30" y="50" font-size="11" fill="#475569">Retirement milestones from cold boot (cycle 0) to terminal self-loop commit (cycle 349). Total cycles run: 389.</text>
-  <g transform="translate(40, 100)">
-    <rect width="768" height="60" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5" rx="5" />
-    <text x="384.0" y="24" class="box-lbl" fill="#94a3b8">Phase 0: Cold Boot &amp; Fetch</text>
-    <text x="384.0" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 0–266</text>
-  </g>
-  <g transform="translate(808, 100)">
-    <rect width="40" height="60" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" rx="5" />
-    <text x="20.0" y="24" class="box-lbl" fill="#2563eb">Phase 1: RAW Forwarding Burst</text>
-    <text x="20.0" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 267–280</text>
-  </g>
-  <g transform="translate(848, 100)">
-    <rect width="71" height="60" fill="#fef3c7" stroke="#d97706" stroke-width="1.5" rx="5" />
-    <text x="35.5" y="24" class="box-lbl" fill="#d97706">Phase 2: Load-Use Hazard</text>
-    <text x="35.5" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 281–305</text>
-  </g>
-  <g transform="translate(919, 100)">
-    <rect width="57" height="60" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" rx="5" />
-    <text x="28.5" y="24" class="box-lbl" fill="#ea580c">Phase 3: Store Buffer Stall</text>
-    <text x="28.5" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 306–325</text>
-  </g>
-  <g transform="translate(976, 100)">
-    <rect width="57" height="60" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5" rx="5" />
-    <text x="28.5" y="24" class="box-lbl" fill="#dc2626">Phase 4: DIV Structural Contention</text>
-    <text x="28.5" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 326–345</text>
-  </g>
-  <g transform="translate(1033, 100)">
-    <rect width="126" height="60" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" rx="5" />
-    <text x="63.0" y="24" class="box-lbl" fill="#16a34a">Phase 5: Multiplier &amp; Self-Loop</text>
-    <text x="63.0" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc 346–389</text>
-  </g>
-  <rect x="40" y="190" width="1120" height="140" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" rx="6" />
-  <rect x="40" y="190" width="1120" height="28" fill="#f1f5f9" rx="6" />
-  <text x="55" y="208" class="sig-lbl">Phase</text>
-  <text x="250" y="208" class="sig-lbl">Cycle Span</text>
-  <text x="350" y="208" class="sig-lbl">Microarchitectural Mechanism</text>
-  <text x="750" y="208" class="sig-lbl">Hardware Signals &amp; Evidence</text>
-  <text x="1030" y="208" class="sig-lbl">Measured CPI / Impact</text>
-  <text x="55" y="234" font-size="10" font-weight="600" fill="#1e293b">Phase 1: RAW ALU Forwarding</text>
-  <text x="250" y="234" font-size="10" fill="#475569">267 – 280</text>
-  <text x="350" y="234" font-size="10" fill="#334155">Scoreboard operand bypass directly from EX writeback</text>
-  <text x="750" y="234" font-size="10" font-family="monospace" fill="#0369a1">forward_rs1=1, forward_rs2=1, stall_raw=0</text>
-  <text x="1030" y="234" font-size="10" font-weight="600" fill="#047857">CPI = 1.00 (Zero stall bubbles)</text>
-  <text x="55" y="254" font-size="10" font-weight="600" fill="#1e293b">Phase 2: Load-Use Scoreboard Stall</text>
-  <text x="250" y="254" font-size="10" fill="#475569">281 – 305</text>
-  <text x="350" y="254" font-size="10" fill="#334155">D-cache latency stalls consumer instruction</text>
-  <text x="750" y="254" font-size="10" font-family="monospace" fill="#0369a1">stall_raw=1, stall_rs1=1, issue_ack=0</text>
-  <text x="1030" y="254" font-size="10" font-weight="600" fill="#047857">19 stall cycles while awaiting LW</text>
-  <text x="55" y="274" font-size="10" font-weight="600" fill="#1e293b">Phase 3: Store Buffer Collision</text>
-  <text x="250" y="274" font-size="10" fill="#475569">306 – 325</text>
-  <text x="350" y="274" font-size="10" fill="#334155">Store-to-Load address alias (same page offset)</text>
-  <text x="750" y="274" font-size="10" font-family="monospace" fill="#0369a1">page_offset_matches=1, state_q=WAIT_PAGE_OFFSET</text>
-  <text x="1030" y="274" font-size="10" font-weight="600" fill="#047857">4 stall cycles until store drains</text>
-  <text x="55" y="294" font-size="10" font-weight="600" fill="#1e293b">Phase 4: DIV Structural Contention</text>
-  <text x="250" y="294" font-size="10" fill="#475569">326 – 345</text>
-  <text x="350" y="294" font-size="10" fill="#334155">Fixed-Latency Unit (FLU) blocked by serial divider</text>
-  <text x="750" y="294" font-size="10" font-family="monospace" fill="#0369a1">flu_ready=0, fus_busy[0].alu=1, in_rdy_o=0</text>
-  <text x="1030" y="294" font-size="10" font-weight="600" fill="#047857">14 stall cycles on independent ALUs</text>
-  <text x="55" y="314" font-size="10" font-weight="600" fill="#1e293b">Phase 5: MUL &amp; Terminal Self-Loop</text>
-  <text x="250" y="314" font-size="10" fill="#475569">346 – 389</text>
-  <text x="350" y="314" font-size="10" fill="#334155">Single-cycle multiplier execution &amp; self-loop commit</text>
-  <text x="750" y="314" font-size="10" font-family="monospace" fill="#0369a1">mul_valid=1, commit_pc=0x8000_006c at cyc 349</text>
-  <text x="1030" y="314" font-size="10" font-weight="600" fill="#047857">Active CPI across hazard run = 2.02</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" width="1200" height="480">
+<defs><style>
+  text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .title { font-size: 15px; font-weight: 700; fill: #0f172a; }
+  .subtitle { font-size: 11px; fill: #475569; }
+  .sig-name { font-size: 11px; font-weight: 600; fill: #1e293b; }
+  .sig-sub { font-size: 9px; fill: #64748b; }
+  .bus { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 8.5px; font-weight: 600; text-anchor: middle; fill: #0f172a; }
+  .bit { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 9px; font-weight: 600; text-anchor: middle; }
+  .cyc { font-size: 9px; fill: #475569; font-weight: 600; text-anchor: middle; }
+  .ann-title { font-size: 11px; font-weight: 700; fill: #0f172a; }
+  .ann-body { font-size: 9.5px; fill: #334155; }
+  .tag-lbl { font-size: 9px; font-weight: 700; text-anchor: middle; fill: #ffffff; }
+</style></defs>
+<rect width="1200" height="480" fill="#f8fafc" rx="8" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="20" y="15" width="1160" height="44" rx="6" fill="#1e293b"/>
+<text x="35" y="38" font-size="15" font-weight="700" fill="#f8fafc">CVA6 Suite 3: Pipeline Hazards &amp; Scoreboard Stalls — Execution Timeline</text>
+<text x="1165" y="38" font-size="11" fill="#94a3b8" text-anchor="end">Total Cycles: 389 | Active Benchmark: 82 Cycles | Measured CPI = 2.02</text>
+<rect x="50.0" y="75" width="759.0" height="42" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+<text x="429.5" y="95" font-size="10" font-weight="700" fill="#0f172a" text-anchor="middle">Cold Boot &amp; Fetch</text>
+<text x="429.5" y="109" font-size="8.5" fill="#475569" text-anchor="middle">C0–C266</text>
+<rect x="811.9" y="75" width="37.1" height="42" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" rx="4"/>
+<rect x="851.8" y="75" width="68.5" height="42" fill="#fef3c7" stroke="#d97706" stroke-width="1.5" rx="4"/>
+<text x="886.1" y="95" font-size="10" font-weight="700" fill="#0f172a" text-anchor="middle">Load-Use Hazard</text>
+<text x="886.1" y="109" font-size="8.5" fill="#475569" text-anchor="middle">C281–C305</text>
+<rect x="923.2" y="75" width="54.2" height="42" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" rx="4"/>
+<rect x="980.2" y="75" width="54.2" height="42" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5" rx="4"/>
+<rect x="1037.3" y="75" width="122.7" height="42" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" rx="4"/>
+<text x="1098.7" y="95" font-size="10" font-weight="700" fill="#0f172a" text-anchor="middle">Multiplier &amp; Drain</text>
+<text x="1098.7" y="109" font-size="8.5" fill="#475569" text-anchor="middle">C346–C389</text>
+<line x1="50" y1="117" x2="1160" y2="117" stroke="#475569" stroke-width="1.5"/>
+<line x1="50.0" y1="117" x2="50.0" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="50.0" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C0</text>
+<line x1="192.7" y1="117" x2="192.7" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="192.7" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C50</text>
+<line x1="335.3" y1="117" x2="335.3" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="335.3" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C100</text>
+<line x1="478.0" y1="117" x2="478.0" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="478.0" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C150</text>
+<line x1="620.7" y1="117" x2="620.7" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="620.7" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C200</text>
+<line x1="763.4" y1="117" x2="763.4" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="763.4" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C250</text>
+<line x1="811.9" y1="117" x2="811.9" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="811.9" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C267</text>
+<line x1="920.3" y1="117" x2="920.3" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="920.3" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C305</text>
+<line x1="977.4" y1="117" x2="977.4" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="977.4" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C325</text>
+<line x1="1034.4" y1="117" x2="1034.4" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="1034.4" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C345</text>
+<line x1="1160.0" y1="117" x2="1160.0" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="1160.0" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C389</text>
+<line x1="811.9" y1="75" x2="811.9" y2="135" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="2,2"/>
+<circle cx="811.9" cy="135" r="9" fill="#2563eb"/>
+<text x="811.9" y="138" class="tag-lbl">F1</text>
+<line x1="891.8" y1="75" x2="891.8" y2="135" stroke="#d97706" stroke-width="1.5" stroke-dasharray="2,2"/>
+<circle cx="891.8" cy="135" r="9" fill="#d97706"/>
+<text x="891.8" y="138" class="tag-lbl">S1</text>
+<line x1="954.6" y1="75" x2="954.6" y2="135" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="2,2"/>
+<circle cx="954.6" cy="135" r="9" fill="#ea580c"/>
+<text x="954.6" y="138" class="tag-lbl">S2</text>
+<line x1="983.1" y1="75" x2="983.1" y2="135" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="2,2"/>
+<circle cx="983.1" cy="135" r="9" fill="#dc2626"/>
+<text x="983.1" y="138" class="tag-lbl">C1</text>
+<line x1="1045.9" y1="75" x2="1045.9" y2="135" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="2,2"/>
+<circle cx="1045.9" cy="135" r="9" fill="#16a34a"/>
+<text x="1045.9" y="138" class="tag-lbl">T1</text>
+<rect x="50" y="170" width="1110" height="200" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" rx="6"/>
+<rect x="50" y="170" width="1110" height="26" fill="#f1f5f9" rx="6"/>
+<text x="65" y="187" class="sig-name">Tag</text>
+<text x="110" y="187" class="sig-name">Cycle</text>
+<text x="170" y="187" class="sig-name">Hazard Event</text>
+<text x="470" y="187" class="sig-name">Microarchitectural Mechanism</text>
+<text x="850" y="187" class="sig-name">Measured Impact &amp; Evidence</text>
+<rect x="51" y="201" width="1108" height="19" fill="#ffffff"/>
+<rect x="65" y="204" width="22" height="14" rx="3" fill="#2563eb"/>
+<text x="76" y="215" class="tag-lbl">F1</text>
+<text x="110" y="215" font-size="9.5" font-weight="600" fill="#0f172a">C267</text>
+<text x="170" y="215" font-size="9.5" fill="#1e293b">RAW ALU Forwarding Burst</text>
+<text x="470" y="215" font-size="9.5" fill="#475569">Scoreboard operand bypass directly from EX stage</text>
+<text x="850" y="215" font-size="9.5" font-weight="600" fill="#2563eb">CPI = 1.00 (Zero stalls)</text>
+<rect x="51" y="220" width="1108" height="19" fill="#f8fafc"/>
+<rect x="65" y="223" width="22" height="14" rx="3" fill="#d97706"/>
+<text x="76" y="234" class="tag-lbl">S1</text>
+<text x="110" y="234" font-size="9.5" font-weight="600" fill="#0f172a">C295</text>
+<text x="170" y="234" font-size="9.5" fill="#1e293b">Load-Use Scoreboard Stall</text>
+<text x="470" y="234" font-size="9.5" fill="#475569">ADDI x12 stalls awaiting LW data from D-Cache</text>
+<text x="850" y="234" font-size="9.5" font-weight="600" fill="#d97706">19-cycle issue stall</text>
+<rect x="51" y="239" width="1108" height="19" fill="#ffffff"/>
+<rect x="65" y="242" width="22" height="14" rx="3" fill="#ea580c"/>
+<text x="76" y="253" class="tag-lbl">S2</text>
+<text x="110" y="253" font-size="9.5" font-weight="600" fill="#0f172a">C317</text>
+<text x="170" y="253" font-size="9.5" fill="#1e293b">Store Buffer Page Match</text>
+<text x="470" y="253" font-size="9.5" fill="#475569">LSU enters WAIT_PAGE_OFFSET until store drains</text>
+<text x="850" y="253" font-size="9.5" font-weight="600" fill="#ea580c">4-cycle drain stall</text>
+<rect x="51" y="258" width="1108" height="19" fill="#f8fafc"/>
+<rect x="65" y="261" width="22" height="14" rx="3" fill="#dc2626"/>
+<text x="76" y="272" class="tag-lbl">C1</text>
+<text x="110" y="272" font-size="9.5" font-weight="600" fill="#0f172a">C327</text>
+<text x="170" y="272" font-size="9.5" fill="#1e293b">DIV Structural Contention</text>
+<text x="470" y="272" font-size="9.5" fill="#475569">flu_ready=0 halts issue of independent ALUs</text>
+<text x="850" y="272" font-size="9.5" font-weight="600" fill="#dc2626">14-cycle ALU stall</text>
+<rect x="51" y="277" width="1108" height="19" fill="#ffffff"/>
+<rect x="65" y="280" width="22" height="14" rx="3" fill="#16a34a"/>
+<text x="76" y="291" class="tag-lbl">T1</text>
+<text x="110" y="291" font-size="9.5" font-weight="600" fill="#0f172a">C349</text>
+<text x="170" y="291" font-size="9.5" fill="#1e293b">Multiplier Commit &amp; End</text>
+<text x="470" y="291" font-size="9.5" fill="#475569">MUL completes in 1 cyc; terminal self-loop reached</text>
+<text x="850" y="291" font-size="9.5" font-weight="600" fill="#16a34a">Single-cycle multiplier</text>
+<rect x="50.0" y="390" width="212.4" height="66" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="1.2"/>
+<text x="60.0" y="408" font-size="9" font-weight="600" fill="#475569">RAW Bypass IPC</text>
+<text x="60.0" y="432" font-size="18" font-weight="700" fill="#16a34a">1.00</text>
+<text x="60.0" y="447" font-size="8.5" fill="#64748b">Zero stall cycles observed</text>
+<rect x="274.4" y="390" width="212.4" height="66" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="1.2"/>
+<text x="284.4" y="408" font-size="9" font-weight="600" fill="#475569">Load-Use Stalls</text>
+<text x="284.4" y="432" font-size="18" font-weight="700" fill="#d97706">19</text>
+<text x="284.4" y="447" font-size="8.5" fill="#64748b">Scoreboard issue held</text>
+<rect x="498.8" y="390" width="212.4" height="66" rx="6" fill="#ffedd5" stroke="#ea580c" stroke-width="1.2"/>
+<text x="508.8" y="408" font-size="9" font-weight="600" fill="#475569">Store Buffer Stalls</text>
+<text x="508.8" y="432" font-size="18" font-weight="700" fill="#ea580c">4</text>
+<text x="508.8" y="447" font-size="8.5" fill="#64748b">WAIT_PAGE_OFFSET drain</text>
+<rect x="723.2" y="390" width="212.4" height="66" rx="6" fill="#fee2e2" stroke="#dc2626" stroke-width="1.2"/>
+<text x="733.2" y="408" font-size="9" font-weight="600" fill="#475569">DIV Contention Stalls</text>
+<text x="733.2" y="432" font-size="18" font-weight="700" fill="#dc2626">14</text>
+<text x="733.2" y="447" font-size="8.5" fill="#64748b">flu_ready=0 structural block</text>
+<rect x="947.6" y="390" width="212.4" height="66" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.2"/>
+<text x="957.6" y="408" font-size="9" font-weight="600" fill="#475569">Total Hazard CPI</text>
+<text x="957.6" y="432" font-size="18" font-weight="700" fill="#0284c7">2.02</text>
+<text x="957.6" y="447" font-size="8.5" fill="#64748b">30/30 Assertions PASSED</text>
 </svg>

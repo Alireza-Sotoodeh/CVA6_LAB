@@ -1,12 +1,11 @@
 # ============================================================================
 # Author: Alireza Sotodeh
-# Date & Time: 2026-11-19 20:41:00 +03:30
-# Status: NEW FILE
-# Reason / Modification: SVG waveform generator for Suite 2 (pipeline hazards,
-#                        operand forwarding, load-use delays, store buffer stalls,
-#                        and divider structural writeback contention). Reads
-#                        cva6_hazard_trace.csv and outputs four standalone,
-#                        publication-grade SVGs.
+# Date & Time: 2026-11-20 09:12:00 +03:30
+# Status: MODIFIED FILE
+# Reason / Modification: Comprehensive readability overhaul of Suite 3 SVGs:
+#                        standardized 1200px width, collision-free timeline with
+#                        milestone cards, run-length bus trapezoids, compact opcodes
+#                        inside cells, and clean <tspan> multi-line annotations.
 # ============================================================================
 
 import csv
@@ -49,6 +48,33 @@ PC_MAP = {
     0x006C: "JAL END",
 }
 
+SHORT_OP = {
+    0x0010: "ADDI",
+    0x0014: "ADD",
+    0x0018: "SUB",
+    0x001C: "AND",
+    0x0020: "OR",
+    0x0024: "XOR",
+    0x0028: "SLLI",
+    0x002C: "SW",
+    0x0030: "LW",
+    0x0034: "ADDI",
+    0x0038: "ADD",
+    0x003C: "SW",
+    0x0040: "LW",
+    0x0044: "ADDI",
+    0x0048: "ADDI",
+    0x004C: "ADDI",
+    0x0050: "DIV",
+    0x0054: "ADDI",
+    0x0058: "REM",
+    0x005C: "ADDI",
+    0x0060: "ADD",
+    0x0064: "MUL",
+    0x0068: "ADD",
+    0x006C: "JAL",
+}
+
 
 def xesc(value):
     return saxutils.escape("" if value is None else str(value))
@@ -61,18 +87,23 @@ def hex32(value):
         return 0
 
 
-def pc_label(value):
+def pc_label(value, compact=False):
     pc = hex32(value)
     short = pc & 0xFFFF
-    name = PC_MAP.get(short)
     if pc == 0:
-        return "0x0000"
+        return "-"
+    if compact:
+        op = SHORT_OP.get(short)
+        return op if op else f"0x{short:02X}"
+    name = PC_MAP.get(short)
     if name:
         return f"0x{short:04X} {name}"
     return f"0x{short:04X}"
 
 
 def read_trace():
+    if not os.path.exists(CSV_PATH):
+        return []
     with open(CSV_PATH, "r", encoding="utf-8") as handle:
         return list(csv.DictReader(handle))
 
@@ -84,381 +115,291 @@ def rows_in_window(rows, start, end):
 def svg_header(width, height):
     return [
         '<?xml version="1.0" encoding="UTF-8"?>',
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
-        f'viewBox="0 0 {width} {height}">',
-        "<defs>",
-        '  <style type="text/css">',
-        "    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }",
-        "    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }",
-        "    .sig-sub { font-size: 9px; fill: #64748b; }",
-        "    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }",
-        "    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }",
-        "    .ann-title { font-size: 11px; font-weight: 700; fill: #0f172a; }",
-        "    .ann-body { font-size: 10px; fill: #334155; }",
-        "  </style>",
-        "</defs>",
-        f'<rect width="{width}" height="{height}" fill="#f8fafc" />',
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" width="{width}" height="{height}">',
+        '<defs><style>',
+        '  text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }',
+        '  .title { font-size: 15px; font-weight: 700; fill: #0f172a; }',
+        '  .subtitle { font-size: 11px; fill: #475569; }',
+        '  .sig-name { font-size: 11px; font-weight: 600; fill: #1e293b; }',
+        '  .sig-sub { font-size: 9px; fill: #64748b; }',
+        '  .bus { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 8.5px; font-weight: 600; text-anchor: middle; fill: #0f172a; }',
+        '  .bit { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 9px; font-weight: 600; text-anchor: middle; }',
+        '  .cyc { font-size: 9px; fill: #475569; font-weight: 600; text-anchor: middle; }',
+        '  .ann-title { font-size: 11px; font-weight: 700; fill: #0f172a; }',
+        '  .ann-body { font-size: 9.5px; fill: #334155; }',
+        '  .tag-lbl { font-size: 9px; font-weight: 700; text-anchor: middle; fill: #ffffff; }',
+        '</style></defs>',
+        f'<rect width="{width}" height="{height}" fill="#f8fafc" rx="8" stroke="#cbd5e1" stroke-width="1"/>',
     ]
 
 
-# ----------------------------------------------------------------------------
-# 1. Execution Timeline
-# ----------------------------------------------------------------------------
 def generate_execution_timeline(rows):
-    width, height = 1200, 360
-    svg = svg_header(width, height)
+    width, height = 1200, 480
+    left, right = 50, 40
+    plot_w = width - left - right
+    total_cyc = 389
 
-    svg.append(
-        '  <text x="30" y="32" font-size="16" font-weight="700" fill="#0f172a">'
-        "CVA6 Suite 2: Pipeline Hazards & Scoreboard Stalls — Execution Timeline"
-        "</text>"
-    )
-    svg.append(
-        '  <text x="30" y="50" font-size="11" fill="#475569">'
-        "Retirement milestones from cold boot (cycle 0) to terminal self-loop commit (cycle 349). Total cycles run: 389."
-        "</text>"
-    )
-
-    x0, y0, total_w = 40, 100, 1120
     phases = [
-        (0, 266, "Phase 0: Cold Boot & Fetch", "#f1f5f9", "#94a3b8", "Cold AXI miss, reset de-asserted at cyc 9, boot to 0x8000_0000"),
-        (267, 280, "Phase 1: RAW Forwarding Burst", "#dbeafe", "#2563eb", "7 back-to-back dependent ALU instrs. Retires at CPI = 1.00"),
-        (281, 305, "Phase 2: Load-Use Hazard", "#fef3c7", "#d97706", "SW 0(x1) -> LW 0(x1) -> ADDI. 19-cycle scoreboard issue stall"),
-        (306, 325, "Phase 3: Store Buffer Stall", "#ffedd5", "#ea580c", "SW 4(x1) -> LW 4(x1). page_offset match -> WAIT_PAGE_OFFSET"),
-        (326, 345, "Phase 4: DIV Structural Contention", "#fee2e2", "#dc2626", "DIV/REM in serdiv. flu_ready=0 blocks independent ALU for 14 cycles"),
-        (346, 389, "Phase 5: Multiplier & Self-Loop", "#dcfce7", "#16a34a", "MUL x23 (single-cycle), ADD x24, JAL x0,END committed at cyc 349"),
+        (0, 266, "Cold Boot & Fetch", "#f1f5f9", "#94a3b8", "Cold AXI miss, reset at cyc 9, boot to 0x80000000"),
+        (267, 280, "RAW Forwarding Burst", "#dbeafe", "#2563eb", "7 dependent ALU instrs execute at CPI = 1.00"),
+        (281, 305, "Load-Use Hazard", "#fef3c7", "#d97706", "SW -> LW -> ADDI. 19-cycle scoreboard issue stall"),
+        (306, 325, "Store Buffer Stall", "#ffedd5", "#ea580c", "SW -> LW address match -> WAIT_PAGE_OFFSET"),
+        (326, 345, "DIV Contention", "#fee2e2", "#dc2626", "serdiv busy blocks independent ALU for 14 cycles"),
+        (346, 389, "Multiplier & Drain", "#dcfce7", "#16a34a", "MUL x23 & terminal self-loop commit at cyc 349"),
     ]
 
-    tot_cyc = 389
-    cur_x = x0
-    for p_start, p_end, title, bg, border, desc in phases:
-        pw = max(40, int((p_end - p_start + 1) / tot_cyc * total_w))
-        svg.append(f'  <g transform="translate({cur_x}, {y0})">')
-        svg.append(f'    <rect width="{pw}" height="60" fill="{bg}" stroke="{border}" stroke-width="1.5" rx="5" />')
-        svg.append(f'    <text x="{pw/2}" y="24" class="box-lbl" fill="{border}">{xesc(title)}</text>')
-        svg.append(f'    <text x="{pw/2}" y="42" font-size="9" fill="#475569" text-anchor="middle">Cyc {p_start}–{p_end}</text>')
-        svg.append("  </g>")
-        cur_x += pw
-
-    # Milestones table below
-    my0 = 190
-    svg.append(f'  <rect x="40" y="{my0}" width="1120" height="140" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" rx="6" />')
-    svg.append(f'  <rect x="40" y="{my0}" width="1120" height="28" fill="#f1f5f9" rx="6" />')
-    svg.append(f'  <text x="55" y="{my0+18}" class="sig-lbl">Phase</text>')
-    svg.append(f'  <text x="250" y="{my0+18}" class="sig-lbl">Cycle Span</text>')
-    svg.append(f'  <text x="350" y="{my0+18}" class="sig-lbl">Microarchitectural Mechanism</text>')
-    svg.append(f'  <text x="750" y="{my0+18}" class="sig-lbl">Hardware Signals &amp; Evidence</text>')
-    svg.append(f'  <text x="1030" y="{my0+18}" class="sig-lbl">Measured CPI / Impact</text>')
-
-    rows_data = [
-        ("Phase 1: RAW ALU Forwarding", "267 – 280", "Scoreboard operand bypass directly from EX writeback", "forward_rs1=1, forward_rs2=1, stall_raw=0", "CPI = 1.00 (Zero stall bubbles)"),
-        ("Phase 2: Load-Use Scoreboard Stall", "281 – 305", "D-cache latency stalls consumer instruction", "stall_raw=1, stall_rs1=1, issue_ack=0", "19 stall cycles while awaiting LW"),
-        ("Phase 3: Store Buffer Collision", "306 – 325", "Store-to-Load address alias (same page offset)", "page_offset_matches=1, state_q=WAIT_PAGE_OFFSET", "4 stall cycles until store drains"),
-        ("Phase 4: DIV Structural Contention", "326 – 345", "Fixed-Latency Unit (FLU) blocked by serial divider", "flu_ready=0, fus_busy[0].alu=1, in_rdy_o=0", "14 stall cycles on independent ALUs"),
-        ("Phase 5: MUL & Terminal Self-Loop", "346 – 389", "Single-cycle multiplier execution & self-loop commit", "mul_valid=1, commit_pc=0x8000_006c at cyc 349", "Active CPI across hazard run = 2.02"),
+    events = [
+        (267, "F1", "#2563eb", "RAW ALU Forwarding Burst", "Scoreboard operand bypass directly from EX stage"),
+        (295, "S1", "#d97706", "Load-Use Scoreboard Stall", "ADDI x12 stalls awaiting LW data from D-Cache"),
+        (317, "S2", "#ea580c", "Store Buffer Page Match", "LSU enters WAIT_PAGE_OFFSET until store drains"),
+        (327, "C1", "#dc2626", "DIV Structural Contention", "flu_ready=0 halts issue of independent ALUs"),
+        (349, "T1", "#16a34a", "Multiplier Commit & End", "MUL completes in 1 cyc; terminal self-loop reached"),
     ]
 
-    for i, (pname, cspan, mech, sigs, cpi) in enumerate(rows_data):
-        ry = my0 + 44 + (i * 20)
-        svg.append(f'  <text x="55" y="{ry}" font-size="10" font-weight="600" fill="#1e293b">{xesc(pname)}</text>')
-        svg.append(f'  <text x="250" y="{ry}" font-size="10" fill="#475569">{xesc(cspan)}</text>')
-        svg.append(f'  <text x="350" y="{ry}" font-size="10" fill="#334155">{xesc(mech)}</text>')
-        svg.append(f'  <text x="750" y="{ry}" font-size="10" font-family="monospace" fill="#0369a1">{xesc(sigs)}</text>')
-        svg.append(f'  <text x="1030" y="{ry}" font-size="10" font-weight="600" fill="#047857">{xesc(cpi)}</text>')
+    svg = svg_header(width, height)
+    svg.append(f'<rect x="20" y="15" width="{width-40}" height="44" rx="6" fill="#1e293b"/>')
+    svg.append(f'<text x="35" y="38" font-size="15" font-weight="700" fill="#f8fafc">CVA6 Suite 3: Pipeline Hazards &amp; Scoreboard Stalls — Execution Timeline</text>')
+    svg.append(f'<text x="{width-35}" y="38" font-size="11" fill="#94a3b8" text-anchor="end">Total Cycles: 389 | Active Benchmark: 82 Cycles | Measured CPI = 2.02</text>')
 
-    svg.append("</svg>")
+    bar_y = 75
+    bar_h = 42
+
+    for p_start, p_end, title, bg, border, _ in phases:
+        x1 = left + (p_start / total_cyc) * plot_w
+        x2 = left + (p_end / total_cyc) * plot_w
+        pw = max(x2 - x1, 4)
+        svg.append(f'<rect x="{x1:.1f}" y="{bar_y}" width="{pw:.1f}" height="{bar_h}" fill="{bg}" stroke="{border}" stroke-width="1.5" rx="4"/>')
+        if pw > 60:
+            svg.append(f'<text x="{x1 + pw/2:.1f}" y="{bar_y + 20}" font-size="10" font-weight="700" fill="#0f172a" text-anchor="middle">{xesc(title)}</text>')
+            svg.append(f'<text x="{x1 + pw/2:.1f}" y="{bar_y + 34}" font-size="8.5" fill="#475569" text-anchor="middle">C{p_start}–C{p_end}</text>')
+
+    axis_y = bar_y + bar_h
+    svg.append(f'<line x1="{left}" y1="{axis_y}" x2="{left+plot_w}" y2="{axis_y}" stroke="#475569" stroke-width="1.5"/>')
+    for tick in [0, 50, 100, 150, 200, 250, 267, 305, 325, 345, 389]:
+        tx = left + (tick / total_cyc) * plot_w
+        svg.append(f'<line x1="{tx:.1f}" y1="{axis_y}" x2="{tx:.1f}" y2="{axis_y+5}" stroke="#475569" stroke-width="1"/>')
+        svg.append(f'<text x="{tx:.1f}" y="{axis_y+16}" font-size="8.5" fill="#475569" text-anchor="middle">C{tick}</text>')
+
+    for cyc, tag, color, _, _ in events:
+        ex = left + (cyc / total_cyc) * plot_w
+        svg.append(f'<line x1="{ex:.1f}" y1="{bar_y}" x2="{ex:.1f}" y2="{bar_y+bar_h+18}" stroke="{color}" stroke-width="1.5" stroke-dasharray="2,2"/>')
+        svg.append(f'<circle cx="{ex:.1f}" cy="{bar_y+bar_h+18}" r="9" fill="{color}"/>')
+        svg.append(f'<text x="{ex:.1f}" y="{bar_y+bar_h+21}" class="tag-lbl">{tag}</text>')
+
+    tbl_y = 170
+    svg.append(f'<rect x="{left}" y="{tbl_y}" width="{plot_w}" height="200" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" rx="6"/>')
+    svg.append(f'<rect x="{left}" y="{tbl_y}" width="{plot_w}" height="26" fill="#f1f5f9" rx="6"/>')
+    svg.append(f'<text x="{left+15}" y="{tbl_y+17}" class="sig-name">Tag</text>')
+    svg.append(f'<text x="{left+60}" y="{tbl_y+17}" class="sig-name">Cycle</text>')
+    svg.append(f'<text x="{left+120}" y="{tbl_y+17}" class="sig-name">Hazard Event</text>')
+    svg.append(f'<text x="{left+420}" y="{tbl_y+17}" class="sig-name">Microarchitectural Mechanism</text>')
+    svg.append(f'<text x="{left+800}" y="{tbl_y+17}" class="sig-name">Measured Impact &amp; Evidence</text>')
+
+    for i, (cyc, tag, color, desc, mech) in enumerate(events):
+        ry = tbl_y + 44 + (i * 19)
+        bg = "#f8fafc" if i % 2 == 1 else "#ffffff"
+        svg.append(f'<rect x="{left+1}" y="{ry-13}" width="{plot_w-2}" height="19" fill="{bg}"/>')
+        svg.append(f'<rect x="{left+15}" y="{ry-10}" width="22" height="14" rx="3" fill="{color}"/>')
+        svg.append(f'<text x="{left+26}" y="{ry+1}" class="tag-lbl">{tag}</text>')
+        svg.append(f'<text x="{left+60}" y="{ry+1}" font-size="9.5" font-weight="600" fill="#0f172a">C{cyc}</text>')
+        svg.append(f'<text x="{left+120}" y="{ry+1}" font-size="9.5" fill="#1e293b">{xesc(desc)}</text>')
+        svg.append(f'<text x="{left+420}" y="{ry+1}" font-size="9.5" fill="#475569">{xesc(mech)}</text>')
+        impact_txt = "CPI = 1.00 (Zero stalls)" if tag == "F1" else ("19-cycle issue stall" if tag == "S1" else ("4-cycle drain stall" if tag == "S2" else ("14-cycle ALU stall" if tag == "C1" else "Single-cycle multiplier")))
+        svg.append(f'<text x="{left+800}" y="{ry+1}" font-size="9.5" font-weight="600" fill="{color}">{impact_txt}</text>')
+
+    card_y = 390
+    card_w = (plot_w - 4 * 12) / 5
+    cards = [
+        ("RAW Bypass IPC", "1.00", "Zero stall cycles observed", "#dcfce7", "#16a34a"),
+        ("Load-Use Stalls", "19", "Scoreboard issue held", "#fef3c7", "#d97706"),
+        ("Store Buffer Stalls", "4", "WAIT_PAGE_OFFSET drain", "#ffedd5", "#ea580c"),
+        ("DIV Contention Stalls", "14", "flu_ready=0 structural block", "#fee2e2", "#dc2626"),
+        ("Total Hazard CPI", "2.02", "30/30 Assertions PASSED", "#e0f2fe", "#0284c7"),
+    ]
+    for i, (label, val, sub, bg, border) in enumerate(cards):
+        cx = left + i * (card_w + 12)
+        svg.append(f'<rect x="{cx}" y="{card_y}" width="{card_w}" height="66" rx="6" fill="{bg}" stroke="{border}" stroke-width="1.2"/>')
+        svg.append(f'<text x="{cx+10}" y="{card_y+18}" font-size="9" font-weight="600" fill="#475569">{xesc(label)}</text>')
+        svg.append(f'<text x="{cx+10}" y="{card_y+42}" font-size="18" font-weight="700" fill="{border}">{val}</text>')
+        svg.append(f'<text x="{cx+10}" y="{card_y+57}" font-size="8.5" fill="#64748b">{xesc(sub)}</text>')
+
+    svg.append('</svg>')
     path = os.path.join(FIG_DIR, "01_execution_timeline.svg")
     with open(path, "w", encoding="utf-8") as handle:
         handle.write("\n".join(svg))
     print(f"[SVG] Generated {path}")
 
 
-# ----------------------------------------------------------------------------
-# 2. RAW Operand Forwarding Burst
-# ----------------------------------------------------------------------------
-def generate_raw_forwarding_burst(rows):
-    width, height = 1200, 480
-    svg = svg_header(width, height)
-
-    svg.append(
-        '  <text x="30" y="30" font-size="15" font-weight="700" fill="#0f172a">'
-        "CVA6 RAW ALU-to-ALU Operand Forwarding Burst (Cycles 276 – 294)"
-        "</text>"
-    )
-    svg.append(
-        '  <text x="30" y="48" font-size="11" fill="#475569">'
-        "Back-to-back execution of dependent ALU instructions (x4 -> x5 -> x6 -> x7 -> x8 -> x9 -> x10). "
-        "Operand bypass eliminates stall bubbles, sustaining CPI = 1.00."
-        "</text>"
-    )
-
-    w_rows = rows_in_window(rows, 276, 294)
-    if not w_rows:
+def render_waveform_panel(rows, start, end, title, subtitle, signals, out_path, notes=None):
+    window = rows_in_window(rows, start, end)
+    if not window:
         return
-
-    x_left, y_top = 220, 80
-    col_w = max(45, int((width - x_left - 40) / len(w_rows)))
-
-    # Cycle header
-    for i, r in enumerate(w_rows):
-        cx = x_left + (i * col_w)
-        cyc = int(r["Cycle"])
-        svg.append(f'  <rect x="{cx}" y="{y_top-20}" width="{col_w}" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />')
-        svg.append(f'  <text x="{cx + col_w/2}" y="{y_top-7}" class="cyc-lbl">{cyc}</text>')
-
-    signals = [
-        ("CommitAck0", "Commit Port 0 Ack", "bit", "#16a34a"),
-        ("CommitPC0", "Commit Port 0 PC", "hex", "#0f172a"),
-        ("IssueValid0", "Scoreboard Issue Valid", "bit", "#6366f1"),
-        ("IssueAck0", "Scoreboard Issue Ack", "bit", "#0284c7"),
-        ("ForwardRs1", "RS1 Forwarded from WB", "bit", "#2563eb"),
-        ("ForwardRs2", "RS2 Forwarded from WB", "bit", "#3b82f6"),
-        ("Rs1HasRaw", "RS1 RAW Hazard Flag", "bit", "#ea580c"),
-        ("Rs2HasRaw", "RS2 RAW Hazard Flag", "bit", "#f97316"),
-        ("StallRaw", "RAW Stall Asserted", "bit", "#dc2626"),
-        ("GprWaddr0", "GPR Write Address", "reg", "#475569"),
-        ("GprWdata0", "GPR Write Data", "hex", "#059669"),
-    ]
-
+    width = 1200
+    left = 240
+    right = 30
+    top = 75
     row_h = 30
-    for s_idx, (sig_name, sig_label, sig_type, sig_color) in enumerate(signals):
-        sy = y_top + (s_idx * row_h)
-        bg = "#ffffff" if s_idx % 2 == 0 else "#f8fafc"
-        svg.append(f'  <rect x="30" y="{sy}" width="{width-60}" height="{row_h}" fill="{bg}" stroke="#e2e8f0" stroke-width="0.5" />')
-        svg.append(f'  <text x="35" y="{sy+16}" class="sig-lbl">{xesc(sig_name)}</text>')
-        svg.append(f'  <text x="35" y="{sy+26}" class="sig-sub">{xesc(sig_label)}</text>')
+    plot_w = width - left - right
+    n = len(window)
+    col_w = plot_w / max(n, 1)
 
-        for i, r in enumerate(w_rows):
-            cx = x_left + (i * col_w)
-            val = r.get(sig_name, "")
-            if sig_type == "bit":
-                is_hi = (val == "1")
-                b_color = sig_color if is_hi else "#cbd5e1"
-                t_color = "#ffffff" if is_hi else "#94a3b8"
-                svg.append(f'  <rect x="{cx+3}" y="{sy+5}" width="{col_w-6}" height="20" fill="{b_color}" rx="3" />')
-                svg.append(f'  <text x="{cx + col_w/2}" y="{sy+19}" class="box-lbl" fill="{t_color}">{val}</text>')
-            elif sig_type == "hex":
-                h_val = hex32(val)
-                lbl = pc_label(val) if "PC" in sig_name else (f"0x{h_val:X}" if h_val != 0 else "0")
-                b_color = "#eff6ff" if h_val != 0 else "#f8fafc"
-                svg.append(f'  <rect x="{cx+2}" y="{sy+5}" width="{col_w-4}" height="20" fill="{b_color}" stroke="{sig_color}" stroke-width="1" rx="3" />')
-                svg.append(f'  <text x="{cx + col_w/2}" y="{sy+18}" font-size="8" font-weight="600" fill="{sig_color}" text-anchor="middle">{xesc(lbl)}</text>')
-            elif sig_type == "reg":
-                r_num = int(val) if val.isdigit() else 0
-                lbl = f"x{r_num}" if r_num != 0 else "-"
-                b_color = "#fef3c7" if r_num != 0 else "#f8fafc"
-                svg.append(f'  <rect x="{cx+3}" y="{sy+5}" width="{col_w-6}" height="20" fill="{b_color}" stroke="#d97706" stroke-width="1" rx="3" />')
-                svg.append(f'  <text x="{cx + col_w/2}" y="{sy+18}" font-size="9" font-weight="700" fill="#92400e" text-anchor="middle">{lbl}</text>')
+    ann_h = 75 if notes else 30
+    height = top + len(signals) * row_h + ann_h + 20
 
-    # Bottom annotation
-    ay = y_top + (len(signals) * row_h) + 15
-    svg.append(f'  <rect x="30" y="{ay}" width="{width-60}" height="42" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1" rx="5" />')
-    svg.append(f'  <text x="45" y="{ay+18}" class="ann-title">Microarchitectural Insight: 0-Stall Forwarding</text>')
-    svg.append(f'  <text x="45" y="{ay+32}" class="ann-body">At cycles 280, 281, and 282, instructions ADD x5, SUB x6, and AND x7 retire on consecutive cycles. Although each instruction requires the previous instruction\'s output register, Rs1HasRaw=1 and ForwardRs1=1 bypass data directly from the writeback bus, keeping StallRaw=0 and issue unblocked.</text>')
-
-    svg.append("</svg>")
-    path = os.path.join(FIG_DIR, "02_raw_forwarding_burst.svg")
-    with open(path, "w", encoding="utf-8") as handle:
-        handle.write("\n".join(svg))
-    print(f"[SVG] Generated {path}")
-
-
-# ----------------------------------------------------------------------------
-# 3. Load-Use & Store Buffer Stall
-# ----------------------------------------------------------------------------
-def generate_load_use_store_buffer_stall(rows):
-    width, height = 1200, 500
     svg = svg_header(width, height)
+    svg.append(f'<rect x="20" y="12" width="{width-40}" height="46" rx="6" fill="#1e293b"/>')
+    svg.append(f'<text x="35" y="32" font-size="14" font-weight="700" fill="#f8fafc">{xesc(title)} (Cycles {start} to {end})</text>')
+    svg.append(f'<text x="35" y="48" font-size="10.5" fill="#94a3b8">{xesc(subtitle)}</text>')
 
-    svg.append(
-        '  <text x="30" y="30" font-size="15" font-weight="700" fill="#0f172a">'
-        "CVA6 Load-Use Scoreboard Delay &amp; Store Buffer Address Matching (Cycles 293 – 324)"
-        "</text>"
-    )
-    svg.append(
-        '  <text x="30" y="48" font-size="11" fill="#475569">'
-        "Inspection of memory hazard stalls: (1) Load-Use dependency on LW 0(x1) stalling ADDI, "
-        "and (2) Store-to-Load address collision where page_offset match holds LSU in WAIT_PAGE_OFFSET."
-        "</text>"
-    )
+    stride = 5 if n > 35 else (2 if n > 18 else 1)
+    for i, row in enumerate(window):
+        cyc = int(row["Cycle"])
+        x = left + i * col_w
+        fill = "#f8fafc" if i % 2 == 0 else "#ffffff"
+        svg.append(f'<rect x="{x:.1f}" y="{top}" width="{col_w:.1f}" height="{len(signals)*row_h}" fill="{fill}"/>')
+        svg.append(f'<line x1="{x:.1f}" y1="{top}" x2="{x:.1f}" y2="{top + len(signals)*row_h}" stroke="#e2e8f0" stroke-width="0.7"/>')
+        if i % stride == 0 or i == n - 1:
+            svg.append(f'<text x="{x + col_w/2:.1f}" y="{top - 6}" class="cyc">C{cyc}</text>')
 
-    w_rows = rows_in_window(rows, 293, 324)
-    if not w_rows:
-        return
+    for s_idx, (name, sub, getter, is_bus_flag, color) in enumerate(signals):
+        y_base = top + s_idx * row_h
+        y_low = y_base + row_h - 7
+        y_high = y_base + 7
+        y_mid = (y_low + y_high) / 2
+        svg.append(f'<line x1="20" y1="{y_base + row_h}" x2="{width - 20}" y2="{y_base + row_h}" stroke="#e2e8f0" stroke-width="0.8"/>')
+        svg.append(f'<text x="25" y="{y_base + 14}" class="sig-name">{xesc(name)}</text>')
+        svg.append(f'<text x="25" y="{y_base + 24}" class="sig-sub">{xesc(sub)}</text>')
 
-    x_left, y_top = 220, 80
-    col_w = max(28, int((width - x_left - 40) / len(w_rows)))
+        values = [getter(row) for row in window]
 
-    for i, r in enumerate(w_rows):
-        cx = x_left + (i * col_w)
-        cyc = int(r["Cycle"])
-        svg.append(f'  <rect x="{cx}" y="{y_top-20}" width="{col_w}" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />')
-        svg.append(f'  <text x="{cx + col_w/2}" y="{y_top-7}" font-size="9" class="cyc-lbl">{cyc}</text>')
+        if not is_bus_flag:
+            prev = None
+            for i, val in enumerate(values):
+                x1 = left + i * col_w
+                x2 = x1 + col_w
+                high = (str(val) == "1")
+                y = y_high if high else y_low
+                prev_y = y_high if prev == "1" else y_low
+                if prev is not None and (str(prev) == "1") != high:
+                    svg.append(f'<line x1="{x1:.1f}" y1="{prev_y:.1f}" x2="{x1:.1f}" y2="{y:.1f}" stroke="{color}" stroke-width="1.8"/>')
+                svg.append(f'<line x1="{x1:.1f}" y1="{y:.1f}" x2="{x2:.1f}" y2="{y:.1f}" stroke="{color}" stroke-width="1.8"/>')
+                if col_w >= 28:
+                    svg.append(f'<text x="{x1 + col_w/2:.1f}" y="{y_mid + 3.5:.1f}" class="bit" fill="{"#dc2626" if high and "Stall" in name else color}">{val}</text>')
+                prev = val
+        else:
+            run_start = 0
+            for i in range(1, n + 1):
+                if i == n or values[i] != values[run_start]:
+                    x1 = left + run_start * col_w
+                    x2 = left + i * col_w
+                    run_w = x2 - x1
+                    val = values[run_start]
+                    is_idle = str(val) in ("0", "0x00000000", "0x0000", "-", "IDLE")
+                    fill_c = "#f1f5f9" if is_idle else "#e0f2fe"
+                    border_c = "#cbd5e1" if is_idle else color
 
-    signals = [
-        ("CommitAck0", "Commit Port 0 Ack", "bit", "#16a34a"),
-        ("CommitPC0", "Commit Port 0 PC", "hex", "#0f172a"),
-        ("IssueValid0", "Scoreboard Issue Valid", "bit", "#6366f1"),
-        ("IssueAck0", "Scoreboard Issue Ack", "bit", "#0284c7"),
-        ("StallIssue", "Issue Stage Stall", "bit", "#ef4444"),
-        ("StallRaw", "RAW Scoreboard Stall", "bit", "#dc2626"),
-        ("StallRs1", "RS1 Operand Stall", "bit", "#b91c1c"),
-        ("ForwardRs1", "RS1 Operand Forwarded", "bit", "#2563eb"),
-        ("LsuValidId", "LSU Issue Valid", "bit", "#0891b2"),
-        ("LoadUnitState", "Load Unit State (3=WAIT_PAGE)", "dec", "#7c3aed"),
-        ("PageOffsetMatches", "Store-Load Offset Match", "bit", "#ea580c"),
-        ("StoreBufEmpty", "Store Buffer Empty", "bit", "#10b981"),
-    ]
+                    pts = f"{x1+3:.1f},{y_mid:.1f} {x1+6:.1f},{y_high:.1f} {x2-6:.1f},{y_high:.1f} {x2-3:.1f},{y_mid:.1f} {x2-6:.1f},{y_low:.1f} {x1+6:.1f},{y_low:.1f}"
+                    svg.append(f'<polygon points="{pts}" fill="{fill_c}" stroke="{border_c}" stroke-width="1"/>')
 
-    row_h = 28
-    for s_idx, (sig_name, sig_label, sig_type, sig_color) in enumerate(signals):
-        sy = y_top + (s_idx * row_h)
-        bg = "#ffffff" if s_idx % 2 == 0 else "#f8fafc"
-        svg.append(f'  <rect x="30" y="{sy}" width="{width-60}" height="{row_h}" fill="{bg}" stroke="#e2e8f0" stroke-width="0.5" />')
-        svg.append(f'  <text x="35" y="{sy+15}" class="sig-lbl">{xesc(sig_name)}</text>')
-        svg.append(f'  <text x="35" y="{sy+25}" class="sig-sub">{xesc(sig_label)}</text>')
+                    if not is_idle and run_w >= 26:
+                        lbl = pc_label(val, compact=(run_w < 65)) if ("PC" in name or "Addr" in name) else str(val)
+                        max_chars = max(3, int(run_w / 6.5))
+                        if len(lbl) > max_chars:
+                            lbl = lbl[:max_chars - 1] + "…"
+                        svg.append(f'<text x="{x1 + run_w/2:.1f}" y="{y_mid + 3.5:.1f}" class="bus">{xesc(lbl)}</text>')
+                    run_start = i
 
-        for i, r in enumerate(w_rows):
-            cx = x_left + (i * col_w)
-            val = r.get(sig_name, "")
-            if sig_type == "bit":
-                is_hi = (val == "1")
-                b_color = sig_color if is_hi else "#cbd5e1"
-                t_color = "#ffffff" if is_hi else "#94a3b8"
-                svg.append(f'  <rect x="{cx+2}" y="{sy+4}" width="{col_w-4}" height="18" fill="{b_color}" rx="2" />')
-                svg.append(f'  <text x="{cx + col_w/2}" y="{sy+17}" class="box-lbl" fill="{t_color}">{val}</text>')
-            elif sig_type == "hex":
-                h_val = hex32(val)
-                lbl = pc_label(val) if "PC" in sig_name else (f"0x{h_val:X}" if h_val != 0 else "0")
-                b_color = "#eff6ff" if h_val != 0 else "#f8fafc"
-                svg.append(f'  <rect x="{cx+1}" y="{sy+4}" width="{col_w-2}" height="18" fill="{b_color}" stroke="{sig_color}" stroke-width="0.5" rx="2" />')
-                svg.append(f'  <text x="{cx + col_w/2}" y="{sy+16}" font-size="7" font-weight="600" fill="{sig_color}" text-anchor="middle">{xesc(lbl)}</text>')
-            elif sig_type == "dec":
-                d_val = int(val) if val.isdigit() else 0
-                state_str = "WAIT_PAGE" if d_val == 3 else ("IDLE" if d_val == 0 else str(d_val))
-                b_color = "#ede9fe" if d_val == 3 else "#f8fafc"
-                svg.append(f'  <rect x="{cx+1}" y="{sy+4}" width="{col_w-2}" height="18" fill="{b_color}" stroke="{sig_color}" stroke-width="1" rx="2" />')
-                svg.append(f'  <text x="{cx + col_w/2}" y="{sy+16}" font-size="7" font-weight="700" fill="{sig_color}" text-anchor="middle">{state_str}</text>')
+    if notes:
+        ny = top + len(signals) * row_h + 12
+        svg.append(f'<rect x="20" y="{ny}" width="{width-40}" height="{ann_h}" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" rx="6"/>')
+        svg.append(f'<text x="35" y="{ny+18}" class="ann-title">Microarchitectural Analysis:</text>')
+        svg.append(f'<text x="35" y="{ny+34}" class="ann-body">')
+        for l_idx, line in enumerate(notes):
+            svg.append(f'  <tspan x="35" dy="{0 if l_idx==0 else 16}">{xesc(line)}</tspan>')
+        svg.append('</text>')
 
-    ay = y_top + (len(signals) * row_h) + 15
-    svg.append(f'  <rect x="30" y="{ay}" width="{width-60}" height="55" fill="#fefce8" stroke="#fef08a" stroke-width="1" rx="5" />')
-    svg.append(f'  <text x="45" y="{ay+18}" class="ann-title">Microarchitectural Insight: Memory Dependency Resolution</text>')
-    svg.append(f'  <text x="45" y="{ay+32}" class="ann-body">1. Load-Use Delay: Between cycles 295 and 312, instruction ADDI x12 is held in scoreboard issue (StallRaw=1, StallRs1=1) until LW 0(x1) returns data from D-cache at cycle 312. ForwardRs1 asserts at cycle 313, and ADDI executes immediately.</text>')
-    svg.append(f'  <text x="45" y="{ay+46}" class="ann-body">2. Store Buffer Hazard: Following SW 4(x1) at cycle 317, LW 4(x1) accesses the exact same byte offset. PageOffsetMatches asserts, forcing LoadUnitState into WAIT_PAGE_OFFSET (3) until the store buffer commits and drains to memory.</text>')
-
-    svg.append("</svg>")
-    path = os.path.join(FIG_DIR, "03_load_use_and_store_buffer_stall.svg")
-    with open(path, "w", encoding="utf-8") as handle:
+    svg.append('</svg>')
+    with open(out_path, "w", encoding="utf-8") as handle:
         handle.write("\n".join(svg))
-    print(f"[SVG] Generated {path}")
-
-
-# ----------------------------------------------------------------------------
-# 4. Divider Structural Writeback Contention
-# ----------------------------------------------------------------------------
-def generate_divider_structural_contention(rows):
-    width, height = 1200, 520
-    svg = svg_header(width, height)
-
-    svg.append(
-        '  <text x="30" y="30" font-size="15" font-weight="700" fill="#0f172a">'
-        "CVA6 Fixed-Latency Unit (FLU) Divider Structural Write-Back Contention (Cycles 325 – 349)"
-        "</text>"
-    )
-    svg.append(
-        '  <text x="30" y="48" font-size="11" fill="#475569">'
-        "Demonstration of the Fixed-Latency Unit writeback bottleneck: during serial division (DIV and REM), "
-        "flu_ready_o is pulled LOW, asserting fu_busy_alu=1 and stalling independent ALU instructions."
-        "</text>"
-    )
-
-    w_rows = rows_in_window(rows, 325, 349)
-    if not w_rows:
-        return
-
-    x_left, y_top = 220, 80
-    col_w = max(35, int((width - x_left - 40) / len(w_rows)))
-
-    for i, r in enumerate(w_rows):
-        cx = x_left + (i * col_w)
-        cyc = int(r["Cycle"])
-        svg.append(f'  <rect x="{cx}" y="{y_top-20}" width="{col_w}" height="18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.5" />')
-        svg.append(f'  <text x="{cx + col_w/2}" y="{y_top-7}" class="cyc-lbl">{cyc}</text>')
-
-    signals = [
-        ("CommitAck0", "Commit Port 0 Ack", "bit", "#16a34a"),
-        ("CommitPC0", "Commit Port 0 PC", "hex", "#0f172a"),
-        ("DivValidOp", "Divider Issue Request", "bit", "#b91c1c"),
-        ("MultReady", "Divider in_rdy_o Flag", "bit", "#059669"),
-        ("SerDivState", "Divider FSM (0=IDLE,1=DIV,2=FIN)", "dec", "#dc2626"),
-        ("SerDivCnt", "Divider Shift Counter", "cnt", "#991b1b"),
-        ("DivValid", "Division Result Valid", "bit", "#16a34a"),
-        ("FluReady", "FLU Ready Flag (FLU Bus)", "bit", "#2563eb"),
-        ("FuBusyAlu", "ALU Functional Unit Busy", "bit", "#d97706"),
-        ("IssueValid0", "Scoreboard Issue Valid", "bit", "#6366f1"),
-        ("IssueAck0", "Scoreboard Issue Acknowledge", "bit", "#0284c7"),
-        ("MulValidOp", "Multiplier Issue Request", "bit", "#0891b2"),
-        ("MulValid", "Multiplier Result Valid", "bit", "#0d9488"),
-    ]
-
-    row_h = 28
-    for s_idx, (sig_name, sig_label, sig_type, sig_color) in enumerate(signals):
-        sy = y_top + (s_idx * row_h)
-        bg = "#ffffff" if s_idx % 2 == 0 else "#f8fafc"
-        svg.append(f'  <rect x="30" y="{sy}" width="{width-60}" height="{row_h}" fill="{bg}" stroke="#e2e8f0" stroke-width="0.5" />')
-        svg.append(f'  <text x="35" y="{sy+15}" class="sig-lbl">{xesc(sig_name)}</text>')
-        svg.append(f'  <text x="35" y="{sy+25}" class="sig-sub">{xesc(sig_label)}</text>')
-
-        for i, r in enumerate(w_rows):
-            cx = x_left + (i * col_w)
-            val = r.get(sig_name, "")
-            if sig_type == "bit":
-                is_hi = (val == "1")
-                b_color = sig_color if is_hi else "#cbd5e1"
-                t_color = "#ffffff" if is_hi else "#94a3b8"
-                svg.append(f'  <rect x="{cx+3}" y="{sy+4}" width="{col_w-6}" height="18" fill="{b_color}" rx="3" />')
-                svg.append(f'  <text x="{cx + col_w/2}" y="{sy+17}" class="box-lbl" fill="{t_color}">{val}</text>')
-            elif sig_type == "hex":
-                h_val = hex32(val)
-                lbl = pc_label(val) if "PC" in sig_name else (f"0x{h_val:X}" if h_val != 0 else "0")
-                b_color = "#eff6ff" if h_val != 0 else "#f8fafc"
-                svg.append(f'  <rect x="{cx+1}" y="{sy+4}" width="{col_w-2}" height="18" fill="{b_color}" stroke="{sig_color}" stroke-width="0.5" rx="2" />')
-                svg.append(f'  <text x="{cx + col_w/2}" y="{sy+16}" font-size="7" font-weight="600" fill="{sig_color}" text-anchor="middle">{xesc(lbl)}</text>')
-            elif sig_type == "dec":
-                d_val = int(val) if val.isdigit() else 0
-                st_name = "DIVIDE" if d_val == 1 else ("FINISH" if d_val == 2 else "IDLE")
-                b_color = "#fee2e2" if d_val == 1 else ("#dcfce7" if d_val == 2 else "#f8fafc")
-                svg.append(f'  <rect x="{cx+2}" y="{sy+4}" width="{col_w-4}" height="18" fill="{b_color}" stroke="{sig_color}" stroke-width="1" rx="2" />')
-                svg.append(f'  <text x="{cx + col_w/2}" y="{sy+16}" font-size="7" font-weight="700" fill="{sig_color}" text-anchor="middle">{st_name}</text>')
-            elif sig_type == "cnt":
-                cnt_val = int(val) if val.isdigit() else 0
-                b_color = "#fff1f2" if cnt_val > 0 else "#f8fafc"
-                svg.append(f'  <rect x="{cx+2}" y="{sy+4}" width="{col_w-4}" height="18" fill="{b_color}" stroke="{sig_color}" stroke-width="0.5" rx="2" />')
-                svg.append(f'  <text x="{cx + col_w/2}" y="{sy+16}" font-size="8" font-weight="600" fill="{sig_color}" text-anchor="middle">{cnt_val}</text>')
-
-    ay = y_top + (len(signals) * row_h) + 15
-    svg.append(f'  <rect x="30" y="{ay}" width="{width-60}" height="55" fill="#fef2f2" stroke="#fecaca" stroke-width="1" rx="5" />')
-    svg.append(f'  <text x="45" y="{ay+18}" class="ann-title">Microarchitectural Insight: The Fixed-Latency Unit Structural Hazard</text>')
-    svg.append(f'  <text x="45" y="{ay+32}" class="ann-body">1. Structural Contention: At cycle 326, DIV x18 starts calculation. SerDivState enters DIVIDE (1), and MultReady drops to 0. This forces flu_ready_o=0 and FuBusyAlu=1, which freezes the issue stage for independent instruction ADDI x19, 500 until cycle 333 (DivValid=1).</text>')
-    svg.append(f'  <text x="45" y="{ay+46}" class="ann-body">2. Contrast with Pipelined Multiplier: At cycle 346, MUL x23 issues. Unlike the divider, the multiplier is fully pipelined, completing in a single cycle without de-asserting flu_ready_o or stalling subsequent operations.</text>')
-
-    svg.append("</svg>")
-    path = os.path.join(FIG_DIR, "04_divider_structural_contention.svg")
-    with open(path, "w", encoding="utf-8") as handle:
-        handle.write("\n".join(svg))
-    print(f"[SVG] Generated {path}")
+    print(f"[SVG] Generated {out_path}")
 
 
 def main():
-    print(f"[SVG] Reading trace from {CSV_PATH}...")
     rows = read_trace()
-    print(f"[SVG] Trace contains {len(rows)} clock cycles.")
+    if not rows:
+        print("[ERROR] No trace rows found in cva6_hazard_trace.csv")
+        return
 
     generate_execution_timeline(rows)
-    generate_raw_forwarding_burst(rows)
-    generate_load_use_store_buffer_stall(rows)
-    generate_divider_structural_contention(rows)
-    print("[SVG] All 4 SVG timing figures successfully generated.")
+
+    render_waveform_panel(
+        rows, 276, 294,
+        "RAW ALU-to-ALU Operand Forwarding Burst",
+        "Back-to-back dependent ALU instructions (x4 -> x5 -> x6 -> x7 -> x8 -> x9 -> x10) sustaining CPI = 1.00",
+        [
+            ("CommitAck0", "Commit Port 0 Ack", lambda r: r["CommitAck0"], False, "#16a34a"),
+            ("CommitPC0", "Commit Port 0 PC", lambda r: hex32(r["CommitPC0"]), True, "#0f172a"),
+            ("IssueValid0", "Scoreboard Issue Valid", lambda r: r["IssueValid0"], False, "#6366f1"),
+            ("IssueAck0", "Scoreboard Issue Ack", lambda r: r["IssueAck0"], False, "#0284c7"),
+            ("ForwardRs1", "RS1 Forwarded from WB", lambda r: r["ForwardRs1"], False, "#2563eb"),
+            ("ForwardRs2", "RS2 Forwarded from WB", lambda r: r["ForwardRs2"], False, "#3b82f6"),
+            ("Rs1HasRaw", "RS1 RAW Hazard Flag", lambda r: r["Rs1HasRaw"], False, "#ea580c"),
+            ("StallRaw", "RAW Stall Asserted", lambda r: r["StallRaw"], False, "#dc2626"),
+            ("GprWaddr0", "GPR Destination Reg", lambda r: f"x{r['GprWaddr0']}" if r.get("GprWe0")=="1" and r.get("GprWaddr0")!="0" else "-", True, "#475569"),
+            ("GprWdata0", "GPR Write Data", lambda r: f"0x{hex32(r['GprWdata0']):X}" if r.get("GprWe0")=="1" else "-", True, "#059669"),
+        ],
+        os.path.join(FIG_DIR, "02_raw_forwarding_burst.svg"),
+        notes=[
+            "• Zero Stall Bubbles: ForwardRs1/Rs2 assert on the exact cycle results are ready, bypassing the Register File directly into ALU operands.",
+            "• RAW Hazard Resolution: Rs1HasRaw asserts during decode, but operand forwarding resolves the hazard before issue stall occurs (StallRaw=0).",
+            "• Perfect Throughput: 7 back-to-back dependent integer operations retire at 1 instruction per cycle (CPI = 1.00).",
+        ],
+    )
+
+    render_waveform_panel(
+        rows, 295, 322,
+        "Load-Use Scoreboard Stalls & Store Buffer Address Collision",
+        "Load-Use delay on LW 0(x1) holds ADDI x12 in issue; Store Buffer page-offset match holds LSU in WAIT_PAGE_OFFSET",
+        [
+            ("CommitAck0", "Commit Port 0 Ack", lambda r: r["CommitAck0"], False, "#16a34a"),
+            ("CommitPC0", "Commit Port 0 PC", lambda r: hex32(r["CommitPC0"]), True, "#0f172a"),
+            ("IssueValid0", "Scoreboard Issue Valid", lambda r: r["IssueValid0"], False, "#6366f1"),
+            ("StallRaw", "RAW Stall Flag", lambda r: r["StallRaw"], False, "#dc2626"),
+            ("StallRs1", "RS1 Operand Stall", lambda r: r["StallRs1"], False, "#b91c1c"),
+            ("ForwardRs1", "RS1 Operand Forwarded", lambda r: r["ForwardRs1"], False, "#2563eb"),
+            ("LoadUnitState", "LSU State (3=WAIT_PAGE)", lambda r: "WAIT_PAGE" if r.get("LoadUnitState")=="3" else ("IDLE" if r.get("LoadUnitState")=="0" else r.get("LoadUnitState","0")), True, "#7c3aed"),
+            ("PageOffsetMatches", "Store-Load Offset Match", lambda r: r["PageOffsetMatches"], False, "#ea580c"),
+            ("StoreBufEmpty", "Store Buffer Empty", lambda r: r["StoreBufEmpty"], False, "#10b981"),
+        ],
+        os.path.join(FIG_DIR, "03_load_use_and_store_buffer_stall.svg"),
+        notes=[
+            "• Load-Use Stall: ADDI x12 depends on LW 0(x1). Scoreboard holds issue (StallRaw=1, StallRs1=1) until D-cache returns data.",
+            "• Store Buffer Collision: When LW accesses the same page offset as a pending SW, PageOffsetMatches asserts.",
+            "• Sequential Ordering: LSU transitions to WAIT_PAGE_OFFSET, preventing load-after-store ordering violation until the store commits.",
+        ],
+    )
+
+    render_waveform_panel(
+        rows, 325, 349,
+        "Divider Structural Contention: Fixed-Latency Unit Stall",
+        "Multi-cycle serial integer division (DIV/REM) asserts flu_ready=0, blocking independent ALU operations from issuing",
+        [
+            ("CommitAck0", "Commit Port 0 Ack", lambda r: r["CommitAck0"], False, "#16a34a"),
+            ("CommitPC0", "Commit Port 0 PC", lambda r: hex32(r["CommitPC0"]), True, "#0f172a"),
+            ("IssueValid0", "Scoreboard Issue Valid", lambda r: r["IssueValid0"], False, "#6366f1"),
+            ("DivValid", "Divider Unit Request", lambda r: r.get("DivValid", "0"), False, "#ea580c"),
+            ("FluReady", "Fixed-Latency Unit Ready", lambda r: r.get("FluReady", "1"), False, "#16a34a"),
+            ("FusBusyALU", "ALU Function Unit Busy", lambda r: r.get("FusBusyALU", "0"), False, "#dc2626"),
+            ("StallRaw", "Scoreboard RAW Stall", lambda r: r["StallRaw"], False, "#b91c1c"),
+            ("GprWaddr0", "GPR Writeback Register", lambda r: f"x{r['GprWaddr0']}" if r.get("GprWe0")=="1" and r.get("GprWaddr0")!="0" else "-", True, "#475569"),
+        ],
+        os.path.join(FIG_DIR, "04_divider_structural_contention.svg"),
+        notes=[
+            "• Structural Bottleneck: Because ALU and Divider share the Fixed-Latency Unit (FLU) writeback port, flu_ready de-asserts during division.",
+            "• Issue Stalling: Independent single-cycle ALU instructions cannot issue while serdiv completes its iterative radix-2 calculation.",
+            "• Resolution: Once DIV writeback completes, the scoreboard unblocks, and queued ALU operations retire in rapid succession.",
+        ],
+    )
 
 
 if __name__ == "__main__":
