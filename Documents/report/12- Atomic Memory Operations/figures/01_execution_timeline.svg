@@ -1,373 +1,182 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="20848" height="501" viewBox="0 0 20848 501">
-<defs>
-  <style type="text/css">
-    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }
-    .sig-sub { font-size: 9px; fill: #64748b; }
-    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }
-    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }
-    .hex-lbl { font-size: 9px; font-family: monospace; text-anchor: middle; }
-  </style>
-</defs>
-<rect width="20848" height="501" fill="#ffffff"/>
-<text x="24" y="28" font-size="15" font-weight="700" fill="#0f172a">CVA6 Suite 12: Atomic Memory Operations (RV32A) Execution Timeline</text>
-<text x="24" y="46" font-size="11" fill="#64748b">Cycle-accurate pipeline progress covering LR.W, SC.W, ATOPs and reservation life-cycle</text>
-<line x1="190" y1="57" x2="190" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="203.0" y="53" class="cyc-lbl">C0</text>
-<line x1="450" y1="57" x2="450" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="463.0" y="53" class="cyc-lbl">C10</text>
-<line x1="710" y1="57" x2="710" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="723.0" y="53" class="cyc-lbl">C20</text>
-<line x1="970" y1="57" x2="970" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="983.0" y="53" class="cyc-lbl">C30</text>
-<line x1="1230" y1="57" x2="1230" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="1243.0" y="53" class="cyc-lbl">C40</text>
-<line x1="1490" y1="57" x2="1490" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="1503.0" y="53" class="cyc-lbl">C50</text>
-<line x1="1750" y1="57" x2="1750" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="1763.0" y="53" class="cyc-lbl">C60</text>
-<line x1="2010" y1="57" x2="2010" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="2023.0" y="53" class="cyc-lbl">C70</text>
-<line x1="2270" y1="57" x2="2270" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="2283.0" y="53" class="cyc-lbl">C80</text>
-<line x1="2530" y1="57" x2="2530" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="2543.0" y="53" class="cyc-lbl">C90</text>
-<line x1="2790" y1="57" x2="2790" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="2803.0" y="53" class="cyc-lbl">C100</text>
-<line x1="3050" y1="57" x2="3050" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="3063.0" y="53" class="cyc-lbl">C110</text>
-<line x1="3310" y1="57" x2="3310" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="3323.0" y="53" class="cyc-lbl">C120</text>
-<line x1="3570" y1="57" x2="3570" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="3583.0" y="53" class="cyc-lbl">C130</text>
-<line x1="3830" y1="57" x2="3830" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="3843.0" y="53" class="cyc-lbl">C140</text>
-<line x1="4090" y1="57" x2="4090" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="4103.0" y="53" class="cyc-lbl">C150</text>
-<line x1="4350" y1="57" x2="4350" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="4363.0" y="53" class="cyc-lbl">C160</text>
-<line x1="4610" y1="57" x2="4610" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="4623.0" y="53" class="cyc-lbl">C170</text>
-<line x1="4870" y1="57" x2="4870" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="4883.0" y="53" class="cyc-lbl">C180</text>
-<line x1="5130" y1="57" x2="5130" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="5143.0" y="53" class="cyc-lbl">C190</text>
-<line x1="5390" y1="57" x2="5390" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="5403.0" y="53" class="cyc-lbl">C200</text>
-<line x1="5650" y1="57" x2="5650" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="5663.0" y="53" class="cyc-lbl">C210</text>
-<line x1="5910" y1="57" x2="5910" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="5923.0" y="53" class="cyc-lbl">C220</text>
-<line x1="6170" y1="57" x2="6170" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="6183.0" y="53" class="cyc-lbl">C230</text>
-<line x1="6430" y1="57" x2="6430" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="6443.0" y="53" class="cyc-lbl">C240</text>
-<line x1="6690" y1="57" x2="6690" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="6703.0" y="53" class="cyc-lbl">C250</text>
-<line x1="6950" y1="57" x2="6950" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="6963.0" y="53" class="cyc-lbl">C260</text>
-<line x1="7210" y1="57" x2="7210" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="7223.0" y="53" class="cyc-lbl">C270</text>
-<line x1="7470" y1="57" x2="7470" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="7483.0" y="53" class="cyc-lbl">C280</text>
-<line x1="7730" y1="57" x2="7730" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="7743.0" y="53" class="cyc-lbl">C290</text>
-<line x1="7990" y1="57" x2="7990" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="8003.0" y="53" class="cyc-lbl">C300</text>
-<line x1="8250" y1="57" x2="8250" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="8263.0" y="53" class="cyc-lbl">C310</text>
-<line x1="8510" y1="57" x2="8510" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="8523.0" y="53" class="cyc-lbl">C320</text>
-<line x1="8770" y1="57" x2="8770" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="8783.0" y="53" class="cyc-lbl">C330</text>
-<line x1="9030" y1="57" x2="9030" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="9043.0" y="53" class="cyc-lbl">C340</text>
-<line x1="9290" y1="57" x2="9290" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="9303.0" y="53" class="cyc-lbl">C350</text>
-<line x1="9550" y1="57" x2="9550" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="9563.0" y="53" class="cyc-lbl">C360</text>
-<line x1="9810" y1="57" x2="9810" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="9823.0" y="53" class="cyc-lbl">C370</text>
-<line x1="10070" y1="57" x2="10070" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="10083.0" y="53" class="cyc-lbl">C380</text>
-<line x1="10330" y1="57" x2="10330" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="10343.0" y="53" class="cyc-lbl">C390</text>
-<line x1="10590" y1="57" x2="10590" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="10603.0" y="53" class="cyc-lbl">C400</text>
-<line x1="10850" y1="57" x2="10850" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="10863.0" y="53" class="cyc-lbl">C410</text>
-<line x1="11110" y1="57" x2="11110" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="11123.0" y="53" class="cyc-lbl">C420</text>
-<line x1="11370" y1="57" x2="11370" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="11383.0" y="53" class="cyc-lbl">C430</text>
-<line x1="11630" y1="57" x2="11630" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="11643.0" y="53" class="cyc-lbl">C440</text>
-<line x1="11890" y1="57" x2="11890" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="11903.0" y="53" class="cyc-lbl">C450</text>
-<line x1="12150" y1="57" x2="12150" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="12163.0" y="53" class="cyc-lbl">C460</text>
-<line x1="12410" y1="57" x2="12410" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="12423.0" y="53" class="cyc-lbl">C470</text>
-<line x1="12670" y1="57" x2="12670" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="12683.0" y="53" class="cyc-lbl">C480</text>
-<line x1="12930" y1="57" x2="12930" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="12943.0" y="53" class="cyc-lbl">C490</text>
-<line x1="13190" y1="57" x2="13190" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="13203.0" y="53" class="cyc-lbl">C500</text>
-<line x1="13450" y1="57" x2="13450" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="13463.0" y="53" class="cyc-lbl">C510</text>
-<line x1="13710" y1="57" x2="13710" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="13723.0" y="53" class="cyc-lbl">C520</text>
-<line x1="13970" y1="57" x2="13970" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="13983.0" y="53" class="cyc-lbl">C530</text>
-<line x1="14230" y1="57" x2="14230" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="14243.0" y="53" class="cyc-lbl">C540</text>
-<line x1="14490" y1="57" x2="14490" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="14503.0" y="53" class="cyc-lbl">C550</text>
-<line x1="14750" y1="57" x2="14750" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="14763.0" y="53" class="cyc-lbl">C560</text>
-<line x1="15010" y1="57" x2="15010" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="15023.0" y="53" class="cyc-lbl">C570</text>
-<line x1="15270" y1="57" x2="15270" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="15283.0" y="53" class="cyc-lbl">C580</text>
-<line x1="15530" y1="57" x2="15530" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="15543.0" y="53" class="cyc-lbl">C590</text>
-<line x1="15790" y1="57" x2="15790" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="15803.0" y="53" class="cyc-lbl">C600</text>
-<line x1="16050" y1="57" x2="16050" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="16063.0" y="53" class="cyc-lbl">C610</text>
-<line x1="16310" y1="57" x2="16310" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="16323.0" y="53" class="cyc-lbl">C620</text>
-<line x1="16570" y1="57" x2="16570" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="16583.0" y="53" class="cyc-lbl">C630</text>
-<line x1="16830" y1="57" x2="16830" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="16843.0" y="53" class="cyc-lbl">C640</text>
-<line x1="17090" y1="57" x2="17090" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="17103.0" y="53" class="cyc-lbl">C650</text>
-<line x1="17350" y1="57" x2="17350" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="17363.0" y="53" class="cyc-lbl">C660</text>
-<line x1="17610" y1="57" x2="17610" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="17623.0" y="53" class="cyc-lbl">C670</text>
-<line x1="17870" y1="57" x2="17870" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="17883.0" y="53" class="cyc-lbl">C680</text>
-<line x1="18130" y1="57" x2="18130" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="18143.0" y="53" class="cyc-lbl">C690</text>
-<line x1="18390" y1="57" x2="18390" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="18403.0" y="53" class="cyc-lbl">C700</text>
-<line x1="18650" y1="57" x2="18650" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="18663.0" y="53" class="cyc-lbl">C710</text>
-<line x1="18910" y1="57" x2="18910" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="18923.0" y="53" class="cyc-lbl">C720</text>
-<line x1="19170" y1="57" x2="19170" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="19183.0" y="53" class="cyc-lbl">C730</text>
-<line x1="19430" y1="57" x2="19430" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="19443.0" y="53" class="cyc-lbl">C740</text>
-<line x1="19690" y1="57" x2="19690" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="19703.0" y="53" class="cyc-lbl">C750</text>
-<line x1="19950" y1="57" x2="19950" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="19963.0" y="53" class="cyc-lbl">C760</text>
-<line x1="20210" y1="57" x2="20210" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="20223.0" y="53" class="cyc-lbl">C770</text>
-<line x1="20470" y1="57" x2="20470" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="20483.0" y="53" class="cyc-lbl">C780</text>
-<line x1="20730" y1="57" x2="20730" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="20743.0" y="53" class="cyc-lbl">C790</text>
-<line x1="20782" y1="57" x2="20782" y2="471" stroke="#e2e8f0" stroke-dasharray="2,3"/>
-<text x="20795.0" y="53" class="cyc-lbl">C792</text>
-<text x="24" y="77" class="sig-lbl">Commit Ack 0</text>
-<text x="24" y="87" class="sig-sub">Port 0 retired</text>
-<path d="M 190 85 H 216 H 242 H 268 H 294 H 320 H 346 H 372 H 398 H 424 H 450 H 476 H 502 H 528 H 554 H 580 H 606 H 632 H 658 H 684 H 710 H 736 H 762 H 788 H 814 H 840 H 866 H 892 H 918 H 944 H 970 H 996 H 1022 H 1048 H 1074 H 1100 H 1126 H 1152 H 1178 H 1204 H 1230 H 1256 H 1282 H 1308 H 1334 H 1360 H 1386 H 1412 H 1438 H 1464 H 1490 H 1516 H 1542 H 1568 H 1594 H 1620 H 1646 H 1672 H 1698 H 1724 H 1750 H 1776 H 1802 H 1828 H 1854 H 1880 H 1906 H 1932 H 1958 H 1984 H 2010 H 2036 H 2062 H 2088 H 2114 H 2140 H 2166 H 2192 H 2218 H 2244 H 2270 H 2296 H 2322 H 2348 H 2374 H 2400 H 2426 H 2452 H 2478 H 2504 H 2530 H 2556 H 2582 H 2608 H 2634 H 2660 H 2686 H 2712 H 2738 H 2764 H 2790 H 2816 H 2842 H 2868 H 2894 H 2920 H 2946 H 2972 H 2998 H 3024 H 3050 H 3076 H 3102 H 3128 H 3154 H 3180 H 3206 H 3232 H 3258 H 3284 H 3310 H 3336 H 3362 H 3388 H 3414 H 3440 H 3466 H 3492 H 3518 H 3544 H 3570 H 3596 H 3622 H 3648 H 3674 H 3700 H 3726 H 3752 H 3778 H 3804 H 3830 H 3856 H 3882 H 3908 H 3934 H 3960 H 3986 H 4012 H 4038 H 4064 H 4090 H 4116 H 4142 H 4168 H 4194 H 4220 H 4246 H 4272 H 4298 H 4324 H 4350 H 4376 H 4402 H 4428 H 4454 H 4480 H 4506 H 4532 H 4558 H 4584 H 4610 H 4636 H 4662 H 4688 H 4714 H 4740 H 4766 H 4792 H 4818 H 4844 H 4870 H 4896 H 4922 H 4948 H 4974 H 5000 H 5026 H 5052 H 5078 H 5104 H 5130 H 5156 H 5182 H 5208 H 5234 H 5260 H 5286 H 5312 H 5338 H 5364 H 5390 H 5416 H 5442 H 5468 H 5494 H 5520 H 5546 H 5572 H 5598 H 5624 H 5650 H 5676 H 5702 H 5728 H 5754 H 5780 H 5806 H 5832 H 5858 H 5884 H 5910 H 5936 H 5962 H 5988 H 6014 H 6040 H 6066 H 6092 H 6118 H 6144 H 6170 H 6196 H 6222 H 6248 H 6274 H 6300 H 6326 H 6352 H 6378 H 6404 H 6430 H 6456 H 6482 H 6508 H 6534 H 6560 H 6586 H 6612 H 6638 H 6664 H 6690 H 6716 H 6742 H 6768 H 6794 H 6820 H 6846 H 6872 H 6898 H 6924 H 6950 H 6976 H 7002 H 7028 H 7054 H 7080 H 7106 H 7132 V 65 H 7158 V 85 H 7184 V 65 H 7210 H 7236 H 7262 V 85 H 7288 H 7314 H 7340 H 7366 H 7392 H 7418 V 65 H 7444 V 85 H 7470 V 65 H 7496 V 85 H 7522 V 65 H 7548 V 85 H 7574 H 7600 H 7626 H 7652 H 7678 H 7704 V 65 H 7730 V 85 H 7756 H 7782 H 7808 H 7834 H 7860 H 7886 V 65 H 7912 V 85 H 7938 H 7964 H 7990 H 8016 H 8042 H 8068 H 8094 H 8120 H 8146 H 8172 H 8198 H 8224 H 8250 H 8276 H 8302 H 8328 H 8354 H 8380 H 8406 H 8432 H 8458 H 8484 H 8510 H 8536 H 8562 H 8588 H 8614 H 8640 H 8666 H 8692 H 8718 H 8744 H 8770 H 8796 H 8822 H 8848 H 8874 H 8900 H 8926 H 8952 H 8978 H 9004 H 9030 H 9056 H 9082 H 9108 H 9134 H 9160 H 9186 H 9212 H 9238 H 9264 H 9290 H 9316 H 9342 H 9368 H 9394 H 9420 H 9446 H 9472 H 9498 H 9524 H 9550 H 9576 H 9602 H 9628 H 9654 H 9680 H 9706 H 9732 H 9758 H 9784 H 9810 H 9836 H 9862 H 9888 H 9914 H 9940 H 9966 H 9992 H 10018 H 10044 H 10070 H 10096 H 10122 H 10148 H 10174 H 10200 H 10226 H 10252 H 10278 H 10304 H 10330 H 10356 H 10382 H 10408 H 10434 H 10460 H 10486 H 10512 H 10538 H 10564 H 10590 H 10616 H 10642 H 10668 H 10694 H 10720 H 10746 H 10772 H 10798 H 10824 H 10850 H 10876 H 10902 H 10928 H 10954 H 10980 H 11006 H 11032 H 11058 H 11084 H 11110 H 11136 H 11162 H 11188 H 11214 H 11240 H 11266 H 11292 H 11318 H 11344 H 11370 H 11396 H 11422 H 11448 H 11474 H 11500 H 11526 H 11552 H 11578 H 11604 H 11630 H 11656 H 11682 H 11708 H 11734 H 11760 H 11786 H 11812 H 11838 H 11864 H 11890 H 11916 H 11942 H 11968 H 11994 H 12020 H 12046 H 12072 H 12098 H 12124 H 12150 H 12176 H 12202 H 12228 H 12254 H 12280 H 12306 H 12332 H 12358 H 12384 H 12410 H 12436 H 12462 H 12488 H 12514 H 12540 H 12566 H 12592 H 12618 H 12644 H 12670 H 12696 H 12722 H 12748 H 12774 H 12800 H 12826 H 12852 H 12878 H 12904 H 12930 H 12956 H 12982 H 13008 H 13034 H 13060 H 13086 H 13112 H 13138 H 13164 H 13190 H 13216 H 13242 H 13268 H 13294 H 13320 H 13346 H 13372 H 13398 H 13424 H 13450 H 13476 H 13502 H 13528 H 13554 H 13580 H 13606 H 13632 H 13658 H 13684 H 13710 H 13736 H 13762 H 13788 H 13814 H 13840 H 13866 H 13892 H 13918 H 13944 H 13970 H 13996 H 14022 H 14048 H 14074 H 14100 H 14126 H 14152 H 14178 H 14204 H 14230 H 14256 H 14282 H 14308 H 14334 H 14360 H 14386 H 14412 H 14438 H 14464 H 14490 H 14516 H 14542 H 14568 H 14594 H 14620 H 14646 H 14672 H 14698 H 14724 H 14750 V 65 H 14776 V 85 H 14802 H 14828 H 14854 H 14880 H 14906 V 65 H 14932 V 85 H 14958 H 14984 H 15010 H 15036 H 15062 H 15088 V 65 H 15114 H 15140 V 85 H 15166 H 15192 H 15218 H 15244 H 15270 V 65 H 15296 V 85 H 15322 H 15348 H 15374 H 15400 H 15426 H 15452 H 15478 H 15504 H 15530 V 65 H 15556 V 85 H 15582 H 15608 H 15634 H 15660 H 15686 V 65 H 15712 V 85 H 15738 H 15764 H 15790 H 15816 H 15842 H 15868 V 65 H 15894 H 15920 V 85 H 15946 V 65 H 15972 H 15998 V 85 H 16024 H 16050 H 16076 H 16102 H 16128 H 16154 H 16180 H 16206 H 16232 H 16258 V 65 H 16284 V 85 H 16310 H 16336 H 16362 H 16388 H 16414 H 16440 H 16466 H 16492 H 16518 H 16544 H 16570 V 65 H 16596 V 85 H 16622 V 65 H 16648 H 16674 V 85 H 16700 H 16726 H 16752 H 16778 H 16804 H 16830 H 16856 H 16882 H 16908 H 16934 H 16960 H 16986 H 17012 H 17038 H 17064 V 65 H 17090 V 85 H 17116 H 17142 H 17168 H 17194 H 17220 H 17246 H 17272 H 17298 H 17324 H 17350 H 17376 H 17402 H 17428 H 17454 V 65 H 17480 H 17506 H 17532 V 85 H 17558 H 17584 H 17610 H 17636 H 17662 H 17688 H 17714 H 17740 H 17766 H 17792 H 17818 H 17844 H 17870 H 17896 V 65 H 17922 V 85 H 17948 H 17974 H 18000 H 18026 H 18052 H 18078 H 18104 H 18130 H 18156 H 18182 H 18208 H 18234 H 18260 H 18286 V 65 H 18312 H 18338 H 18364 H 18390 V 85 H 18416 H 18442 H 18468 H 18494 H 18520 H 18546 H 18572 H 18598 H 18624 H 18650 H 18676 H 18702 H 18728 V 65 H 18754 V 85 H 18780 H 18806 H 18832 H 18858 H 18884 H 18910 H 18936 H 18962 H 18988 H 19014 H 19040 H 19066 H 19092 H 19118 V 65 H 19144 H 19170 H 19196 H 19222 V 85 H 19248 H 19274 H 19300 H 19326 H 19352 H 19378 H 19404 H 19430 H 19456 H 19482 H 19508 H 19534 H 19560 V 65 H 19586 V 85 H 19612 H 19638 H 19664 H 19690 H 19716 H 19742 H 19768 H 19794 H 19820 V 65 H 19846 H 19872 V 85 H 19898 H 19924 H 19950 H 19976 H 20002 V 65 H 20028 V 85 H 20054 H 20080 H 20106 H 20132 H 20158 H 20184 H 20210 H 20236 H 20262 H 20288 H 20314 H 20340 H 20366 H 20392 V 65 H 20418 H 20444 H 20470 H 20496 H 20522 V 85 H 20548 V 65 H 20574 V 85 H 20600 V 65 H 20626 V 85 H 20652 V 65 H 20678 V 85 H 20704 V 65 H 20730 V 85 H 20756 V 65 H 20782 V 85 H 20808" fill="none" stroke="#16a34a" stroke-width="1.8"/>
-<text x="24" y="113" class="sig-lbl">Commit PC 0</text>
-<text x="24" y="123" class="sig-sub">Address &amp; Mnemonic</text>
-<rect x="191" y="101" width="6940" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="7133" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="7145.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="7159" y="101" width="24" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="7185" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="7197.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="7211" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="7223.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="7237" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="7249.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="7263" y="101" width="154" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="7419" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="7431.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="7445" y="101" width="24" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="7471" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="7483.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="7497" y="101" width="24" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="7523" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="7535.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="7549" y="101" width="154" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="7705" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="7717.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="7731" y="101" width="154" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="7887" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="7899.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="7913" y="101" width="6836" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="14751" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="14763.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="14777" y="101" width="128" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="14907" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="14919.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="14933" y="101" width="154" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="15089" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="15101.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="15115" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="15127.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="15141" y="101" width="128" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="15271" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="15283.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="15297" y="101" width="232" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="15531" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="15543.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="15557" y="101" width="128" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="15687" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="15699.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="15713" y="101" width="154" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="15869" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="15881.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="15895" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="15907.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="15921" y="101" width="24" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="15947" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="15959.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="15973" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="15985.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="15999" y="101" width="258" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="16259" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="16271.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="16285" y="101" width="284" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="16571" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="16583.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="16597" y="101" width="24" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="16623" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="16635.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="16649" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="16661.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="16675" y="101" width="388" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="17065" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="17077.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="17091" y="101" width="362" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="17455" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="17467.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="17481" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="17493.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="17507" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="17519.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="17533" y="101" width="362" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="17897" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="17909.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="17923" y="101" width="362" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="18287" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="18299.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="18313" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="18325.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="18339" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="18351.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="18365" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="18377.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="18391" y="101" width="336" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="18729" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="18741.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="18755" y="101" width="362" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="19119" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="19131.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="19145" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="19157.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="19171" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="19183.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="19197" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="19209.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="19223" y="101" width="336" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="19561" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="19573.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="19587" y="101" width="232" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="19821" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="19833.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="19847" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="19859.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="19873" y="101" width="128" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="20003" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="20015.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="20029" y="101" width="362" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="20393" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="20405.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="20419" y="101" width="102" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="20470.0" y="116.5" class="hex-lbl" fill="#0f172a">0x00E4 J END_LOOP</text>
-<rect x="20523" y="101" width="24" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="20549" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="20561.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="20575" y="101" width="24" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="20601" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="20613.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="20627" y="101" width="24" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="20653" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="20665.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="20679" y="101" width="24" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="20705" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="20717.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="20731" y="101" width="24" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="20757" y="101" width="24" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
-<text x="20769.0" y="116.5" class="hex-lbl" fill="#0f172a">0x0…</text>
-<rect x="20783" y="101" width="24" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<text x="24" y="149" class="sig-lbl">AR Valid</text>
-<text x="24" y="159" class="sig-sub">Read request</text>
-<path d="M 190 157 H 216 H 242 H 268 H 294 H 320 H 346 H 372 H 398 H 424 H 450 H 476 H 502 H 528 H 554 H 580 H 606 H 632 H 658 H 684 H 710 H 736 H 762 H 788 H 814 H 840 H 866 H 892 H 918 H 944 H 970 H 996 H 1022 H 1048 H 1074 H 1100 H 1126 H 1152 H 1178 H 1204 H 1230 H 1256 H 1282 H 1308 H 1334 H 1360 H 1386 H 1412 H 1438 H 1464 H 1490 H 1516 H 1542 H 1568 H 1594 H 1620 H 1646 H 1672 H 1698 H 1724 H 1750 H 1776 H 1802 H 1828 H 1854 H 1880 H 1906 H 1932 H 1958 H 1984 H 2010 H 2036 H 2062 H 2088 H 2114 H 2140 H 2166 H 2192 H 2218 H 2244 H 2270 H 2296 H 2322 H 2348 H 2374 H 2400 H 2426 H 2452 H 2478 H 2504 H 2530 H 2556 H 2582 H 2608 H 2634 H 2660 H 2686 H 2712 H 2738 H 2764 H 2790 H 2816 H 2842 H 2868 H 2894 H 2920 H 2946 H 2972 H 2998 H 3024 H 3050 H 3076 H 3102 H 3128 H 3154 H 3180 H 3206 H 3232 H 3258 H 3284 H 3310 H 3336 H 3362 H 3388 H 3414 H 3440 H 3466 H 3492 H 3518 H 3544 H 3570 H 3596 H 3622 H 3648 H 3674 H 3700 H 3726 H 3752 H 3778 H 3804 H 3830 H 3856 H 3882 H 3908 H 3934 H 3960 H 3986 H 4012 H 4038 H 4064 H 4090 H 4116 H 4142 H 4168 H 4194 H 4220 H 4246 H 4272 H 4298 H 4324 H 4350 H 4376 H 4402 H 4428 H 4454 H 4480 H 4506 H 4532 H 4558 H 4584 H 4610 H 4636 H 4662 H 4688 H 4714 H 4740 H 4766 H 4792 H 4818 H 4844 H 4870 H 4896 H 4922 H 4948 H 4974 H 5000 H 5026 H 5052 H 5078 H 5104 H 5130 H 5156 H 5182 H 5208 H 5234 H 5260 H 5286 H 5312 H 5338 H 5364 H 5390 H 5416 H 5442 H 5468 H 5494 H 5520 H 5546 H 5572 H 5598 H 5624 H 5650 H 5676 H 5702 H 5728 H 5754 H 5780 H 5806 H 5832 H 5858 H 5884 H 5910 H 5936 H 5962 H 5988 H 6014 H 6040 H 6066 H 6092 H 6118 H 6144 H 6170 H 6196 H 6222 H 6248 H 6274 H 6300 H 6326 H 6352 H 6378 H 6404 H 6430 H 6456 H 6482 H 6508 H 6534 H 6560 H 6586 H 6612 H 6638 H 6664 H 6690 H 6716 H 6742 H 6768 H 6794 H 6820 H 6846 H 6872 V 137 H 6898 V 157 H 6924 H 6950 H 6976 H 7002 H 7028 H 7054 H 7080 H 7106 H 7132 H 7158 V 137 H 7184 V 157 H 7210 H 7236 H 7262 H 7288 H 7314 H 7340 H 7366 H 7392 H 7418 H 7444 V 137 H 7470 V 157 H 7496 H 7522 H 7548 H 7574 H 7600 H 7626 H 7652 H 7678 H 7704 H 7730 V 137 H 7756 V 157 H 7782 H 7808 H 7834 H 7860 H 7886 H 7912 H 7938 V 137 H 7964 H 7990 H 8016 H 8042 H 8068 H 8094 H 8120 H 8146 H 8172 H 8198 H 8224 H 8250 H 8276 H 8302 H 8328 H 8354 H 8380 H 8406 H 8432 H 8458 H 8484 H 8510 H 8536 H 8562 H 8588 H 8614 H 8640 H 8666 H 8692 H 8718 H 8744 H 8770 H 8796 H 8822 H 8848 H 8874 H 8900 H 8926 H 8952 H 8978 H 9004 H 9030 H 9056 H 9082 H 9108 H 9134 H 9160 H 9186 H 9212 H 9238 H 9264 H 9290 H 9316 H 9342 H 9368 H 9394 H 9420 H 9446 H 9472 H 9498 H 9524 H 9550 H 9576 H 9602 H 9628 H 9654 H 9680 H 9706 H 9732 H 9758 H 9784 H 9810 H 9836 H 9862 H 9888 H 9914 H 9940 H 9966 H 9992 H 10018 H 10044 H 10070 H 10096 H 10122 H 10148 H 10174 H 10200 H 10226 H 10252 H 10278 H 10304 H 10330 H 10356 H 10382 H 10408 H 10434 H 10460 H 10486 H 10512 H 10538 H 10564 H 10590 H 10616 H 10642 H 10668 H 10694 H 10720 H 10746 H 10772 H 10798 H 10824 H 10850 H 10876 H 10902 H 10928 H 10954 H 10980 H 11006 H 11032 H 11058 H 11084 H 11110 H 11136 H 11162 H 11188 H 11214 H 11240 H 11266 H 11292 H 11318 H 11344 H 11370 H 11396 H 11422 H 11448 H 11474 H 11500 H 11526 H 11552 H 11578 H 11604 H 11630 H 11656 H 11682 H 11708 H 11734 H 11760 H 11786 H 11812 H 11838 H 11864 H 11890 H 11916 H 11942 H 11968 H 11994 H 12020 H 12046 H 12072 H 12098 H 12124 H 12150 H 12176 H 12202 H 12228 H 12254 H 12280 H 12306 H 12332 H 12358 H 12384 H 12410 H 12436 H 12462 H 12488 H 12514 H 12540 H 12566 H 12592 H 12618 H 12644 H 12670 H 12696 H 12722 H 12748 H 12774 H 12800 H 12826 H 12852 H 12878 H 12904 H 12930 H 12956 H 12982 H 13008 H 13034 H 13060 H 13086 H 13112 H 13138 H 13164 H 13190 H 13216 H 13242 H 13268 H 13294 H 13320 H 13346 H 13372 H 13398 H 13424 H 13450 H 13476 H 13502 H 13528 H 13554 H 13580 H 13606 H 13632 H 13658 H 13684 H 13710 H 13736 H 13762 H 13788 H 13814 H 13840 H 13866 H 13892 H 13918 H 13944 H 13970 H 13996 H 14022 H 14048 H 14074 H 14100 H 14126 H 14152 H 14178 H 14204 H 14230 H 14256 H 14282 H 14308 H 14334 H 14360 H 14386 H 14412 H 14438 H 14464 H 14490 H 14516 H 14542 H 14568 V 157 H 14594 H 14620 H 14646 H 14672 V 137 H 14698 V 157 H 14724 H 14750 H 14776 H 14802 H 14828 V 137 H 14854 V 157 H 14880 H 14906 H 14932 H 14958 H 14984 H 15010 H 15036 H 15062 H 15088 V 137 H 15114 V 157 H 15140 H 15166 H 15192 H 15218 H 15244 H 15270 H 15296 H 15322 V 137 H 15348 V 157 H 15374 H 15400 H 15426 H 15452 H 15478 V 137 H 15504 V 157 H 15530 H 15556 H 15582 H 15608 V 137 H 15634 V 157 H 15660 H 15686 H 15712 H 15738 H 15764 H 15790 H 15816 H 15842 H 15868 H 15894 H 15920 H 15946 V 137 H 15972 V 157 H 15998 H 16024 H 16050 H 16076 H 16102 H 16128 H 16154 H 16180 H 16206 H 16232 V 137 H 16258 V 157 H 16284 H 16310 V 137 H 16336 H 16362 H 16388 V 157 H 16414 H 16440 H 16466 H 16492 H 16518 H 16544 H 16570 V 137 H 16596 V 157 H 16622 H 16648 H 16674 H 16700 H 16726 H 16752 H 16778 H 16804 H 16830 H 16856 V 137 H 16882 V 157 H 16908 H 16934 H 16960 H 16986 H 17012 H 17038 H 17064 H 17090 H 17116 H 17142 H 17168 H 17194 H 17220 H 17246 H 17272 H 17298 V 137 H 17324 H 17350 H 17376 H 17402 H 17428 H 17454 V 157 H 17480 H 17506 H 17532 H 17558 H 17584 H 17610 H 17636 H 17662 H 17688 H 17714 V 137 H 17740 V 157 H 17766 H 17792 H 17818 H 17844 H 17870 H 17896 H 17922 H 17948 H 17974 H 18000 H 18026 H 18052 H 18078 H 18104 H 18130 V 137 H 18156 V 157 H 18182 H 18208 V 137 H 18234 H 18260 H 18286 V 157 H 18312 H 18338 H 18364 H 18390 H 18416 H 18442 H 18468 H 18494 H 18520 H 18546 V 137 H 18572 V 157 H 18598 H 18624 H 18650 H 18676 H 18702 H 18728 H 18754 H 18780 H 18806 H 18832 H 18858 H 18884 H 18910 H 18936 H 18962 V 137 H 18988 V 157 H 19014 H 19040 V 137 H 19066 H 19092 H 19118 V 157 H 19144 H 19170 H 19196 H 19222 H 19248 H 19274 H 19300 H 19326 H 19352 H 19378 V 137 H 19404 V 157 H 19430 H 19456 H 19482 H 19508 H 19534 H 19560 H 19586 H 19612 V 137 H 19638 V 157 H 19664 H 19690 H 19716 H 19742 H 19768 H 19794 H 19820 H 19846 H 19872 H 19898 H 19924 H 19950 H 19976 H 20002 H 20028 H 20054 H 20080 H 20106 H 20132 H 20158 H 20184 H 20210 H 20236 V 137 H 20262 V 157 H 20288 H 20314 H 20340 H 20366 H 20392 H 20418 H 20444 H 20470 H 20496 H 20522 H 20548 H 20574 H 20600 H 20626 H 20652 H 20678 H 20704 H 20730 H 20756 H 20782 H 20808" fill="none" stroke="#0284c7" stroke-width="1.8"/>
-<text x="24" y="185" class="sig-lbl">AR Lock (LR)</text>
-<text x="24" y="195" class="sig-sub">Exclusive load</text>
-<path d="M 190 193 H 216 H 242 H 268 H 294 H 320 H 346 H 372 H 398 H 424 H 450 H 476 H 502 H 528 H 554 H 580 H 606 H 632 H 658 H 684 H 710 H 736 H 762 H 788 H 814 H 840 H 866 H 892 H 918 H 944 H 970 H 996 H 1022 H 1048 H 1074 H 1100 H 1126 H 1152 H 1178 H 1204 H 1230 H 1256 H 1282 H 1308 H 1334 H 1360 H 1386 H 1412 H 1438 H 1464 H 1490 H 1516 H 1542 H 1568 H 1594 H 1620 H 1646 H 1672 H 1698 H 1724 H 1750 H 1776 H 1802 H 1828 H 1854 H 1880 H 1906 H 1932 H 1958 H 1984 H 2010 H 2036 H 2062 H 2088 H 2114 H 2140 H 2166 H 2192 H 2218 H 2244 H 2270 H 2296 H 2322 H 2348 H 2374 H 2400 H 2426 H 2452 H 2478 H 2504 H 2530 H 2556 H 2582 H 2608 H 2634 H 2660 H 2686 H 2712 H 2738 H 2764 H 2790 H 2816 H 2842 H 2868 H 2894 H 2920 H 2946 H 2972 H 2998 H 3024 H 3050 H 3076 H 3102 H 3128 H 3154 H 3180 H 3206 H 3232 H 3258 H 3284 H 3310 H 3336 H 3362 H 3388 H 3414 H 3440 H 3466 H 3492 H 3518 H 3544 H 3570 H 3596 H 3622 H 3648 H 3674 H 3700 H 3726 H 3752 H 3778 H 3804 H 3830 H 3856 H 3882 H 3908 H 3934 H 3960 H 3986 H 4012 H 4038 H 4064 H 4090 H 4116 H 4142 H 4168 H 4194 H 4220 H 4246 H 4272 H 4298 H 4324 H 4350 H 4376 H 4402 H 4428 H 4454 H 4480 H 4506 H 4532 H 4558 H 4584 H 4610 H 4636 H 4662 H 4688 H 4714 H 4740 H 4766 H 4792 H 4818 H 4844 H 4870 H 4896 H 4922 H 4948 H 4974 H 5000 H 5026 H 5052 H 5078 H 5104 H 5130 H 5156 H 5182 H 5208 H 5234 H 5260 H 5286 H 5312 H 5338 H 5364 H 5390 H 5416 H 5442 H 5468 H 5494 H 5520 H 5546 H 5572 H 5598 H 5624 H 5650 H 5676 H 5702 H 5728 H 5754 H 5780 H 5806 H 5832 H 5858 H 5884 H 5910 H 5936 H 5962 H 5988 H 6014 H 6040 H 6066 H 6092 H 6118 H 6144 H 6170 H 6196 H 6222 H 6248 H 6274 H 6300 H 6326 H 6352 H 6378 H 6404 H 6430 H 6456 H 6482 H 6508 H 6534 H 6560 H 6586 H 6612 H 6638 H 6664 H 6690 H 6716 H 6742 H 6768 H 6794 H 6820 H 6846 H 6872 H 6898 H 6924 H 6950 H 6976 H 7002 H 7028 H 7054 H 7080 H 7106 H 7132 H 7158 H 7184 H 7210 H 7236 H 7262 H 7288 H 7314 H 7340 H 7366 H 7392 H 7418 H 7444 H 7470 H 7496 H 7522 H 7548 H 7574 H 7600 H 7626 H 7652 H 7678 H 7704 H 7730 H 7756 H 7782 H 7808 H 7834 H 7860 H 7886 H 7912 H 7938 H 7964 H 7990 H 8016 H 8042 H 8068 H 8094 H 8120 H 8146 H 8172 H 8198 H 8224 H 8250 H 8276 H 8302 H 8328 H 8354 H 8380 H 8406 H 8432 H 8458 H 8484 H 8510 H 8536 H 8562 H 8588 H 8614 H 8640 H 8666 H 8692 H 8718 H 8744 H 8770 H 8796 H 8822 H 8848 H 8874 H 8900 H 8926 H 8952 H 8978 H 9004 H 9030 H 9056 H 9082 H 9108 H 9134 H 9160 H 9186 H 9212 H 9238 H 9264 H 9290 H 9316 H 9342 H 9368 H 9394 H 9420 H 9446 H 9472 H 9498 H 9524 H 9550 H 9576 H 9602 H 9628 H 9654 H 9680 H 9706 H 9732 H 9758 H 9784 H 9810 H 9836 H 9862 H 9888 H 9914 H 9940 H 9966 H 9992 H 10018 H 10044 H 10070 H 10096 H 10122 H 10148 H 10174 H 10200 H 10226 H 10252 H 10278 H 10304 H 10330 H 10356 H 10382 H 10408 H 10434 H 10460 H 10486 H 10512 H 10538 H 10564 H 10590 H 10616 H 10642 H 10668 H 10694 H 10720 H 10746 H 10772 H 10798 H 10824 H 10850 H 10876 H 10902 H 10928 H 10954 H 10980 H 11006 H 11032 H 11058 H 11084 H 11110 H 11136 H 11162 H 11188 H 11214 H 11240 H 11266 H 11292 H 11318 H 11344 H 11370 H 11396 H 11422 H 11448 H 11474 H 11500 H 11526 H 11552 H 11578 H 11604 H 11630 H 11656 H 11682 H 11708 H 11734 H 11760 H 11786 H 11812 H 11838 H 11864 H 11890 H 11916 H 11942 H 11968 H 11994 H 12020 H 12046 H 12072 H 12098 H 12124 H 12150 H 12176 H 12202 H 12228 H 12254 H 12280 H 12306 H 12332 H 12358 H 12384 H 12410 H 12436 H 12462 H 12488 H 12514 H 12540 H 12566 H 12592 H 12618 H 12644 H 12670 H 12696 H 12722 H 12748 H 12774 H 12800 H 12826 H 12852 H 12878 H 12904 H 12930 H 12956 H 12982 H 13008 H 13034 H 13060 H 13086 H 13112 H 13138 H 13164 H 13190 H 13216 H 13242 H 13268 H 13294 H 13320 H 13346 H 13372 H 13398 H 13424 H 13450 H 13476 H 13502 H 13528 H 13554 H 13580 H 13606 H 13632 H 13658 H 13684 H 13710 H 13736 H 13762 H 13788 H 13814 H 13840 H 13866 H 13892 H 13918 H 13944 H 13970 H 13996 H 14022 H 14048 H 14074 H 14100 H 14126 H 14152 H 14178 H 14204 H 14230 H 14256 H 14282 H 14308 H 14334 H 14360 H 14386 H 14412 H 14438 H 14464 H 14490 H 14516 H 14542 H 14568 H 14594 H 14620 H 14646 H 14672 H 14698 H 14724 H 14750 H 14776 H 14802 H 14828 V 173 H 14854 V 193 H 14880 H 14906 H 14932 H 14958 H 14984 H 15010 H 15036 H 15062 H 15088 H 15114 H 15140 H 15166 H 15192 H 15218 H 15244 H 15270 H 15296 H 15322 H 15348 H 15374 H 15400 H 15426 H 15452 H 15478 H 15504 H 15530 H 15556 H 15582 H 15608 V 173 H 15634 V 193 H 15660 H 15686 H 15712 H 15738 H 15764 H 15790 H 15816 H 15842 H 15868 H 15894 H 15920 H 15946 H 15972 H 15998 H 16024 H 16050 H 16076 H 16102 H 16128 H 16154 H 16180 H 16206 H 16232 H 16258 H 16284 H 16310 H 16336 H 16362 H 16388 H 16414 H 16440 H 16466 H 16492 H 16518 H 16544 H 16570 H 16596 H 16622 H 16648 H 16674 H 16700 H 16726 H 16752 H 16778 H 16804 H 16830 H 16856 H 16882 H 16908 H 16934 H 16960 H 16986 H 17012 H 17038 H 17064 H 17090 H 17116 H 17142 H 17168 H 17194 H 17220 H 17246 H 17272 H 17298 H 17324 H 17350 H 17376 H 17402 H 17428 H 17454 H 17480 H 17506 H 17532 H 17558 H 17584 H 17610 H 17636 H 17662 H 17688 H 17714 H 17740 H 17766 H 17792 H 17818 H 17844 H 17870 H 17896 H 17922 H 17948 H 17974 H 18000 H 18026 H 18052 H 18078 H 18104 H 18130 H 18156 H 18182 H 18208 H 18234 H 18260 H 18286 H 18312 H 18338 H 18364 H 18390 H 18416 H 18442 H 18468 H 18494 H 18520 H 18546 H 18572 H 18598 H 18624 H 18650 H 18676 H 18702 H 18728 H 18754 H 18780 H 18806 H 18832 H 18858 H 18884 H 18910 H 18936 H 18962 H 18988 H 19014 H 19040 H 19066 H 19092 H 19118 H 19144 H 19170 H 19196 H 19222 H 19248 H 19274 H 19300 H 19326 H 19352 H 19378 H 19404 H 19430 H 19456 H 19482 H 19508 H 19534 H 19560 H 19586 H 19612 H 19638 H 19664 H 19690 H 19716 H 19742 H 19768 H 19794 H 19820 H 19846 H 19872 H 19898 H 19924 H 19950 H 19976 H 20002 H 20028 H 20054 H 20080 H 20106 H 20132 H 20158 H 20184 H 20210 H 20236 H 20262 H 20288 H 20314 H 20340 H 20366 H 20392 H 20418 H 20444 H 20470 H 20496 H 20522 H 20548 H 20574 H 20600 H 20626 H 20652 H 20678 H 20704 H 20730 H 20756 H 20782 H 20808" fill="none" stroke="#9333ea" stroke-width="1.8"/>
-<text x="24" y="221" class="sig-lbl">AW Valid</text>
-<text x="24" y="231" class="sig-sub">Write request</text>
-<path d="M 190 229 H 216 H 242 H 268 H 294 H 320 H 346 H 372 H 398 H 424 H 450 H 476 H 502 H 528 H 554 H 580 H 606 H 632 H 658 H 684 H 710 H 736 H 762 H 788 H 814 H 840 H 866 H 892 H 918 H 944 H 970 H 996 H 1022 H 1048 H 1074 H 1100 H 1126 H 1152 H 1178 H 1204 H 1230 H 1256 H 1282 H 1308 H 1334 H 1360 H 1386 H 1412 H 1438 H 1464 H 1490 H 1516 H 1542 H 1568 H 1594 H 1620 H 1646 H 1672 H 1698 H 1724 H 1750 H 1776 H 1802 H 1828 H 1854 H 1880 H 1906 H 1932 H 1958 H 1984 H 2010 H 2036 H 2062 H 2088 H 2114 H 2140 H 2166 H 2192 H 2218 H 2244 H 2270 H 2296 H 2322 H 2348 H 2374 H 2400 H 2426 H 2452 H 2478 H 2504 H 2530 H 2556 H 2582 H 2608 H 2634 H 2660 H 2686 H 2712 H 2738 H 2764 H 2790 H 2816 H 2842 H 2868 H 2894 H 2920 H 2946 H 2972 H 2998 H 3024 H 3050 H 3076 H 3102 H 3128 H 3154 H 3180 H 3206 H 3232 H 3258 H 3284 H 3310 H 3336 H 3362 H 3388 H 3414 H 3440 H 3466 H 3492 H 3518 H 3544 H 3570 H 3596 H 3622 H 3648 H 3674 H 3700 H 3726 H 3752 H 3778 H 3804 H 3830 H 3856 H 3882 H 3908 H 3934 H 3960 H 3986 H 4012 H 4038 H 4064 H 4090 H 4116 H 4142 H 4168 H 4194 H 4220 H 4246 H 4272 H 4298 H 4324 H 4350 H 4376 H 4402 H 4428 H 4454 H 4480 H 4506 H 4532 H 4558 H 4584 H 4610 H 4636 H 4662 H 4688 H 4714 H 4740 H 4766 H 4792 H 4818 H 4844 H 4870 H 4896 H 4922 H 4948 H 4974 H 5000 H 5026 H 5052 H 5078 H 5104 H 5130 H 5156 H 5182 H 5208 H 5234 H 5260 H 5286 H 5312 H 5338 H 5364 H 5390 H 5416 H 5442 H 5468 H 5494 H 5520 H 5546 H 5572 H 5598 H 5624 H 5650 H 5676 H 5702 H 5728 H 5754 H 5780 H 5806 H 5832 H 5858 H 5884 H 5910 H 5936 H 5962 H 5988 H 6014 H 6040 H 6066 H 6092 H 6118 H 6144 H 6170 H 6196 H 6222 H 6248 H 6274 H 6300 H 6326 H 6352 H 6378 H 6404 H 6430 H 6456 H 6482 H 6508 H 6534 H 6560 H 6586 H 6612 H 6638 H 6664 H 6690 H 6716 H 6742 H 6768 H 6794 H 6820 H 6846 H 6872 H 6898 H 6924 H 6950 H 6976 H 7002 H 7028 H 7054 H 7080 H 7106 H 7132 H 7158 H 7184 H 7210 H 7236 H 7262 H 7288 H 7314 H 7340 H 7366 H 7392 H 7418 H 7444 H 7470 H 7496 H 7522 H 7548 H 7574 H 7600 V 209 H 7626 V 229 H 7652 H 7678 H 7704 H 7730 H 7756 H 7782 H 7808 H 7834 V 209 H 7860 V 229 H 7886 H 7912 H 7938 H 7964 H 7990 H 8016 H 8042 H 8068 H 8094 H 8120 H 8146 H 8172 H 8198 H 8224 H 8250 H 8276 H 8302 H 8328 H 8354 H 8380 H 8406 H 8432 H 8458 H 8484 H 8510 H 8536 H 8562 H 8588 H 8614 H 8640 H 8666 H 8692 H 8718 H 8744 H 8770 H 8796 H 8822 H 8848 H 8874 H 8900 H 8926 H 8952 H 8978 H 9004 H 9030 H 9056 H 9082 H 9108 H 9134 H 9160 H 9186 H 9212 H 9238 H 9264 H 9290 H 9316 H 9342 H 9368 H 9394 H 9420 H 9446 H 9472 H 9498 H 9524 H 9550 H 9576 H 9602 H 9628 H 9654 H 9680 H 9706 H 9732 H 9758 H 9784 H 9810 H 9836 H 9862 H 9888 H 9914 H 9940 H 9966 H 9992 H 10018 H 10044 H 10070 H 10096 H 10122 H 10148 H 10174 H 10200 H 10226 H 10252 H 10278 H 10304 H 10330 H 10356 H 10382 H 10408 H 10434 H 10460 H 10486 H 10512 H 10538 H 10564 H 10590 H 10616 H 10642 H 10668 H 10694 H 10720 H 10746 H 10772 H 10798 H 10824 H 10850 H 10876 H 10902 H 10928 H 10954 H 10980 H 11006 H 11032 H 11058 H 11084 H 11110 H 11136 H 11162 H 11188 H 11214 H 11240 H 11266 H 11292 H 11318 H 11344 H 11370 H 11396 H 11422 H 11448 H 11474 H 11500 H 11526 H 11552 H 11578 H 11604 H 11630 H 11656 H 11682 H 11708 H 11734 H 11760 H 11786 H 11812 H 11838 H 11864 H 11890 H 11916 H 11942 H 11968 H 11994 H 12020 H 12046 H 12072 H 12098 H 12124 H 12150 H 12176 H 12202 H 12228 H 12254 H 12280 H 12306 H 12332 H 12358 H 12384 H 12410 H 12436 H 12462 H 12488 H 12514 H 12540 H 12566 H 12592 H 12618 H 12644 H 12670 H 12696 H 12722 H 12748 H 12774 H 12800 H 12826 H 12852 H 12878 H 12904 H 12930 H 12956 H 12982 H 13008 H 13034 H 13060 H 13086 H 13112 H 13138 H 13164 H 13190 H 13216 H 13242 H 13268 H 13294 H 13320 H 13346 H 13372 H 13398 H 13424 H 13450 H 13476 H 13502 H 13528 H 13554 H 13580 H 13606 H 13632 H 13658 H 13684 H 13710 H 13736 H 13762 H 13788 H 13814 H 13840 H 13866 H 13892 H 13918 H 13944 H 13970 H 13996 H 14022 H 14048 H 14074 H 14100 H 14126 H 14152 H 14178 H 14204 H 14230 H 14256 H 14282 H 14308 H 14334 H 14360 H 14386 H 14412 H 14438 H 14464 H 14490 H 14516 H 14542 H 14568 H 14594 H 14620 H 14646 H 14672 H 14698 H 14724 H 14750 H 14776 H 14802 H 14828 H 14854 H 14880 H 14906 H 14932 H 14958 H 14984 H 15010 H 15036 H 15062 H 15088 H 15114 H 15140 H 15166 H 15192 H 15218 V 209 H 15244 V 229 H 15270 H 15296 H 15322 H 15348 H 15374 H 15400 H 15426 H 15452 H 15478 H 15504 H 15530 H 15556 H 15582 H 15608 H 15634 H 15660 H 15686 H 15712 H 15738 H 15764 H 15790 H 15816 H 15842 H 15868 H 15894 H 15920 H 15946 H 15972 H 15998 H 16024 V 209 H 16050 V 229 H 16076 H 16102 H 16128 H 16154 H 16180 H 16206 V 209 H 16232 V 229 H 16258 H 16284 H 16310 H 16336 H 16362 H 16388 H 16414 H 16440 H 16466 H 16492 H 16518 H 16544 H 16570 H 16596 H 16622 H 16648 H 16674 H 16700 V 209 H 16726 V 229 H 16752 H 16778 H 16804 H 16830 H 16856 H 16882 H 16908 V 209 H 16934 V 229 H 16960 H 16986 H 17012 H 17038 H 17064 H 17090 H 17116 H 17142 H 17168 H 17194 H 17220 H 17246 H 17272 H 17298 H 17324 H 17350 H 17376 H 17402 H 17428 H 17454 H 17480 H 17506 H 17532 H 17558 H 17584 H 17610 V 209 H 17636 V 229 H 17662 H 17688 H 17714 H 17740 H 17766 H 17792 V 209 H 17818 V 229 H 17844 H 17870 H 17896 H 17922 H 17948 H 17974 H 18000 H 18026 H 18052 H 18078 H 18104 H 18130 H 18156 H 18182 H 18208 H 18234 H 18260 H 18286 H 18312 H 18338 H 18364 H 18390 H 18416 H 18442 V 209 H 18468 V 229 H 18494 H 18520 H 18546 H 18572 H 18598 H 18624 V 209 H 18650 V 229 H 18676 H 18702 H 18728 H 18754 H 18780 H 18806 H 18832 H 18858 H 18884 H 18910 H 18936 H 18962 H 18988 H 19014 H 19040 H 19066 H 19092 H 19118 H 19144 H 19170 H 19196 H 19222 H 19248 H 19274 V 209 H 19300 V 229 H 19326 H 19352 H 19378 H 19404 H 19430 H 19456 V 209 H 19482 V 229 H 19508 H 19534 H 19560 H 19586 H 19612 H 19638 H 19664 H 19690 H 19716 H 19742 H 19768 H 19794 H 19820 H 19846 H 19872 H 19898 H 19924 V 209 H 19950 V 229 H 19976 H 20002 H 20028 H 20054 H 20080 H 20106 H 20132 H 20158 H 20184 H 20210 H 20236 H 20262 H 20288 H 20314 H 20340 H 20366 H 20392 H 20418 H 20444 H 20470 H 20496 H 20522 H 20548 H 20574 H 20600 H 20626 H 20652 H 20678 H 20704 H 20730 H 20756 H 20782 H 20808" fill="none" stroke="#ea580c" stroke-width="1.8"/>
-<text x="24" y="257" class="sig-lbl">AW Lock (SC)</text>
-<text x="24" y="267" class="sig-sub">Exclusive store</text>
-<path d="M 190 265 H 216 H 242 H 268 H 294 H 320 H 346 H 372 H 398 H 424 H 450 H 476 H 502 H 528 H 554 H 580 H 606 H 632 H 658 H 684 H 710 H 736 H 762 H 788 H 814 H 840 H 866 H 892 H 918 H 944 H 970 H 996 H 1022 H 1048 H 1074 H 1100 H 1126 H 1152 H 1178 H 1204 H 1230 H 1256 H 1282 H 1308 H 1334 H 1360 H 1386 H 1412 H 1438 H 1464 H 1490 H 1516 H 1542 H 1568 H 1594 H 1620 H 1646 H 1672 H 1698 H 1724 H 1750 H 1776 H 1802 H 1828 H 1854 H 1880 H 1906 H 1932 H 1958 H 1984 H 2010 H 2036 H 2062 H 2088 H 2114 H 2140 H 2166 H 2192 H 2218 H 2244 H 2270 H 2296 H 2322 H 2348 H 2374 H 2400 H 2426 H 2452 H 2478 H 2504 H 2530 H 2556 H 2582 H 2608 H 2634 H 2660 H 2686 H 2712 H 2738 H 2764 H 2790 H 2816 H 2842 H 2868 H 2894 H 2920 H 2946 H 2972 H 2998 H 3024 H 3050 H 3076 H 3102 H 3128 H 3154 H 3180 H 3206 H 3232 H 3258 H 3284 H 3310 H 3336 H 3362 H 3388 H 3414 H 3440 H 3466 H 3492 H 3518 H 3544 H 3570 H 3596 H 3622 H 3648 H 3674 H 3700 H 3726 H 3752 H 3778 H 3804 H 3830 H 3856 H 3882 H 3908 H 3934 H 3960 H 3986 H 4012 H 4038 H 4064 H 4090 H 4116 H 4142 H 4168 H 4194 H 4220 H 4246 H 4272 H 4298 H 4324 H 4350 H 4376 H 4402 H 4428 H 4454 H 4480 H 4506 H 4532 H 4558 H 4584 H 4610 H 4636 H 4662 H 4688 H 4714 H 4740 H 4766 H 4792 H 4818 H 4844 H 4870 H 4896 H 4922 H 4948 H 4974 H 5000 H 5026 H 5052 H 5078 H 5104 H 5130 H 5156 H 5182 H 5208 H 5234 H 5260 H 5286 H 5312 H 5338 H 5364 H 5390 H 5416 H 5442 H 5468 H 5494 H 5520 H 5546 H 5572 H 5598 H 5624 H 5650 H 5676 H 5702 H 5728 H 5754 H 5780 H 5806 H 5832 H 5858 H 5884 H 5910 H 5936 H 5962 H 5988 H 6014 H 6040 H 6066 H 6092 H 6118 H 6144 H 6170 H 6196 H 6222 H 6248 H 6274 H 6300 H 6326 H 6352 H 6378 H 6404 H 6430 H 6456 H 6482 H 6508 H 6534 H 6560 H 6586 H 6612 H 6638 H 6664 H 6690 H 6716 H 6742 H 6768 H 6794 H 6820 H 6846 H 6872 H 6898 H 6924 H 6950 H 6976 H 7002 H 7028 H 7054 H 7080 H 7106 H 7132 H 7158 H 7184 H 7210 H 7236 H 7262 H 7288 H 7314 H 7340 H 7366 H 7392 H 7418 H 7444 H 7470 H 7496 H 7522 H 7548 H 7574 H 7600 H 7626 H 7652 H 7678 H 7704 H 7730 H 7756 H 7782 H 7808 H 7834 V 245 H 7860 V 265 H 7886 H 7912 H 7938 H 7964 H 7990 H 8016 H 8042 H 8068 H 8094 H 8120 H 8146 H 8172 H 8198 H 8224 H 8250 H 8276 H 8302 H 8328 H 8354 H 8380 H 8406 H 8432 H 8458 H 8484 H 8510 H 8536 H 8562 H 8588 H 8614 H 8640 H 8666 H 8692 H 8718 H 8744 H 8770 H 8796 H 8822 H 8848 H 8874 H 8900 H 8926 H 8952 H 8978 H 9004 H 9030 H 9056 H 9082 H 9108 H 9134 H 9160 H 9186 H 9212 H 9238 H 9264 H 9290 H 9316 H 9342 H 9368 H 9394 H 9420 H 9446 H 9472 H 9498 H 9524 H 9550 H 9576 H 9602 H 9628 H 9654 H 9680 H 9706 H 9732 H 9758 H 9784 H 9810 H 9836 H 9862 H 9888 H 9914 H 9940 H 9966 H 9992 H 10018 H 10044 H 10070 H 10096 H 10122 H 10148 H 10174 H 10200 H 10226 H 10252 H 10278 H 10304 H 10330 H 10356 H 10382 H 10408 H 10434 H 10460 H 10486 H 10512 H 10538 H 10564 H 10590 H 10616 H 10642 H 10668 H 10694 H 10720 H 10746 H 10772 H 10798 H 10824 H 10850 H 10876 H 10902 H 10928 H 10954 H 10980 H 11006 H 11032 H 11058 H 11084 H 11110 H 11136 H 11162 H 11188 H 11214 H 11240 H 11266 H 11292 H 11318 H 11344 H 11370 H 11396 H 11422 H 11448 H 11474 H 11500 H 11526 H 11552 H 11578 H 11604 H 11630 H 11656 H 11682 H 11708 H 11734 H 11760 H 11786 H 11812 H 11838 H 11864 H 11890 H 11916 H 11942 H 11968 H 11994 H 12020 H 12046 H 12072 H 12098 H 12124 H 12150 H 12176 H 12202 H 12228 H 12254 H 12280 H 12306 H 12332 H 12358 H 12384 H 12410 H 12436 H 12462 H 12488 H 12514 H 12540 H 12566 H 12592 H 12618 H 12644 H 12670 H 12696 H 12722 H 12748 H 12774 H 12800 H 12826 H 12852 H 12878 H 12904 H 12930 H 12956 H 12982 H 13008 H 13034 H 13060 H 13086 H 13112 H 13138 H 13164 H 13190 H 13216 H 13242 H 13268 H 13294 H 13320 H 13346 H 13372 H 13398 H 13424 H 13450 H 13476 H 13502 H 13528 H 13554 H 13580 H 13606 H 13632 H 13658 H 13684 H 13710 H 13736 H 13762 H 13788 H 13814 H 13840 H 13866 H 13892 H 13918 H 13944 H 13970 H 13996 H 14022 H 14048 H 14074 H 14100 H 14126 H 14152 H 14178 H 14204 H 14230 H 14256 H 14282 H 14308 H 14334 H 14360 H 14386 H 14412 H 14438 H 14464 H 14490 H 14516 H 14542 H 14568 H 14594 H 14620 H 14646 H 14672 H 14698 H 14724 H 14750 H 14776 H 14802 H 14828 H 14854 H 14880 H 14906 H 14932 H 14958 H 14984 H 15010 H 15036 H 15062 H 15088 H 15114 H 15140 H 15166 H 15192 H 15218 V 245 H 15244 V 265 H 15270 H 15296 H 15322 H 15348 H 15374 H 15400 H 15426 H 15452 H 15478 H 15504 H 15530 H 15556 H 15582 H 15608 H 15634 H 15660 H 15686 H 15712 H 15738 H 15764 H 15790 H 15816 H 15842 H 15868 H 15894 H 15920 H 15946 H 15972 H 15998 H 16024 H 16050 H 16076 H 16102 H 16128 H 16154 H 16180 H 16206 V 245 H 16232 V 265 H 16258 H 16284 H 16310 H 16336 H 16362 H 16388 H 16414 H 16440 H 16466 H 16492 H 16518 H 16544 H 16570 H 16596 H 16622 H 16648 H 16674 H 16700 H 16726 H 16752 H 16778 H 16804 H 16830 H 16856 H 16882 H 16908 H 16934 H 16960 H 16986 H 17012 H 17038 H 17064 H 17090 H 17116 H 17142 H 17168 H 17194 H 17220 H 17246 H 17272 H 17298 H 17324 H 17350 H 17376 H 17402 H 17428 H 17454 H 17480 H 17506 H 17532 H 17558 H 17584 H 17610 H 17636 H 17662 H 17688 H 17714 H 17740 H 17766 H 17792 H 17818 H 17844 H 17870 H 17896 H 17922 H 17948 H 17974 H 18000 H 18026 H 18052 H 18078 H 18104 H 18130 H 18156 H 18182 H 18208 H 18234 H 18260 H 18286 H 18312 H 18338 H 18364 H 18390 H 18416 H 18442 H 18468 H 18494 H 18520 H 18546 H 18572 H 18598 H 18624 H 18650 H 18676 H 18702 H 18728 H 18754 H 18780 H 18806 H 18832 H 18858 H 18884 H 18910 H 18936 H 18962 H 18988 H 19014 H 19040 H 19066 H 19092 H 19118 H 19144 H 19170 H 19196 H 19222 H 19248 H 19274 H 19300 H 19326 H 19352 H 19378 H 19404 H 19430 H 19456 H 19482 H 19508 H 19534 H 19560 H 19586 H 19612 H 19638 H 19664 H 19690 H 19716 H 19742 H 19768 H 19794 H 19820 H 19846 H 19872 H 19898 H 19924 H 19950 H 19976 H 20002 H 20028 H 20054 H 20080 H 20106 H 20132 H 20158 H 20184 H 20210 H 20236 H 20262 H 20288 H 20314 H 20340 H 20366 H 20392 H 20418 H 20444 H 20470 H 20496 H 20522 H 20548 H 20574 H 20600 H 20626 H 20652 H 20678 H 20704 H 20730 H 20756 H 20782 H 20808" fill="none" stroke="#dc2626" stroke-width="1.8"/>
-<text x="24" y="293" class="sig-lbl">AW ATOP</text>
-<text x="24" y="303" class="sig-sub">Atomic operation</text>
-<rect x="191" y="281" width="16716" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="16909" y="281" width="24" height="24" rx="2" fill="#fef08a" stroke="#ca8a04" stroke-width="1.2"/>
-<text x="16921.0" y="296.5" class="hex-lbl" fill="#0f172a">0x30</text>
-<rect x="16935" y="281" width="856" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="17793" y="281" width="24" height="24" rx="2" fill="#fef08a" stroke="#ca8a04" stroke-width="1.2"/>
-<text x="17805.0" y="296.5" class="hex-lbl" fill="#0f172a">0x20</text>
-<rect x="17819" y="281" width="804" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="18625" y="281" width="24" height="24" rx="2" fill="#fef08a" stroke="#ca8a04" stroke-width="1.2"/>
-<text x="18637.0" y="296.5" class="hex-lbl" fill="#0f172a">0x22</text>
-<rect x="18651" y="281" width="804" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="19457" y="281" width="24" height="24" rx="2" fill="#fef08a" stroke="#ca8a04" stroke-width="1.2"/>
-<text x="19469.0" y="296.5" class="hex-lbl" fill="#0f172a">0x23</text>
-<rect x="19483" y="281" width="440" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="19925" y="281" width="24" height="24" rx="2" fill="#fef08a" stroke="#ca8a04" stroke-width="1.2"/>
-<text x="19937.0" y="296.5" class="hex-lbl" fill="#0f172a">0x21</text>
-<rect x="19951" y="281" width="856" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<text x="24" y="329" class="sig-lbl">Reservation Valid</text>
-<text x="24" y="339" class="sig-sub">Core active reservation</text>
-<path d="M 190 337 H 216 H 242 H 268 H 294 H 320 H 346 H 372 H 398 H 424 H 450 H 476 H 502 H 528 H 554 H 580 H 606 H 632 H 658 H 684 H 710 H 736 H 762 H 788 H 814 H 840 H 866 H 892 H 918 H 944 H 970 H 996 H 1022 H 1048 H 1074 H 1100 H 1126 H 1152 H 1178 H 1204 H 1230 H 1256 H 1282 H 1308 H 1334 H 1360 H 1386 H 1412 H 1438 H 1464 H 1490 H 1516 H 1542 H 1568 H 1594 H 1620 H 1646 H 1672 H 1698 H 1724 H 1750 H 1776 H 1802 H 1828 H 1854 H 1880 H 1906 H 1932 H 1958 H 1984 H 2010 H 2036 H 2062 H 2088 H 2114 H 2140 H 2166 H 2192 H 2218 H 2244 H 2270 H 2296 H 2322 H 2348 H 2374 H 2400 H 2426 H 2452 H 2478 H 2504 H 2530 H 2556 H 2582 H 2608 H 2634 H 2660 H 2686 H 2712 H 2738 H 2764 H 2790 H 2816 H 2842 H 2868 H 2894 H 2920 H 2946 H 2972 H 2998 H 3024 H 3050 H 3076 H 3102 H 3128 H 3154 H 3180 H 3206 H 3232 H 3258 H 3284 H 3310 H 3336 H 3362 H 3388 H 3414 H 3440 H 3466 H 3492 H 3518 H 3544 H 3570 H 3596 H 3622 H 3648 H 3674 H 3700 H 3726 H 3752 H 3778 H 3804 H 3830 H 3856 H 3882 H 3908 H 3934 H 3960 H 3986 H 4012 H 4038 H 4064 H 4090 H 4116 H 4142 H 4168 H 4194 H 4220 H 4246 H 4272 H 4298 H 4324 H 4350 H 4376 H 4402 H 4428 H 4454 H 4480 H 4506 H 4532 H 4558 H 4584 H 4610 H 4636 H 4662 H 4688 H 4714 H 4740 H 4766 H 4792 H 4818 H 4844 H 4870 H 4896 H 4922 H 4948 H 4974 H 5000 H 5026 H 5052 H 5078 H 5104 H 5130 H 5156 H 5182 H 5208 H 5234 H 5260 H 5286 H 5312 H 5338 H 5364 H 5390 H 5416 H 5442 H 5468 H 5494 H 5520 H 5546 H 5572 H 5598 H 5624 H 5650 H 5676 H 5702 H 5728 H 5754 H 5780 H 5806 H 5832 H 5858 H 5884 H 5910 H 5936 H 5962 H 5988 H 6014 H 6040 H 6066 H 6092 H 6118 H 6144 H 6170 H 6196 H 6222 H 6248 H 6274 H 6300 H 6326 H 6352 H 6378 H 6404 H 6430 H 6456 H 6482 H 6508 H 6534 H 6560 H 6586 H 6612 H 6638 H 6664 H 6690 H 6716 H 6742 H 6768 H 6794 H 6820 H 6846 H 6872 H 6898 H 6924 H 6950 H 6976 H 7002 H 7028 H 7054 H 7080 H 7106 H 7132 H 7158 H 7184 H 7210 H 7236 H 7262 H 7288 H 7314 H 7340 H 7366 H 7392 H 7418 H 7444 H 7470 H 7496 H 7522 H 7548 H 7574 H 7600 H 7626 H 7652 H 7678 H 7704 H 7730 H 7756 H 7782 H 7808 H 7834 H 7860 H 7886 H 7912 H 7938 H 7964 H 7990 H 8016 H 8042 H 8068 H 8094 H 8120 H 8146 H 8172 H 8198 H 8224 H 8250 H 8276 H 8302 H 8328 H 8354 H 8380 H 8406 H 8432 H 8458 H 8484 H 8510 H 8536 H 8562 H 8588 H 8614 H 8640 H 8666 H 8692 H 8718 H 8744 H 8770 H 8796 H 8822 H 8848 H 8874 H 8900 H 8926 H 8952 H 8978 H 9004 H 9030 H 9056 H 9082 H 9108 H 9134 H 9160 H 9186 H 9212 H 9238 H 9264 H 9290 H 9316 H 9342 H 9368 H 9394 H 9420 H 9446 H 9472 H 9498 H 9524 H 9550 H 9576 H 9602 H 9628 H 9654 H 9680 H 9706 H 9732 H 9758 H 9784 H 9810 H 9836 H 9862 H 9888 H 9914 H 9940 H 9966 H 9992 H 10018 H 10044 H 10070 H 10096 H 10122 H 10148 H 10174 H 10200 H 10226 H 10252 H 10278 H 10304 H 10330 H 10356 H 10382 H 10408 H 10434 H 10460 H 10486 H 10512 H 10538 H 10564 H 10590 H 10616 H 10642 H 10668 H 10694 H 10720 H 10746 H 10772 H 10798 H 10824 H 10850 H 10876 H 10902 H 10928 H 10954 H 10980 H 11006 H 11032 H 11058 H 11084 H 11110 H 11136 H 11162 H 11188 H 11214 H 11240 H 11266 H 11292 H 11318 H 11344 H 11370 H 11396 H 11422 H 11448 H 11474 H 11500 H 11526 H 11552 H 11578 H 11604 H 11630 H 11656 H 11682 H 11708 H 11734 H 11760 H 11786 H 11812 H 11838 H 11864 H 11890 H 11916 H 11942 H 11968 H 11994 H 12020 H 12046 H 12072 H 12098 H 12124 H 12150 H 12176 H 12202 H 12228 H 12254 H 12280 H 12306 H 12332 H 12358 H 12384 H 12410 H 12436 H 12462 H 12488 H 12514 H 12540 H 12566 H 12592 H 12618 H 12644 H 12670 H 12696 H 12722 H 12748 H 12774 H 12800 H 12826 H 12852 H 12878 H 12904 H 12930 H 12956 H 12982 H 13008 H 13034 H 13060 H 13086 H 13112 H 13138 H 13164 H 13190 H 13216 H 13242 H 13268 H 13294 H 13320 H 13346 H 13372 H 13398 H 13424 H 13450 H 13476 H 13502 H 13528 H 13554 H 13580 H 13606 H 13632 H 13658 H 13684 H 13710 H 13736 H 13762 H 13788 H 13814 H 13840 H 13866 H 13892 H 13918 H 13944 H 13970 H 13996 H 14022 H 14048 H 14074 H 14100 H 14126 H 14152 H 14178 H 14204 H 14230 H 14256 H 14282 H 14308 H 14334 H 14360 H 14386 H 14412 H 14438 H 14464 H 14490 H 14516 H 14542 H 14568 H 14594 H 14620 H 14646 H 14672 H 14698 H 14724 H 14750 H 14776 H 14802 H 14828 H 14854 V 317 H 14880 H 14906 H 14932 H 14958 H 14984 H 15010 H 15036 H 15062 H 15088 H 15114 H 15140 H 15166 H 15192 H 15218 H 15244 V 337 H 15270 H 15296 H 15322 H 15348 H 15374 H 15400 H 15426 H 15452 H 15478 H 15504 H 15530 H 15556 H 15582 H 15608 H 15634 V 317 H 15660 H 15686 H 15712 H 15738 H 15764 H 15790 H 15816 H 15842 H 15868 H 15894 H 15920 H 15946 H 15972 H 15998 H 16024 H 16050 V 337 H 16076 H 16102 H 16128 H 16154 H 16180 H 16206 H 16232 H 16258 H 16284 H 16310 H 16336 H 16362 H 16388 H 16414 H 16440 H 16466 H 16492 H 16518 H 16544 H 16570 H 16596 H 16622 H 16648 H 16674 H 16700 H 16726 H 16752 H 16778 H 16804 H 16830 H 16856 H 16882 H 16908 H 16934 H 16960 H 16986 H 17012 H 17038 H 17064 H 17090 H 17116 H 17142 H 17168 H 17194 H 17220 H 17246 H 17272 H 17298 H 17324 H 17350 H 17376 H 17402 H 17428 H 17454 H 17480 H 17506 H 17532 H 17558 H 17584 H 17610 H 17636 H 17662 H 17688 H 17714 H 17740 H 17766 H 17792 H 17818 H 17844 H 17870 H 17896 H 17922 H 17948 H 17974 H 18000 H 18026 H 18052 H 18078 H 18104 H 18130 H 18156 H 18182 H 18208 H 18234 H 18260 H 18286 H 18312 H 18338 H 18364 H 18390 H 18416 H 18442 H 18468 H 18494 H 18520 H 18546 H 18572 H 18598 H 18624 H 18650 H 18676 H 18702 H 18728 H 18754 H 18780 H 18806 H 18832 H 18858 H 18884 H 18910 H 18936 H 18962 H 18988 H 19014 H 19040 H 19066 H 19092 H 19118 H 19144 H 19170 H 19196 H 19222 H 19248 H 19274 H 19300 H 19326 H 19352 H 19378 H 19404 H 19430 H 19456 H 19482 H 19508 H 19534 H 19560 H 19586 H 19612 H 19638 H 19664 H 19690 H 19716 H 19742 H 19768 H 19794 H 19820 H 19846 H 19872 H 19898 H 19924 H 19950 H 19976 H 20002 H 20028 H 20054 H 20080 H 20106 H 20132 H 20158 H 20184 H 20210 H 20236 H 20262 H 20288 H 20314 H 20340 H 20366 H 20392 H 20418 H 20444 H 20470 H 20496 H 20522 H 20548 H 20574 H 20600 H 20626 H 20652 H 20678 H 20704 H 20730 H 20756 H 20782 H 20808" fill="none" stroke="#059669" stroke-width="1.8"/>
-<text x="24" y="365" class="sig-lbl">SC Success Cnt</text>
-<text x="24" y="375" class="sig-sub">Successful SCs</text>
-<rect x="191" y="353" width="15052" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="15245" y="353" width="5562" height="24" rx="2" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.2"/>
-<text x="18026.0" y="368.5" class="hex-lbl" fill="#0f172a">1</text>
-<text x="24" y="401" class="sig-lbl">SC Fail Cnt</text>
-<text x="24" y="411" class="sig-sub">Failed SCs</text>
-<rect x="191" y="389" width="7668" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="7861" y="389" width="8370" height="24" rx="2" fill="#fecaca" stroke="#dc2626" stroke-width="1.2"/>
-<text x="12046.0" y="404.5" class="hex-lbl" fill="#0f172a">1</text>
-<rect x="16233" y="389" width="4574" height="24" rx="2" fill="#fecaca" stroke="#dc2626" stroke-width="1.2"/>
-<text x="18520.0" y="404.5" class="hex-lbl" fill="#0f172a">2</text>
-<text x="24" y="437" class="sig-lbl">AMO Cnt</text>
-<text x="24" y="447" class="sig-sub">Atomic ops counter</text>
-<rect x="191" y="425" width="16742" height="24" rx="2" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-<rect x="16935" y="425" width="882" height="24" rx="2" fill="#e0e7ff" stroke="#4f46e5" stroke-width="1.2"/>
-<text x="17376.0" y="440.5" class="hex-lbl" fill="#0f172a">1</text>
-<rect x="17819" y="425" width="830" height="24" rx="2" fill="#e0e7ff" stroke="#4f46e5" stroke-width="1.2"/>
-<text x="18234.0" y="440.5" class="hex-lbl" fill="#0f172a">2</text>
-<rect x="18651" y="425" width="830" height="24" rx="2" fill="#e0e7ff" stroke="#4f46e5" stroke-width="1.2"/>
-<text x="19066.0" y="440.5" class="hex-lbl" fill="#0f172a">3</text>
-<rect x="19483" y="425" width="466" height="24" rx="2" fill="#e0e7ff" stroke="#4f46e5" stroke-width="1.2"/>
-<text x="19716.0" y="440.5" class="hex-lbl" fill="#0f172a">4</text>
-<rect x="19951" y="425" width="856" height="24" rx="2" fill="#e0e7ff" stroke="#4f46e5" stroke-width="1.2"/>
-<text x="20379.0" y="440.5" class="hex-lbl" fill="#0f172a">5</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" width="1200" height="480">
+<defs><style>
+  text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .title { font-size: 15px; font-weight: 700; fill: #0f172a; }
+  .subtitle { font-size: 11px; fill: #475569; }
+  .sig-name { font-size: 11px; font-weight: 600; fill: #1e293b; }
+  .sig-sub { font-size: 9px; fill: #64748b; }
+  .bus { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 8.5px; font-weight: 600; text-anchor: middle; fill: #0f172a; }
+  .bit { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 9px; font-weight: 600; text-anchor: middle; }
+  .cyc { font-size: 9px; fill: #475569; font-weight: 600; text-anchor: middle; }
+  .ann-title { font-size: 11px; font-weight: 700; fill: #0f172a; }
+  .ann-body { font-size: 9.5px; fill: #334155; }
+  .tag-lbl { font-size: 9px; font-weight: 700; text-anchor: middle; fill: #ffffff; }
+</style></defs>
+<rect width="1200" height="480" fill="#f8fafc" rx="8" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="20" y="15" width="1160" height="44" rx="6" fill="#1e293b"/>
+<text x="35" y="38" font-size="15" font-weight="700" fill="#f8fafc">CVA6 Suite 12: Atomic Memory Operations (RV32A) — Execution Timeline</text>
+<text x="1165" y="38" font-size="11" fill="#94a3b8" text-anchor="end">Total Cycles: 793 | LR/SC &amp; 5 AMOs (SWAP, ADD, XOR, OR, AND) | All PASS</text>
+<rect x="50.0" y="75" width="391.9" height="42" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+<text x="246.0" y="94" font-size="9.5" font-weight="700" fill="#0f172a" text-anchor="middle">Boot &amp; Memory Init</text>
+<text x="246.0" y="108" font-size="8.5" fill="#475569" text-anchor="middle">C0–C280</text>
+<rect x="443.3" y="75" width="40.6" height="42" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5" rx="4"/>
+<rect x="485.3" y="75" width="341.5" height="42" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="4"/>
+<text x="656.1" y="94" font-size="9.5" font-weight="700" fill="#0f172a" text-anchor="middle">Memory Refill Latency</text>
+<text x="656.1" y="108" font-size="8.5" fill="#475569" text-anchor="middle">C311–C555</text>
+<rect x="828.3" y="75" width="47.6" height="42" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" rx="4"/>
+<text x="852.1" y="94" font-size="9.5" font-weight="700" fill="#0f172a" text-anchor="middle">Valid LR.W / SC.W</text>
+<text x="852.1" y="108" font-size="8.5" fill="#475569" text-anchor="middle">C556–C590</text>
+<rect x="877.3" y="75" width="54.6" height="42" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" rx="4"/>
+<text x="904.5" y="94" font-size="9.5" font-weight="700" fill="#0f172a" text-anchor="middle">Broken Reservation</text>
+<text x="904.5" y="108" font-size="8.5" fill="#475569" text-anchor="middle">C591–C630</text>
+<rect x="933.2" y="75" width="91.0" height="42" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" rx="4"/>
+<text x="978.7" y="94" font-size="9.5" font-weight="700" fill="#0f172a" text-anchor="middle">AMOSWAP &amp; AMOADD</text>
+<text x="978.7" y="108" font-size="8.5" fill="#475569" text-anchor="middle">C631–C696</text>
+<rect x="1025.6" y="75" width="112.0" height="42" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5" rx="4"/>
+<text x="1081.6" y="94" font-size="9.5" font-weight="700" fill="#0f172a" text-anchor="middle">Bitwise AMOs (XOR/OR/AND)</text>
+<text x="1081.6" y="108" font-size="8.5" fill="#475569" text-anchor="middle">C697–C777</text>
+<rect x="1139.0" y="75" width="19.6" height="42" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5" rx="4"/>
+<line x1="50" y1="117" x2="1160" y2="117" stroke="#475569" stroke-width="1.5"/>
+<line x1="50.0" y1="117" x2="50.0" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="50.0" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C0</text>
+<line x1="260.0" y1="117" x2="260.0" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="260.0" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C150</text>
+<line x1="441.9" y1="117" x2="441.9" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="441.9" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C280</text>
+<line x1="464.3" y1="117" x2="464.3" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="464.3" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C296</text>
+<line x1="828.3" y1="117" x2="828.3" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="828.3" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C556</text>
+<line x1="861.9" y1="117" x2="861.9" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="861.9" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C580</text>
+<line x1="915.0" y1="117" x2="915.0" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="915.0" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C618</text>
+<line x1="958.4" y1="117" x2="958.4" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="958.4" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C649</text>
+<line x1="1003.2" y1="117" x2="1003.2" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="1003.2" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C681</text>
+<line x1="1048.0" y1="117" x2="1048.0" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="1048.0" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C713</text>
+<line x1="1139.0" y1="117" x2="1139.0" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="1139.0" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C778</text>
+<line x1="1160.0" y1="117" x2="1160.0" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="1160.0" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C793</text>
+<line x1="464.3" y1="75" x2="464.3" y2="135" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="2,2"/>
+<circle cx="464.3" cy="135" r="9" fill="#dc2626"/>
+<text x="464.3" y="138" class="tag-lbl">U1</text>
+<line x1="842.3" y1="75" x2="842.3" y2="135" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="2,2"/>
+<circle cx="842.3" cy="135" r="9" fill="#2563eb"/>
+<text x="842.3" y="138" class="tag-lbl">R1</text>
+<line x1="861.9" y1="75" x2="861.9" y2="135" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="2,2"/>
+<circle cx="861.9" cy="135" r="9" fill="#16a34a"/>
+<text x="861.9" y="138" class="tag-lbl">S1</text>
+<line x1="898.2" y1="75" x2="898.2" y2="135" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="2,2"/>
+<circle cx="898.2" cy="135" r="9" fill="#ea580c"/>
+<text x="898.2" y="138" class="tag-lbl">B1</text>
+<line x1="915.0" y1="75" x2="915.0" y2="135" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="2,2"/>
+<circle cx="915.0" cy="135" r="9" fill="#dc2626"/>
+<text x="915.0" y="138" class="tag-lbl">S2</text>
+<line x1="958.4" y1="75" x2="958.4" y2="135" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2,2"/>
+<circle cx="958.4" cy="135" r="9" fill="#7c3aed"/>
+<text x="958.4" y="138" class="tag-lbl">A1</text>
+<line x1="1003.2" y1="75" x2="1003.2" y2="135" stroke="#0891b2" stroke-width="1.5" stroke-dasharray="2,2"/>
+<circle cx="1003.2" cy="135" r="9" fill="#0891b2"/>
+<text x="1003.2" y="138" class="tag-lbl">A2</text>
+<line x1="1048.0" y1="75" x2="1048.0" y2="135" stroke="#059669" stroke-width="1.5" stroke-dasharray="2,2"/>
+<circle cx="1048.0" cy="135" r="9" fill="#059669"/>
+<text x="1048.0" y="138" class="tag-lbl">L1</text>
+<line x1="1139.0" y1="75" x2="1139.0" y2="135" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="2,2"/>
+<circle cx="1139.0" cy="135" r="9" fill="#16a34a"/>
+<text x="1139.0" y="138" class="tag-lbl">E1</text>
+<rect x="50" y="168" width="1110" height="205" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" rx="6"/>
+<rect x="50" y="168" width="1110" height="24" fill="#f1f5f9" rx="6"/>
+<text x="65" y="184" class="sig-name">Tag</text>
+<text x="110" y="184" class="sig-name">Cycle</text>
+<text x="170" y="184" class="sig-name">Atomic Instruction &amp; Action</text>
+<text x="470" y="184" class="sig-name">Microarchitectural Reservation / Memory Result</text>
+<text x="920" y="184" class="sig-name">Hardware Status</text>
+<rect x="51" y="195" width="1108" height="20" fill="#ffffff"/>
+<rect x="65" y="198" width="22" height="14" rx="3" fill="#dc2626"/>
+<text x="76" y="209" class="tag-lbl">U1</text>
+<text x="110" y="209" font-size="9.5" font-weight="600" fill="#0f172a">C296</text>
+<text x="170" y="209" font-size="9.5" fill="#1e293b">SC.W a0 (Unreserved)</text>
+<text x="470" y="209" font-size="9.5" font-family="monospace" fill="#0369a1">No active reservation: SC returns a0=1 (failure); mem untouched</text>
+<text x="920" y="209" font-size="9.5" font-weight="600" fill="#dc2626">PASS (Expected Outcome)</text>
+<rect x="51" y="215" width="1108" height="20" fill="#f8fafc"/>
+<rect x="65" y="218" width="22" height="14" rx="3" fill="#2563eb"/>
+<text x="76" y="229" class="tag-lbl">R1</text>
+<text x="110" y="229" font-size="9.5" font-weight="600" fill="#0f172a">C566</text>
+<text x="170" y="229" font-size="9.5" fill="#1e293b">LR.W a2 (Establish Res)</text>
+<text x="470" y="229" font-size="9.5" font-family="monospace" fill="#0369a1">Sets reservation on physical address 0x80000400</text>
+<text x="920" y="229" font-size="9.5" font-weight="600" fill="#2563eb">PASS (Expected Outcome)</text>
+<rect x="51" y="235" width="1108" height="20" fill="#ffffff"/>
+<rect x="65" y="238" width="22" height="14" rx="3" fill="#16a34a"/>
+<text x="76" y="249" class="tag-lbl">S1</text>
+<text x="110" y="249" font-size="9.5" font-weight="600" fill="#0f172a">C580</text>
+<text x="170" y="249" font-size="9.5" fill="#1e293b">SC.W a3 (Valid Res)</text>
+<text x="470" y="249" font-size="9.5" font-family="monospace" fill="#0369a1">Reservation valid: SC succeeds with a3=0; writes 0xCAFEC2BE</text>
+<text x="920" y="249" font-size="9.5" font-weight="600" fill="#16a34a">PASS (Expected Outcome)</text>
+<rect x="51" y="255" width="1108" height="20" fill="#f8fafc"/>
+<rect x="65" y="258" width="22" height="14" rx="3" fill="#ea580c"/>
+<text x="76" y="269" class="tag-lbl">B1</text>
+<text x="110" y="269" font-size="9.5" font-weight="600" fill="#0f172a">C606</text>
+<text x="170" y="269" font-size="9.5" fill="#1e293b">SW t4 (Break Res)</text>
+<text x="470" y="269" font-size="9.5" font-family="monospace" fill="#0369a1">Normal store to 0x80000400 invalidates active reservation</text>
+<text x="920" y="269" font-size="9.5" font-weight="600" fill="#ea580c">PASS (Expected Outcome)</text>
+<rect x="51" y="275" width="1108" height="20" fill="#ffffff"/>
+<rect x="65" y="278" width="22" height="14" rx="3" fill="#dc2626"/>
+<text x="76" y="289" class="tag-lbl">S2</text>
+<text x="110" y="289" font-size="9.5" font-weight="600" fill="#0f172a">C618</text>
+<text x="170" y="289" font-size="9.5" fill="#1e293b">SC.W a6 (Broken Res)</text>
+<text x="470" y="289" font-size="9.5" font-family="monospace" fill="#0369a1">SC fails with a6=1 because reservation was invalidated</text>
+<text x="920" y="289" font-size="9.5" font-weight="600" fill="#dc2626">PASS (Expected Outcome)</text>
+<rect x="51" y="295" width="1108" height="20" fill="#f8fafc"/>
+<rect x="65" y="298" width="22" height="14" rx="3" fill="#7c3aed"/>
+<text x="76" y="309" class="tag-lbl">A1</text>
+<text x="110" y="309" font-size="9.5" font-weight="600" fill="#0f172a">C649</text>
+<text x="170" y="309" font-size="9.5" fill="#1e293b">AMOSWAP.W s3, s2</text>
+<text x="470" y="309" font-size="9.5" font-family="monospace" fill="#0369a1">Atomic swap: returns old (0x55555555), writes 0x11223344</text>
+<text x="920" y="309" font-size="9.5" font-weight="600" fill="#7c3aed">PASS (Expected Outcome)</text>
+<rect x="51" y="315" width="1108" height="20" fill="#ffffff"/>
+<rect x="65" y="318" width="22" height="14" rx="3" fill="#0891b2"/>
+<text x="76" y="329" class="tag-lbl">A2</text>
+<text x="110" y="329" font-size="9.5" font-weight="600" fill="#0f172a">C681</text>
+<text x="170" y="329" font-size="9.5" fill="#1e293b">AMOADD.W s7, s6</text>
+<text x="470" y="329" font-size="9.5" font-family="monospace" fill="#0369a1">Atomic add: returns old (10), writes sum (35 = 10+25)</text>
+<text x="920" y="329" font-size="9.5" font-weight="600" fill="#0891b2">PASS (Expected Outcome)</text>
+<rect x="51" y="335" width="1108" height="20" fill="#f8fafc"/>
+<rect x="65" y="338" width="22" height="14" rx="3" fill="#059669"/>
+<text x="76" y="349" class="tag-lbl">L1</text>
+<text x="110" y="349" font-size="9.5" font-weight="600" fill="#0f172a">C713</text>
+<text x="170" y="349" font-size="9.5" fill="#1e293b">AMOXOR.W s11, s10</text>
+<text x="470" y="349" font-size="9.5" font-family="monospace" fill="#0369a1">Atomic XOR: returns old, updates memory with bitwise XOR</text>
+<text x="920" y="349" font-size="9.5" font-weight="600" fill="#059669">PASS (Expected Outcome)</text>
+<rect x="51" y="355" width="1108" height="20" fill="#ffffff"/>
+<rect x="65" y="358" width="22" height="14" rx="3" fill="#16a34a"/>
+<text x="76" y="369" class="tag-lbl">E1</text>
+<text x="110" y="369" font-size="9.5" font-weight="600" fill="#0f172a">C778</text>
+<text x="170" y="369" font-size="9.5" fill="#1e293b">Self-Loop Commit</text>
+<text x="470" y="369" font-size="9.5" font-family="monospace" fill="#0369a1">ra = 999 written; 100% atomic assertions PASSED</text>
+<text x="920" y="369" font-size="9.5" font-weight="600" fill="#16a34a">VERIFIED COMPLETE</text>
+<rect x="50.0" y="392" width="212.4" height="66" rx="6" fill="#fee2e2" stroke="#dc2626" stroke-width="1.2"/>
+<text x="60.0" y="410" font-size="9" font-weight="600" fill="#475569">Unreserved SC.W</text>
+<text x="60.0" y="434" font-size="18" font-weight="700" fill="#dc2626">Failed (a0=1)</text>
+<text x="60.0" y="449" font-size="8.5" fill="#64748b">Spec compliant: no write</text>
+<rect x="274.4" y="392" width="212.4" height="66" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="1.2"/>
+<text x="284.4" y="410" font-size="9" font-weight="600" fill="#475569">Valid LR / SC</text>
+<text x="284.4" y="434" font-size="18" font-weight="700" fill="#16a34a">Success (a3=0)</text>
+<text x="284.4" y="449" font-size="8.5" fill="#64748b">Atomic store commits</text>
+<rect x="498.8" y="392" width="212.4" height="66" rx="6" fill="#ffedd5" stroke="#ea580c" stroke-width="1.2"/>
+<text x="508.8" y="410" font-size="9" font-weight="600" fill="#475569">Broken Res by SW</text>
+<text x="508.8" y="434" font-size="18" font-weight="700" fill="#ea580c">Failed (a6=1)</text>
+<text x="508.8" y="449" font-size="8.5" fill="#64748b">Intervening write cancels</text>
+<rect x="723.2" y="392" width="212.4" height="66" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<text x="733.2" y="410" font-size="9" font-weight="600" fill="#475569">Atomic ATOPs (5)</text>
+<text x="733.2" y="434" font-size="18" font-weight="700" fill="#2563eb">SWAP/ADD/LOGIC</text>
+<text x="733.2" y="449" font-size="8.5" fill="#64748b">All 5 operations match</text>
+<rect x="947.6" y="392" width="212.4" height="66" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.2"/>
+<text x="957.6" y="410" font-size="9" font-weight="600" fill="#475569">Verification Status</text>
+<text x="957.6" y="434" font-size="18" font-weight="700" fill="#0284c7">100%</text>
+<text x="957.6" y="449" font-size="8.5" fill="#64748b">All assertions PASSED</text>
 </svg>
