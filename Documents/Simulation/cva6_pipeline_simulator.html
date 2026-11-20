@@ -1,13 +1,13 @@
 <!--
 ============================================================================
 Author: Alireza Sotodeh
-Date & Time: 2026-11-20 19:28:00 +03:30
+Date & Time: 2026-11-20 20:05:00 +03:30
 Status: MODIFIED FILE
-Reason / Modification: Added cycle-accurate Step Back button ([Back]) with full
-                       historical state restoration (registers, pipeline queues,
-                       scoreboard entries, L1 cache lines, and Gantt timeline),
-                       deep history recording buffer (300 cycles), auto-run
-                       history capture, and ArrowLeft icon definition.
+Reason / Modification: Added toggleable I-Cache startup tag flush simulation
+                       (dynamic 2^linesExp cycles), condensed expandable flush Gantt
+                       timeline column, fixed JAL relative offset handling,
+                       auto-halt on terminal self-loop branch, dual Execution/Total
+                       CPI metrics, and added CVA6 report benchmark Preset 14.
 ============================================================================
 -->
 <!DOCTYPE html>
@@ -1449,7 +1449,8 @@ const DEFAULT_CACHE_CONFIG = {
   blockWords: 4,     // 4 words = 16 bytes (128-bit line)
   waysExp: 0,        // 2^0 = 1 way (direct-mapped)
   missLatency: 4,    // 4 cycles
-  writePolicy: 'WRITE_BACK'
+  writePolicy: 'WRITE_BACK',
+  simulateStartupFlush: false // Startup tag flush simulation (2^linesExp cycles)
 };
 
 const createInitialCacheState = (prewarm = false, userConfig = {}) => {
@@ -2101,6 +2102,29 @@ BNE  x10, x0, align_loop // Loop back while x10 != 0 (BTB taken)
 ADDI x11, x9, 42  // x11 = 250 + 42 = 292 (Final result)
 term_loop:
 BEQ  x0, x0, term_loop // Terminal self-loop`
+  },
+  cva6_report_benchmark: {
+    title: "14. CVA6 Cache Miss & CPI Analysis Benchmark",
+    desc: "19-instruction benchmark program from CVA6 Cache Miss & High CPI Analysis Report. Exercises ALU arithmetic, LSU store/load with AXI memory latency, conditional branch skip, JAL offset jump, and terminal self-loop.",
+    code: `ADDI x1, x0, 10
+ADDI x2, x0, 20
+ADD  x3, x1, x2
+SUB  x4, x2, x1
+XOR  x5, x3, x4
+OR   x6, x1, x2
+AND  x7, x1, x6
+SLTI x8, x1, 15
+SLLI x9, x8, 4
+SW   x3, 256(x0)
+LW   x10, 256(x0)
+BEQ  x3, x10, +8
+ADDI x11, x0, 99
+ADDI x12, x0, 1
+JAL  x13, +8
+ADDI x14, x0, 88
+ADDI x15, x0, 42
+SW   x15, 512(x0)
+BEQ  x0, x0, 0`
   }
 };;
 
@@ -2219,7 +2243,14 @@ const parseProgram = asm => {
       type = 'BRANCH';
       rd = parseReg(parts[1]);
       const lbl = parts[2];
-      targetPc = labels[lbl] !== undefined ? labels[lbl] : pc + 4;
+      const numOffset = parseInt(lbl, 10);
+      if (labels[lbl] !== undefined) {
+        targetPc = labels[lbl];
+      } else if (!isNaN(numOffset)) {
+        targetPc = pc + numOffset;
+      } else {
+        targetPc = pc + 4;
+      }
       latency = 1;
     } else if (op === 'C.LI') {
       type = 'ALU';
@@ -2333,6 +2364,48 @@ const stepSimulation = (state, program) => {
 
   const numSets = 1 << (nextCache.config ? nextCache.config.linesExp : 2);
   const numWays = 1 << (nextCache.config ? nextCache.config.waysExp : 0);
+  const simulateStartupFlush = nextCache.config ? !!nextCache.config.simulateStartupFlush : false;
+  const numFlushCycles = simulateStartupFlush ? numSets : 0;
+
+  // -------------------------------------------------------------
+  // CACHE STARTUP TAG FLUSH SIMULATION (2^linesExp cycles)
+  // -------------------------------------------------------------
+  if (simulateStartupFlush && cycle <= numFlushCycles) {
+    nextState.status = 'FLUSH';
+    nextState.stageSnapshot.fetch = `I$ Tag Flush (Set ${cycle - 1}/${numSets})`;
+    nextState.stageSnapshot.decode = 'Held in Reset';
+    nextState.stageSnapshot.issue = 'Held in Reset';
+    nextState.stageSnapshot.execute = 'Held in Reset';
+    nextState.stageSnapshot.commit = 'Held in Reset';
+    nextState.activeUnits['ICACHE'] = {
+      label: 'I$ Tag Flush',
+      subLabel: `Set ${cycle - 1}/${numSets}`,
+      color: '#f59e0b',
+      computation: `Clearing valid bit for cache line ${cycle - 1}`
+    };
+    storyType = 'flush';
+    storyDetails.push(`I-Cache Startup Invalidation: Core front-end held in reset while clearing line ${cycle - 1} valid bit (${cycle}/${numFlushCycles} cycles).`);
+    if (cycle === 1) {
+      nextState.logs.unshift({
+        cycle: 1,
+        text: `[FLUSH] I-Cache startup tag flush initiated (${numFlushCycles} cycles for ${numSets} sets). Front-end fetch is frozen until valid bits are cleared.`,
+        type: 'info'
+      });
+    }
+    if (cycle === numFlushCycles) {
+      nextState.logs.unshift({
+        cycle: numFlushCycles,
+        text: `[FLUSH] I-Cache tag flush completed (${numFlushCycles} sets cleared). Tag valid memory initialized. Front-end fetch released for PC 0x00.`,
+        type: 'success'
+      });
+    }
+    nextState.cycleStory = {
+      headline: `Cycle ${cycle}: I-Cache Startup Tag Flush (${cycle}/${numFlushCycles})`,
+      details: storyDetails,
+      type: 'flush'
+    };
+    return nextState;
+  }
 
   // -------------------------------------------------------------
   // CACHE MAINTENANCE: Advance Active AXI Refills
@@ -2585,6 +2658,18 @@ const stepSimulation = (state, program) => {
         text: `[COMMIT] Retired instruction ${head.inst.raw} (TID: ${head.transId}). Result: ${head.result} -> x${head.rd}`,
         type: 'success'
       });
+
+      // Terminal self-loop detection: stop simulation cleanly
+      if ((head.inst.op === 'BEQ' || head.inst.op === 'BNE' || head.inst.op === 'BLT' || head.inst.op === 'BGE') && head.inst.targetPc === head.inst.pc) {
+        nextState.status = 'DONE';
+        storyDetails.push(`Terminal self-loop reached [${head.inst.raw}]. Simulation completed cleanly.`);
+        nextState.logs.unshift({
+          cycle,
+          text: `[HALT] Terminal self-loop [${head.inst.raw}] committed. Halting simulation.`,
+          type: 'info'
+        });
+      }
+
       nextState.scoreboard.shift();
     } else {
       nextState.stageSnapshot.commit = `Waiting: ${head.inst.op} (TID #${head.transId})`;
@@ -3249,7 +3334,8 @@ function CVA6PipelineSimulator() {
     blockWords: 4,     // 4 words = 16 bytes (128-bit line)
     waysExp: 0,        // 2^0 = 1 way (direct-mapped)
     missLatency: 4,    // 4 cycles AXI refill latency
-    writePolicy: 'WRITE_BACK'
+    writePolicy: 'WRITE_BACK',
+    simulateStartupFlush: false
   });
   const [state, setState] = useState({
     cycle: 0,
@@ -3455,8 +3541,11 @@ function CVA6PipelineSimulator() {
       return;
     }
     const maxCycle = Math.max(state.cycle, 1);
-    const cpiVal = state.committedCount > 0 ? (state.cycle / state.committedCount).toFixed(2) : '1.00';
-    const ipcVal = state.cycle > 0 ? (state.committedCount / state.cycle).toFixed(2) : '1.00';
+    const numFlushCycles = state.cache?.config?.simulateStartupFlush ? (1 << (state.cache.config.linesExp || 2)) : 0;
+    const activeCycles = Math.max(0, state.cycle - numFlushCycles);
+    const cpiExec = state.committedCount > 0 ? (activeCycles / state.committedCount).toFixed(2) : '1.00';
+    const cpiTotal = state.committedCount > 0 ? (state.cycle / state.committedCount).toFixed(2) : '1.00';
+    const ipcVal = activeCycles > 0 ? (state.committedCount / activeCycles).toFixed(2) : '1.00';
     const pTitle = PRESETS[selectedPreset]?.title || selectedPreset;
 
     const lines = [
@@ -3464,7 +3553,8 @@ function CVA6PipelineSimulator() {
       `# Preset: "${pTitle.replace(/"/g, '""')}"`,
       `# Current Cycle: ${state.cycle}`,
       `# Committed Instructions: ${state.committedCount}`,
-      `# CPI: ${cpiVal}`,
+      `# Execution CPI: ${cpiExec}`,
+      numFlushCycles > 0 ? `# Total Wall-Clock CPI (including ${numFlushCycles}c flush): ${cpiTotal}` : `# Total CPI: ${cpiTotal}`,
       `# IPC: ${ipcVal}`,
       `# Stage Legend: F=Fetch; D=Decode; I=Issue; E=Execute; W=Writeback; C=Commit; S=Stall; M=MemWait`,
       ``
@@ -3537,10 +3627,14 @@ function CVA6PipelineSimulator() {
     // Subtitle & Microarchitectural Metrics
     ctx.fillStyle = '#94a3b8';
     ctx.font = '11px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace';
-    const cpiVal = state.committedCount > 0 ? (state.cycle / state.committedCount).toFixed(2) : '1.00';
-    const ipcVal = state.cycle > 0 ? (state.committedCount / state.cycle).toFixed(2) : '1.00';
+    const numFlushCycles = state.cache?.config?.simulateStartupFlush ? (1 << (state.cache.config.linesExp || 2)) : 0;
+    const activeCycles = Math.max(0, state.cycle - numFlushCycles);
+    const cpiExec = state.committedCount > 0 ? (activeCycles / state.committedCount).toFixed(2) : '1.00';
+    const cpiTotal = state.committedCount > 0 ? (state.cycle / state.committedCount).toFixed(2) : '1.00';
+    const ipcVal = activeCycles > 0 ? (state.committedCount / activeCycles).toFixed(2) : '1.00';
     const pTitle = PRESETS[selectedPreset]?.title || selectedPreset;
-    ctx.fillText(`Preset: ${pTitle}  |  Cycle: ${state.cycle}  |  Committed: ${state.committedCount}  |  CPI: ${cpiVal}  |  IPC: ${ipcVal}`, padding, padding + 36);
+    const cpiText = numFlushCycles > 0 ? `Exec CPI: ${cpiExec}  |  Total CPI: ${cpiTotal} (${numFlushCycles}c flush)` : `CPI: ${cpiExec}`;
+    ctx.fillText(`Preset: ${pTitle}  |  Cycle: ${state.cycle}  |  Committed: ${state.committedCount}  |  ${cpiText}  |  IPC: ${ipcVal}`, padding, padding + 36);
 
     // Divider
     ctx.strokeStyle = '#334155';
@@ -3707,6 +3801,17 @@ function CVA6PipelineSimulator() {
       if (pExportMenu === '1' || pExportMenu === 'open' || pExportMenu === 'true') {
         setShowTimelineExportMenu(true);
       }
+      const pFlush = params.get('flush');
+      const pLinesExp = params.get('lines_exp');
+      let effectiveCfg = { ...cacheConfig };
+      if (pLinesExp) effectiveCfg.linesExp = parseInt(pLinesExp, 10);
+      if (pFlush !== null) effectiveCfg.simulateStartupFlush = (pFlush === 'true' || pFlush === '1');
+      if (targetPreset === 'cva6_report_benchmark' && pFlush === null) {
+        effectiveCfg.simulateStartupFlush = true;
+        effectiveCfg.linesExp = 8;
+      }
+      setCacheConfig(effectiveCfg);
+
       const parsed = parseProgram(PRESETS[targetPreset].code);
       setInstructions(parsed);
       let s = {
@@ -3747,7 +3852,7 @@ function CVA6PipelineSimulator() {
           details: [`Loaded ${parsed.length} RISC-V instructions into Instruction Cache. Cache state: ${targetPrewarm ? 'Pre-warmed' : 'Cold Start'}.`],
           type: 'normal'
         },
-        cache: createInitialCacheState(targetPrewarm, cacheConfig)
+        cache: createInitialCacheState(targetPrewarm, effectiveCfg)
       };
       const stepCount = pStep ? parseInt(pStep, 10) : 0;
       if (stepCount > 0 && parsed.length > 0) {
@@ -3781,6 +3886,12 @@ function CVA6PipelineSimulator() {
     const parsed = parseProgram(PRESETS[key].code);
     setInstructions(parsed);
     setHistory([]);
+    let effectiveCfg = { ...cacheConfig };
+    if (key === 'cva6_report_benchmark') {
+      effectiveCfg.simulateStartupFlush = true;
+      effectiveCfg.linesExp = 8;
+      setCacheConfig(effectiveCfg);
+    }
     setState({
       cycle: 0,
       pc: 0,
@@ -3819,7 +3930,7 @@ function CVA6PipelineSimulator() {
         details: [PRESETS[key].desc, 'Click Step or Run to simulate.'],
         type: 'normal'
       },
-      cache: createInitialCacheState(prewarmCache, cacheConfig)
+      cache: createInitialCacheState(prewarmCache, effectiveCfg)
     });
     setIsRunning(false);
   };
@@ -3880,8 +3991,12 @@ function CVA6PipelineSimulator() {
       y: Math.round(newPanY)
     });
   };
-  const cpi = state.committedCount > 0 ? (state.cycle / state.committedCount).toFixed(2) : '1.00';
-  const ipc = state.cycle > 0 ? (state.committedCount / state.cycle).toFixed(2) : '1.00';
+  const numFlushCycles = state.cache?.config?.simulateStartupFlush ? (1 << (state.cache.config.linesExp || 2)) : 0;
+  const activeExecutionCycles = Math.max(0, state.cycle - numFlushCycles);
+  const cpiExec = state.committedCount > 0 ? (activeExecutionCycles / state.committedCount).toFixed(2) : '1.00';
+  const cpiTotal = state.committedCount > 0 ? (state.cycle / state.committedCount).toFixed(2) : '1.00';
+  const cpi = cpiExec;
+  const ipc = activeExecutionCycles > 0 ? (state.committedCount / activeExecutionCycles).toFixed(2) : '1.00';
   const ganttCycles = useMemo(() => {
     const maxC = Math.max(state.cycle, 1);
     const startC = Math.max(1, maxC - 14);
@@ -3980,11 +4095,21 @@ function CVA6PipelineSimulator() {
     className: "text-emerald-400 font-bold text-sm"
   }, state.committedCount)), /*#__PURE__*/React.createElement("div", {
     className: "h-5 w-[1px] bg-slate-800"
-  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+  }), /*#__PURE__*/React.createElement("div", {
+    title: numFlushCycles > 0 ? `Active Execution CPI: ${cpiExec} (${activeExecutionCycles} active cycles / ${state.committedCount} insts)` : `CPI: ${cpiExec}`
+  }, /*#__PURE__*/React.createElement("span", {
     className: "text-slate-500 text-[10px] block"
-  }, "CPI"), /*#__PURE__*/React.createElement("span", {
+  }, numFlushCycles > 0 ? "EXEC CPI" : "CPI"), /*#__PURE__*/React.createElement("span", {
     className: "text-amber-400 font-bold text-sm"
-  }, cpi)), /*#__PURE__*/React.createElement("div", {
+  }, cpiExec)), numFlushCycles > 0 && /*#__PURE__*/React.createElement("div", {
+    className: "h-5 w-[1px] bg-slate-800"
+  }), numFlushCycles > 0 && /*#__PURE__*/React.createElement("div", {
+    title: `Total Wall-Clock CPI: ${cpiTotal} (${state.cycle} total cycles including ${numFlushCycles}-cycle I$ startup tag flush / ${state.committedCount} insts)`
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-500 text-[10px] block"
+  }, "TOTAL CPI"), /*#__PURE__*/React.createElement("span", {
+    className: "text-orange-400 font-bold text-sm"
+  }, cpiTotal)), /*#__PURE__*/React.createElement("div", {
     className: "h-5 w-[1px] bg-slate-800"
   }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "text-slate-500 text-[10px] block"
@@ -4531,16 +4656,26 @@ function CVA6PipelineSimulator() {
   }, "AXI Latency:"), /*#__PURE__*/React.createElement("input", {
     type: "range",
     min: "2",
-    max: "8",
+    max: "16",
     step: "1",
     value: cacheConfig.missLatency,
     onChange: e => handleApplyCacheConfig({
       missLatency: parseInt(e.target.value, 10)
     }),
-    className: "w-20 accent-blue-500"
+    className: "w-16 accent-blue-500"
   }), /*#__PURE__*/React.createElement("span", {
     className: "font-mono font-bold text-blue-400 text-[10px]"
-  }, `${cacheConfig.missLatency} cyc`)), /*#__PURE__*/React.createElement("button", {
+  }, `${cacheConfig.missLatency} cyc`)), /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-1.5"
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => handleApplyCacheConfig({
+      simulateStartupFlush: !cacheConfig.simulateStartupFlush
+    }),
+    className: `px-2 py-0.5 rounded font-bold text-[10px] flex items-center gap-1 transition-colors border ${cacheConfig.simulateStartupFlush ? 'bg-amber-950 border-amber-700 text-amber-300' : 'bg-slate-900 border-slate-700 text-slate-400 hover:bg-slate-800'}`
+  }, /*#__PURE__*/React.createElement(RefreshCw, {
+    size: 10,
+    className: cacheConfig.simulateStartupFlush ? "text-amber-400" : "text-slate-500"
+  }), /*#__PURE__*/React.createElement("span", null, cacheConfig.simulateStartupFlush ? `Flush On (${1 << cacheConfig.linesExp}c)` : "Flush Off")), /*#__PURE__*/React.createElement("button", {
     onClick: () => {
       const nextPw = !prewarmCache;
       setPrewarmCache(nextPw);
@@ -4549,7 +4684,7 @@ function CVA6PipelineSimulator() {
     className: `px-2 py-0.5 rounded text-[10px] font-bold border transition-colors flex items-center gap-1 ${prewarmCache ? 'bg-emerald-950 border-emerald-700 text-emerald-300' : 'bg-amber-950 border-amber-700 text-amber-300'}`
   }, /*#__PURE__*/React.createElement(RefreshCw, {
     size: 10
-  }), /*#__PURE__*/React.createElement("span", null, prewarmCache ? 'Pre-warmed' : 'Cold Start')))), (state.cache.dRefill && state.cache.dRefill.active || state.cache.iRefill && state.cache.iRefill.active) && /*#__PURE__*/React.createElement("div", {
+  }), /*#__PURE__*/React.createElement("span", null, prewarmCache ? 'Pre-warmed' : 'Cold Start'))))), (state.cache.dRefill && state.cache.dRefill.active || state.cache.iRefill && state.cache.iRefill.active) && /*#__PURE__*/React.createElement("div", {
     className: "p-2.5 rounded-lg bg-rose-950/60 border border-rose-600/90 text-rose-200 text-xs shadow-lg animate-pulse space-y-1"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex items-center justify-between font-bold"
@@ -4830,7 +4965,10 @@ function CVA6PipelineSimulator() {
     className: "border-b border-slate-800 text-slate-500"
   }, /*#__PURE__*/React.createElement("th", {
     className: "text-left py-1 pr-2"
-  }, "Instr"), ganttCycles.map(c => /*#__PURE__*/React.createElement("th", {
+  }, "Instr"), numFlushCycles > 0 && /*#__PURE__*/React.createElement("th", {
+    className: "px-2 py-0.5 text-center bg-amber-950/40 text-amber-300 border border-amber-800/60 rounded text-[9px] font-mono whitespace-nowrap",
+    title: `I-Cache Startup Tag Flush (${numFlushCycles} cycles). CVA6 hardware clears all tag valid bits before fetching PC 0.`
+  }, `C1..C${numFlushCycles} [I$ Flush]`), ganttCycles.map(c => /*#__PURE__*/React.createElement("th", {
     key: c,
     className: `px-1.5 text-center ${c === state.cycle ? 'text-blue-400 font-bold' : ''}`
   }, "C", c)))), /*#__PURE__*/React.createElement("tbody", null, instructions.map(inst => {
@@ -4843,7 +4981,12 @@ function CVA6PipelineSimulator() {
       style: {
         color: inst.color.text
       }
-    }, inst.op), ganttCycles.map(c => {
+    }, inst.op), numFlushCycles > 0 && /*#__PURE__*/React.createElement("td", {
+      className: "p-0.5 text-center"
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "px-1.5 py-0.5 rounded font-mono text-[9px] bg-slate-900/80 text-slate-500 border border-slate-800/80 block truncate",
+      title: "Tag flush in progress (Front-end fetch held in reset)"
+    }, "FLUSH")), ganttCycles.map(c => {
       const stage = rowCycles[c];
       if (!stage) return /*#__PURE__*/React.createElement("td", {
         key: c,
