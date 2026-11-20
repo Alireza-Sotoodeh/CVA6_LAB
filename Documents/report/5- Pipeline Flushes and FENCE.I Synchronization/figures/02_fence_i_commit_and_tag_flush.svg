@@ -1,315 +1,335 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520">
-<defs>
-  <style type="text/css">
-    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }
-    .sig-sub { font-size: 9px; fill: #64748b; }
-    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }
-    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }
-    .ann-title { font-size: 11px; font-weight: 700; fill: #0f172a; }
-    .ann-body { font-size: 10px; fill: #334155; }
-  </style>
-</defs>
-<rect width="1200" height="520" fill="#f8fafc" />
-  <text x="30" y="30" font-size="15" font-weight="700" fill="#0f172a">CVA6 FENCE.I Instruction Commit & Cache Tag Invalidation Waveform (Cycles 338 – 352)</text>
-  <text x="30" y="48" font-size="11" fill="#475569">FENCE.I commits at Cyc 343 after SW drains. Controller asserts flush_icache_o and full pipeline flushes; I-Cache enters FLUSH state (flush_en=1).</text>
-  <rect x="210" y="80" width="63" height="350" fill="#ffffff" opacity="0.6" />
-  <line x1="210" y1="80" x2="210" y2="430" stroke="#e2e8f0" stroke-width="1" />
-  <text x="241.5" y="72" class="cyc-lbl">338</text>
-  <rect x="273" y="80" width="63" height="350" fill="#ffffff" opacity="0.6" />
-  <line x1="273" y1="80" x2="273" y2="430" stroke="#e2e8f0" stroke-width="1" />
-  <text x="304.5" y="72" class="cyc-lbl">339</text>
-  <rect x="336" y="80" width="63" height="350" fill="#ffffff" opacity="0.6" />
-  <line x1="336" y1="80" x2="336" y2="430" stroke="#e2e8f0" stroke-width="1" />
-  <text x="367.5" y="72" class="cyc-lbl">340</text>
-  <rect x="399" y="80" width="63" height="350" fill="#ffffff" opacity="0.6" />
-  <line x1="399" y1="80" x2="399" y2="430" stroke="#e2e8f0" stroke-width="1" />
-  <text x="430.5" y="72" class="cyc-lbl">341</text>
-  <rect x="462" y="80" width="63" height="350" fill="#ffffff" opacity="0.6" />
-  <line x1="462" y1="80" x2="462" y2="430" stroke="#e2e8f0" stroke-width="1" />
-  <text x="493.5" y="72" class="cyc-lbl">342</text>
-  <rect x="525" y="80" width="63" height="350" fill="#fee2e2" opacity="0.6" />
-  <line x1="525" y1="80" x2="525" y2="430" stroke="#e2e8f0" stroke-width="1" />
-  <text x="556.5" y="72" class="cyc-lbl">343</text>
-  <rect x="588" y="80" width="63" height="350" fill="#ffedd5" opacity="0.6" />
-  <line x1="588" y1="80" x2="588" y2="430" stroke="#e2e8f0" stroke-width="1" />
-  <text x="619.5" y="72" class="cyc-lbl">344</text>
-  <rect x="651" y="80" width="63" height="350" fill="#ffedd5" opacity="0.6" />
-  <line x1="651" y1="80" x2="651" y2="430" stroke="#e2e8f0" stroke-width="1" />
-  <text x="682.5" y="72" class="cyc-lbl">345</text>
-  <rect x="714" y="80" width="63" height="350" fill="#ffedd5" opacity="0.6" />
-  <line x1="714" y1="80" x2="714" y2="430" stroke="#e2e8f0" stroke-width="1" />
-  <text x="745.5" y="72" class="cyc-lbl">346</text>
-  <rect x="777" y="80" width="63" height="350" fill="#ffedd5" opacity="0.6" />
-  <line x1="777" y1="80" x2="777" y2="430" stroke="#e2e8f0" stroke-width="1" />
-  <text x="808.5" y="72" class="cyc-lbl">347</text>
-  <rect x="840" y="80" width="63" height="350" fill="#ffedd5" opacity="0.6" />
-  <line x1="840" y1="80" x2="840" y2="430" stroke="#e2e8f0" stroke-width="1" />
-  <text x="871.5" y="72" class="cyc-lbl">348</text>
-  <rect x="903" y="80" width="63" height="350" fill="#ffedd5" opacity="0.6" />
-  <line x1="903" y1="80" x2="903" y2="430" stroke="#e2e8f0" stroke-width="1" />
-  <text x="934.5" y="72" class="cyc-lbl">349</text>
-  <rect x="966" y="80" width="63" height="350" fill="#ffedd5" opacity="0.6" />
-  <line x1="966" y1="80" x2="966" y2="430" stroke="#e2e8f0" stroke-width="1" />
-  <text x="997.5" y="72" class="cyc-lbl">350</text>
-  <rect x="1029" y="80" width="63" height="350" fill="#ffedd5" opacity="0.6" />
-  <line x1="1029" y1="80" x2="1029" y2="430" stroke="#e2e8f0" stroke-width="1" />
-  <text x="1060.5" y="72" class="cyc-lbl">351</text>
-  <rect x="1092" y="80" width="63" height="350" fill="#ffedd5" opacity="0.6" />
-  <line x1="1092" y1="80" x2="1092" y2="430" stroke="#e2e8f0" stroke-width="1" />
-  <text x="1123.5" y="72" class="cyc-lbl">352</text>
-  <text x="35" y="104" class="sig-lbl">CommitPC0</text>
-  <text x="140" y="104" class="sig-sub">Retired PC</text>
-  <rect x="212" y="92" width="59" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="241.5" y="104" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="275" y="92" width="59" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="304.5" y="104" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="338" y="92" width="59" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="367.5" y="104" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="401" y="92" width="59" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="430.5" y="104" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="464" y="92" width="59" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="493.5" y="104" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="527" y="92" width="59" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="556.5" y="104" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0x0044 FENCE.I</text>
-  <rect x="590" y="92" width="59" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="619.5" y="104" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="653" y="92" width="59" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="682.5" y="104" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="716" y="92" width="59" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="745.5" y="104" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="779" y="92" width="59" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="808.5" y="104" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="842" y="92" width="59" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="871.5" y="104" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="905" y="92" width="59" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="934.5" y="104" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="968" y="92" width="59" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="997.5" y="104" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="1031" y="92" width="59" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="1060.5" y="104" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="1094" y="92" width="59" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="1123.5" y="104" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <text x="35" y="130" class="sig-lbl">CommitAck0</text>
-  <text x="140" y="130" class="sig-sub">Commit acknowledge</text>
-  <rect x="214" y="128" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="277" y="128" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="340" y="128" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="403" y="128" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="466" y="128" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="529" y="118" width="55" height="14" fill="#16a34a" rx="2" />
-  <rect x="592" y="128" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="655" y="128" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="718" y="128" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="781" y="128" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="844" y="128" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="907" y="128" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="970" y="128" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1033" y="128" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1096" y="128" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <text x="35" y="156" class="sig-lbl">FenceICommit</text>
-  <text x="140" y="156" class="sig-sub">FENCE.I opcode retired</text>
-  <rect x="214" y="154" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="277" y="154" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="340" y="154" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="403" y="154" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="466" y="154" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="529" y="144" width="55" height="14" fill="#dc2626" rx="2" />
-  <rect x="592" y="154" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="655" y="154" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="718" y="154" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="781" y="154" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="844" y="154" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="907" y="154" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="970" y="154" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1033" y="154" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1096" y="154" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <text x="35" y="182" class="sig-lbl">NoStPending</text>
-  <text x="140" y="182" class="sig-sub">Store buffer empty</text>
-  <rect x="214" y="180" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="277" y="180" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="340" y="180" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="403" y="180" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="466" y="180" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="529" y="170" width="55" height="14" fill="#059669" rx="2" />
-  <rect x="592" y="170" width="55" height="14" fill="#059669" rx="2" />
-  <rect x="655" y="170" width="55" height="14" fill="#059669" rx="2" />
-  <rect x="718" y="170" width="55" height="14" fill="#059669" rx="2" />
-  <rect x="781" y="170" width="55" height="14" fill="#059669" rx="2" />
-  <rect x="844" y="170" width="55" height="14" fill="#059669" rx="2" />
-  <rect x="907" y="170" width="55" height="14" fill="#059669" rx="2" />
-  <rect x="970" y="170" width="55" height="14" fill="#059669" rx="2" />
-  <rect x="1033" y="170" width="55" height="14" fill="#059669" rx="2" />
-  <rect x="1096" y="170" width="55" height="14" fill="#059669" rx="2" />
-  <text x="35" y="208" class="sig-lbl">FlushICache</text>
-  <text x="140" y="208" class="sig-sub">I-cache flush command</text>
-  <rect x="214" y="206" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="277" y="206" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="340" y="206" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="403" y="206" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="466" y="206" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="529" y="196" width="55" height="14" fill="#dc2626" rx="2" />
-  <rect x="592" y="206" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="655" y="206" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="718" y="206" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="781" y="206" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="844" y="206" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="907" y="206" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="970" y="206" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1033" y="206" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1096" y="206" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <text x="35" y="234" class="sig-lbl">FlushIF</text>
-  <text x="140" y="234" class="sig-sub">Fetch stage flush</text>
-  <rect x="214" y="222" width="55" height="14" fill="#e11d48" rx="2" />
-  <rect x="277" y="232" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="340" y="232" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="403" y="232" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="466" y="232" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="529" y="222" width="55" height="14" fill="#e11d48" rx="2" />
-  <rect x="592" y="232" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="655" y="232" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="718" y="232" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="781" y="232" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="844" y="232" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="907" y="232" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="970" y="232" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1033" y="232" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1096" y="232" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <text x="35" y="260" class="sig-lbl">FlushID</text>
-  <text x="140" y="260" class="sig-sub">Decode stage flush</text>
-  <rect x="214" y="258" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="277" y="258" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="340" y="258" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="403" y="258" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="466" y="258" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="529" y="248" width="55" height="14" fill="#e11d48" rx="2" />
-  <rect x="592" y="258" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="655" y="258" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="718" y="258" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="781" y="258" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="844" y="258" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="907" y="258" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="970" y="258" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1033" y="258" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1096" y="258" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <text x="35" y="286" class="sig-lbl">FlushEX</text>
-  <text x="140" y="286" class="sig-sub">Execute stage flush</text>
-  <rect x="214" y="284" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="277" y="284" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="340" y="284" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="403" y="284" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="466" y="284" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="529" y="274" width="55" height="14" fill="#e11d48" rx="2" />
-  <rect x="592" y="284" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="655" y="284" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="718" y="284" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="781" y="284" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="844" y="284" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="907" y="284" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="970" y="284" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1033" y="284" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1096" y="284" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <text x="35" y="312" class="sig-lbl">IcacheState</text>
-  <text x="140" y="312" class="sig-sub">I-cache state (0=FLUSH)</text>
-  <rect x="212" y="300" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="241.5" y="312" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">MISS</text>
-  <rect x="275" y="300" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="304.5" y="312" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">MISS</text>
-  <rect x="338" y="300" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="367.5" y="312" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">MISS</text>
-  <rect x="401" y="300" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="430.5" y="312" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">MISS</text>
-  <rect x="464" y="300" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="493.5" y="312" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">IDLE</text>
-  <rect x="527" y="300" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="556.5" y="312" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">READ</text>
-  <rect x="590" y="300" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="619.5" y="312" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">IDLE</text>
-  <rect x="653" y="300" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="682.5" y="312" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">FLUSH</text>
-  <rect x="716" y="300" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="745.5" y="312" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">FLUSH</text>
-  <rect x="779" y="300" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="808.5" y="312" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">FLUSH</text>
-  <rect x="842" y="300" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="871.5" y="312" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">FLUSH</text>
-  <rect x="905" y="300" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="934.5" y="312" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">FLUSH</text>
-  <rect x="968" y="300" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="997.5" y="312" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">FLUSH</text>
-  <rect x="1031" y="300" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="1060.5" y="312" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">FLUSH</text>
-  <rect x="1094" y="300" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="1123.5" y="312" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">FLUSH</text>
-  <text x="35" y="338" class="sig-lbl">IcacheFlushEn</text>
-  <text x="140" y="338" class="sig-sub">Tag invalidation active</text>
-  <rect x="214" y="336" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="277" y="336" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="340" y="336" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="403" y="336" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="466" y="336" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="529" y="336" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="592" y="336" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="655" y="326" width="55" height="14" fill="#7c3aed" rx="2" />
-  <rect x="718" y="326" width="55" height="14" fill="#7c3aed" rx="2" />
-  <rect x="781" y="326" width="55" height="14" fill="#7c3aed" rx="2" />
-  <rect x="844" y="326" width="55" height="14" fill="#7c3aed" rx="2" />
-  <rect x="907" y="326" width="55" height="14" fill="#7c3aed" rx="2" />
-  <rect x="970" y="326" width="55" height="14" fill="#7c3aed" rx="2" />
-  <rect x="1033" y="326" width="55" height="14" fill="#7c3aed" rx="2" />
-  <rect x="1096" y="326" width="55" height="14" fill="#7c3aed" rx="2" />
-  <text x="35" y="364" class="sig-lbl">IcacheFlushCnt</text>
-  <text x="140" y="364" class="sig-sub">Invalidation counter</text>
-  <rect x="212" y="352" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="241.5" y="364" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">0</text>
-  <rect x="275" y="352" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="304.5" y="364" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">0</text>
-  <rect x="338" y="352" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="367.5" y="364" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">0</text>
-  <rect x="401" y="352" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="430.5" y="364" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">0</text>
-  <rect x="464" y="352" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="493.5" y="364" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">0</text>
-  <rect x="527" y="352" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="556.5" y="364" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">0</text>
-  <rect x="590" y="352" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="619.5" y="364" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">0</text>
-  <rect x="653" y="352" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="682.5" y="364" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">0</text>
-  <rect x="716" y="352" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="745.5" y="364" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">1</text>
-  <rect x="779" y="352" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="808.5" y="364" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">2</text>
-  <rect x="842" y="352" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="871.5" y="364" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">3</text>
-  <rect x="905" y="352" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="934.5" y="364" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">4</text>
-  <rect x="968" y="352" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="997.5" y="364" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">5</text>
-  <rect x="1031" y="352" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="1060.5" y="364" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">6</text>
-  <rect x="1094" y="352" width="59" height="18" fill="#f1f5f9" stroke="#7c3aed" stroke-width="1" rx="2" />
-  <text x="1123.5" y="364" font-size="8.5" font-family="monospace" fill="#7c3aed" text-anchor="middle">7</text>
-  <text x="35" y="390" class="sig-lbl">HaltFrontend</text>
-  <text x="140" y="390" class="sig-sub">Frontend fetch halted</text>
-  <rect x="214" y="388" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="277" y="388" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="340" y="388" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="403" y="388" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="466" y="388" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="529" y="388" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="592" y="388" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="655" y="388" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="718" y="388" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="781" y="388" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="844" y="388" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="907" y="388" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="970" y="388" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1033" y="388" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1096" y="388" width="55" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="40" y="450" width="1120" height="55" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="4" />
-  <text x="55" y="468" class="ann-title">Microarchitectural Analysis (Cyc 343 – 345):</text>
-  <text x="55" y="484" class="ann-body">• Cyc 343: FENCE.I reaches head of commit_stage. Since NoStPending=1, fence_i_o asserts. Controller asserts flush_icache_o=1 and full pipeline flushes (IF/ID/EX).
-• Cyc 344: I-Cache transitions from READ to FLUSH (state 0). Tag invalidation counter (flush_cnt_q) starts incrementing from 0 to 255 (256 cycles) to clear all valid bits.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 450" width="1200" height="450">
+<defs><style>
+  text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .title { font-size: 15px; font-weight: 700; fill: #0f172a; }
+  .subtitle { font-size: 11px; fill: #475569; }
+  .sig-name { font-size: 11px; font-weight: 600; fill: #1e293b; }
+  .sig-sub { font-size: 9px; fill: #64748b; }
+  .bus { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 8.5px; font-weight: 600; text-anchor: middle; fill: #0f172a; }
+  .bit { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 9px; font-weight: 600; text-anchor: middle; }
+  .cyc { font-size: 9px; fill: #475569; font-weight: 600; text-anchor: middle; }
+  .ann-title { font-size: 11px; font-weight: 700; fill: #0f172a; }
+  .ann-body { font-size: 9.5px; fill: #334155; }
+  .tag-lbl { font-size: 9px; font-weight: 700; text-anchor: middle; fill: #ffffff; }
+</style></defs>
+<rect width="1200" height="450" fill="#f8fafc" rx="8" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="20" y="12" width="1160" height="46" rx="6" fill="#1e293b"/>
+<text x="35" y="32" font-size="14" font-weight="700" fill="#f8fafc">FENCE.I Instruction Commit &amp; Tag Invalidation Waveform (Cycles 338 to 352)</text>
+<text x="35" y="48" font-size="10.5" fill="#94a3b8">FENCE.I commits at Cyc 343; asserts fence_i_o=1, flush_icache_o=1, and triggers 256-cycle FLUSH state tag clear</text>
+<rect x="240.0" y="75" width="62.0" height="280" fill="#f8fafc"/>
+<line x1="240.0" y1="75" x2="240.0" y2="355" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="271.0" y="69" class="cyc" fill="#475569">C338</text>
+<rect x="302.0" y="75" width="62.0" height="280" fill="#ffffff"/>
+<line x1="302.0" y1="75" x2="302.0" y2="355" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="333.0" y="69" class="cyc" fill="#475569">C339</text>
+<rect x="364.0" y="75" width="62.0" height="280" fill="#f8fafc"/>
+<line x1="364.0" y1="75" x2="364.0" y2="355" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="395.0" y="69" class="cyc" fill="#475569">C340</text>
+<rect x="426.0" y="75" width="62.0" height="280" fill="#ffffff"/>
+<line x1="426.0" y1="75" x2="426.0" y2="355" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="457.0" y="69" class="cyc" fill="#475569">C341</text>
+<rect x="488.0" y="75" width="62.0" height="280" fill="#f8fafc"/>
+<line x1="488.0" y1="75" x2="488.0" y2="355" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="519.0" y="69" class="cyc" fill="#475569">C342</text>
+<rect x="550.0" y="75" width="62.0" height="280" fill="#fee2e2"/>
+<line x1="550.0" y1="75" x2="550.0" y2="355" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="550.0" y1="75" x2="550.0" y2="355" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="581.0" y="69" class="cyc" fill="#dc2626">C343</text>
+<rect x="612.0" y="75" width="62.0" height="280" fill="#f8fafc"/>
+<line x1="612.0" y1="75" x2="612.0" y2="355" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="643.0" y="69" class="cyc" fill="#475569">C344</text>
+<rect x="674.0" y="75" width="62.0" height="280" fill="#ffffff"/>
+<line x1="674.0" y1="75" x2="674.0" y2="355" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="705.0" y="69" class="cyc" fill="#475569">C345</text>
+<rect x="736.0" y="75" width="62.0" height="280" fill="#f8fafc"/>
+<line x1="736.0" y1="75" x2="736.0" y2="355" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="767.0" y="69" class="cyc" fill="#475569">C346</text>
+<rect x="798.0" y="75" width="62.0" height="280" fill="#ffffff"/>
+<line x1="798.0" y1="75" x2="798.0" y2="355" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="829.0" y="69" class="cyc" fill="#475569">C347</text>
+<rect x="860.0" y="75" width="62.0" height="280" fill="#f8fafc"/>
+<line x1="860.0" y1="75" x2="860.0" y2="355" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="891.0" y="69" class="cyc" fill="#475569">C348</text>
+<rect x="922.0" y="75" width="62.0" height="280" fill="#ffffff"/>
+<line x1="922.0" y1="75" x2="922.0" y2="355" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="953.0" y="69" class="cyc" fill="#475569">C349</text>
+<rect x="984.0" y="75" width="62.0" height="280" fill="#f8fafc"/>
+<line x1="984.0" y1="75" x2="984.0" y2="355" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="1015.0" y="69" class="cyc" fill="#475569">C350</text>
+<rect x="1046.0" y="75" width="62.0" height="280" fill="#ffffff"/>
+<line x1="1046.0" y1="75" x2="1046.0" y2="355" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="1077.0" y="69" class="cyc" fill="#475569">C351</text>
+<rect x="1108.0" y="75" width="62.0" height="280" fill="#f8fafc"/>
+<line x1="1108.0" y1="75" x2="1108.0" y2="355" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="1139.0" y="69" class="cyc" fill="#475569">C352</text>
+<line x1="20" y1="103" x2="1180" y2="103" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="88" class="sig-name">FetchPC</text>
+<text x="25" y="98" class="sig-sub">Fetch Stage PC</text>
+<polygon points="243.0,89.0 246.0,81.0 296.0,81.0 299.0,89.0 296.0,97.0 246.0,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="271.0" y="92.5" class="bus">0x054</text>
+<polygon points="305.0,89.0 308.0,81.0 544.0,81.0 547.0,89.0 544.0,97.0 308.0,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="426.0" y="92.5" class="bus">0x0200 ADDI a0,x0,100</text>
+<polygon points="553.0,89.0 556.0,81.0 606.0,81.0 609.0,89.0 606.0,97.0 556.0,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="581.0" y="92.5" class="bus">RET</text>
+<polygon points="615.0,89.0 618.0,81.0 1164.0,81.0 1167.0,89.0 1164.0,97.0 618.0,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="891.0" y="92.5" class="bus">0x0048 CSRW mstatus,t0</text>
+<line x1="20" y1="131" x2="1180" y2="131" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="116" class="sig-name">CommitPC0</text>
+<text x="25" y="126" class="sig-sub">Commit Port 0 PC</text>
+<polygon points="243.0,117.0 246.0,109.0 544.0,109.0 547.0,117.0 544.0,125.0 246.0,125.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="553.0,117.0 556.0,109.0 606.0,109.0 609.0,117.0 606.0,125.0 556.0,125.0" fill="#e0f2fe" stroke="#16a34a" stroke-width="1"/>
+<text x="581.0" y="120.5" class="bus">0x044</text>
+<polygon points="615.0,117.0 618.0,109.0 1164.0,109.0 1167.0,117.0 1164.0,125.0 618.0,125.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="20" y1="159" x2="1180" y2="159" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="144" class="sig-name">CommitAck0</text>
+<text x="25" y="154" class="sig-sub">Commit Instruction Ack</text>
+<line x1="240.0" y1="153.0" x2="302.0" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="271.0" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="302.0" y1="153.0" x2="364.0" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="333.0" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="364.0" y1="153.0" x2="426.0" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="395.0" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="426.0" y1="153.0" x2="488.0" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="457.0" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="488.0" y1="153.0" x2="550.0" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="519.0" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="550.0" y1="153.0" x2="550.0" y2="137.0" stroke="#16a34a" stroke-width="1.8"/>
+<line x1="550.0" y1="137.0" x2="612.0" y2="137.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="581.0" y="148.5" class="bit" fill="#16a34a">1</text>
+<line x1="612.0" y1="137.0" x2="612.0" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<line x1="612.0" y1="153.0" x2="674.0" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="643.0" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="674.0" y1="153.0" x2="736.0" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="705.0" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="736.0" y1="153.0" x2="798.0" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="767.0" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="798.0" y1="153.0" x2="860.0" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="829.0" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="860.0" y1="153.0" x2="922.0" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="891.0" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="922.0" y1="153.0" x2="984.0" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="953.0" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="984.0" y1="153.0" x2="1046.0" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="1015.0" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="1046.0" y1="153.0" x2="1108.0" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="1077.0" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="1108.0" y1="153.0" x2="1170.0" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="1139.0" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="20" y1="187" x2="1180" y2="187" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="172" class="sig-name">FenceICommit</text>
+<text x="25" y="182" class="sig-sub">FENCE.I Active Commit</text>
+<line x1="240.0" y1="181.0" x2="302.0" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="271.0" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="302.0" y1="181.0" x2="364.0" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="333.0" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="364.0" y1="181.0" x2="426.0" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="395.0" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="426.0" y1="181.0" x2="488.0" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="457.0" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="488.0" y1="181.0" x2="550.0" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="519.0" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="550.0" y1="181.0" x2="550.0" y2="165.0" stroke="#dc2626" stroke-width="1.8"/>
+<line x1="550.0" y1="165.0" x2="612.0" y2="165.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="581.0" y="176.5" class="bit" fill="#dc2626">1</text>
+<line x1="612.0" y1="165.0" x2="612.0" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<line x1="612.0" y1="181.0" x2="674.0" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="643.0" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="674.0" y1="181.0" x2="736.0" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="705.0" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="736.0" y1="181.0" x2="798.0" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="767.0" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="798.0" y1="181.0" x2="860.0" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="829.0" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="860.0" y1="181.0" x2="922.0" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="891.0" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="922.0" y1="181.0" x2="984.0" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="953.0" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="984.0" y1="181.0" x2="1046.0" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="1015.0" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="1046.0" y1="181.0" x2="1108.0" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="1077.0" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="1108.0" y1="181.0" x2="1170.0" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="1139.0" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="20" y1="215" x2="1180" y2="215" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="200" class="sig-name">FlushICache</text>
+<text x="25" y="210" class="sig-sub">I-Cache Tag Clear Strobe</text>
+<line x1="240.0" y1="209.0" x2="302.0" y2="209.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="271.0" y="204.5" class="bit" fill="#e11d48">0</text>
+<line x1="302.0" y1="209.0" x2="364.0" y2="209.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="333.0" y="204.5" class="bit" fill="#e11d48">0</text>
+<line x1="364.0" y1="209.0" x2="426.0" y2="209.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="395.0" y="204.5" class="bit" fill="#e11d48">0</text>
+<line x1="426.0" y1="209.0" x2="488.0" y2="209.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="457.0" y="204.5" class="bit" fill="#e11d48">0</text>
+<line x1="488.0" y1="209.0" x2="550.0" y2="209.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="519.0" y="204.5" class="bit" fill="#e11d48">0</text>
+<line x1="550.0" y1="209.0" x2="550.0" y2="193.0" stroke="#e11d48" stroke-width="1.8"/>
+<line x1="550.0" y1="193.0" x2="612.0" y2="193.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="581.0" y="204.5" class="bit" fill="#dc2626">1</text>
+<line x1="612.0" y1="193.0" x2="612.0" y2="209.0" stroke="#e11d48" stroke-width="1.8"/>
+<line x1="612.0" y1="209.0" x2="674.0" y2="209.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="643.0" y="204.5" class="bit" fill="#e11d48">0</text>
+<line x1="674.0" y1="209.0" x2="736.0" y2="209.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="705.0" y="204.5" class="bit" fill="#e11d48">0</text>
+<line x1="736.0" y1="209.0" x2="798.0" y2="209.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="767.0" y="204.5" class="bit" fill="#e11d48">0</text>
+<line x1="798.0" y1="209.0" x2="860.0" y2="209.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="829.0" y="204.5" class="bit" fill="#e11d48">0</text>
+<line x1="860.0" y1="209.0" x2="922.0" y2="209.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="891.0" y="204.5" class="bit" fill="#e11d48">0</text>
+<line x1="922.0" y1="209.0" x2="984.0" y2="209.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="953.0" y="204.5" class="bit" fill="#e11d48">0</text>
+<line x1="984.0" y1="209.0" x2="1046.0" y2="209.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1015.0" y="204.5" class="bit" fill="#e11d48">0</text>
+<line x1="1046.0" y1="209.0" x2="1108.0" y2="209.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1077.0" y="204.5" class="bit" fill="#e11d48">0</text>
+<line x1="1108.0" y1="209.0" x2="1170.0" y2="209.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1139.0" y="204.5" class="bit" fill="#e11d48">0</text>
+<line x1="20" y1="243" x2="1180" y2="243" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="228" class="sig-name">FlushIF</text>
+<text x="25" y="238" class="sig-sub">Fetch Stage Flush</text>
+<line x1="240.0" y1="221.0" x2="302.0" y2="221.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="271.0" y="232.5" class="bit" fill="#dc2626">1</text>
+<line x1="302.0" y1="221.0" x2="302.0" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<line x1="302.0" y1="237.0" x2="364.0" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="333.0" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="364.0" y1="237.0" x2="426.0" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="395.0" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="426.0" y1="237.0" x2="488.0" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="457.0" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="488.0" y1="237.0" x2="550.0" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="519.0" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="550.0" y1="237.0" x2="550.0" y2="221.0" stroke="#e11d48" stroke-width="1.8"/>
+<line x1="550.0" y1="221.0" x2="612.0" y2="221.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="581.0" y="232.5" class="bit" fill="#dc2626">1</text>
+<line x1="612.0" y1="221.0" x2="612.0" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<line x1="612.0" y1="237.0" x2="674.0" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="643.0" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="674.0" y1="237.0" x2="736.0" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="705.0" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="736.0" y1="237.0" x2="798.0" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="767.0" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="798.0" y1="237.0" x2="860.0" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="829.0" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="860.0" y1="237.0" x2="922.0" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="891.0" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="922.0" y1="237.0" x2="984.0" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="953.0" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="984.0" y1="237.0" x2="1046.0" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1015.0" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="1046.0" y1="237.0" x2="1108.0" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1077.0" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="1108.0" y1="237.0" x2="1170.0" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1139.0" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="20" y1="271" x2="1180" y2="271" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="256" class="sig-name">FlushID</text>
+<text x="25" y="266" class="sig-sub">Decode Stage Flush</text>
+<line x1="240.0" y1="265.0" x2="302.0" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="271.0" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="302.0" y1="265.0" x2="364.0" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="333.0" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="364.0" y1="265.0" x2="426.0" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="395.0" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="426.0" y1="265.0" x2="488.0" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="457.0" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="488.0" y1="265.0" x2="550.0" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="519.0" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="550.0" y1="265.0" x2="550.0" y2="249.0" stroke="#e11d48" stroke-width="1.8"/>
+<line x1="550.0" y1="249.0" x2="612.0" y2="249.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="581.0" y="260.5" class="bit" fill="#dc2626">1</text>
+<line x1="612.0" y1="249.0" x2="612.0" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<line x1="612.0" y1="265.0" x2="674.0" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="643.0" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="674.0" y1="265.0" x2="736.0" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="705.0" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="736.0" y1="265.0" x2="798.0" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="767.0" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="798.0" y1="265.0" x2="860.0" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="829.0" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="860.0" y1="265.0" x2="922.0" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="891.0" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="922.0" y1="265.0" x2="984.0" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="953.0" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="984.0" y1="265.0" x2="1046.0" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1015.0" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="1046.0" y1="265.0" x2="1108.0" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1077.0" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="1108.0" y1="265.0" x2="1170.0" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1139.0" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="20" y1="299" x2="1180" y2="299" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="284" class="sig-name">FlushEX</text>
+<text x="25" y="294" class="sig-sub">Execute Stage Flush</text>
+<line x1="240.0" y1="293.0" x2="302.0" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="271.0" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="302.0" y1="293.0" x2="364.0" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="333.0" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="364.0" y1="293.0" x2="426.0" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="395.0" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="426.0" y1="293.0" x2="488.0" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="457.0" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="488.0" y1="293.0" x2="550.0" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="519.0" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="550.0" y1="293.0" x2="550.0" y2="277.0" stroke="#e11d48" stroke-width="1.8"/>
+<line x1="550.0" y1="277.0" x2="612.0" y2="277.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="581.0" y="288.5" class="bit" fill="#dc2626">1</text>
+<line x1="612.0" y1="277.0" x2="612.0" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<line x1="612.0" y1="293.0" x2="674.0" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="643.0" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="674.0" y1="293.0" x2="736.0" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="705.0" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="736.0" y1="293.0" x2="798.0" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="767.0" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="798.0" y1="293.0" x2="860.0" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="829.0" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="860.0" y1="293.0" x2="922.0" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="891.0" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="922.0" y1="293.0" x2="984.0" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="953.0" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="984.0" y1="293.0" x2="1046.0" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1015.0" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="1046.0" y1="293.0" x2="1108.0" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1077.0" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="1108.0" y1="293.0" x2="1170.0" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1139.0" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="20" y1="327" x2="1180" y2="327" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="312" class="sig-name">IcacheState</text>
+<text x="25" y="322" class="sig-sub">I-Cache FSM State (0=FLUSH)</text>
+<polygon points="243.0,313.0 246.0,305.0 296.0,305.0 299.0,313.0 296.0,321.0 246.0,321.0" fill="#e0f2fe" stroke="#7c3aed" stroke-width="1"/>
+<text x="271.0" y="316.5" class="bus">READ</text>
+<polygon points="305.0,313.0 308.0,305.0 482.0,305.0 485.0,313.0 482.0,321.0 308.0,321.0" fill="#e0f2fe" stroke="#7c3aed" stroke-width="1"/>
+<text x="395.0" y="316.5" class="bus">5</text>
+<polygon points="491.0,313.0 494.0,305.0 544.0,305.0 547.0,313.0 544.0,321.0 494.0,321.0" fill="#e0f2fe" stroke="#7c3aed" stroke-width="1"/>
+<text x="519.0" y="316.5" class="bus">1</text>
+<polygon points="553.0,313.0 556.0,305.0 606.0,305.0 609.0,313.0 606.0,321.0 556.0,321.0" fill="#e0f2fe" stroke="#7c3aed" stroke-width="1"/>
+<text x="581.0" y="316.5" class="bus">2</text>
+<polygon points="615.0,313.0 618.0,305.0 668.0,305.0 671.0,313.0 668.0,321.0 618.0,321.0" fill="#e0f2fe" stroke="#7c3aed" stroke-width="1"/>
+<text x="643.0" y="316.5" class="bus">1</text>
+<polygon points="677.0,313.0 680.0,305.0 1164.0,305.0 1167.0,313.0 1164.0,321.0 680.0,321.0" fill="#e0f2fe" stroke="#7c3aed" stroke-width="1"/>
+<text x="922.0" y="316.5" class="bus">FLUSH</text>
+<line x1="20" y1="355" x2="1180" y2="355" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="340" class="sig-name">IcacheFlushCnt</text>
+<text x="25" y="350" class="sig-sub">Tag Clear Counter (0..255)</text>
+<polygon points="243.0,341.0 246.0,333.0 730.0,333.0 733.0,341.0 730.0,349.0 246.0,349.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="739.0,341.0 742.0,333.0 792.0,333.0 795.0,341.0 792.0,349.0 742.0,349.0" fill="#e0f2fe" stroke="#ea580c" stroke-width="1"/>
+<text x="767.0" y="344.5" class="bus">1</text>
+<polygon points="801.0,341.0 804.0,333.0 854.0,333.0 857.0,341.0 854.0,349.0 804.0,349.0" fill="#e0f2fe" stroke="#ea580c" stroke-width="1"/>
+<text x="829.0" y="344.5" class="bus">2</text>
+<polygon points="863.0,341.0 866.0,333.0 916.0,333.0 919.0,341.0 916.0,349.0 866.0,349.0" fill="#e0f2fe" stroke="#ea580c" stroke-width="1"/>
+<text x="891.0" y="344.5" class="bus">3</text>
+<polygon points="925.0,341.0 928.0,333.0 978.0,333.0 981.0,341.0 978.0,349.0 928.0,349.0" fill="#e0f2fe" stroke="#ea580c" stroke-width="1"/>
+<text x="953.0" y="344.5" class="bus">4</text>
+<polygon points="987.0,341.0 990.0,333.0 1040.0,333.0 1043.0,341.0 1040.0,349.0 990.0,349.0" fill="#e0f2fe" stroke="#ea580c" stroke-width="1"/>
+<text x="1015.0" y="344.5" class="bus">5</text>
+<polygon points="1049.0,341.0 1052.0,333.0 1102.0,333.0 1105.0,341.0 1102.0,349.0 1052.0,349.0" fill="#e0f2fe" stroke="#ea580c" stroke-width="1"/>
+<text x="1077.0" y="344.5" class="bus">6</text>
+<polygon points="1111.0,341.0 1114.0,333.0 1164.0,333.0 1167.0,341.0 1164.0,349.0 1114.0,349.0" fill="#e0f2fe" stroke="#ea580c" stroke-width="1"/>
+<text x="1139.0" y="344.5" class="bus">7</text>
+<rect x="20" y="367" width="1160" height="75" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" rx="6"/>
+<text x="35" y="385" class="ann-title">Microarchitectural Analysis:</text>
+<text x="35" y="401" class="ann-body">
+  <tspan x="35" dy="0">• Cycle 343: FENCE.I reaches commit head. Since store buffer is drained (NoStPending=1), fence_i_o and flush_icache_o assert.</tspan>
+  <tspan x="35" dy="16">• Cycle 344: I-cache transitions to state FLUSH (0). Tag counter starts 256-cycle sweep to invalidate all 256 cache lines.</tspan>
+  <tspan x="35" dy="16">• Frontend Halt: Fetch stage is held in flush during the entire invalidation sequence, guaranteeing pipeline consistency.</tspan>
+</text>
 </svg>
