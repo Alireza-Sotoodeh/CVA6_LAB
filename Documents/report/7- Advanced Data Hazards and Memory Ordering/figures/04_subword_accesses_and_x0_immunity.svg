@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="480" viewBox="0 0 1100 480">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="480" viewBox="0 0 1200 480">
 <defs>
   <style type="text/css">
     text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
@@ -11,53 +11,53 @@
     .ann-body { font-size: 10px; fill: #334155; }
   </style>
 </defs>
-<rect width="1100" height="480" fill="#f8fafc" />
-<rect x="20" y="15" width="1060" height="42" rx="8" fill="#1e293b" />
+<rect width="1200" height="480" fill="#f8fafc" />
+<rect x="20" y="15" width="1160" height="42" rx="8" fill="#1e293b" />
 <text x="35" y="41" fill="#f8fafc" font-size="15" font-weight="700">CVA6 Sub-Word Memory Accesses &amp; Register x0 Hazard Immunity</text>
-<text x="1065" y="41" fill="#94a3b8" font-size="11" text-anchor="end">Byte/Half-Word Sign &amp; Zero Extensions | Hardwired Zero Invariant</text>
-<rect x="50" y="85" width="480" height="310" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
-<rect x="50" y="85" width="480" height="32" rx="8" fill="#f1f5f9" />
+<text x="1165" y="41" fill="#94a3b8" font-size="11" text-anchor="end">Byte/Half-Word Sign &amp; Zero Extensions | Hardwired Zero Invariant</text>
+<rect x="50" y="85" width="530" height="310" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+<rect x="50" y="85" width="530" height="32" rx="8" fill="#f1f5f9" />
 <text x="65" y="106" font-size="12" font-weight="700" fill="#0f172a">Sub-Word Memory Accesses from Stored Word [0xAABBCCDD]</text>
-<rect x="60" y="127" width="460" height="48" rx="4" fill="#f8fafc" stroke="#e2e8f0" />
-<text x="70" y="143" font-size="10.5" font-weight="700" fill="#1e293b">SW s4, 8(sp) &rarr; Word Store</text>
+<rect x="60" y="127" width="510" height="48" rx="4" fill="#f8fafc" stroke="#e2e8f0" />
+<text x="70" y="143" font-size="10.5" font-weight="700" fill="#1e293b">SW s4, 8(sp) → Word Store</text>
 <text x="70" y="158" font-size="9.5" font-weight="600" fill="#2563eb">Result: 0xAABBCCDD</text>
 <text x="70" y="171" font-size="8.5" fill="#64748b">32-bit word stored to memory</text>
-<rect x="60" y="179" width="460" height="48" rx="4" fill="#f8fafc" stroke="#e2e8f0" />
-<text x="70" y="195" font-size="10.5" font-weight="700" fill="#1e293b">LB s5, 8(sp) &rarr; Load Byte Signed</text>
+<rect x="60" y="179" width="510" height="48" rx="4" fill="#f8fafc" stroke="#e2e8f0" />
+<text x="70" y="195" font-size="10.5" font-weight="700" fill="#1e293b">LB s5, 8(sp) → Load Byte Signed</text>
 <text x="70" y="210" font-size="9.5" font-weight="600" fill="#2563eb">Result: 0xFFFFFFDD (-35)</text>
 <text x="70" y="223" font-size="8.5" fill="#64748b">Byte 0xDD sign-extended to 32 bits</text>
-<rect x="60" y="231" width="460" height="48" rx="4" fill="#f8fafc" stroke="#e2e8f0" />
-<text x="70" y="247" font-size="10.5" font-weight="700" fill="#1e293b">LBU s6, 8(sp) &rarr; Load Byte Unsigned</text>
+<rect x="60" y="231" width="510" height="48" rx="4" fill="#f8fafc" stroke="#e2e8f0" />
+<text x="70" y="247" font-size="10.5" font-weight="700" fill="#1e293b">LBU s6, 8(sp) → Load Byte Unsigned</text>
 <text x="70" y="262" font-size="9.5" font-weight="600" fill="#2563eb">Result: 0x000000DD (221)</text>
 <text x="70" y="275" font-size="8.5" fill="#64748b">Byte 0xDD zero-extended to 32 bits</text>
-<rect x="60" y="283" width="460" height="48" rx="4" fill="#f8fafc" stroke="#e2e8f0" />
-<text x="70" y="299" font-size="10.5" font-weight="700" fill="#1e293b">LH s7, 8(sp) &rarr; Load Half Signed</text>
+<rect x="60" y="283" width="510" height="48" rx="4" fill="#f8fafc" stroke="#e2e8f0" />
+<text x="70" y="299" font-size="10.5" font-weight="700" fill="#1e293b">LH s7, 8(sp) → Load Half Signed</text>
 <text x="70" y="314" font-size="9.5" font-weight="600" fill="#2563eb">Result: 0xFFFFCCDD (-13091)</text>
 <text x="70" y="327" font-size="8.5" fill="#64748b">Half 0xCCDD sign-extended to 32 bits</text>
-<rect x="60" y="335" width="460" height="48" rx="4" fill="#f8fafc" stroke="#e2e8f0" />
-<text x="70" y="351" font-size="10.5" font-weight="700" fill="#1e293b">LHU s8, 8(sp) &rarr; Load Half Unsigned</text>
+<rect x="60" y="335" width="510" height="48" rx="4" fill="#f8fafc" stroke="#e2e8f0" />
+<text x="70" y="351" font-size="10.5" font-weight="700" fill="#1e293b">LHU s8, 8(sp) → Load Half Unsigned</text>
 <text x="70" y="366" font-size="9.5" font-weight="600" fill="#2563eb">Result: 0x0000CCDD (52445)</text>
 <text x="70" y="379" font-size="8.5" fill="#64748b">Half 0xCCDD zero-extended to 32 bits</text>
-<rect x="570" y="85" width="480" height="310" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
-<rect x="570" y="85" width="480" height="32" rx="8" fill="#f1f5f9" />
-<text x="585" y="106" font-size="12" font-weight="700" fill="#0f172a">Register x0 Hardwired Invariant &amp; Stall Immunity</text>
-<rect x="580" y="127" width="460" height="60" rx="4" fill="#fdf4ff" stroke="#f0abfc" />
-<text x="590" y="143" font-size="10.5" font-weight="700" fill="#a21caf">DIV zero, gp, tp</text>
-<text x="590" y="158" font-size="9" font-weight="600" fill="#475569">Multi-cycle Divider targeting x0</text>
-<text x="590" y="174" font-size="8.5" fill="#64748b">Divider computes 100, but writeback to x0 is suppressed. Zero Scoreboard stall.</text>
-<rect x="580" y="192" width="460" height="60" rx="4" fill="#fdf4ff" stroke="#f0abfc" />
-<text x="590" y="208" font-size="10.5" font-weight="700" fill="#a21caf">LW zero, 0(sp)</text>
-<text x="590" y="223" font-size="9" font-weight="600" fill="#475569">Memory Load targeting x0</text>
-<text x="590" y="239" font-size="8.5" fill="#64748b">Load fetches data, but GPR writeback is discarded. raw_checker ignores x0.</text>
-<rect x="580" y="257" width="460" height="60" rx="4" fill="#fdf4ff" stroke="#f0abfc" />
-<text x="590" y="273" font-size="10.5" font-weight="700" fill="#a21caf">LI zero, 555</text>
-<text x="590" y="288" font-size="9" font-weight="600" fill="#475569">Fast ALU targeting x0</text>
-<text x="590" y="304" font-size="8.5" fill="#64748b">Immediate 555 discarded; shadow register x0 remains strictly 0x00000000.</text>
-<rect x="580" y="322" width="460" height="60" rx="4" fill="#fdf4ff" stroke="#f0abfc" />
-<text x="590" y="338" font-size="10.5" font-weight="700" fill="#a21caf">ADD s9, zero, zero</text>
-<text x="590" y="353" font-size="9" font-weight="600" fill="#475569">Verification check: s9 = x0 + x0</text>
-<text x="590" y="369" font-size="8.5" fill="#64748b">Verified: s9 = 0x00000000. Reg x0 remains identically zero under all stress!</text>
-<rect x="50" y="415" width="1000" height="45" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1" />
+<rect x="620" y="85" width="530" height="310" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+<rect x="620" y="85" width="530" height="32" rx="8" fill="#f1f5f9" />
+<text x="635" y="106" font-size="12" font-weight="700" fill="#0f172a">Register x0 Hardwired Invariant &amp; Stall Immunity</text>
+<rect x="630" y="127" width="510" height="60" rx="4" fill="#fdf4ff" stroke="#f0abfc" />
+<text x="640" y="143" font-size="10.5" font-weight="700" fill="#a21caf">DIV zero, gp, tp</text>
+<text x="640" y="158" font-size="9" font-weight="600" fill="#475569">Multi-cycle Divider targeting x0</text>
+<text x="640" y="174" font-size="8.5" fill="#64748b">Divider computes 100, but writeback to x0 is suppressed. Zero Scoreboard stall.</text>
+<rect x="630" y="192" width="510" height="60" rx="4" fill="#fdf4ff" stroke="#f0abfc" />
+<text x="640" y="208" font-size="10.5" font-weight="700" fill="#a21caf">LW zero, 0(sp)</text>
+<text x="640" y="223" font-size="9" font-weight="600" fill="#475569">Memory Load targeting x0</text>
+<text x="640" y="239" font-size="8.5" fill="#64748b">Load fetches data, but GPR writeback is discarded. raw_checker ignores x0.</text>
+<rect x="630" y="257" width="510" height="60" rx="4" fill="#fdf4ff" stroke="#f0abfc" />
+<text x="640" y="273" font-size="10.5" font-weight="700" fill="#a21caf">LI zero, 555</text>
+<text x="640" y="288" font-size="9" font-weight="600" fill="#475569">Fast ALU targeting x0</text>
+<text x="640" y="304" font-size="8.5" fill="#64748b">Immediate 555 discarded; shadow register x0 remains strictly 0x00000000.</text>
+<rect x="630" y="322" width="510" height="60" rx="4" fill="#fdf4ff" stroke="#f0abfc" />
+<text x="640" y="338" font-size="10.5" font-weight="700" fill="#a21caf">ADD s9, zero, zero</text>
+<text x="640" y="353" font-size="9" font-weight="600" fill="#475569">Verification check: s9 = x0 + x0</text>
+<text x="640" y="369" font-size="8.5" fill="#64748b">Verified: s9 = 0x00000000. Reg x0 remains identically zero under all stress!</text>
+<rect x="50" y="415" width="1100" height="45" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1" />
 <text x="65" y="434" font-size="10.5" font-weight="700" fill="#15803d">Architectural Rule Verified (RISC-V ISA Spec Section 2.1):</text>
 <text x="65" y="450" font-size="9.5" fill="#166534">x0 is hardwired to 0; any write to x0 has no effect and never causes Scoreboard RAW stalls (raw_checker.sv: rs_is_gpr0 = 1).</text>
 </svg>

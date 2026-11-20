@@ -343,15 +343,15 @@ def generate_waw_waveform(rows):
                f'fill="#eff6ff" stroke="#3b82f6" stroke-width="1" />')
     svg.append(f'<text x="35" y="{ann_y+20}" class="ann-title">'
                'Microarchitectural Analysis of WAW Hazard Resolution:</text>')
-    svg.append(f'<text x="35" y="{ann_y+38}" class="ann-body">'
-               '1. Execution Completion Out-of-Order: "LI a0, 99" finishes execution in 1 cycle, while "DIV a0, gp, tp" '
-               'takes 8 cycles in the integer divider unit. Both target architectural register x10 (a0).</text>')
-    svg.append(f'<text x="35" y="{ann_y+54}" class="ann-body">'
-               '2. In-Order Commit Guarantees Correct State: CVA6 Scoreboard retires strictly in FIFO order. DIV commits first '
-               'writing quotient 100, and LI a0,99 commits second overwriting it with 99. Architectural state is never corrupted!</text>')
-    svg.append(f'<text x="35" y="{ann_y+70}" class="ann-body">'
-               '3. Consumer Routing (raw_checker.sv): "ADD a1, a0, zero" receives 99 because raw_checker points to the '
-               'most recent producer in the scoreboard (last_before_idx), ignoring the earlier DIV instruction.</text>')
+    notes = [
+        "1. Out-of-Order Execution: 'LI a0, 99' completes in 1 cycle, while 'DIV a0, gp, tp' takes 8 cycles in the divider. Both target architectural register x10 (a0).",
+        "2. Strict In-Order Commit: CVA6 scoreboard retires in strict FIFO program order. DIV commits first writing quotient 100, and LI a0,99 commits second overwriting it with 99.",
+        "3. Consumer Bypass Routing: raw_checker.sv points 'ADD a1, a0, zero' to the most recent producer in the scoreboard, correctly observing 99 with zero data hazards.",
+    ]
+    svg.append(f'<text x="35" y="{ann_y+38}" class="ann-body">')
+    for l_idx, line in enumerate(notes):
+        svg.append(f'  <tspan x="35" dy="{0 if l_idx==0 else 16}">{xesc(line)}</tspan>')
+    svg.append('</text>')
 
     svg.append("</svg>")
     path = os.path.join(FIG_DIR, "02_waw_out_of_order_vs_in_order_commit.svg")
@@ -364,7 +364,7 @@ def generate_waw_waveform(rows):
 # 3. Memory WAR & Store Buffer Forwarding Diagram
 # ----------------------------------------------------------------------------
 def generate_memory_ordering_diagram(rows):
-    width, height = 1100, 480
+    width, height = 1200, 480
     svg = svg_header(width, height)
 
     svg.append(f'<rect x="20" y="15" width="{width-40}" height="42" rx="8" fill="#1e293b" />')
@@ -374,7 +374,7 @@ def generate_memory_ordering_diagram(rows):
                'Store Buffer Serialization | Zero-Stall Bypass | Address Aliasing</text>')
 
     # Left Column: Memory WAR
-    war_x, war_y, war_w, war_h = 50, 85, 480, 310
+    war_x, war_y, war_w, war_h = 50, 85, 530, 310
     svg.append(f'<rect x="{war_x}" y="{war_y}" width="{war_w}" height="{war_h}" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />')
     svg.append(f'<rect x="{war_x}" y="{war_y}" width="{war_w}" height="32" rx="8" fill="#f1f5f9" />')
     svg.append(f'<text x="{war_x+15}" y="{war_y+21}" font-size="12" font-weight="700" fill="#0f172a">'
@@ -400,7 +400,7 @@ def generate_memory_ordering_diagram(rows):
         sy += 62
 
     # Right Column: Store-to-Load Forwarding (RAW in Store Buffer)
-    raw_x, raw_y, raw_w, raw_h = 570, 85, 480, 310
+    raw_x, raw_y, raw_w, raw_h = 620, 85, 530, 310
     svg.append(f'<rect x="{raw_x}" y="{raw_y}" width="{raw_w}" height="{raw_h}" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />')
     svg.append(f'<rect x="{raw_x}" y="{raw_y}" width="{raw_w}" height="32" rx="8" fill="#f1f5f9" />')
     svg.append(f'<text x="{raw_x+15}" y="{raw_y+21}" font-size="12" font-weight="700" fill="#0f172a">'
@@ -443,7 +443,7 @@ def generate_memory_ordering_diagram(rows):
 # 4. Sub-Word Accesses & Register x0 Invariant Diagram
 # ----------------------------------------------------------------------------
 def generate_subword_and_x0_diagram(rows):
-    width, height = 1100, 480
+    width, height = 1200, 480
     svg = svg_header(width, height)
 
     svg.append(f'<rect x="20" y="15" width="{width-40}" height="42" rx="8" fill="#1e293b" />')
@@ -453,7 +453,7 @@ def generate_subword_and_x0_diagram(rows):
                'Byte/Half-Word Sign &amp; Zero Extensions | Hardwired Zero Invariant</text>')
 
     # Left: Sub-Word Access Table
-    sw_x, sw_y, sw_w, sw_h = 50, 85, 480, 310
+    sw_x, sw_y, sw_w, sw_h = 50, 85, 530, 310
     svg.append(f'<rect x="{sw_x}" y="{sw_y}" width="{sw_w}" height="{sw_h}" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />')
     svg.append(f'<rect x="{sw_x}" y="{sw_y}" width="{sw_w}" height="32" rx="8" fill="#f1f5f9" />')
     svg.append(f'<text x="{sw_x+15}" y="{sw_y+21}" font-size="12" font-weight="700" fill="#0f172a">'
@@ -470,13 +470,13 @@ def generate_subword_and_x0_diagram(rows):
     sy = sw_y + 42
     for instr, op_type, res_val, desc in sw_rows:
         svg.append(f'<rect x="{sw_x+10}" y="{sy}" width="{sw_w-20}" height="48" rx="4" fill="#f8fafc" stroke="#e2e8f0" />')
-        svg.append(f'<text x="{sw_x+20}" y="{sy+16}" font-size="10.5" font-weight="700" fill="#1e293b">{instr} &rarr; {op_type}</text>')
+        svg.append(f'<text x="{sw_x+20}" y="{sy+16}" font-size="10.5" font-weight="700" fill="#1e293b">{instr} → {op_type}</text>')
         svg.append(f'<text x="{sw_x+20}" y="{sy+31}" font-size="9.5" font-weight="600" fill="#2563eb">Result: {res_val}</text>')
         svg.append(f'<text x="{sw_x+20}" y="{sy+44}" font-size="8.5" fill="#64748b">{desc}</text>')
         sy += 52
 
     # Right: Register x0 Invariant & Stall Immunity
-    x0_x, x0_y, x0_w, x0_h = 570, 85, 480, 310
+    x0_x, x0_y, x0_w, x0_h = 620, 85, 530, 310
     svg.append(f'<rect x="{x0_x}" y="{x0_y}" width="{x0_w}" height="{x0_h}" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />')
     svg.append(f'<rect x="{x0_x}" y="{x0_y}" width="{x0_w}" height="32" rx="8" fill="#f1f5f9" />')
     svg.append(f'<text x="{x0_x+15}" y="{x0_y+21}" font-size="12" font-weight="700" fill="#0f172a">'

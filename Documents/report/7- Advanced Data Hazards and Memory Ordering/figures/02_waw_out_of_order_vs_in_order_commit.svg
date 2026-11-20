@@ -377,7 +377,9 @@
 <text x="1137.6190476190475" y="378" class="cyc-lbl" fill="#94a3b8">0</text>
 <rect x="20" y="403" width="1160" height="85" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1" />
 <text x="35" y="423" class="ann-title">Microarchitectural Analysis of WAW Hazard Resolution:</text>
-<text x="35" y="441" class="ann-body">1. Execution Completion Out-of-Order: "LI a0, 99" finishes execution in 1 cycle, while "DIV a0, gp, tp" takes 8 cycles in the integer divider unit. Both target architectural register x10 (a0).</text>
-<text x="35" y="457" class="ann-body">2. In-Order Commit Guarantees Correct State: CVA6 Scoreboard retires strictly in FIFO order. DIV commits first writing quotient 100, and LI a0,99 commits second overwriting it with 99. Architectural state is never corrupted!</text>
-<text x="35" y="473" class="ann-body">3. Consumer Routing (raw_checker.sv): "ADD a1, a0, zero" receives 99 because raw_checker points to the most recent producer in the scoreboard (last_before_idx), ignoring the earlier DIV instruction.</text>
+<text x="35" y="441" class="ann-body">
+  <tspan x="35" dy="0">1. Out-of-Order Execution: 'LI a0, 99' completes in 1 cycle, while 'DIV a0, gp, tp' takes 8 cycles in the divider. Both target architectural register x10 (a0).</tspan>
+  <tspan x="35" dy="16">2. Strict In-Order Commit: CVA6 scoreboard retires in strict FIFO program order. DIV commits first writing quotient 100, and LI a0,99 commits second overwriting it with 99.</tspan>
+  <tspan x="35" dy="16">3. Consumer Bypass Routing: raw_checker.sv points 'ADD a1, a0, zero' to the most recent producer in the scoreboard, correctly observing 99 with zero data hazards.</tspan>
+</text>
 </svg>
