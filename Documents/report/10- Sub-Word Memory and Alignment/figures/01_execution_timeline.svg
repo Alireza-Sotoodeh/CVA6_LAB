@@ -1,113 +1,136 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 560" width="100%" height="100%" style="background:#ffffff; font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
-  <defs>
-    <linearGradient id="gridGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#f8fafc" />
-      <stop offset="100%" stop-color="#ffffff" />
-    </linearGradient>
-    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.06"/>
-    </filter>
-  </defs>
-  <rect width="1100" height="560" fill="url(#gridGrad)" />
-  <rect x="20" y="15" width="1060" height="56" rx="8" fill="#0f172a" filter="url(#shadow)"/>
-  <text x="36" y="40" fill="#f8fafc" font-size="16" font-weight="700">CVA6 Suite 10: Execution Timeline &amp; Sub-Word / Alignment Overview</text>
-  <text x="36" y="58" fill="#94a3b8" font-size="12">Full benchmark execution (Cycles 310–600) showing 4 hardware traps, mtval capture and MRET recoveries</text>
-
-
-  <g filter="url(#shadow)">
-    <rect x="25" y="85" width="510" height="74" rx="8" fill="#ffffff" stroke="#0284c7" stroke-width="2"/>
-    <rect x="25" y="85" width="8" height="74" rx="4" fill="#0284c7"/>
-    <text x="43" y="107" font-size="13" font-weight="700" fill="#0f172a">Phase 1: Sub-Word Accesses</text>
-    <rect x="405" y="95" width="115" height="18" rx="4" fill="#0284c7" fill-opacity="0.12"/>
-    <text x="462" y="108" font-size="10" font-weight="700" fill="#0284c7" text-anchor="middle">Cycles 310 - 350</text>
-    <text x="43" y="127" font-size="11" fill="#475569">SB, SH byte enables; LB, LBU, LH, LHU sign/zero extensions verified 100%</text>
-  </g>
-
-  <g filter="url(#shadow)">
-    <rect x="555" y="85" width="510" height="74" rx="8" fill="#ffffff" stroke="#dc2626" stroke-width="2"/>
-    <rect x="555" y="85" width="8" height="74" rx="4" fill="#dc2626"/>
-    <text x="573" y="107" font-size="13" font-weight="700" fill="#0f172a">Phase 2: Unaligned Word Load</text>
-    <rect x="935" y="95" width="115" height="18" rx="4" fill="#dc2626" fill-opacity="0.12"/>
-    <text x="992" y="108" font-size="10" font-weight="700" fill="#dc2626" text-anchor="middle">Cycles 351 - 415</text>
-    <text x="573" y="127" font-size="11" fill="#475569">LW from 0x80000401; data_misaligned=1; mtval=0x80000401; vectored to mtvec</text>
-  </g>
-
-  <g filter="url(#shadow)">
-    <rect x="25" y="170" width="510" height="74" rx="8" fill="#ffffff" stroke="#ea580c" stroke-width="2"/>
-    <rect x="25" y="170" width="8" height="74" rx="4" fill="#ea580c"/>
-    <text x="43" y="192" font-size="13" font-weight="700" fill="#0f172a">Phase 3: Unaligned Word Store</text>
-    <rect x="405" y="180" width="115" height="18" rx="4" fill="#ea580c" fill-opacity="0.12"/>
-    <text x="462" y="193" font-size="10" font-weight="700" fill="#ea580c" text-anchor="middle">Cycles 416 - 470</text>
-    <text x="43" y="212" font-size="11" fill="#475569">SW to 0x80000402; data_misaligned=1; mcause=6; mtval=0x80000402; MRET resumed</text>
-  </g>
-
-  <g filter="url(#shadow)">
-    <rect x="555" y="170" width="510" height="74" rx="8" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
-    <rect x="555" y="170" width="8" height="74" rx="4" fill="#d97706"/>
-    <text x="573" y="192" font-size="13" font-weight="700" fill="#0f172a">Phase 4: Unaligned Halfword Load</text>
-    <rect x="935" y="180" width="115" height="18" rx="4" fill="#d97706" fill-opacity="0.12"/>
-    <text x="992" y="193" font-size="10" font-weight="700" fill="#d97706" text-anchor="middle">Cycles 471 - 525</text>
-    <text x="573" y="212" font-size="11" fill="#475569">LH from 0x80000403; data_misaligned=1; mtval=0x80000403; MRET resumed</text>
-  </g>
-
-  <g filter="url(#shadow)">
-    <rect x="25" y="255" width="510" height="74" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
-    <rect x="25" y="255" width="8" height="74" rx="4" fill="#7c3aed"/>
-    <text x="43" y="277" font-size="13" font-weight="700" fill="#0f172a">Phase 5: Unaligned Halfword Store</text>
-    <rect x="405" y="265" width="115" height="18" rx="4" fill="#7c3aed" fill-opacity="0.12"/>
-    <text x="462" y="278" font-size="10" font-weight="700" fill="#7c3aed" text-anchor="middle">Cycles 526 - 575</text>
-    <text x="43" y="297" font-size="11" fill="#475569">SH to 0x80000401; data_misaligned=1; mcause=6; mtval=0x80000401; MRET resumed</text>
-  </g>
-
-  <g filter="url(#shadow)">
-    <rect x="555" y="255" width="510" height="74" rx="8" fill="#ffffff" stroke="#059669" stroke-width="2"/>
-    <rect x="555" y="255" width="8" height="74" rx="4" fill="#059669"/>
-    <text x="573" y="277" font-size="13" font-weight="700" fill="#0f172a">Phase 6: Completion Self-Loop</text>
-    <rect x="935" y="265" width="115" height="18" rx="4" fill="#059669" fill-opacity="0.12"/>
-    <text x="992" y="278" font-size="10" font-weight="700" fill="#059669" text-anchor="middle">Cycles 576 - 603</text>
-    <text x="573" y="297" font-size="11" fill="#475569">GPR ra = 999; 22/22 assertions passed; 4 traps and 4 MRETs executed successfully</text>
-  </g>
-
-  <rect x="25" y="360" width="1050" height="175" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)"/>
-  <rect x="25" y="360" width="1050" height="32" rx="8" fill="#f1f5f9"/>
-  <text x="45" y="381" font-size="12" font-weight="700" fill="#334155">Metric Name</text>
-  <text x="350" y="381" font-size="12" font-weight="700" fill="#334155">Observed Hardware Value</text>
-  <text x="650" y="381" font-size="12" font-weight="700" fill="#334155">Verification Target</text>
-  <text x="950" y="381" font-size="12" font-weight="700" fill="#334155">Scoreboard Status</text>
-
-
-  <rect x="27" y="399" width="1046" height="23" fill="#ffffff"/>
-  <text x="45" y="414" font-size="11" font-weight="600" fill="#1e293b">Total Elapsed Cycles</text>
-  <text x="350" y="414" font-size="11" font-weight="600" fill="#0369a1">603 Clock Cycles</text>
-  <text x="650" y="414" font-size="11" fill="#475569">Watchdog timeout &lt; 4000</text>
-  <text x="950" y="414" font-size="11" font-weight="700" fill="#16a34a">PASS (Terminated at 578)</text>
-
-
-  <rect x="27" y="424" width="1046" height="23" fill="#f8fafc"/>
-  <text x="45" y="439" font-size="11" font-weight="600" fill="#1e293b">Committed Instructions</text>
-  <text x="350" y="439" font-size="11" font-weight="600" fill="#0369a1">108 Instructions</text>
-  <text x="650" y="439" font-size="11" fill="#475569">41 Base + 67 ISR Handlers</text>
-  <text x="950" y="439" font-size="11" font-weight="700" fill="#16a34a">PASS (100% Retire)</text>
-
-
-  <rect x="27" y="449" width="1046" height="23" fill="#ffffff"/>
-  <text x="45" y="464" font-size="11" font-weight="600" fill="#1e293b">Overall Benchmark CPI</text>
-  <text x="350" y="464" font-size="11" font-weight="600" fill="#0369a1">5.58 Cycles / Instruction</text>
-  <text x="650" y="464" font-size="11" fill="#475569">Includes 4 Trap Flushes &amp; Re-Fetches</text>
-  <text x="950" y="464" font-size="11" font-weight="700" fill="#16a34a">PASS (Expected for Traps)</text>
-
-
-  <rect x="27" y="474" width="1046" height="23" fill="#f8fafc"/>
-  <text x="45" y="489" font-size="11" font-weight="600" fill="#1e293b">Hardware Alignment Faults</text>
-  <text x="350" y="489" font-size="11" font-weight="600" fill="#0369a1">4 Events (2 Load + 2 Store)</text>
-  <text x="650" y="489" font-size="11" fill="#475569">LW (0x401), SW (0x402), LH (0x403), SH (0x401)</text>
-  <text x="950" y="489" font-size="11" font-weight="700" fill="#16a34a">PASS (100% Detected)</text>
-
-
-  <rect x="27" y="499" width="1046" height="23" fill="#ffffff"/>
-  <text x="45" y="514" font-size="11" font-weight="600" fill="#1e293b">MRET Instructions Executed</text>
-  <text x="350" y="514" font-size="11" font-weight="600" fill="#0369a1">4 Executions</text>
-  <text x="650" y="514" font-size="11" fill="#475569">Resumed PC after faulting instruction</text>
-  <text x="950" y="514" font-size="11" font-weight="700" fill="#16a34a">PASS (Zero Hangs)</text>
-
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" width="1200" height="480">
+<defs><style>
+  text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .title { font-size: 15px; font-weight: 700; fill: #0f172a; }
+  .subtitle { font-size: 11px; fill: #475569; }
+  .sig-name { font-size: 11px; font-weight: 600; fill: #1e293b; }
+  .sig-sub { font-size: 9px; fill: #64748b; }
+  .bus { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 8.5px; font-weight: 600; text-anchor: middle; fill: #0f172a; }
+  .bit { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 9px; font-weight: 600; text-anchor: middle; }
+  .cyc { font-size: 9px; fill: #475569; font-weight: 600; text-anchor: middle; }
+  .ann-title { font-size: 11px; font-weight: 700; fill: #0f172a; }
+  .ann-body { font-size: 9.5px; fill: #334155; }
+  .tag-lbl { font-size: 9px; font-weight: 700; text-anchor: middle; fill: #ffffff; }
+</style></defs>
+<rect width="1200" height="480" fill="#f8fafc" rx="8" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="20" y="15" width="1160" height="44" rx="6" fill="#1e293b"/>
+<text x="35" y="38" font-size="15" font-weight="700" fill="#f8fafc">CVA6 Suite 10: Sub-Word Memory &amp; Alignment Traps — Execution Timeline</text>
+<text x="1165" y="38" font-size="11" fill="#94a3b8" text-anchor="end">Total Cycles: 603 | 4 Traps &amp; MRET Recoveries | Active CPI = 5.58</text>
+<rect x="50.0" y="75" width="570.6" height="42" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+<text x="335.3" y="95" font-size="10" font-weight="700" fill="#0f172a" text-anchor="middle">Boot &amp; Init</text>
+<text x="335.3" y="109" font-size="8.5" fill="#475569" text-anchor="middle">C0–C310</text>
+<rect x="622.5" y="75" width="71.8" height="42" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" rx="4"/>
+<text x="658.4" y="95" font-size="10" font-weight="700" fill="#0f172a" text-anchor="middle">Sub-Word Accesses</text>
+<text x="658.4" y="109" font-size="8.5" fill="#475569" text-anchor="middle">C311–C350</text>
+<rect x="696.1" y="75" width="117.8" height="42" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5" rx="4"/>
+<text x="755.0" y="95" font-size="10" font-weight="700" fill="#0f172a" text-anchor="middle">Unaligned Word Load</text>
+<text x="755.0" y="109" font-size="8.5" fill="#475569" text-anchor="middle">C351–C415</text>
+<rect x="815.8" y="75" width="99.4" height="42" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" rx="4"/>
+<text x="865.5" y="95" font-size="10" font-weight="700" fill="#0f172a" text-anchor="middle">Unaligned Word Store</text>
+<text x="865.5" y="109" font-size="8.5" fill="#475569" text-anchor="middle">C416–C470</text>
+<rect x="917.0" y="75" width="99.4" height="42" fill="#fef3c7" stroke="#d97706" stroke-width="1.5" rx="4"/>
+<text x="966.7" y="95" font-size="10" font-weight="700" fill="#0f172a" text-anchor="middle">Unaligned Half Load</text>
+<text x="966.7" y="109" font-size="8.5" fill="#475569" text-anchor="middle">C471–C525</text>
+<rect x="1018.3" y="75" width="141.7" height="42" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" rx="4"/>
+<text x="1089.1" y="95" font-size="10" font-weight="700" fill="#0f172a" text-anchor="middle">Unaligned Half Store &amp; End</text>
+<text x="1089.1" y="109" font-size="8.5" fill="#475569" text-anchor="middle">C526–C603</text>
+<line x1="50" y1="117" x2="1160" y2="117" stroke="#475569" stroke-width="1.5"/>
+<line x1="50.0" y1="117" x2="50.0" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="50.0" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C0</text>
+<line x1="234.1" y1="117" x2="234.1" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="234.1" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C100</text>
+<line x1="418.2" y1="117" x2="418.2" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="418.2" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C200</text>
+<line x1="620.6" y1="117" x2="620.6" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="620.6" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C310</text>
+<line x1="696.1" y1="117" x2="696.1" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="696.1" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C351</text>
+<line x1="828.7" y1="117" x2="828.7" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="828.7" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C423</text>
+<line x1="939.1" y1="117" x2="939.1" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="939.1" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C483</text>
+<line x1="1033.0" y1="117" x2="1033.0" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="1033.0" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C534</text>
+<line x1="1114.0" y1="117" x2="1114.0" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="1114.0" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C578</text>
+<line x1="1160.0" y1="117" x2="1160.0" y2="122" stroke="#475569" stroke-width="1"/>
+<text x="1160.0" y="133" font-size="8.5" fill="#475569" text-anchor="middle">C603</text>
+<line x1="696.1" y1="75" x2="696.1" y2="135" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="2,2"/>
+<circle cx="696.1" cy="135" r="9" fill="#dc2626"/>
+<text x="696.1" y="138" class="tag-lbl">T1</text>
+<line x1="828.7" y1="75" x2="828.7" y2="135" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="2,2"/>
+<circle cx="828.7" cy="135" r="9" fill="#ea580c"/>
+<text x="828.7" y="138" class="tag-lbl">T2</text>
+<line x1="939.1" y1="75" x2="939.1" y2="135" stroke="#d97706" stroke-width="1.5" stroke-dasharray="2,2"/>
+<circle cx="939.1" cy="135" r="9" fill="#d97706"/>
+<text x="939.1" y="138" class="tag-lbl">T3</text>
+<line x1="1033.0" y1="75" x2="1033.0" y2="135" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2,2"/>
+<circle cx="1033.0" cy="135" r="9" fill="#7c3aed"/>
+<text x="1033.0" y="138" class="tag-lbl">T4</text>
+<line x1="1114.0" y1="75" x2="1114.0" y2="135" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="2,2"/>
+<circle cx="1114.0" cy="135" r="9" fill="#16a34a"/>
+<text x="1114.0" y="138" class="tag-lbl">E1</text>
+<rect x="50" y="170" width="1110" height="200" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" rx="6"/>
+<rect x="50" y="170" width="1110" height="26" fill="#f1f5f9" rx="6"/>
+<text x="65" y="187" class="sig-name">Tag</text>
+<text x="110" y="187" class="sig-name">Cycle</text>
+<text x="170" y="187" class="sig-name">Alignment Trap Event</text>
+<text x="470" y="187" class="sig-name">Diagnostic Captured into CSR mtval</text>
+<text x="900" y="187" class="sig-name">Trap Cause &amp; Hardware Action</text>
+<rect x="51" y="201" width="1108" height="20" fill="#ffffff"/>
+<rect x="65" y="204" width="22" height="14" rx="3" fill="#dc2626"/>
+<text x="76" y="215" class="tag-lbl">T1</text>
+<text x="110" y="215" font-size="9.5" font-weight="600" fill="#0f172a">C351</text>
+<text x="170" y="215" font-size="9.5" fill="#1e293b">Unaligned Load (LW 0x401)</text>
+<text x="470" y="215" font-size="9.5" font-family="monospace" fill="#0369a1">data_misaligned=1, cause=4, mtval=0x80000401</text>
+<text x="900" y="215" font-size="9.5" font-weight="600" fill="#dc2626">Pipeline flush; mepc+=4 MRET</text>
+<rect x="51" y="221" width="1108" height="20" fill="#f8fafc"/>
+<rect x="65" y="224" width="22" height="14" rx="3" fill="#ea580c"/>
+<text x="76" y="235" class="tag-lbl">T2</text>
+<text x="110" y="235" font-size="9.5" font-weight="600" fill="#0f172a">C423</text>
+<text x="170" y="235" font-size="9.5" fill="#1e293b">Unaligned Store (SW 0x402)</text>
+<text x="470" y="235" font-size="9.5" font-family="monospace" fill="#0369a1">data_misaligned=1, cause=6, mtval=0x80000402</text>
+<text x="900" y="235" font-size="9.5" font-weight="600" fill="#ea580c">Pipeline flush; mepc+=4 MRET</text>
+<rect x="51" y="241" width="1108" height="20" fill="#ffffff"/>
+<rect x="65" y="244" width="22" height="14" rx="3" fill="#d97706"/>
+<text x="76" y="255" class="tag-lbl">T3</text>
+<text x="110" y="255" font-size="9.5" font-weight="600" fill="#0f172a">C483</text>
+<text x="170" y="255" font-size="9.5" fill="#1e293b">Unaligned Half Load (LH 0x403)</text>
+<text x="470" y="255" font-size="9.5" font-family="monospace" fill="#0369a1">data_misaligned=1, cause=4, mtval=0x80000403</text>
+<text x="900" y="255" font-size="9.5" font-weight="600" fill="#d97706">Pipeline flush; mepc+=4 MRET</text>
+<rect x="51" y="261" width="1108" height="20" fill="#f8fafc"/>
+<rect x="65" y="264" width="22" height="14" rx="3" fill="#7c3aed"/>
+<text x="76" y="275" class="tag-lbl">T4</text>
+<text x="110" y="275" font-size="9.5" font-weight="600" fill="#0f172a">C534</text>
+<text x="170" y="275" font-size="9.5" fill="#1e293b">Unaligned Half Store (SH 0x401)</text>
+<text x="470" y="275" font-size="9.5" font-family="monospace" fill="#0369a1">data_misaligned=1, cause=6, mtval=0x80000401</text>
+<text x="900" y="275" font-size="9.5" font-weight="600" fill="#7c3aed">Pipeline flush; mepc+=4 MRET</text>
+<rect x="51" y="281" width="1108" height="20" fill="#ffffff"/>
+<rect x="65" y="284" width="22" height="14" rx="3" fill="#16a34a"/>
+<text x="76" y="295" class="tag-lbl">E1</text>
+<text x="110" y="295" font-size="9.5" font-weight="600" fill="#0f172a">C578</text>
+<text x="170" y="295" font-size="9.5" fill="#1e293b">Terminal Loop Commit</text>
+<text x="470" y="295" font-size="9.5" font-family="monospace" fill="#0369a1">j end_loop commits; 22/22 assertions PASS</text>
+<text x="900" y="295" font-size="9.5" font-weight="600" fill="#16a34a">Simulation end, all assertions PASS</text>
+<rect x="50.0" y="390" width="212.4" height="66" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<text x="60.0" y="408" font-size="9" font-weight="600" fill="#475569">Sub-Word Extensions</text>
+<text x="60.0" y="432" font-size="18" font-weight="700" fill="#2563eb">100%</text>
+<text x="60.0" y="447" font-size="8.5" fill="#64748b">LB/LBU/LH/LHU sign/zero match</text>
+<rect x="274.4" y="390" width="212.4" height="66" rx="6" fill="#fee2e2" stroke="#dc2626" stroke-width="1.2"/>
+<text x="284.4" y="408" font-size="9" font-weight="600" fill="#475569">Misaligned Loads (Cause 4)</text>
+<text x="284.4" y="432" font-size="18" font-weight="700" fill="#dc2626">2</text>
+<text x="284.4" y="447" font-size="8.5" fill="#64748b">mtval=0x401 &amp; 0x403 captured</text>
+<rect x="498.8" y="390" width="212.4" height="66" rx="6" fill="#ffedd5" stroke="#ea580c" stroke-width="1.2"/>
+<text x="508.8" y="408" font-size="9" font-weight="600" fill="#475569">Misaligned Stores (Cause 6)</text>
+<text x="508.8" y="432" font-size="18" font-weight="700" fill="#ea580c">2</text>
+<text x="508.8" y="447" font-size="8.5" fill="#64748b">mtval=0x402 &amp; 0x401 captured</text>
+<rect x="723.2" y="390" width="212.4" height="66" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="1.2"/>
+<text x="733.2" y="408" font-size="9" font-weight="600" fill="#475569">MRET Resumptions</text>
+<text x="733.2" y="432" font-size="18" font-weight="700" fill="#16a34a">4</text>
+<text x="733.2" y="447" font-size="8.5" fill="#64748b">Correct return to fault PC+4</text>
+<rect x="947.6" y="390" width="212.4" height="66" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.2"/>
+<text x="957.6" y="408" font-size="9" font-weight="600" fill="#475569">Verification Status</text>
+<text x="957.6" y="432" font-size="18" font-weight="700" fill="#0284c7">22/22</text>
+<text x="957.6" y="447" font-size="8.5" fill="#64748b">All checks PASSED</text>
 </svg>
