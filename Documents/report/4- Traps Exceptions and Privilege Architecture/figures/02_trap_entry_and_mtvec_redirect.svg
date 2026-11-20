@@ -1,318 +1,318 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500">
-<defs>
-  <style type="text/css">
-    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-    .sig-lbl { font-size: 11px; font-weight: 600; fill: #1e293b; }
-    .sig-sub { font-size: 9px; fill: #64748b; }
-    .cyc-lbl { font-size: 10px; fill: #475569; text-anchor: middle; }
-    .box-lbl { font-size: 10px; font-weight: 600; text-anchor: middle; }
-    .ann-title { font-size: 11px; font-weight: 700; fill: #0f172a; }
-    .ann-body { font-size: 10px; fill: #334155; }
-  </style>
-</defs>
-<rect width="1200" height="500" fill="#f8fafc" />
-  <text x="30" y="30" font-size="15" font-weight="700" fill="#0f172a">CVA6 Trap Entry & MTVEC Vectoring Waveform — EBREAK (Cycles 414 – 426)</text>
-  <text x="30" y="48" font-size="11" fill="#475569">Execution of EBREAK at 0x8000_0070 triggers Cause 3 at Cyc 417, asserting full pipeline flushes (BP/IF/ID/EX) and redirecting FetchPC to MTVEC (0x8000_00a0).</text>
-  <rect x="210" y="80" width="73" height="330" fill="#ffffff" opacity="0.6" />
-  <line x1="210" y1="80" x2="210" y2="410" stroke="#e2e8f0" stroke-width="1" />
-  <text x="246.5" y="72" class="cyc-lbl">414</text>
-  <rect x="283" y="80" width="73" height="330" fill="#ffffff" opacity="0.6" />
-  <line x1="283" y1="80" x2="283" y2="410" stroke="#e2e8f0" stroke-width="1" />
-  <text x="319.5" y="72" class="cyc-lbl">415</text>
-  <rect x="356" y="80" width="73" height="330" fill="#ffffff" opacity="0.6" />
-  <line x1="356" y1="80" x2="356" y2="410" stroke="#e2e8f0" stroke-width="1" />
-  <text x="392.5" y="72" class="cyc-lbl">416</text>
-  <rect x="429" y="80" width="73" height="330" fill="#fee2e2" opacity="0.6" />
-  <line x1="429" y1="80" x2="429" y2="410" stroke="#e2e8f0" stroke-width="1" />
-  <text x="465.5" y="72" class="cyc-lbl">417</text>
-  <rect x="502" y="80" width="73" height="330" fill="#ffffff" opacity="0.6" />
-  <line x1="502" y1="80" x2="502" y2="410" stroke="#e2e8f0" stroke-width="1" />
-  <text x="538.5" y="72" class="cyc-lbl">418</text>
-  <rect x="575" y="80" width="73" height="330" fill="#ffffff" opacity="0.6" />
-  <line x1="575" y1="80" x2="575" y2="410" stroke="#e2e8f0" stroke-width="1" />
-  <text x="611.5" y="72" class="cyc-lbl">419</text>
-  <rect x="648" y="80" width="73" height="330" fill="#ffffff" opacity="0.6" />
-  <line x1="648" y1="80" x2="648" y2="410" stroke="#e2e8f0" stroke-width="1" />
-  <text x="684.5" y="72" class="cyc-lbl">420</text>
-  <rect x="721" y="80" width="73" height="330" fill="#ffffff" opacity="0.6" />
-  <line x1="721" y1="80" x2="721" y2="410" stroke="#e2e8f0" stroke-width="1" />
-  <text x="757.5" y="72" class="cyc-lbl">421</text>
-  <rect x="794" y="80" width="73" height="330" fill="#ffffff" opacity="0.6" />
-  <line x1="794" y1="80" x2="794" y2="410" stroke="#e2e8f0" stroke-width="1" />
-  <text x="830.5" y="72" class="cyc-lbl">422</text>
-  <rect x="867" y="80" width="73" height="330" fill="#ffffff" opacity="0.6" />
-  <line x1="867" y1="80" x2="867" y2="410" stroke="#e2e8f0" stroke-width="1" />
-  <text x="903.5" y="72" class="cyc-lbl">423</text>
-  <rect x="940" y="80" width="73" height="330" fill="#dbeafe" opacity="0.6" />
-  <line x1="940" y1="80" x2="940" y2="410" stroke="#e2e8f0" stroke-width="1" />
-  <text x="976.5" y="72" class="cyc-lbl">424</text>
-  <rect x="1013" y="80" width="73" height="330" fill="#ffffff" opacity="0.6" />
-  <line x1="1013" y1="80" x2="1013" y2="410" stroke="#e2e8f0" stroke-width="1" />
-  <text x="1049.5" y="72" class="cyc-lbl">425</text>
-  <rect x="1086" y="80" width="73" height="330" fill="#ffffff" opacity="0.6" />
-  <line x1="1086" y1="80" x2="1086" y2="410" stroke="#e2e8f0" stroke-width="1" />
-  <text x="1122.5" y="72" class="cyc-lbl">426</text>
-  <text x="35" y="104" class="sig-lbl">FetchPC</text>
-  <text x="140" y="104" class="sig-sub">Fetch stage PC</text>
-  <rect x="212" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
-  <text x="246.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0074</text>
-  <rect x="285" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
-  <text x="319.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0078</text>
-  <rect x="358" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
-  <text x="392.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x007C</text>
-  <rect x="431" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
-  <text x="465.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x0080</text>
-  <rect x="504" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
-  <text x="538.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x00A0</text>
-  <rect x="577" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
-  <text x="611.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x00A4</text>
-  <rect x="650" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
-  <text x="684.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x00A8</text>
-  <rect x="723" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
-  <text x="757.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x00AC</text>
-  <rect x="796" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
-  <text x="830.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x00B0</text>
-  <rect x="869" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
-  <text x="903.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x00B4</text>
-  <rect x="942" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
-  <text x="976.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x00B8</text>
-  <rect x="1015" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
-  <text x="1049.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x00BC</text>
-  <rect x="1088" y="92" width="69" height="18" fill="#f1f5f9" stroke="#0284c7" stroke-width="1" rx="2" />
-  <text x="1122.5" y="104" font-size="8.5" font-family="monospace" fill="#0284c7" text-anchor="middle">0x00C0</text>
-  <text x="35" y="128" class="sig-lbl">CommitPC0</text>
-  <text x="140" y="128" class="sig-sub">Retired instruction PC</text>
-  <rect x="212" y="116" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="246.5" y="128" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="285" y="116" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="319.5" y="128" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="358" y="116" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="392.5" y="128" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="431" y="116" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="465.5" y="128" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="504" y="116" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="538.5" y="128" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="577" y="116" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="611.5" y="128" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="650" y="116" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="684.5" y="128" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="723" y="116" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="757.5" y="128" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="796" y="116" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="830.5" y="128" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="869" y="116" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="903.5" y="128" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <rect x="942" y="116" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="976.5" y="128" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0x00A0 ADDI sp,sp,1</text>
-  <rect x="1015" y="116" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="1049.5" y="128" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0x00A4 CSRR t3,mcause</text>
-  <rect x="1088" y="116" width="69" height="18" fill="#f1f5f9" stroke="#16a34a" stroke-width="1" rx="2" />
-  <text x="1122.5" y="128" font-size="8.5" font-family="monospace" fill="#16a34a" text-anchor="middle">0</text>
-  <text x="35" y="152" class="sig-lbl">CommitAck0</text>
-  <text x="140" y="152" class="sig-sub">Instruction retired</text>
-  <rect x="214" y="150" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="287" y="150" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="360" y="150" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="433" y="150" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="506" y="150" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="579" y="150" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="652" y="150" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="725" y="150" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="798" y="150" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="871" y="150" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="944" y="140" width="65" height="14" fill="#16a34a" rx="2" />
-  <rect x="1017" y="140" width="65" height="14" fill="#16a34a" rx="2" />
-  <rect x="1090" y="150" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <text x="35" y="176" class="sig-lbl">ExValid</text>
-  <text x="140" y="176" class="sig-sub">Exception valid to CSR</text>
-  <rect x="214" y="174" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="287" y="174" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="360" y="174" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="433" y="164" width="65" height="14" fill="#dc2626" rx="2" />
-  <rect x="506" y="174" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="579" y="174" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="652" y="174" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="725" y="174" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="798" y="174" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="871" y="174" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="944" y="174" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1017" y="174" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1090" y="174" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <text x="35" y="200" class="sig-lbl">ExceptionCause</text>
-  <text x="140" y="200" class="sig-sub">Trap cause ID</text>
-  <rect x="212" y="188" width="69" height="18" fill="#f1f5f9" stroke="#dc2626" stroke-width="1" rx="2" />
-  <text x="246.5" y="200" font-size="8.5" font-family="monospace" fill="#dc2626" text-anchor="middle">0</text>
-  <rect x="285" y="188" width="69" height="18" fill="#f1f5f9" stroke="#dc2626" stroke-width="1" rx="2" />
-  <text x="319.5" y="200" font-size="8.5" font-family="monospace" fill="#dc2626" text-anchor="middle">0</text>
-  <rect x="358" y="188" width="69" height="18" fill="#f1f5f9" stroke="#dc2626" stroke-width="1" rx="2" />
-  <text x="392.5" y="200" font-size="8.5" font-family="monospace" fill="#dc2626" text-anchor="middle">0</text>
-  <rect x="431" y="188" width="69" height="18" fill="#f1f5f9" stroke="#dc2626" stroke-width="1" rx="2" />
-  <text x="465.5" y="200" font-size="8.5" font-family="monospace" fill="#dc2626" text-anchor="middle">0x0003</text>
-  <rect x="504" y="188" width="69" height="18" fill="#f1f5f9" stroke="#dc2626" stroke-width="1" rx="2" />
-  <text x="538.5" y="200" font-size="8.5" font-family="monospace" fill="#dc2626" text-anchor="middle">0</text>
-  <rect x="577" y="188" width="69" height="18" fill="#f1f5f9" stroke="#dc2626" stroke-width="1" rx="2" />
-  <text x="611.5" y="200" font-size="8.5" font-family="monospace" fill="#dc2626" text-anchor="middle">0</text>
-  <rect x="650" y="188" width="69" height="18" fill="#f1f5f9" stroke="#dc2626" stroke-width="1" rx="2" />
-  <text x="684.5" y="200" font-size="8.5" font-family="monospace" fill="#dc2626" text-anchor="middle">0</text>
-  <rect x="723" y="188" width="69" height="18" fill="#f1f5f9" stroke="#dc2626" stroke-width="1" rx="2" />
-  <text x="757.5" y="200" font-size="8.5" font-family="monospace" fill="#dc2626" text-anchor="middle">0</text>
-  <rect x="796" y="188" width="69" height="18" fill="#f1f5f9" stroke="#dc2626" stroke-width="1" rx="2" />
-  <text x="830.5" y="200" font-size="8.5" font-family="monospace" fill="#dc2626" text-anchor="middle">0</text>
-  <rect x="869" y="188" width="69" height="18" fill="#f1f5f9" stroke="#dc2626" stroke-width="1" rx="2" />
-  <text x="903.5" y="200" font-size="8.5" font-family="monospace" fill="#dc2626" text-anchor="middle">0</text>
-  <rect x="942" y="188" width="69" height="18" fill="#f1f5f9" stroke="#dc2626" stroke-width="1" rx="2" />
-  <text x="976.5" y="200" font-size="8.5" font-family="monospace" fill="#dc2626" text-anchor="middle">0</text>
-  <rect x="1015" y="188" width="69" height="18" fill="#f1f5f9" stroke="#dc2626" stroke-width="1" rx="2" />
-  <text x="1049.5" y="200" font-size="8.5" font-family="monospace" fill="#dc2626" text-anchor="middle">0</text>
-  <rect x="1088" y="188" width="69" height="18" fill="#f1f5f9" stroke="#dc2626" stroke-width="1" rx="2" />
-  <text x="1122.5" y="200" font-size="8.5" font-family="monospace" fill="#dc2626" text-anchor="middle">0</text>
-  <text x="35" y="224" class="sig-lbl">FlushBP</text>
-  <text x="140" y="224" class="sig-sub">Branch predictor flush</text>
-  <rect x="214" y="222" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="287" y="222" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="360" y="222" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="433" y="212" width="65" height="14" fill="#e11d48" rx="2" />
-  <rect x="506" y="222" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="579" y="222" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="652" y="222" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="725" y="222" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="798" y="222" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="871" y="222" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="944" y="222" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1017" y="222" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1090" y="222" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <text x="35" y="248" class="sig-lbl">FlushIF</text>
-  <text x="140" y="248" class="sig-sub">Instruction fetch flush</text>
-  <rect x="214" y="246" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="287" y="246" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="360" y="246" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="433" y="236" width="65" height="14" fill="#e11d48" rx="2" />
-  <rect x="506" y="246" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="579" y="246" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="652" y="246" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="725" y="246" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="798" y="246" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="871" y="246" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="944" y="246" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1017" y="246" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1090" y="246" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <text x="35" y="272" class="sig-lbl">FlushID</text>
-  <text x="140" y="272" class="sig-sub">Instruction decode flush</text>
-  <rect x="214" y="270" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="287" y="270" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="360" y="270" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="433" y="260" width="65" height="14" fill="#e11d48" rx="2" />
-  <rect x="506" y="270" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="579" y="270" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="652" y="270" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="725" y="270" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="798" y="270" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="871" y="270" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="944" y="270" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1017" y="270" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1090" y="270" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <text x="35" y="296" class="sig-lbl">FlushEX</text>
-  <text x="140" y="296" class="sig-sub">Execute stage flush</text>
-  <rect x="214" y="294" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="287" y="294" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="360" y="294" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="433" y="284" width="65" height="14" fill="#e11d48" rx="2" />
-  <rect x="506" y="294" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="579" y="294" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="652" y="294" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="725" y="294" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="798" y="294" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="871" y="294" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="944" y="294" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1017" y="294" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <rect x="1090" y="294" width="65" height="4" fill="#cbd5e1" rx="2" />
-  <text x="35" y="320" class="sig-lbl">CsrMepc</text>
-  <text x="140" y="320" class="sig-sub">CSR mepc (return PC)</text>
-  <rect x="212" y="308" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="246.5" y="320" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x80000068</text>
-  <rect x="285" y="308" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="319.5" y="320" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x80000068</text>
-  <rect x="358" y="308" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="392.5" y="320" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x80000068</text>
-  <rect x="431" y="308" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="465.5" y="320" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x80000068</text>
-  <rect x="504" y="308" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="538.5" y="320" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x80000070</text>
-  <rect x="577" y="308" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="611.5" y="320" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x80000070</text>
-  <rect x="650" y="308" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="684.5" y="320" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x80000070</text>
-  <rect x="723" y="308" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="757.5" y="320" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x80000070</text>
-  <rect x="796" y="308" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="830.5" y="320" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x80000070</text>
-  <rect x="869" y="308" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="903.5" y="320" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x80000070</text>
-  <rect x="942" y="308" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="976.5" y="320" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x80000070</text>
-  <rect x="1015" y="308" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="1049.5" y="320" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x80000070</text>
-  <rect x="1088" y="308" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="1122.5" y="320" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x80000070</text>
-  <text x="35" y="344" class="sig-lbl">CsrMcause</text>
-  <text x="140" y="344" class="sig-sub">CSR mcause (trap cause)</text>
-  <rect x="212" y="332" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="246.5" y="344" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0002</text>
-  <rect x="285" y="332" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="319.5" y="344" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0002</text>
-  <rect x="358" y="332" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="392.5" y="344" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0002</text>
-  <rect x="431" y="332" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="465.5" y="344" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0002</text>
-  <rect x="504" y="332" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="538.5" y="344" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0003</text>
-  <rect x="577" y="332" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="611.5" y="344" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0003</text>
-  <rect x="650" y="332" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="684.5" y="344" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0003</text>
-  <rect x="723" y="332" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="757.5" y="344" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0003</text>
-  <rect x="796" y="332" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="830.5" y="344" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0003</text>
-  <rect x="869" y="332" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="903.5" y="344" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0003</text>
-  <rect x="942" y="332" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="976.5" y="344" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0003</text>
-  <rect x="1015" y="332" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="1049.5" y="344" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0003</text>
-  <rect x="1088" y="332" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="1122.5" y="344" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x0003</text>
-  <text x="35" y="368" class="sig-lbl">CsrMtval</text>
-  <text x="140" y="368" class="sig-sub">CSR mtval (fault address)</text>
-  <rect x="212" y="356" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="246.5" y="368" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0</text>
-  <rect x="285" y="356" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="319.5" y="368" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0</text>
-  <rect x="358" y="356" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="392.5" y="368" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0</text>
-  <rect x="431" y="356" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="465.5" y="368" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0</text>
-  <rect x="504" y="356" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="538.5" y="368" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x80000070</text>
-  <rect x="577" y="356" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="611.5" y="368" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x80000070</text>
-  <rect x="650" y="356" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="684.5" y="368" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x80000070</text>
-  <rect x="723" y="356" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="757.5" y="368" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x80000070</text>
-  <rect x="796" y="356" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="830.5" y="368" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x80000070</text>
-  <rect x="869" y="356" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="903.5" y="368" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x80000070</text>
-  <rect x="942" y="356" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="976.5" y="368" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x80000070</text>
-  <rect x="1015" y="356" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="1049.5" y="368" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x80000070</text>
-  <rect x="1088" y="356" width="69" height="18" fill="#f1f5f9" stroke="#9333ea" stroke-width="1" rx="2" />
-  <text x="1122.5" y="368" font-size="8.5" font-family="monospace" fill="#9333ea" text-anchor="middle">0x80000070</text>
-  <rect x="40" y="430" width="1120" height="55" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="4" />
-  <text x="55" y="448" class="ann-title">Microarchitectural Analysis (Cyc 417 – 424):</text>
-  <text x="55" y="464" class="ann-body">• Cyc 417: Commit unit encounters EBREAK; asserts ExValid=1 with ExceptionCause=3. Simultaneously, controller.sv asserts FlushBP=1, FlushIF=1, FlushID=1, FlushEX=1.
-• Cyc 418: FetchPC is redirected to MTVEC (0x8000_00a0); CSRs latch mepc=0x8000_0070 and mcause=0x3. In Cyc 424, first handler instruction commits.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 506" width="1200" height="506">
+<defs><style>
+  text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .title { font-size: 15px; font-weight: 700; fill: #0f172a; }
+  .subtitle { font-size: 11px; fill: #475569; }
+  .sig-name { font-size: 11px; font-weight: 600; fill: #1e293b; }
+  .sig-sub { font-size: 9px; fill: #64748b; }
+  .bus { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 8.5px; font-weight: 600; text-anchor: middle; fill: #0f172a; }
+  .bit { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 9px; font-weight: 600; text-anchor: middle; }
+  .cyc { font-size: 9px; fill: #475569; font-weight: 600; text-anchor: middle; }
+  .ann-title { font-size: 11px; font-weight: 700; fill: #0f172a; }
+  .ann-body { font-size: 9.5px; fill: #334155; }
+  .tag-lbl { font-size: 9px; font-weight: 700; text-anchor: middle; fill: #ffffff; }
+</style></defs>
+<rect width="1200" height="506" fill="#f8fafc" rx="8" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="20" y="12" width="1160" height="46" rx="6" fill="#1e293b"/>
+<text x="35" y="32" font-size="14" font-weight="700" fill="#f8fafc">Trap Entry &amp; MTVEC Redirect Waveform: EBREAK (Cycles 414 to 426)</text>
+<text x="35" y="48" font-size="10.5" fill="#94a3b8">EBREAK at 0x80000070 triggers Cause 3 at Cyc 417, asserting full pipeline flushes and redirecting to MTVEC (0x800000A0)</text>
+<rect x="240.0" y="75" width="71.5" height="336" fill="#f8fafc"/>
+<line x1="240.0" y1="75" x2="240.0" y2="411" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="275.8" y="69" class="cyc" fill="#475569">C414</text>
+<rect x="311.5" y="75" width="71.5" height="336" fill="#ffffff"/>
+<line x1="311.5" y1="75" x2="311.5" y2="411" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="347.3" y="69" class="cyc" fill="#475569">C415</text>
+<rect x="383.1" y="75" width="71.5" height="336" fill="#f8fafc"/>
+<line x1="383.1" y1="75" x2="383.1" y2="411" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="418.8" y="69" class="cyc" fill="#475569">C416</text>
+<rect x="454.6" y="75" width="71.5" height="336" fill="#fef2f2"/>
+<line x1="454.6" y1="75" x2="454.6" y2="411" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,2"/>
+<line x1="454.6" y1="75" x2="454.6" y2="411" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="490.4" y="69" class="cyc" fill="#dc2626">C417</text>
+<rect x="526.2" y="75" width="71.5" height="336" fill="#f8fafc"/>
+<line x1="526.2" y1="75" x2="526.2" y2="411" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="561.9" y="69" class="cyc" fill="#475569">C418</text>
+<rect x="597.7" y="75" width="71.5" height="336" fill="#ffffff"/>
+<line x1="597.7" y1="75" x2="597.7" y2="411" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="633.5" y="69" class="cyc" fill="#475569">C419</text>
+<rect x="669.2" y="75" width="71.5" height="336" fill="#f8fafc"/>
+<line x1="669.2" y1="75" x2="669.2" y2="411" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="705.0" y="69" class="cyc" fill="#475569">C420</text>
+<rect x="740.8" y="75" width="71.5" height="336" fill="#ffffff"/>
+<line x1="740.8" y1="75" x2="740.8" y2="411" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="776.5" y="69" class="cyc" fill="#475569">C421</text>
+<rect x="812.3" y="75" width="71.5" height="336" fill="#f8fafc"/>
+<line x1="812.3" y1="75" x2="812.3" y2="411" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="848.1" y="69" class="cyc" fill="#475569">C422</text>
+<rect x="883.8" y="75" width="71.5" height="336" fill="#ffffff"/>
+<line x1="883.8" y1="75" x2="883.8" y2="411" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="919.6" y="69" class="cyc" fill="#475569">C423</text>
+<rect x="955.4" y="75" width="71.5" height="336" fill="#f8fafc"/>
+<line x1="955.4" y1="75" x2="955.4" y2="411" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="991.2" y="69" class="cyc" fill="#475569">C424</text>
+<rect x="1026.9" y="75" width="71.5" height="336" fill="#ffffff"/>
+<line x1="1026.9" y1="75" x2="1026.9" y2="411" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="1062.7" y="69" class="cyc" fill="#475569">C425</text>
+<rect x="1098.5" y="75" width="71.5" height="336" fill="#f8fafc"/>
+<line x1="1098.5" y1="75" x2="1098.5" y2="411" stroke="#e2e8f0" stroke-width="0.7"/>
+<text x="1134.2" y="69" class="cyc" fill="#475569">C426</text>
+<line x1="20" y1="103" x2="1180" y2="103" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="88" class="sig-name">FetchPC</text>
+<text x="25" y="98" class="sig-sub">Instruction Fetch Address</text>
+<polygon points="243.0,89.0 246.0,81.0 305.5,81.0 308.5,89.0 305.5,97.0 246.0,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="275.8" y="92.5" class="bus">0x0074 LI …</text>
+<polygon points="314.5,89.0 317.5,81.0 377.1,81.0 380.1,89.0 377.1,97.0 317.5,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="347.3" y="92.5" class="bus">0x0078 LI …</text>
+<polygon points="386.1,89.0 389.1,81.0 448.6,81.0 451.6,89.0 448.6,97.0 389.1,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="418.8" y="92.5" class="bus">0x007C ADD…</text>
+<polygon points="457.6,89.0 460.6,81.0 520.2,81.0 523.2,89.0 520.2,97.0 460.6,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="490.4" y="92.5" class="bus">0x0080 JR …</text>
+<polygon points="529.2,89.0 532.2,81.0 591.7,81.0 594.7,89.0 591.7,97.0 532.2,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="561.9" y="92.5" class="bus">0x00A0 ADD…</text>
+<polygon points="600.7,89.0 603.7,81.0 663.2,81.0 666.2,89.0 663.2,97.0 603.7,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="633.5" y="92.5" class="bus">0x00A4 CSR…</text>
+<polygon points="672.2,89.0 675.2,81.0 734.8,81.0 737.8,89.0 734.8,97.0 675.2,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="705.0" y="92.5" class="bus">0x00A8 CSR…</text>
+<polygon points="743.8,89.0 746.8,81.0 806.3,81.0 809.3,89.0 806.3,97.0 746.8,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="776.5" y="92.5" class="bus">0x00AC CSR…</text>
+<polygon points="815.3,89.0 818.3,81.0 877.8,81.0 880.8,89.0 877.8,97.0 818.3,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="848.1" y="92.5" class="bus">0x00B0 CSR…</text>
+<polygon points="886.8,89.0 889.8,81.0 949.4,81.0 952.4,89.0 949.4,97.0 889.8,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="919.6" y="92.5" class="bus">0x00B4 ADD…</text>
+<polygon points="958.4,89.0 961.4,81.0 1020.9,81.0 1023.9,89.0 1020.9,97.0 961.4,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="991.2" y="92.5" class="bus">0x00B8 CSR…</text>
+<polygon points="1029.9,89.0 1032.9,81.0 1092.5,81.0 1095.5,89.0 1092.5,97.0 1032.9,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="1062.7" y="92.5" class="bus">0x00BC MRET</text>
+<polygon points="1101.5,89.0 1104.5,81.0 1164.0,81.0 1167.0,89.0 1164.0,97.0 1104.5,97.0" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+<text x="1134.2" y="92.5" class="bus">0x00C0</text>
+<line x1="20" y1="131" x2="1180" y2="131" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="116" class="sig-name">CommitPC0</text>
+<text x="25" y="126" class="sig-sub">Commit Port 0 PC</text>
+<polygon points="243.0,117.0 246.0,109.0 949.4,109.0 952.4,117.0 949.4,125.0 246.0,125.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="958.4,117.0 961.4,109.0 1020.9,109.0 1023.9,117.0 1020.9,125.0 961.4,125.0" fill="#e0f2fe" stroke="#16a34a" stroke-width="1"/>
+<text x="991.2" y="120.5" class="bus">0x00A0 ADD…</text>
+<polygon points="1029.9,117.0 1032.9,109.0 1092.5,109.0 1095.5,117.0 1092.5,125.0 1032.9,125.0" fill="#e0f2fe" stroke="#16a34a" stroke-width="1"/>
+<text x="1062.7" y="120.5" class="bus">0x00A4 CSR…</text>
+<polygon points="1101.5,117.0 1104.5,109.0 1164.0,109.0 1167.0,117.0 1164.0,125.0 1104.5,125.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="20" y1="159" x2="1180" y2="159" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="144" class="sig-name">CommitAck0</text>
+<text x="25" y="154" class="sig-sub">Commit Instruction Ack</text>
+<line x1="240.0" y1="153.0" x2="311.5" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="275.8" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="311.5" y1="153.0" x2="383.1" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="347.3" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="383.1" y1="153.0" x2="454.6" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="418.8" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="454.6" y1="153.0" x2="526.2" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="490.4" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="526.2" y1="153.0" x2="597.7" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="561.9" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="597.7" y1="153.0" x2="669.2" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="633.5" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="669.2" y1="153.0" x2="740.8" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="705.0" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="740.8" y1="153.0" x2="812.3" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="776.5" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="812.3" y1="153.0" x2="883.8" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="848.1" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="883.8" y1="153.0" x2="955.4" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="919.6" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="955.4" y1="153.0" x2="955.4" y2="137.0" stroke="#16a34a" stroke-width="1.8"/>
+<line x1="955.4" y1="137.0" x2="1026.9" y2="137.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="991.2" y="148.5" class="bit" fill="#16a34a">1</text>
+<line x1="1026.9" y1="137.0" x2="1098.5" y2="137.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="1062.7" y="148.5" class="bit" fill="#16a34a">1</text>
+<line x1="1098.5" y1="137.0" x2="1098.5" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<line x1="1098.5" y1="153.0" x2="1170.0" y2="153.0" stroke="#16a34a" stroke-width="1.8"/>
+<text x="1134.2" y="148.5" class="bit" fill="#16a34a">0</text>
+<line x1="20" y1="187" x2="1180" y2="187" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="172" class="sig-name">ExValid</text>
+<text x="25" y="182" class="sig-sub">Exception Valid to CSR</text>
+<line x1="240.0" y1="181.0" x2="311.5" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="275.8" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="311.5" y1="181.0" x2="383.1" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="347.3" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="383.1" y1="181.0" x2="454.6" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="418.8" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="454.6" y1="181.0" x2="454.6" y2="165.0" stroke="#dc2626" stroke-width="1.8"/>
+<line x1="454.6" y1="165.0" x2="526.2" y2="165.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="490.4" y="176.5" class="bit" fill="#dc2626">1</text>
+<line x1="526.2" y1="165.0" x2="526.2" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<line x1="526.2" y1="181.0" x2="597.7" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="561.9" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="597.7" y1="181.0" x2="669.2" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="633.5" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="669.2" y1="181.0" x2="740.8" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="705.0" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="740.8" y1="181.0" x2="812.3" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="776.5" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="812.3" y1="181.0" x2="883.8" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="848.1" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="883.8" y1="181.0" x2="955.4" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="919.6" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="955.4" y1="181.0" x2="1026.9" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="991.2" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="1026.9" y1="181.0" x2="1098.5" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="1062.7" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="1098.5" y1="181.0" x2="1170.0" y2="181.0" stroke="#dc2626" stroke-width="1.8"/>
+<text x="1134.2" y="176.5" class="bit" fill="#dc2626">0</text>
+<line x1="20" y1="215" x2="1180" y2="215" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="200" class="sig-name">ExceptionCause</text>
+<text x="25" y="210" class="sig-sub">Trap Cause ID</text>
+<polygon points="243.0,201.0 246.0,193.0 448.6,193.0 451.6,201.0 448.6,209.0 246.0,209.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="457.6,201.0 460.6,193.0 520.2,193.0 523.2,201.0 520.2,209.0 460.6,209.0" fill="#e0f2fe" stroke="#dc2626" stroke-width="1"/>
+<text x="490.4" y="204.5" class="bus">Cause 3</text>
+<polygon points="529.2,201.0 532.2,193.0 1164.0,193.0 1167.0,201.0 1164.0,209.0 532.2,209.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<line x1="20" y1="243" x2="1180" y2="243" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="228" class="sig-name">FlushBP</text>
+<text x="25" y="238" class="sig-sub">Branch Predictor Flush</text>
+<line x1="240.0" y1="237.0" x2="311.5" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="275.8" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="311.5" y1="237.0" x2="383.1" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="347.3" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="383.1" y1="237.0" x2="454.6" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="418.8" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="454.6" y1="237.0" x2="454.6" y2="221.0" stroke="#e11d48" stroke-width="1.8"/>
+<line x1="454.6" y1="221.0" x2="526.2" y2="221.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="490.4" y="232.5" class="bit" fill="#dc2626">1</text>
+<line x1="526.2" y1="221.0" x2="526.2" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<line x1="526.2" y1="237.0" x2="597.7" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="561.9" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="597.7" y1="237.0" x2="669.2" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="633.5" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="669.2" y1="237.0" x2="740.8" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="705.0" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="740.8" y1="237.0" x2="812.3" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="776.5" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="812.3" y1="237.0" x2="883.8" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="848.1" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="883.8" y1="237.0" x2="955.4" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="919.6" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="955.4" y1="237.0" x2="1026.9" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="991.2" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="1026.9" y1="237.0" x2="1098.5" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1062.7" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="1098.5" y1="237.0" x2="1170.0" y2="237.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1134.2" y="232.5" class="bit" fill="#e11d48">0</text>
+<line x1="20" y1="271" x2="1180" y2="271" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="256" class="sig-name">FlushIF</text>
+<text x="25" y="266" class="sig-sub">Instruction Fetch Flush</text>
+<line x1="240.0" y1="265.0" x2="311.5" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="275.8" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="311.5" y1="265.0" x2="383.1" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="347.3" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="383.1" y1="265.0" x2="454.6" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="418.8" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="454.6" y1="265.0" x2="454.6" y2="249.0" stroke="#e11d48" stroke-width="1.8"/>
+<line x1="454.6" y1="249.0" x2="526.2" y2="249.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="490.4" y="260.5" class="bit" fill="#dc2626">1</text>
+<line x1="526.2" y1="249.0" x2="526.2" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<line x1="526.2" y1="265.0" x2="597.7" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="561.9" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="597.7" y1="265.0" x2="669.2" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="633.5" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="669.2" y1="265.0" x2="740.8" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="705.0" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="740.8" y1="265.0" x2="812.3" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="776.5" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="812.3" y1="265.0" x2="883.8" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="848.1" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="883.8" y1="265.0" x2="955.4" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="919.6" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="955.4" y1="265.0" x2="1026.9" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="991.2" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="1026.9" y1="265.0" x2="1098.5" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1062.7" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="1098.5" y1="265.0" x2="1170.0" y2="265.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1134.2" y="260.5" class="bit" fill="#e11d48">0</text>
+<line x1="20" y1="299" x2="1180" y2="299" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="284" class="sig-name">FlushID</text>
+<text x="25" y="294" class="sig-sub">Instruction Decode Flush</text>
+<line x1="240.0" y1="293.0" x2="311.5" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="275.8" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="311.5" y1="293.0" x2="383.1" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="347.3" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="383.1" y1="293.0" x2="454.6" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="418.8" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="454.6" y1="293.0" x2="454.6" y2="277.0" stroke="#e11d48" stroke-width="1.8"/>
+<line x1="454.6" y1="277.0" x2="526.2" y2="277.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="490.4" y="288.5" class="bit" fill="#dc2626">1</text>
+<line x1="526.2" y1="277.0" x2="526.2" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<line x1="526.2" y1="293.0" x2="597.7" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="561.9" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="597.7" y1="293.0" x2="669.2" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="633.5" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="669.2" y1="293.0" x2="740.8" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="705.0" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="740.8" y1="293.0" x2="812.3" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="776.5" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="812.3" y1="293.0" x2="883.8" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="848.1" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="883.8" y1="293.0" x2="955.4" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="919.6" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="955.4" y1="293.0" x2="1026.9" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="991.2" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="1026.9" y1="293.0" x2="1098.5" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1062.7" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="1098.5" y1="293.0" x2="1170.0" y2="293.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1134.2" y="288.5" class="bit" fill="#e11d48">0</text>
+<line x1="20" y1="327" x2="1180" y2="327" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="312" class="sig-name">FlushEX</text>
+<text x="25" y="322" class="sig-sub">Execute Stage Flush</text>
+<line x1="240.0" y1="321.0" x2="311.5" y2="321.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="275.8" y="316.5" class="bit" fill="#e11d48">0</text>
+<line x1="311.5" y1="321.0" x2="383.1" y2="321.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="347.3" y="316.5" class="bit" fill="#e11d48">0</text>
+<line x1="383.1" y1="321.0" x2="454.6" y2="321.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="418.8" y="316.5" class="bit" fill="#e11d48">0</text>
+<line x1="454.6" y1="321.0" x2="454.6" y2="305.0" stroke="#e11d48" stroke-width="1.8"/>
+<line x1="454.6" y1="305.0" x2="526.2" y2="305.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="490.4" y="316.5" class="bit" fill="#dc2626">1</text>
+<line x1="526.2" y1="305.0" x2="526.2" y2="321.0" stroke="#e11d48" stroke-width="1.8"/>
+<line x1="526.2" y1="321.0" x2="597.7" y2="321.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="561.9" y="316.5" class="bit" fill="#e11d48">0</text>
+<line x1="597.7" y1="321.0" x2="669.2" y2="321.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="633.5" y="316.5" class="bit" fill="#e11d48">0</text>
+<line x1="669.2" y1="321.0" x2="740.8" y2="321.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="705.0" y="316.5" class="bit" fill="#e11d48">0</text>
+<line x1="740.8" y1="321.0" x2="812.3" y2="321.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="776.5" y="316.5" class="bit" fill="#e11d48">0</text>
+<line x1="812.3" y1="321.0" x2="883.8" y2="321.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="848.1" y="316.5" class="bit" fill="#e11d48">0</text>
+<line x1="883.8" y1="321.0" x2="955.4" y2="321.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="919.6" y="316.5" class="bit" fill="#e11d48">0</text>
+<line x1="955.4" y1="321.0" x2="1026.9" y2="321.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="991.2" y="316.5" class="bit" fill="#e11d48">0</text>
+<line x1="1026.9" y1="321.0" x2="1098.5" y2="321.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1062.7" y="316.5" class="bit" fill="#e11d48">0</text>
+<line x1="1098.5" y1="321.0" x2="1170.0" y2="321.0" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1134.2" y="316.5" class="bit" fill="#e11d48">0</text>
+<line x1="20" y1="355" x2="1180" y2="355" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="340" class="sig-name">CsrMepc</text>
+<text x="25" y="350" class="sig-sub">CSR mepc (Return Address)</text>
+<polygon points="243.0,341.0 246.0,333.0 520.2,333.0 523.2,341.0 520.2,349.0 246.0,349.0" fill="#e0f2fe" stroke="#9333ea" stroke-width="1"/>
+<text x="383.1" y="344.5" class="bus">2147483752</text>
+<polygon points="529.2,341.0 532.2,333.0 1164.0,333.0 1167.0,341.0 1164.0,349.0 532.2,349.0" fill="#e0f2fe" stroke="#9333ea" stroke-width="1"/>
+<text x="848.1" y="344.5" class="bus">2147483760</text>
+<line x1="20" y1="383" x2="1180" y2="383" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="368" class="sig-name">CsrMcause</text>
+<text x="25" y="378" class="sig-sub">CSR mcause (Trap Cause)</text>
+<polygon points="243.0,369.0 246.0,361.0 520.2,361.0 523.2,369.0 520.2,377.0 246.0,377.0" fill="#e0f2fe" stroke="#9333ea" stroke-width="1"/>
+<text x="383.1" y="372.5" class="bus">2</text>
+<polygon points="529.2,369.0 532.2,361.0 1164.0,361.0 1167.0,369.0 1164.0,377.0 532.2,377.0" fill="#e0f2fe" stroke="#9333ea" stroke-width="1"/>
+<text x="848.1" y="372.5" class="bus">3</text>
+<line x1="20" y1="411" x2="1180" y2="411" stroke="#e2e8f0" stroke-width="0.8"/>
+<text x="25" y="396" class="sig-name">CsrMtval</text>
+<text x="25" y="406" class="sig-sub">CSR mtval (Trap Diagnostic)</text>
+<polygon points="243.0,397.0 246.0,389.0 520.2,389.0 523.2,397.0 520.2,405.0 246.0,405.0" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+<polygon points="529.2,397.0 532.2,389.0 1164.0,389.0 1167.0,397.0 1164.0,405.0 532.2,405.0" fill="#e0f2fe" stroke="#9333ea" stroke-width="1"/>
+<text x="848.1" y="400.5" class="bus">2147483760</text>
+<rect x="20" y="423" width="1160" height="75" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" rx="6"/>
+<text x="35" y="441" class="ann-title">Microarchitectural Analysis:</text>
+<text x="35" y="457" class="ann-body">
+  <tspan x="35" dy="0">• Cycle 417: EBREAK encounters commit; asserts ExValid=1 with ExceptionCause=3. Controller asserts full flushes (BP/IF/ID/EX).</tspan>
+  <tspan x="35" dy="16">• Cycle 418: FetchPC redirects to MTVEC (0x8000_00A0). CSR unit latches mepc=0x8000_0070 and mcause=3.</tspan>
+  <tspan x="35" dy="16">• Cycle 424: Pipeline re-fills and first exception handler instruction commits cleanly.</tspan>
+</text>
 </svg>
