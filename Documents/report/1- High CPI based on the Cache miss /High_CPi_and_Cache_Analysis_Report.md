@@ -49,9 +49,11 @@ https://www.binaryhexconverter.com/hex-to-decimal-converter
 
 ## ۲. چرا سخت‌افزار کش ۱۰۰٪ سالمه؟ (تحلیل خطاهای کش)
 
+### برسی کش 
+
 بیایید نگاهی به نحوه کار حافظه نهان دستورات (I-Cache) در CVA6 بندازیم:
 ![[cacheSizeAndSetting.png]]
-
+![[I_cache_parameters.png]]
 ### شکل و دیاگرام معماری سخت‌افزاری حافظه نهان (CVA6 2-Way Set-Associative I-Cache Architecture)
 
 برای اینکه معماری داخلی، تفکیک بیت‌های آدرس و مسیر داده‌ها کاملاً ملموس و شفاف باشه، دیاگرام جامع سخت‌افزاری کش CVA6 رو به صورت شکل زیر ترسیم کردم:
@@ -141,6 +143,279 @@ $$\text{Instructions per Cache Line} = \frac{128\text{ bits}}{32\text{ bits/inst
   // = 8 bits (Index for the 256 sets)
 ```
 
+در تست بنچ برای برسی cache این سیگنال ها رو استفاده کرده ایم:
+```systemverilog
+  // Group 1: 256-Cycle I-Cache Startup Flush Probes
+  wire [2:0]  probe_icache_state      = u_dut.gen_cache_wt.i_cache_subsystem.i_cva6_icache.state_q;
+  wire [7:0]  probe_icache_flush_cnt  = u_dut.gen_cache_wt.i_cache_subsystem.i_cva6_icache.flush_cnt_q;
+  wire        probe_icache_flush_en   = u_dut.gen_cache_wt.i_cache_subsystem.i_cva6_icache.flush_en;
+  wire        probe_icache_flush_done = u_dut.gen_cache_wt.i_cache_subsystem.i_cva6_icache.flush_done;
+  wire        probe_icache_wren       = u_dut.gen_cache_wt.i_cache_subsystem.i_cva6_icache.cache_wren;
+  wire        probe_icache_miss       = u_dut.gen_cache_wt.i_cache_subsystem.i_cva6_icache.miss_o;
+```
+همانطور که مشاهده می شود i cache state داریم که یک ماشین حالته به فرم زیر:
+```mermaid
+stateDiagram-v2
+    [*] --> FLUSH: Reset
+    
+    FLUSH --> IDLE: flush_done_i
+    
+    IDLE --> FLUSH: (flush_i یا !cache_en_i)
+    IDLE --> READ: req_port_i.req && !flush_i && cache_en_i
+    
+    READ --> IDLE: !req_port_i.req && !miss && !flush_i
+    READ --> READ: req_port_i.req && !miss && !flush_i
+    READ --> MISS: miss && !kill_i && !flush_i
+    READ --> KILL_ATRANS: (kill_i یا flush_i)
+    
+    MISS --> IDLE: (miss_done && !req_port_i.req) یا flush_i
+    MISS --> READ: miss_done && req_port_i.req && !flush_i
+    MISS --> KILL_MISS: kill_i && !miss_done
+    
+    KILL_ATRANS --> IDLE: flush_done_i
+    
+    KILL_MISS --> IDLE: miss_done
+    
+    note right of FLUSH: پاکسازی محتویات کش در شروع یا زمان Flush
+    note right of READ: خواندن تگ و دیتا (Hit/Miss Check)
+    note right of MISS: انتظار برای دریافت دیتا از حافظه (AXI)
+    note right of KILL_ATRANS: لغو عملیات جاری به دلیل وقفه یا Flush
+
+```
+```systemverilog
+ // in file cav6_icache.sv
+ //-----------------------------------------------------------------------
+  // cpmtroller FSM
+  typedef enum logic [2:0] {
+    FLUSH,
+    IDLE,
+    READ,
+    MISS,
+    KILL_ATRANS,
+    KILL_MISS
+  } state_e;
+  state_e state_d, state_q;
+//...
+
+case (state_q)
+      //////////////////////////////////
+      // this clears all valid bits
+      FLUSH: begin
+        flush_en = 1'b1;
+        if (flush_done) begin
+          state_d = IDLE;
+          flush_d = 1'b0;
+          // if the cache was not enabled set this
+          cache_en_d = en_i;
+        end
+      end
+      //////////////////////////////////
+      // wait for an incoming request
+      IDLE: begin
+        // only enable tag comparison if cache is enabled
+        cmp_en_d = cache_en_q;
+
+        // handle pending flushes, or perform cache clear upon enable
+        if (flush_d || (en_i && !cache_en_q)) begin
+          state_d = FLUSH;
+          // wait for incoming requests
+        end else begin
+          // mem requests are for sure invals here
+          if (!mem_rtrn_vld_i) begin
+            dreq_o.ready = 1'b1;
+            // we have a new request
+            if (dreq_i.req) begin
+              cache_rden = 1'b1;
+              state_d    = READ;
+            end
+          end
+          if (dreq_i.kill_s1) begin
+            state_d = IDLE;
+          end
+        end
+      end
+      //////////////////////////////////
+      // check whether we have a hit
+      // in case the cache is disabled,
+      // or in case the address is NC, we
+      // reuse the miss mechanism to handle
+      // the request
+      READ: begin
+        areq_o.fetch_req = '1;
+        // only enable tag comparison if cache is enabled
+        cmp_en_d    = cache_en_q;
+        // readout speculatively
+        cache_rden  = cache_en_q;
+
+        if (areq_i.fetch_valid && (!dreq_i.spec || ((CVA6Cfg.NonIdemPotenceEn && !addr_ni) || (!CVA6Cfg.NonIdemPotenceEn)))) begin
+          // check if we have to flush
+          if (flush_d) begin
+            state_d = IDLE;
+            // we have a hit or an exception output valid result
+          end else if (((|cl_hit && cache_en_q) || areq_i.fetch_exception.valid) && !inv_q) begin
+            dreq_o.valid = ~dreq_i.kill_s2;  // just don't output in this case
+            state_d      = IDLE;
+
+            // we can accept another request
+            // and stay here, but only if no inval is coming in
+            // note: we are not expecting ifill return packets here...
+            if (!mem_rtrn_vld_i) begin
+              dreq_o.ready = 1'b1;
+              if (dreq_i.req) begin
+                state_d = READ;
+              end
+            end
+            // if a request is being killed at this stage,
+            // we have to bail out and wait for the address translation to complete
+            if (dreq_i.kill_s1) begin
+              state_d = IDLE;
+            end
+            // we have a miss / NC transaction
+          end else if (dreq_i.kill_s2) begin
+            state_d = IDLE;
+          end else if (!inv_q) begin
+            cmp_en_d = 1'b0;
+            // only count this as a miss if the cache is enabled, and
+            // the address is cacheable
+            // send out ifill request
+            mem_data_req_o = 1'b1;
+            if (mem_data_ack_i) begin
+              miss_o  = ~paddr_is_nc;
+              state_d = MISS;
+            end
+          end
+          // bail out if this request is being killed (and we missed on the TLB)
+        end else if (dreq_i.kill_s2 || flush_d) begin
+          state_d = KILL_ATRANS;
+        end
+      end
+      //////////////////////////////////
+      // wait until the memory transaction
+      // returns. do not write to memory
+      // if the nc bit is set.
+      MISS: begin
+        // note: this is mutually exclusive with ICACHE_INV_REQ,
+        // so we do not have to check for invals here
+        if (mem_rtrn_vld_i && mem_rtrn_i.rtype == ICACHE_IFILL_ACK) begin
+          state_d = IDLE;
+          // only return data if request is not being killed
+          if (!(dreq_i.kill_s2 || flush_d)) begin
+            dreq_o.valid = 1'b1;
+            // only write to cache if this address is cacheable
+            cache_wren   = ~paddr_is_nc;
+          end
+          // bail out if this request is being killed
+        end else if (dreq_i.kill_s2 || flush_d) begin
+          state_d = KILL_MISS;
+        end
+      end
+      //////////////////////////////////
+      // killed address translation,
+      // wait until paddr is valid, and go
+      // back to idle
+      KILL_ATRANS: begin
+        areq_o.fetch_req = '1;
+        if (areq_i.fetch_valid) begin
+          state_d = IDLE;
+        end
+      end
+      //////////////////////////////////
+      // killed miss,
+      // wait until memory responds and
+      // go back to idle
+      KILL_MISS: begin
+        if (mem_rtrn_vld_i && mem_rtrn_i.rtype == ICACHE_IFILL_ACK) begin
+          state_d = IDLE;
+        end
+      end
+      default: begin
+        // we should never get here
+        state_d = FLUSH;
+      end
+    endcase  // state_q
+  end
+
+```
+
+> [!NOTE] Cache miss cycle
+> در صورتی که دستور العمل در I_cache موجود نباشد :
+> 
+>  چه اتفاقی رخ می‌دهد؟
+>1-   **تشخیص Miss در حالت READ:** وقتی پردازنده درخواست واکشی دستور دارد اما دیتای مورد نظر در کش پیدا نمی‌شود، ماشین حالت از وضعیت `READ` به وضعیت **`MISS`** می‌رود.
+> 2- **ارسال درخواست به حافظه اصلی / AXI:** کش درخواست خود را برای دریافت خط دستور (Cache Line) از طریق رابط حافظه (`mem_data_req_o`) ارسال می‌کند و منتظر پاسخ می‌ماند (`mem_data_ack_i`).
+> 3- **دریافت دیتا و پر کردن کش (Refill):** هنگامی که حافظه یا AXI دیتای مورد نظر را برمی‌گرداند (`mem_rtrn_vld_i`)، کش هم‌زمان دیتای دریافتی را در حافظه خود ذخیره می‌کند و به پردازنده تحویل می‌دهد (`dreq_o.valid`).
+> 4- **بازگشت به حالت عادی:** ماشین حالت پس از اتمام بارگذاری، از وضعیت `MISS` به حالت `IDLE` (یا برای درخواست‌های بعدی به جریان عادی) برمی‌گردد تا پردازنده بتواند اجرای برنامه را ادامه دهد.
+> 
+> چند سیکل طول می‌کشد؟
+> مدت زمان آن **متغیر (Variable)** است و به هیچ وجه عدد ثابتی ندارد؛ زیرا کاملاً وابسته به این است که:
+> 1- حافظه خارجی (یا AXI Interconnect / مموری کنترلر) چه زمانی پاسخ دهد (`mem_رtrn_vld_i`).
+> 2 - دسترسی به حافظه چند سیکل طول بکشد.
+
+در upstream code و بدون تغییر پارامتر های I cache تعداد 265 سیکل تاخیر را به علت ریست شدن و صفر شدن حافظه های کش (برای جلوگیری از نویز های احتمالی و تعبیه شده از قصد توسط openHW ) را داریم.
+در ماشین حالت i cache یک ماشین حالت داریم که به حالت flush خواهد رفت و توسط سیگنال flush_done به حالت بعدی یعنی ideal میرود:
+```systemverilog
+ assign flush_cnt_d = (flush_done) ? '0 : (flush_en) ? flush_cnt_q + 1 : flush_cnt_q;
+
+  assign flush_done = (flush_cnt_q == (ICACHE_NUM_WORDS - 1)); //256 word -> flush would be done
+```
+
+![[256Cycle_latency_flush.png]]
+done flushing in the 265 (IcacheFlushEn == 0 in the cycle 265 )
+
+اتفاقی که رخ میدهد در کلاک 265 به 267 با دو تاخیر، ماشین حالت i_cache به miss می رود! (==🔴مشکل==؟)
+ابتدا در c266 سعی خواهد کرد که در حالت Read مقدار را پیدا کند و در حاللت بعدی به miss می رود!
+![[FSM_ICache_in256Cycle.png]]
+و سیگنال های کنترلی برای miss و درخواست از حافظه یک می شوند. (کلاک 266)
+![[SignalMissForICachein266.png]]
+در کلاک c269 معادل 4 دستور العمل 32 بیتی (128 بیت) از حافظه خوانده خواهد شد:
+![[readDataMeme269.png]]
+در اصل در c268 دو دستورالعمل اولیه و در c269  دستور العمل بعدی خوانده خواهد شد!
+برای سیگنال /tb_cva6_smoke_cold_startup/probe_axi_rdata که 64 بیتی خواهد بود داریم:
+``
+```systemverilog
+    mem[0]  = 32'h00a00093; // 0x00: ADDI x1, x0, 10
+    mem[1]  = 32'h01400113; // 0x04: ADDI x2, x0, 20
+    mem[2]  = 32'h002081b3; // 0x08: ADD  x3, x1, x2  (= 30)
+    mem[3]  = 32'h40110233; // 0x0c: SUB  x4, x2, x1  (= 10)
+```
+
+| clk counter | vakue of probe_axi_rdata [63:0] | frist instruction | second instruction |
+| ----------- | ------------------------------- | ----------------- | ------------------ |
+| c 268       | 0140011300a00093                | 00a00093          | 01400113           |
+| c 269       | 40110233002081b3                | 002081b3          | 40110233           |
+![[AxiRead.png]]
+ در  c270 سیگنال اتمام عملیات خواندن 1 خواهد شد و در کلاک بعدی (یعنی c271) به حالت ideal و در c272 تازه عملیات خواندن دیتا از حافظه شروع میشود (تاخیر FSM - i cache)
+ 
+> [!NOTE] نتیجه گیری 
+>  یعنی با پایان عملیات Flush در C265 تا دوباره cache را پر کنیم و دیتا از آن بخوانیم  تا سیکل 272 باید صبر کنیم
+ stall_counter_to_refill_the_cache = 272 - 265 = 7
+ از حالت نبود دستورالعمل در cache تا تحویل به decode ما 7 سیکل تاخیر داریم!!!!!!
+ 
+
+رفتار جالب :
+![[MissToDecodeInterstingBehave.png]]
+دستور العمل های اول سریع تر valid میشوند و بعد این سیگنال valid مقدارش صفر خواهد شد.
+
+
+جدول رخ داد ها و برسی به صورت دقیق تر:
+
+|سیکل / زمان لبه|آنچه باید روی موج ببینید|چه کاری انجام می‌شود و چرا؟|
+|---|---|---|
+|**`C265` / `2645 ns`**|`IcacheState=0`، `FlushCnt=255`، `FlushDone=1`، `FetchReq=1`، `IcacheReady=0`|آخرین سطر کش نامعتبر می‌شود. فرانت‌اند از قبل آدرس بوت `0x80000000` را درخواست کرده، اما کش هنوز آن را نپذیرفته است. این Flush برای نامعتبر کردن محتوای قبلی است؛ **خواندن برنامه از RAM نیست**.|
+|**`C266` / `2655 ns`**|`IcacheState=1`، `FetchPC=0x80000000`، `FetchReq=1` و `IcacheReady=1`، ولی `FetchValid=0`|**اولین درخواست پذیرفته می‌شود.** `Ready` یعنی «آدرس را می‌پذیرم»، نه «دستور آماده است». کش اکنون باید بررسی کند خط مربوط به این آدرس را دارد یا نه.|
+|**`C267` / `2665 ns`**|`IcacheState=2`، `IcacheClHit=00`، `IcacheEn=1`، `IcachePaddrIsNc=0`، `IcacheMiss=1`، `IcacheMemDataReq=1` و `IcacheMemDataAck=1`|**اولین Cold Miss.** آدرس قابل کش‌کردن است، اما بعد از Flush هیچ راهی برای آن Hit نمی‌دهد. درخواست پرکردن خط در رابط **داخلی** حافظه پذیرفته می‌شود؛ `Ack` اینجا به معنی بازگشت داده نیست. `FetchPC` اکنون `0x80000004` است، ولی `IcacheReady=0`؛ این **درخواست بعدیِ منتظر** است، نه آدرسی که Miss داده است.|
+|**`C268` / `2675 ns`**|`IcacheState=3`، `AxiARValid=1`، `AxiARAddr=0x80000000`، `AxiARLen=1`|درخواست روی **کانال آدرس AXI** ظاهر می‌شود. آدرس AXI تأیید می‌کند Miss برای آدرس بوت بوده است. `ARLEN=1` در AXI یعنی **دو beat**؛ در این تست‌بنچ هر beat هشت بایت است، پس ۱۶ بایت، معادل چهار دستور ۳۲ بیتی، خوانده می‌شود.|
+|**`C269` / `2685 ns`**|`AxiRValid=1`؛ انتظار از مدل حافظه: `probe_axi_rdata=0x01400113_00a00093` و `probe_axi_rlast=0`|**beat اول** برمی‌گردد. خودِ اولین دستور همین حالا در ۳۲ بیت پایین باس AXI دیده می‌شود، اما هنوز `FetchValid=0` است. دریافت داده روی باس با تحویل آن به فرانت‌اند فرق دارد.|
+|**`C270` / `2695 ns`**|`AxiRValid=1`؛ انتظار: `probe_axi_rdata=0x40110233_002081b3` و `probe_axi_rlast=1`|**beat دوم و آخر** برمی‌گردد و خط کامل می‌شود. مقادیر `RDATA` و `RLAST` در CSV چاپ نشده‌اند؛ این دو مقدار از `mem[0..3]` و نحوهٔ ساخت پاسخ در تست‌بنچ به دست می‌آیند. روی موج، انتقال هر beat را با `probe_axi_rvalid && probe_axi_rready` بررسی کنید.|
+|**`C271` / `2705 ns`**|`IcacheState=3`، `IcacheWren=1`، **`FetchValid=1`**، ولی `FeIdValid=0` و `InstrQueueUsage=0`|**خط در کش نوشته می‌شود و پاسخ اولین Fetch به فرانت‌اند می‌رسد.** برای دیدن کلمهٔ برگشتی، اینجا **`probe_fetch_data`** را ببینید؛ انتظار `0x00a00093` است. صفر بودن ستون `FetchInstr` در همین سطر به معنی برگشت دستور صفر نیست.|
+|**`C272` / `2715 ns`**|`IcacheState=1`، `IcacheReady=1`، `FetchReq=1`، `FetchPC=0x80000004`، `FetchValid=0`، `FeIdValid=0`|کش از حالت انتظار Miss خارج شده و **درخواست بعدی** در آدرس `+4` را می‌پذیرد. دستور اول هنوز روی رابط FE→ID معتبر نیست؛ برای آن درخواست AXI مجددی صادر نشده است.|
+|**`C273` / `2725 ns`**|**`FeIdValid=1` و `IdFeReady=1`**، `InstrQueueUsage=1`، **`FetchInstr=0x00a00093`**|**اولین دستور واقعاً از فرانت‌اند به Decode تحویل می‌شود.** `probe_fe_addr` را کنار `probe_fe_instr` بگذارید؛ انتظار آدرس `0x80000000` است. هم‌زمان `IcacheClHit=01` و `FetchValid=1` مربوط به واکشی بعدی از خط تازه‌پرشده‌اند. `FetchPC=0x80000008` نیز آدرس درخواست جاری است، نه PC دستور ورودی Decode.|
+|**`C274` / `2735 ns`**|`InstrQueueUsage=0`، `FeIdValid=0`، `AluValid=0`|ورودی اول از صف تحویل شده، ولی هنوز نتیجهٔ ALU معتبر نیست. این سطر نشانهٔ Miss یا توقف دوبارهٔ دستور اول نیست. برای تعیین لبهٔ دقیق Issue، `u_dut.issue_entry_valid_id_issue[0]` و `u_dut.issue_instr_issue_id[0]` را کنار هم ببینید؛ این handshake در CSV نیست.|
+|**`C275` / `2745 ns`**|**`AluValid=1`، `FluValid=1`، `AluResult=0x0000000a`**|اولین دستور اجرا شده: `x0 + 10 = 10`. نتیجه معتبر است، اما هنوز `CommitAck=0` است.|
+|**`C276` / `2755 ns`**|**`CommitAck=1`، `CommitPC=0x80000000`، `CommitDrop=0`، `GprWe=1`، `GprWaddr=1`، `GprWdata=0x0000000a`**|**اولین دستور Commit می‌شود و `x1` مقدار ۱۰ می‌گیرد.** `InstRet` در این سطر هنوز صفر است و در `C277` یک دیده می‌شود، چون شمارندهٔ تست‌بنچ با `<=` روی همان لبه به‌روز می‌شود.|
+
+
+---
 * برنامه تستی ما کلاً **۱۹ دستور** متوالی بود که بدون هیچ حلقه‌ای از آدرس `0x8000_0000` پشت سر هم اجرا شدن.
 ```systemverilog
     // Instruction sequence (code in words 0..18, data in words 64 and 128)
