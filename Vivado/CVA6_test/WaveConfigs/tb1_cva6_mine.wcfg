@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_cva6_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="ariane_pkg" />
+            <top_module name="axi_pkg" />
+            <top_module name="config_pkg" />
+            <top_module name="cva6_types_pkg" />
+            <top_module name="glbl" />
+            <top_module name="riscv" />
+            <top_module name="tb_cva6" />
+            <top_module name="wt_cache_pkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="2,573.600 ns"></ZoomStartTime>
+      <ZoomEndTime time="2,616.201 ns"></ZoomEndTime>
+      <Cursor1Time time="2,655.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="380"></NameColumnWidth>
+      <ValueColumnWidth column_width="155"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="75" />
+   <wave_markers>
+      <marker label="" time="2715000" />
+   </wave_markers>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/rst_ni">
+      <obj_property name="ElementShortName">rst_ni</obj_property>
+      <obj_property name="ObjectShortName">rst_ni</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/boot_addr">
+      <obj_property name="ElementShortName">boot_addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">boot_addr[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/hart_id">
+      <obj_property name="ElementShortName">hart_id[31:0]</obj_property>
+      <obj_property name="ObjectShortName">hart_id[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/irq">
+      <obj_property name="ElementShortName">irq[1:0]</obj_property>
+      <obj_property name="ObjectShortName">irq[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/ipi">
+      <obj_property name="ElementShortName">ipi</obj_property>
+      <obj_property name="ObjectShortName">ipi</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/time_irq">
+      <obj_property name="ElementShortName">time_irq</obj_property>
+      <obj_property name="ObjectShortName">time_irq</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/debug_req">
+      <obj_property name="ElementShortName">debug_req</obj_property>
+      <obj_property name="ObjectShortName">debug_req</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/rvfi_probes">
+      <obj_property name="ElementShortName">rvfi_probes</obj_property>
+      <obj_property name="ObjectShortName">rvfi_probes</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/cvxif_req">
+      <obj_property name="ElementShortName">cvxif_req</obj_property>
+      <obj_property name="ObjectShortName">cvxif_req</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/cvxif_resp">
+      <obj_property name="ElementShortName">cvxif_resp</obj_property>
+      <obj_property name="ObjectShortName">cvxif_resp</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/noc_req">
+      <obj_property name="ElementShortName">noc_req</obj_property>
+      <obj_property name="ObjectShortName">noc_req</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/noc_resp">
+      <obj_property name="ElementShortName">noc_resp</obj_property>
+      <obj_property name="ObjectShortName">noc_resp</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/sim_done">
+      <obj_property name="ElementShortName">sim_done</obj_property>
+      <obj_property name="ObjectShortName">sim_done</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/cycle_count">
+      <obj_property name="ElementShortName">cycle_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">cycle_count[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#0000FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/spy_fetch_pc">
+      <obj_property name="ElementShortName">spy_fetch_pc[31:0]</obj_property>
+      <obj_property name="ObjectShortName">spy_fetch_pc[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/spy_commit_pc">
+      <obj_property name="ElementShortName">spy_commit_pc[31:0]</obj_property>
+      <obj_property name="ObjectShortName">spy_commit_pc[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_icache_state">
+      <obj_property name="ElementShortName">probe_icache_state[2:0]</obj_property>
+      <obj_property name="ObjectShortName">probe_icache_state[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_icache_flush_cnt">
+      <obj_property name="ElementShortName">probe_icache_flush_cnt[7:0]</obj_property>
+      <obj_property name="ObjectShortName">probe_icache_flush_cnt[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_icache_flush_en">
+      <obj_property name="ElementShortName">probe_icache_flush_en</obj_property>
+      <obj_property name="ObjectShortName">probe_icache_flush_en</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_icache_flush_done">
+      <obj_property name="ElementShortName">probe_icache_flush_done</obj_property>
+      <obj_property name="ObjectShortName">probe_icache_flush_done</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_icache_wren">
+      <obj_property name="ElementShortName">probe_icache_wren</obj_property>
+      <obj_property name="ObjectShortName">probe_icache_wren</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_icache_miss">
+      <obj_property name="ElementShortName">probe_icache_miss</obj_property>
+      <obj_property name="ObjectShortName">probe_icache_miss</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_fetch_req">
+      <obj_property name="ElementShortName">probe_fetch_req</obj_property>
+      <obj_property name="ObjectShortName">probe_fetch_req</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_fetch_valid">
+      <obj_property name="ElementShortName">probe_fetch_valid</obj_property>
+      <obj_property name="ObjectShortName">probe_fetch_valid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_fetch_data">
+      <obj_property name="ElementShortName">probe_fetch_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">probe_fetch_data[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_fe_id_valid">
+      <obj_property name="ElementShortName">probe_fe_id_valid</obj_property>
+      <obj_property name="ObjectShortName">probe_fe_id_valid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_id_fe_ready">
+      <obj_property name="ElementShortName">probe_id_fe_ready</obj_property>
+      <obj_property name="ObjectShortName">probe_id_fe_ready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_fe_instr">
+      <obj_property name="ElementShortName">probe_fe_instr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">probe_fe_instr[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_fe_addr">
+      <obj_property name="ElementShortName">probe_fe_addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">probe_fe_addr[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_arvalid">
+      <obj_property name="ElementShortName">probe_axi_arvalid</obj_property>
+      <obj_property name="ObjectShortName">probe_axi_arvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_arready">
+      <obj_property name="ElementShortName">probe_axi_arready</obj_property>
+      <obj_property name="ObjectShortName">probe_axi_arready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_araddr">
+      <obj_property name="ElementShortName">probe_axi_araddr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">probe_axi_araddr[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_arlen">
+      <obj_property name="ElementShortName">probe_axi_arlen[7:0]</obj_property>
+      <obj_property name="ObjectShortName">probe_axi_arlen[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_rvalid">
+      <obj_property name="ElementShortName">probe_axi_rvalid</obj_property>
+      <obj_property name="ObjectShortName">probe_axi_rvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_rready">
+      <obj_property name="ElementShortName">probe_axi_rready</obj_property>
+      <obj_property name="ObjectShortName">probe_axi_rready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_rlast">
+      <obj_property name="ElementShortName">probe_axi_rlast</obj_property>
+      <obj_property name="ObjectShortName">probe_axi_rlast</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_rdata">
+      <obj_property name="ElementShortName">probe_axi_rdata[63:0]</obj_property>
+      <obj_property name="ObjectShortName">probe_axi_rdata[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_awvalid">
+      <obj_property name="ElementShortName">probe_axi_awvalid</obj_property>
+      <obj_property name="ObjectShortName">probe_axi_awvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_awready">
+      <obj_property name="ElementShortName">probe_axi_awready</obj_property>
+      <obj_property name="ObjectShortName">probe_axi_awready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_awaddr">
+      <obj_property name="ElementShortName">probe_axi_awaddr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">probe_axi_awaddr[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_wvalid">
+      <obj_property name="ElementShortName">probe_axi_wvalid</obj_property>
+      <obj_property name="ObjectShortName">probe_axi_wvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_wready">
+      <obj_property name="ElementShortName">probe_axi_wready</obj_property>
+      <obj_property name="ObjectShortName">probe_axi_wready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_wlast">
+      <obj_property name="ElementShortName">probe_axi_wlast</obj_property>
+      <obj_property name="ObjectShortName">probe_axi_wlast</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_wdata">
+      <obj_property name="ElementShortName">probe_axi_wdata[63:0]</obj_property>
+      <obj_property name="ObjectShortName">probe_axi_wdata[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_bvalid">
+      <obj_property name="ElementShortName">probe_axi_bvalid</obj_property>
+      <obj_property name="ObjectShortName">probe_axi_bvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_bready">
+      <obj_property name="ElementShortName">probe_axi_bready</obj_property>
+      <obj_property name="ObjectShortName">probe_axi_bready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_lsu_valid">
+      <obj_property name="ElementShortName">probe_lsu_valid</obj_property>
+      <obj_property name="ObjectShortName">probe_lsu_valid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_lsu_ready">
+      <obj_property name="ElementShortName">probe_lsu_ready</obj_property>
+      <obj_property name="ObjectShortName">probe_lsu_ready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_stall_st_pending">
+      <obj_property name="ElementShortName">probe_stall_st_pending</obj_property>
+      <obj_property name="ObjectShortName">probe_stall_st_pending</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_wbuffer_empty">
+      <obj_property name="ElementShortName">probe_wbuffer_empty</obj_property>
+      <obj_property name="ObjectShortName">probe_wbuffer_empty</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_load_valid">
+      <obj_property name="ElementShortName">probe_load_valid</obj_property>
+      <obj_property name="ObjectShortName">probe_load_valid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_load_result">
+      <obj_property name="ElementShortName">probe_load_result[31:0]</obj_property>
+      <obj_property name="ObjectShortName">probe_load_result[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_commit_ack">
+      <obj_property name="ElementShortName">probe_commit_ack</obj_property>
+      <obj_property name="ObjectShortName">probe_commit_ack</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_commit_pc">
+      <obj_property name="ElementShortName">probe_commit_pc[31:0]</obj_property>
+      <obj_property name="ObjectShortName">probe_commit_pc[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_we_gpr">
+      <obj_property name="ElementShortName">probe_we_gpr</obj_property>
+      <obj_property name="ObjectShortName">probe_we_gpr</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_waddr_gpr">
+      <obj_property name="ElementShortName">probe_waddr_gpr[4:0]</obj_property>
+      <obj_property name="ObjectShortName">probe_waddr_gpr[4:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_wdata_gpr">
+      <obj_property name="ElementShortName">probe_wdata_gpr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">probe_wdata_gpr[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/mem">
+      <obj_property name="ElementShortName">mem[0:1023][31:0]</obj_property>
+      <obj_property name="ObjectShortName">mem[0:1023][31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/r_state">
+      <obj_property name="ElementShortName">r_state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">r_state[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/w_state">
+      <obj_property name="ElementShortName">w_state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">w_state[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/ar_id_q">
+      <obj_property name="ElementShortName">ar_id_q[3:0]</obj_property>
+      <obj_property name="ObjectShortName">ar_id_q[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/ar_addr_q">
+      <obj_property name="ElementShortName">ar_addr_q[63:0]</obj_property>
+      <obj_property name="ObjectShortName">ar_addr_q[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/ar_len_q">
+      <obj_property name="ElementShortName">ar_len_q[7:0]</obj_property>
+      <obj_property name="ObjectShortName">ar_len_q[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/ar_cnt_q">
+      <obj_property name="ElementShortName">ar_cnt_q[7:0]</obj_property>
+      <obj_property name="ObjectShortName">ar_cnt_q[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/aw_id_q">
+      <obj_property name="ElementShortName">aw_id_q[3:0]</obj_property>
+      <obj_property name="ObjectShortName">aw_id_q[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/aw_addr_q">
+      <obj_property name="ElementShortName">aw_addr_q[63:0]</obj_property>
+      <obj_property name="ObjectShortName">aw_addr_q[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/aw_len_q">
+      <obj_property name="ElementShortName">aw_len_q[7:0]</obj_property>
+      <obj_property name="ObjectShortName">aw_len_q[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/aw_cnt_q">
+      <obj_property name="ElementShortName">aw_cnt_q[7:0]</obj_property>
+      <obj_property name="ObjectShortName">aw_cnt_q[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/check_count">
+      <obj_property name="ElementShortName">check_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">check_count[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/error_count">
+      <obj_property name="ElementShortName">error_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">error_count[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/csv_fd">
+      <obj_property name="ElementShortName">csv_fd[31:0]</obj_property>
+      <obj_property name="ObjectShortName">csv_fd[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/CLK_PERIOD">
+      <obj_property name="ElementShortName">CLK_PERIOD[63:0]</obj_property>
+      <obj_property name="ObjectShortName">CLK_PERIOD[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/TIMEOUT_CYCLES">
+      <obj_property name="ElementShortName">TIMEOUT_CYCLES[31:0]</obj_property>
+      <obj_property name="ObjectShortName">TIMEOUT_CYCLES[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/MEM_WORDS">
+      <obj_property name="ElementShortName">MEM_WORDS[31:0]</obj_property>
+      <obj_property name="ObjectShortName">MEM_WORDS[31:0]</obj_property>
+   </wvobject>
+</wave_config>

@@ -1,0 +1,1134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_cva6_smoke_cold_startup_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="ariane_pkg" />
+            <top_module name="axi_pkg" />
+            <top_module name="config_pkg" />
+            <top_module name="cva6_types_pkg" />
+            <top_module name="glbl" />
+            <top_module name="riscv" />
+            <top_module name="tb_cva6_smoke_cold_startup" />
+            <top_module name="wt_cache_pkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="2,576.799 ns"></ZoomStartTime>
+      <ZoomEndTime time="2,764.000 ns"></ZoomEndTime>
+      <Cursor1Time time="2,665.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="380"></NameColumnWidth>
+      <ValueColumnWidth column_width="140"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="9" />
+   <wave_markers>
+      <marker label="" time="2805000" />
+      <marker label="" time="2835000" />
+      <marker label="" time="2745000" />
+      <marker label="" time="2715000" />
+   </wave_markers>
+   <wvobject type="group" fp_name="grp_[01]_system_control_&amp;_clock_cycles">
+      <obj_property name="label">[01] System Control &amp; Clock Cycles</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/clk">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">System Clock (clk)</obj_property>
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/rst_ni">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Reset Active-Low (rst_ni)</obj_property>
+         <obj_property name="ElementShortName">rst_ni</obj_property>
+         <obj_property name="ObjectShortName">rst_ni</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FF0000</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/cycle_count">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Simulation Cycle Counter</obj_property>
+         <obj_property name="ElementShortName">cycle_count[31:0]</obj_property>
+         <obj_property name="ObjectShortName">cycle_count[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/sim_done">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Simulation Finished Flag</obj_property>
+         <obj_property name="ElementShortName">sim_done</obj_property>
+         <obj_property name="ObjectShortName">sim_done</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="grp_[02]_256-cycle_i-cache_startup_flush_bottleneck">
+      <obj_property name="label">[02] 256 cycle latancy I-Cache </obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_icache_flush_done">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Flush Finished Pulse (flush_done)</obj_property>
+         <obj_property name="ElementShortName">probe_icache_flush_done</obj_property>
+         <obj_property name="ObjectShortName">probe_icache_flush_done</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_icache_flush_en">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">I-Cache Flush Active (flush_en)</obj_property>
+         <obj_property name="ElementShortName">probe_icache_flush_en</obj_property>
+         <obj_property name="ObjectShortName">probe_icache_flush_en</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FF0000</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_icache_flush_cnt">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Flush Counter 0..255 (flush_cnt_q)</obj_property>
+         <obj_property name="ElementShortName">probe_icache_flush_cnt[7:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_icache_flush_cnt[7:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFA500</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_icache_state">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">I-Cache FSM (0=FLUSH, 1=IDLE, 2=READ, 3=MISS)</obj_property>
+         <obj_property name="ElementShortName">probe_icache_state[2:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_icache_state[2:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_icache_miss">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">I-Cache Miss Pulse (Cold Misses)</obj_property>
+         <obj_property name="ElementShortName">probe_icache_miss</obj_property>
+         <obj_property name="ObjectShortName">probe_icache_miss</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FF5555</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_icache_wren">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Tag/Data SRAM Write Enable (cache_wren)</obj_property>
+         <obj_property name="ElementShortName">probe_icache_wren</obj_property>
+         <obj_property name="ObjectShortName">probe_icache_wren</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_rdata">
+         <obj_property name="ElementShortName">probe_axi_rdata[63:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_rdata[63:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="grp_[03]_6-cycle_instruction_fetch_pipeline_(front-end_&amp;_id)">
+      <obj_property name="label">[03] 6-Cycle Instruction Fetch Pipeline (Front-End &amp; ID)</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/spy_fetch_pc">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Fetch Virtual Address (spy_fetch_pc)</obj_property>
+         <obj_property name="ElementShortName">spy_fetch_pc[31:0]</obj_property>
+         <obj_property name="ObjectShortName">spy_fetch_pc[31:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_fetch_req">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">FE -&gt; I-Cache Request (dreq.req)</obj_property>
+         <obj_property name="ElementShortName">probe_fetch_req</obj_property>
+         <obj_property name="ObjectShortName">probe_fetch_req</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_fetch_valid">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">I-Cache -&gt; FE Response Valid (dreq.valid)</obj_property>
+         <obj_property name="ElementShortName">probe_fetch_valid</obj_property>
+         <obj_property name="ObjectShortName">probe_fetch_valid</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_fetch_data">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">I-Cache Readout Instruction Word</obj_property>
+         <obj_property name="ElementShortName">probe_fetch_data[31:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_fetch_data[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_fe_id_valid">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Fetch Entry Valid (IF -&gt; ID)</obj_property>
+         <obj_property name="ElementShortName">probe_fe_id_valid</obj_property>
+         <obj_property name="ObjectShortName">probe_fe_id_valid</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_id_fe_ready">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Decode Stage Ready (ID -&gt; IF)</obj_property>
+         <obj_property name="ElementShortName">probe_id_fe_ready</obj_property>
+         <obj_property name="ObjectShortName">probe_id_fe_ready</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_fe_addr">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Instruction PC in ID Stage</obj_property>
+         <obj_property name="ElementShortName">probe_fe_addr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_fe_addr[31:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_fe_instr">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Instruction Word in ID Stage</obj_property>
+         <obj_property name="ElementShortName">probe_fe_instr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_fe_instr[31:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="grp_[04]_axi4_external_memory_bus_(round-trip_latency)">
+      <obj_property name="label">[04] AXI4 External Memory Bus (Round-Trip Latency)</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/r_state">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">TB AXI Read FSM (0=IDLE, 1=BURST)</obj_property>
+         <obj_property name="ElementShortName">r_state[1:0]</obj_property>
+         <obj_property name="ObjectShortName">r_state[1:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_arvalid">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI ARVALID (Instruction Fetch Request)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_arvalid</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_arvalid</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_arready">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI ARREADY (Slave Address Ready)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_arready</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_arready</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_araddr">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI ARADDR (Burst Start Address)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_araddr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_araddr[31:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFA500</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_arlen">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI ARLEN (Burst Beats Length)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_arlen[7:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_arlen[7:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_rvalid">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI RVALID (Instruction Word Beat Valid)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_rvalid</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_rvalid</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_rready">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI RREADY (Core Ready to Accept Beat)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_rready</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_rready</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_rlast">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI RLAST (End of Instruction Burst)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_rlast</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_rlast</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_rdata">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI RDATA (64-bit Memory Data)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_rdata[63:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_rdata[63:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/w_state">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">TB AXI Write FSM (0=IDLE, 1=BURST, 2=RESP)</obj_property>
+         <obj_property name="ElementShortName">w_state[1:0]</obj_property>
+         <obj_property name="ObjectShortName">w_state[1:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_awvalid">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI AWVALID (Data Store Address Valid)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_awvalid</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_awvalid</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_awready">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI AWREADY (Slave Write Addr Ready)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_awready</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_awready</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_awaddr">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI AWADDR (Data Store Address)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_awaddr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_awaddr[31:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFA500</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_wvalid">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI WVALID (Data Store Data Valid)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_wvalid</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_wvalid</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_wready">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI WREADY (Slave Write Data Ready)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_wready</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_wready</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_wlast">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI WLAST (Last Write Beat)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_wlast</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_wlast</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_wdata">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI WDATA (Data Store Value)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_wdata[63:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_wdata[63:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFA500</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_bvalid">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI BVALID (Write Response Acknowledged)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_bvalid</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_bvalid</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_bready">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI BREADY (Core Ready for B-Resp)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_bready</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_bready</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="grp_[05]_lsu_&amp;_uncached_d-cache_stalls_(store_buffer_freeze)">
+      <obj_property name="label">[05] LSU &amp; Uncached D-Cache Stalls (Store Buffer Freeze)</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_lsu_valid">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">LSU Request Valid (ID -&gt; EX)</obj_property>
+         <obj_property name="ElementShortName">probe_lsu_valid</obj_property>
+         <obj_property name="ObjectShortName">probe_lsu_valid</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_lsu_ready">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">LSU Stage Ready (EX -&gt; ID)</obj_property>
+         <obj_property name="ElementShortName">probe_lsu_ready</obj_property>
+         <obj_property name="ObjectShortName">probe_lsu_ready</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_stall_st_pending">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">STALL: Store Pending in Buffer</obj_property>
+         <obj_property name="ElementShortName">probe_stall_st_pending</obj_property>
+         <obj_property name="ObjectShortName">probe_stall_st_pending</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FF0000</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_wbuffer_empty">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">D-Cache Write Buffer Empty Flag</obj_property>
+         <obj_property name="ElementShortName">probe_wbuffer_empty</obj_property>
+         <obj_property name="ObjectShortName">probe_wbuffer_empty</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_load_valid">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">LSU Load Result Valid</obj_property>
+         <obj_property name="ElementShortName">probe_load_valid</obj_property>
+         <obj_property name="ObjectShortName">probe_load_valid</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_load_result">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">LSU Load Data Result</obj_property>
+         <obj_property name="ElementShortName">probe_load_result[31:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_load_result[31:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="grp_[06]_instruction_retirement_&amp;_register_writeback_(commit)">
+      <obj_property name="label">[06] Instruction Retirement &amp; Register Writeback (Commit)</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/cycle_count">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Simulation Cycle Counter</obj_property>
+         <obj_property name="ElementShortName">cycle_count[31:0]</obj_property>
+         <obj_property name="ObjectShortName">cycle_count[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_commit_ack">
+         <obj_property name="ElementShortName">probe_commit_ack[1:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_commit_ack[1:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_commit_pc">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Retired Program Counter (pc_commit)</obj_property>
+         <obj_property name="ElementShortName">probe_commit_pc[31:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_commit_pc[31:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/spy_commit_pc">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Spy Retired PC (spy_commit_pc)</obj_property>
+         <obj_property name="ElementShortName">spy_commit_pc[31:0]</obj_property>
+         <obj_property name="ObjectShortName">spy_commit_pc[31:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_we_gpr">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">GPR Regfile Write Enable</obj_property>
+         <obj_property name="ElementShortName">probe_we_gpr</obj_property>
+         <obj_property name="ObjectShortName">probe_we_gpr</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_waddr_gpr">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">GPR Destination Reg Index (rd)</obj_property>
+         <obj_property name="ElementShortName">probe_waddr_gpr[4:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_waddr_gpr[4:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_wdata_gpr">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">GPR Written Data Value</obj_property>
+         <obj_property name="ElementShortName">probe_wdata_gpr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_wdata_gpr[31:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="grp_[07]_testbench_verification_&amp;_scoreboard_status">
+      <obj_property name="label">[07] Testbench Verification &amp; Scoreboard Status</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/check_count">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Scoreboard Passed Assertions Count</obj_property>
+         <obj_property name="ElementShortName">check_count[31:0]</obj_property>
+         <obj_property name="ObjectShortName">check_count[31:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/error_count">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Scoreboard Assertion Errors Count</obj_property>
+         <obj_property name="ElementShortName">error_count[31:0]</obj_property>
+         <obj_property name="ObjectShortName">error_count[31:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FF0000</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group275">
+      <obj_property name="label">I_cache</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="group" fp_name="group246">
+         <obj_property name="label">Interface &amp; Handshake</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject type="group" fp_name="group235">
+            <obj_property name="label">Fetch Req &amp; ack</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="isExpanded"></obj_property>
+            <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/en_i">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">en_i</obj_property>
+               <obj_property name="ObjectShortName">en_i</obj_property>
+               <obj_property name="label">CacheEn</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/dreq_i">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">dreq_i</obj_property>
+               <obj_property name="ObjectShortName">dreq_i</obj_property>
+               <obj_property name="label">ProcFetchReq</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/dreq_o">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">dreq_o</obj_property>
+               <obj_property name="ObjectShortName">dreq_o</obj_property>
+               <obj_property name="label">ProcFetchResp</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="group244">
+            <obj_property name="label">Address </obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="isExpanded"></obj_property>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/areq_o">
+               <obj_property name="ElementShortName">areq_o</obj_property>
+               <obj_property name="ObjectShortName">areq_o</obj_property>
+               <obj_property name="isExpanded"></obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/areq_i">
+               <obj_property name="ElementShortName">areq_i</obj_property>
+               <obj_property name="ObjectShortName">areq_i</obj_property>
+               <obj_property name="isExpanded"></obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="group245">
+            <obj_property name="label">External meme (via AXI)</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="isExpanded"></obj_property>
+            <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/miss_o">
+               <obj_property name="ElementShortName">miss_o</obj_property>
+               <obj_property name="ObjectShortName">miss_o</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/mem_data_req_o">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">mem_data_req_o</obj_property>
+               <obj_property name="ObjectShortName">mem_data_req_o</obj_property>
+               <obj_property name="label">MemReqOut</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/mem_data_ack_i">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">mem_data_ack_i</obj_property>
+               <obj_property name="ObjectShortName">mem_data_ack_i</obj_property>
+               <obj_property name="label">MemAckIn</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/mem_data_o">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">mem_data_o</obj_property>
+               <obj_property name="ObjectShortName">mem_data_o</obj_property>
+               <obj_property name="label">MemPayloadOut</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/mem_rtrn_vld_i">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">mem_rtrn_vld_i</obj_property>
+               <obj_property name="ObjectShortName">mem_rtrn_vld_i</obj_property>
+               <obj_property name="label">MemRtnVld</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/mem_rtrn_i">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">mem_rtrn_i</obj_property>
+               <obj_property name="ObjectShortName">mem_rtrn_i</obj_property>
+               <obj_property name="label">MemRespPayload</obj_property>
+               <obj_property name="isExpanded"></obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_axi_rdata">
+               <obj_property name="ElementShortName">probe_axi_rdata[63:0]</obj_property>
+               <obj_property name="ObjectShortName">probe_axi_rdata[63:0]</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="group250">
+         <obj_property name="label">Address &amp; Lookup Fields</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject type="group" fp_name="group247">
+            <obj_property name="label">Address Registers &amp; Pipeline</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="isExpanded"></obj_property>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/vaddr_d">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">vaddr_d[31:0]</obj_property>
+               <obj_property name="ObjectShortName">vaddr_d[31:0]</obj_property>
+               <obj_property name="label">VirtAddrNext</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/vaddr_q">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">vaddr_q[31:0]</obj_property>
+               <obj_property name="ObjectShortName">vaddr_q[31:0]</obj_property>
+               <obj_property name="label">VirtAddrReg</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="group248">
+            <obj_property name="label">Index, Tag &amp; Offset</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="isExpanded"></obj_property>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/cl_index">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">cl_index[7:0]</obj_property>
+               <obj_property name="ObjectShortName">cl_index[7:0]</obj_property>
+               <obj_property name="label">CacheIndex</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/cl_offset_d">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">cl_offset_d[3:0]</obj_property>
+               <obj_property name="ObjectShortName">cl_offset_d[3:0]</obj_property>
+               <obj_property name="label">CacheOffsetNext</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/cl_offset_q">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">cl_offset_q[3:0]</obj_property>
+               <obj_property name="ObjectShortName">cl_offset_q[3:0]</obj_property>
+               <obj_property name="label">CacheOffsetReg</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/cl_tag_d">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">cl_tag_d[21:0]</obj_property>
+               <obj_property name="ObjectShortName">cl_tag_d[21:0]</obj_property>
+               <obj_property name="label">TagValueNext</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/cl_tag_q">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">cl_tag_q[21:0]</obj_property>
+               <obj_property name="ObjectShortName">cl_tag_q[21:0]</obj_property>
+               <obj_property name="label">TagValueReg</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="group249">
+            <obj_property name="label">Structural Parameters</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="isExpanded"></obj_property>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/ICACHE_OFFSET_WIDTH">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">ICACHE_OFFSET_WIDTH[31:0]</obj_property>
+               <obj_property name="ObjectShortName">ICACHE_OFFSET_WIDTH[31:0]</obj_property>
+               <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+               <obj_property name="label">ParamOffsetWidth</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/ICACHE_NUM_WORDS">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">ICACHE_NUM_WORDS[31:0]</obj_property>
+               <obj_property name="ObjectShortName">ICACHE_NUM_WORDS[31:0]</obj_property>
+               <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+               <obj_property name="label">ParamNumWords</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/ICACHE_CL_IDX_WIDTH">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">ICACHE_CL_IDX_WIDTH[31:0]</obj_property>
+               <obj_property name="ObjectShortName">ICACHE_CL_IDX_WIDTH[31:0]</obj_property>
+               <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+               <obj_property name="label">ParamIdxWidth</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="group255">
+         <obj_property name="label">Hit/Miss &amp; Data Selection</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject type="group" fp_name="group251">
+            <obj_property name="label">Hit/Miss &amp; Cacheability Logic</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="isExpanded"></obj_property>
+            <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/paddr_is_nc">
+               <obj_property name="ElementShortName">paddr_is_nc</obj_property>
+               <obj_property name="ObjectShortName">paddr_is_nc</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/addr_ni">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">addr_ni</obj_property>
+               <obj_property name="ObjectShortName">addr_ni</obj_property>
+               <obj_property name="label">NonIdempotent</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/cl_hit">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">cl_hit[1:0]</obj_property>
+               <obj_property name="ObjectShortName">cl_hit[1:0]</obj_property>
+               <obj_property name="label">WayHitVector</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/hit_idx">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">hit_idx[0:0]</obj_property>
+               <obj_property name="ObjectShortName">hit_idx[0:0]</obj_property>
+               <obj_property name="label">HitWayIndex</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/miss_o">
+               <obj_property name="ElementShortName">miss_o</obj_property>
+               <obj_property name="ObjectShortName">miss_o</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="group254">
+            <obj_property name="label">Data Selection &amp; Routing</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="isExpanded"></obj_property>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/cl_tag_rdata">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">cl_tag_rdata[1:0][21:0]</obj_property>
+               <obj_property name="ObjectShortName">cl_tag_rdata[1:0][21:0]</obj_property>
+               <obj_property name="label">TagRamReadData</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/vld_rdata">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">vld_rdata[1:0]</obj_property>
+               <obj_property name="ObjectShortName">vld_rdata[1:0]</obj_property>
+               <obj_property name="label">ValidRamReadData</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/cl_tag_valid_rdata">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">cl_tag_valid_rdata[1:0][22:0]</obj_property>
+               <obj_property name="ObjectShortName">cl_tag_valid_rdata[1:0][22:0]</obj_property>
+               <obj_property name="label">TagValidCombined</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/cl_rdata">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">cl_rdata[1:0][127:0]</obj_property>
+               <obj_property name="ObjectShortName">cl_rdata[1:0][127:0]</obj_property>
+               <obj_property name="label">CacheLineReadData</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/cl_ruser">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">cl_ruser[1:0][127:0]</obj_property>
+               <obj_property name="ObjectShortName">cl_ruser[1:0][127:0]</obj_property>
+               <obj_property name="label">CacheLineUserMeta</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/cl_sel">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">cl_sel[1:0][31:0]</obj_property>
+               <obj_property name="ObjectShortName">cl_sel[1:0][31:0]</obj_property>
+               <obj_property name="label">SelectedInstruction</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/cl_user">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">cl_user[1:0][31:0]</obj_property>
+               <obj_property name="ObjectShortName">cl_user[1:0][31:0]</obj_property>
+               <obj_property name="label">SelectedUserMeta</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="group258">
+         <obj_property name="label">FSM &amp; Replacement</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject type="group" fp_name="group257">
+            <obj_property name="label">FSM Controller States</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="isExpanded"></obj_property>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/state_d">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">state_d[2:0]</obj_property>
+               <obj_property name="ObjectShortName">state_d[2:0]</obj_property>
+               <obj_property name="label">FsmStateNext</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/state_q">
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="ElementShortName">state_q[2:0]</obj_property>
+               <obj_property name="ObjectShortName">state_q[2:0]</obj_property>
+               <obj_property name="label">FsmStateReg</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="group256">
+            <obj_property name="label">RAM Access Controls</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="isExpanded"></obj_property>
+            <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/cache_wren">
+               <obj_property name="ElementShortName">cache_wren</obj_property>
+               <obj_property name="ObjectShortName">cache_wren</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/cache_rden">
+               <obj_property name="ElementShortName">cache_rden</obj_property>
+               <obj_property name="ObjectShortName">cache_rden</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="group259">
+            <obj_property name="label">Replacement &amp; Flush Management</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="isExpanded"></obj_property>
+            <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/repl_way">
+               <obj_property name="ElementShortName">repl_way[0:0]</obj_property>
+               <obj_property name="ObjectShortName">repl_way[0:0]</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="grp_icache_mem_arrays">
+         <obj_property name="label">Data SRAM Memory Array Inspection</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_icache_mem_data_wdata">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">I-Cache Refill Line Write Data [127:0]</obj_property>
+            <obj_property name="ElementShortName">probe_icache_mem_data_wdata[127:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_icache_mem_data_wdata[127:0]</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#00FF00</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_icache_way0_rdata">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Way 0 SRAM Read Data [127:0]</obj_property>
+            <obj_property name="ElementShortName">probe_icache_way0_rdata[127:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_icache_way0_rdata[127:0]</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_icache_way1_rdata">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Way 1 SRAM Read Data [127:0]</obj_property>
+            <obj_property name="ElementShortName">probe_icache_way1_rdata[127:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_icache_way1_rdata[127:0]</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_icache_mem_line0">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">I-Cache Line 0 (PC 0x8000_0000) [127:0]</obj_property>
+            <obj_property name="ElementShortName">probe_icache_mem_line0[127:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_icache_mem_line0[127:0]</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#FFD700</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_icache_mem_line1">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">I-Cache Line 1 (PC 0x8000_0010) [127:0]</obj_property>
+            <obj_property name="ElementShortName">probe_icache_mem_line1[127:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_icache_mem_line1[127:0]</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#FFD700</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_icache_mem_line2">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">I-Cache Line 2 (PC 0x8000_0020) [127:0]</obj_property>
+            <obj_property name="ElementShortName">probe_icache_mem_line2[127:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_icache_mem_line2[127:0]</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#FFD700</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_icache_mem_line3">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">I-Cache Line 3 (PC 0x8000_0030) [127:0]</obj_property>
+            <obj_property name="ElementShortName">probe_icache_mem_line3[127:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_icache_mem_line3[127:0]</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#FFD700</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_icache_mem_line4">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">I-Cache Line 4 (PC 0x8000_0040) [127:0]</obj_property>
+            <obj_property name="ElementShortName">probe_icache_mem_line4[127:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_icache_mem_line4[127:0]</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#FFD700</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="grp_dcache">
+      <obj_property name="label">D_cache</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="group" fp_name="grp_dcache_ctrl">
+         <obj_property name="label">Interface &amp; Handshake</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_en">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">D-Cache Enabled (dcache_en)</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_en</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_en</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#00FF00</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_miss">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">D-Cache Miss Pulse</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_miss</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_miss</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#FF0000</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_flush_req">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">D-Cache Flush Request</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_flush_req</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_flush_req</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_flush_ack">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">D-Cache Flush Acknowledge</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_flush_ack</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_flush_ack</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="grp_dcache_refill">
+         <obj_property name="label">Cacheline Refill (Write to Data RAM from Miss Unit)</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_wr_cl_vld">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Refill Valid (wr_cl_vld)</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_wr_cl_vld</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_wr_cl_vld</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_wr_cl_we">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Refill Way WE [1:0]</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_wr_cl_we[1:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_wr_cl_we[1:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_wr_cl_idx">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Refill Index [7:0]</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_wr_cl_idx[7:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_wr_cl_idx[7:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_wr_cl_tag">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Refill Tag</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_wr_cl_tag[21:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_wr_cl_tag[21:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_wr_cl_data">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Refill 128-bit Cache Line Data</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_wr_cl_data[127:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_wr_cl_data[127:0]</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#00FF00</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_wr_cl_data_be">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Refill Byte Enable [15:0]</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_wr_cl_data_be[15:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_wr_cl_data_be[15:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="grp_dcache_store">
+         <obj_property name="label">Single-Word Store (Write to Data RAM from CPU)</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_wr_req">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Store Way Request [1:0]</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_wr_req[1:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_wr_req[1:0]</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_wr_ack">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Store Write Ack</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_wr_ack</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_wr_ack</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#00FF00</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_wr_idx">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Store Index [7:0]</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_wr_idx[7:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_wr_idx[7:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_wr_off">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Store Byte Offset [3:0]</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_wr_off[3:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_wr_off[3:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_wr_data">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Store Data Word [31:0]</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_wr_data[31:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_wr_data[31:0]</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#FFA500</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_wr_data_be">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Store Byte Enable [3:0]</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_wr_data_be[3:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_wr_data_be[3:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="grp_dcache_banks">
+         <obj_property name="label">4 Data RAM Banks (SRAM Memory Access)</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_bank_req">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Bank Request Vector [3:0]</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_bank_req[3:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_bank_req[3:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_bank_we">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Bank Write Enable Vector [3:0]</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_bank_we[3:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_bank_we[3:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_bank0_rdata">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Bank 0 Read Data {Way1, Way0}</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_bank0_rdata[63:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_bank0_rdata[63:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_bank1_rdata">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Bank 1 Read Data {Way1, Way0}</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_bank1_rdata[63:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_bank1_rdata[63:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_bank2_rdata">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Bank 2 Read Data {Way1, Way0}</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_bank2_rdata[63:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_bank2_rdata[63:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_bank3_rdata">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Bank 3 Read Data {Way1, Way0}</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_bank3_rdata[63:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_bank3_rdata[63:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="grp_dcache_readout">
+         <obj_property name="label">Way Readout, Tag &amp; Hit Selection</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_way0_line_rdata">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Way 0 Reconstructed Cache Line [127:0]</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_way0_line_rdata[127:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_way0_line_rdata[127:0]</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_way1_line_rdata">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Way 1 Reconstructed Cache Line [127:0]</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_way1_line_rdata[127:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_way1_line_rdata[127:0]</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_tag_way0">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Way 0 Tag Readout</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_tag_way0[21:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_tag_way0[21:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_tag_way1">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Way 1 Tag Readout</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_tag_way1[21:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_tag_way1[21:0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_rd_vld_bits">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Way Valid Bits [1:0]</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_rd_vld_bits[1:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_rd_vld_bits[1:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_rd_hit_oh">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Way Hit One-Hot [1:0]</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_rd_hit_oh[1:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_rd_hit_oh[1:0]</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#00FF00</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_rd_data">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">Final D-Cache Read Data Word [31:0]</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_rd_data[31:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_rd_data[31:0]</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#00FF00</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="grp_dcache_mem_arrays">
+         <obj_property name="label">Data SRAM Memory Array Inspection</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_mem_line16">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">D-Cache Memory Line 16 (Addr 256 / 0x100) [127:0]</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_mem_line16[127:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_mem_line16[127:0]</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#FFD700</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/tb_cva6_smoke_cold_startup/probe_dcache_mem_line32">
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="label">D-Cache Memory Line 32 (Addr 512 / 0x200) [127:0]</obj_property>
+            <obj_property name="ElementShortName">probe_dcache_mem_line32[127:0]</obj_property>
+            <obj_property name="ObjectShortName">probe_dcache_mem_line32[127:0]</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">#FFD700</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+</wave_config>

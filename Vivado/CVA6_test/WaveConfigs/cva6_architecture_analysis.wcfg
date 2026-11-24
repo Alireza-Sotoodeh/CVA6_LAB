@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_cva6_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="ariane_pkg" />
+            <top_module name="axi_pkg" />
+            <top_module name="config_pkg" />
+            <top_module name="cva6_types_pkg" />
+            <top_module name="glbl" />
+            <top_module name="riscv" />
+            <top_module name="tb_cva6" />
+            <top_module name="wt_cache_pkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="2,479.883 ns"></ZoomStartTime>
+      <ZoomEndTime time="3,400.884 ns"></ZoomEndTime>
+      <Cursor1Time time="3,135.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="380"></NameColumnWidth>
+      <ValueColumnWidth column_width="155"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="7" />
+   <wvobject type="group" fp_name="grp_[01]_system_control_&amp;_clock_cycles">
+      <obj_property name="label">[01] System Control &amp; Clock Cycles</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="logic" fp_name="/tb_cva6/clk">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">System Clock (clk)</obj_property>
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/rst_ni">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Reset Active-Low (rst_ni)</obj_property>
+         <obj_property name="ElementShortName">rst_ni</obj_property>
+         <obj_property name="ObjectShortName">rst_ni</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FF0000</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6/cycle_count">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Simulation Cycle Counter</obj_property>
+         <obj_property name="ElementShortName">cycle_count[31:0]</obj_property>
+         <obj_property name="ObjectShortName">cycle_count[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/sim_done">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Simulation Finished Flag</obj_property>
+         <obj_property name="ElementShortName">sim_done</obj_property>
+         <obj_property name="ObjectShortName">sim_done</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="grp_[02]_256-cycle_i-cache_startup_flush_bottleneck">
+      <obj_property name="label">[02] 256-Cycle I-Cache Startup Flush Bottleneck</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/tb_cva6/probe_icache_flush_cnt">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Flush Counter 0..255 (flush_cnt_q)</obj_property>
+         <obj_property name="ElementShortName">probe_icache_flush_cnt[7:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_icache_flush_cnt[7:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFA500</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_icache_flush_en">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">I-Cache Flush Active (flush_en)</obj_property>
+         <obj_property name="ElementShortName">probe_icache_flush_en</obj_property>
+         <obj_property name="ObjectShortName">probe_icache_flush_en</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FF0000</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_icache_flush_done">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Flush Finished Pulse (flush_done)</obj_property>
+         <obj_property name="ElementShortName">probe_icache_flush_done</obj_property>
+         <obj_property name="ObjectShortName">probe_icache_flush_done</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6/probe_icache_state">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">I-Cache FSM (0=FLUSH, 1=IDLE, 2=READ, 3=MISS)</obj_property>
+         <obj_property name="ElementShortName">probe_icache_state[2:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_icache_state[2:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_icache_miss">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">I-Cache Miss Pulse (Cold Misses)</obj_property>
+         <obj_property name="ElementShortName">probe_icache_miss</obj_property>
+         <obj_property name="ObjectShortName">probe_icache_miss</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FF5555</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_icache_wren">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Tag/Data SRAM Write Enable (cache_wren)</obj_property>
+         <obj_property name="ElementShortName">probe_icache_wren</obj_property>
+         <obj_property name="ObjectShortName">probe_icache_wren</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="grp_[03]_6-cycle_instruction_fetch_pipeline_(front-end_&amp;_id)">
+      <obj_property name="label">[03] 6-Cycle Instruction Fetch Pipeline (Front-End &amp; ID)</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/tb_cva6/spy_fetch_pc">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Fetch Virtual Address (spy_fetch_pc)</obj_property>
+         <obj_property name="ElementShortName">spy_fetch_pc[31:0]</obj_property>
+         <obj_property name="ObjectShortName">spy_fetch_pc[31:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_fetch_req">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">FE -&gt; I-Cache Request (dreq.req)</obj_property>
+         <obj_property name="ElementShortName">probe_fetch_req</obj_property>
+         <obj_property name="ObjectShortName">probe_fetch_req</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_fetch_valid">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">I-Cache -&gt; FE Response Valid (dreq.valid)</obj_property>
+         <obj_property name="ElementShortName">probe_fetch_valid</obj_property>
+         <obj_property name="ObjectShortName">probe_fetch_valid</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6/probe_fetch_data">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">I-Cache Readout Instruction Word</obj_property>
+         <obj_property name="ElementShortName">probe_fetch_data[31:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_fetch_data[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_fe_id_valid">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Fetch Entry Valid (IF -&gt; ID)</obj_property>
+         <obj_property name="ElementShortName">probe_fe_id_valid</obj_property>
+         <obj_property name="ObjectShortName">probe_fe_id_valid</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_id_fe_ready">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Decode Stage Ready (ID -&gt; IF)</obj_property>
+         <obj_property name="ElementShortName">probe_id_fe_ready</obj_property>
+         <obj_property name="ObjectShortName">probe_id_fe_ready</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6/probe_fe_addr">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Instruction PC in ID Stage</obj_property>
+         <obj_property name="ElementShortName">probe_fe_addr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_fe_addr[31:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6/probe_fe_instr">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Instruction Word in ID Stage</obj_property>
+         <obj_property name="ElementShortName">probe_fe_instr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_fe_instr[31:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="grp_[04]_axi4_external_memory_bus_(round-trip_latency)">
+      <obj_property name="label">[04] AXI4 External Memory Bus (Round-Trip Latency)</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/tb_cva6/r_state">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">TB AXI Read FSM (0=IDLE, 1=BURST)</obj_property>
+         <obj_property name="ElementShortName">r_state[1:0]</obj_property>
+         <obj_property name="ObjectShortName">r_state[1:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_axi_arvalid">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI ARVALID (Instruction Fetch Request)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_arvalid</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_arvalid</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_axi_arready">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI ARREADY (Slave Address Ready)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_arready</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_arready</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6/probe_axi_araddr">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI ARADDR (Burst Start Address)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_araddr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_araddr[31:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFA500</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6/probe_axi_arlen">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI ARLEN (Burst Beats Length)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_arlen[7:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_arlen[7:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_axi_rvalid">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI RVALID (Instruction Word Beat Valid)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_rvalid</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_rvalid</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_axi_rready">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI RREADY (Core Ready to Accept Beat)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_rready</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_rready</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_axi_rlast">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI RLAST (End of Instruction Burst)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_rlast</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_rlast</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6/probe_axi_rdata">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI RDATA (64-bit Memory Data)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_rdata[63:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_rdata[63:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6/w_state">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">TB AXI Write FSM (0=IDLE, 1=BURST, 2=RESP)</obj_property>
+         <obj_property name="ElementShortName">w_state[1:0]</obj_property>
+         <obj_property name="ObjectShortName">w_state[1:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_axi_awvalid">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI AWVALID (Data Store Address Valid)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_awvalid</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_awvalid</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_axi_awready">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI AWREADY (Slave Write Addr Ready)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_awready</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_awready</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6/probe_axi_awaddr">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI AWADDR (Data Store Address)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_awaddr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_awaddr[31:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFA500</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_axi_wvalid">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI WVALID (Data Store Data Valid)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_wvalid</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_wvalid</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_axi_wready">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI WREADY (Slave Write Data Ready)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_wready</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_wready</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_axi_wlast">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI WLAST (Last Write Beat)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_wlast</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_wlast</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6/probe_axi_wdata">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI WDATA (Data Store Value)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_wdata[63:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_wdata[63:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFA500</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_axi_bvalid">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI BVALID (Write Response Acknowledged)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_bvalid</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_bvalid</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_axi_bready">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">AXI BREADY (Core Ready for B-Resp)</obj_property>
+         <obj_property name="ElementShortName">probe_axi_bready</obj_property>
+         <obj_property name="ObjectShortName">probe_axi_bready</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="grp_[05]_lsu_&amp;_uncached_d-cache_stalls_(store_buffer_freeze)">
+      <obj_property name="label">[05] LSU &amp; Uncached D-Cache Stalls (Store Buffer Freeze)</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_lsu_valid">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">LSU Request Valid (ID -&gt; EX)</obj_property>
+         <obj_property name="ElementShortName">probe_lsu_valid</obj_property>
+         <obj_property name="ObjectShortName">probe_lsu_valid</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_lsu_ready">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">LSU Stage Ready (EX -&gt; ID)</obj_property>
+         <obj_property name="ElementShortName">probe_lsu_ready</obj_property>
+         <obj_property name="ObjectShortName">probe_lsu_ready</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_stall_st_pending">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">STALL: Store Pending in Buffer</obj_property>
+         <obj_property name="ElementShortName">probe_stall_st_pending</obj_property>
+         <obj_property name="ObjectShortName">probe_stall_st_pending</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FF0000</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_wbuffer_empty">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">D-Cache Write Buffer Empty Flag</obj_property>
+         <obj_property name="ElementShortName">probe_wbuffer_empty</obj_property>
+         <obj_property name="ObjectShortName">probe_wbuffer_empty</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_load_valid">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">LSU Load Result Valid</obj_property>
+         <obj_property name="ElementShortName">probe_load_valid</obj_property>
+         <obj_property name="ObjectShortName">probe_load_valid</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6/probe_load_result">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">LSU Load Data Result</obj_property>
+         <obj_property name="ElementShortName">probe_load_result[31:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_load_result[31:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="grp_[06]_instruction_retirement_&amp;_register_writeback_(commit)">
+      <obj_property name="label">[06] Instruction Retirement &amp; Register Writeback (Commit)</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_commit_ack">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Instruction Commit Strobe (commit_ack)</obj_property>
+         <obj_property name="ElementShortName">probe_commit_ack</obj_property>
+         <obj_property name="ObjectShortName">probe_commit_ack</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6/probe_commit_pc">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Retired Program Counter (pc_commit)</obj_property>
+         <obj_property name="ElementShortName">probe_commit_pc[31:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_commit_pc[31:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6/spy_commit_pc">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Spy Retired PC (spy_commit_pc)</obj_property>
+         <obj_property name="ElementShortName">spy_commit_pc[31:0]</obj_property>
+         <obj_property name="ObjectShortName">spy_commit_pc[31:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_cva6/probe_we_gpr">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">GPR Regfile Write Enable</obj_property>
+         <obj_property name="ElementShortName">probe_we_gpr</obj_property>
+         <obj_property name="ObjectShortName">probe_we_gpr</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6/probe_waddr_gpr">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">GPR Destination Reg Index (rd)</obj_property>
+         <obj_property name="ElementShortName">probe_waddr_gpr[4:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_waddr_gpr[4:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6/probe_wdata_gpr">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">GPR Written Data Value</obj_property>
+         <obj_property name="ElementShortName">probe_wdata_gpr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">probe_wdata_gpr[31:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="grp_[07]_testbench_verification_&amp;_scoreboard_status">
+      <obj_property name="label">[07] Testbench Verification &amp; Scoreboard Status</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/tb_cva6/check_count">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Scoreboard Passed Assertions Count</obj_property>
+         <obj_property name="ElementShortName">check_count[31:0]</obj_property>
+         <obj_property name="ObjectShortName">check_count[31:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_cva6/error_count">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="label">Scoreboard Assertion Errors Count</obj_property>
+         <obj_property name="ElementShortName">error_count[31:0]</obj_property>
+         <obj_property name="ObjectShortName">error_count[31:0]</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FF0000</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>

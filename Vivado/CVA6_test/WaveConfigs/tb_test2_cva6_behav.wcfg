@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_test2_cva6_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="tb_test2_cva6" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="500000000fs"></ZoomEndTime>
+      <Cursor1Time time="50000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="320"></NameColumnWidth>
+      <ValueColumnWidth column_width="150"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="7" />
+   <wvobject type="group" fp_name="grp_sys">
+      <obj_property name="label">[01] System Control &amp; Clocks</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="logic" fp_name="/tb_test2_cva6/clk">
+         <obj_property name="label">Clock (clk)</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_test2_cva6/rst_ni">
+         <obj_property name="label">Reset Active-Low (rst_ni)</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">rst_ni</obj_property>
+         <obj_property name="ObjectShortName">rst_ni</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FF0000</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_test2_cva6/cycle_count">
+         <obj_property name="label">Cycle Counter</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">cycle_count</obj_property>
+         <obj_property name="ObjectShortName">cycle_count</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="grp_pc">
+      <obj_property name="label">[02] Program Counter &amp; Pipeline Flow</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/tb_test2_cva6/spy_fetch_pc">
+         <obj_property name="label">Frontend Fetch PC (spy_fetch_pc)</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">spy_fetch_pc</obj_property>
+         <obj_property name="ObjectShortName">spy_fetch_pc</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_test2_cva6/spy_commit_pc">
+         <obj_property name="label">Retired Commit PC (spy_commit_pc)</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">spy_commit_pc</obj_property>
+         <obj_property name="ObjectShortName">spy_commit_pc</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="grp_axi_r">
+      <obj_property name="label">[03] AXI4 Read Channel (Fetch &amp; Load)</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/tb_test2_cva6/ar_addr_q">
+         <obj_property name="label">AXI Read Address (ar_addr_q)</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">ar_addr_q</obj_property>
+         <obj_property name="ObjectShortName">ar_addr_q</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_test2_cva6/m_axi_arvalid">
+         <obj_property name="label">AR Valid</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">m_axi_arvalid</obj_property>
+         <obj_property name="ObjectShortName">m_axi_arvalid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_test2_cva6/m_axi_rvalid">
+         <obj_property name="label">R Valid</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">m_axi_rvalid</obj_property>
+         <obj_property name="ObjectShortName">m_axi_rvalid</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_test2_cva6/m_axi_rdata">
+         <obj_property name="label">R Data Word</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">m_axi_rdata</obj_property>
+         <obj_property name="ObjectShortName">m_axi_rdata</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="grp_axi_w">
+      <obj_property name="label">[04] AXI4 Write Channel (Store)</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/tb_test2_cva6/aw_addr_q">
+         <obj_property name="label">AXI Write Address (aw_addr_q)</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">aw_addr_q</obj_property>
+         <obj_property name="ObjectShortName">aw_addr_q</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_test2_cva6/m_axi_awvalid">
+         <obj_property name="label">AW Valid</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">m_axi_awvalid</obj_property>
+         <obj_property name="ObjectShortName">m_axi_awvalid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_test2_cva6/m_axi_wvalid">
+         <obj_property name="label">W Valid</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">m_axi_wvalid</obj_property>
+         <obj_property name="ObjectShortName">m_axi_wvalid</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_test2_cva6/m_axi_wdata">
+         <obj_property name="label">W Data Word</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">m_axi_wdata</obj_property>
+         <obj_property name="ObjectShortName">m_axi_wdata</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="grp_icache">
+      <obj_property name="label">[05] I-Cache Controller &amp; Startup Flush</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/tb_test2_cva6/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/state_q">
+         <obj_property name="label">I-Cache FSM State</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">state_q</obj_property>
+         <obj_property name="ObjectShortName">state_q</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_test2_cva6/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/flush_cnt_q">
+         <obj_property name="label">Tag Flush Counter [0..255]</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">flush_cnt_q</obj_property>
+         <obj_property name="ObjectShortName">flush_cnt_q</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_test2_cva6/u_dut/\gen_cache_wt.i_cache_subsystem /i_cva6_icache/flush_done">
+         <obj_property name="label">Tag Flush Complete</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">flush_done</obj_property>
+         <obj_property name="ObjectShortName">flush_done</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="grp_xif">
+      <obj_property name="label">[06] Coprocessor Interface (CV-X-IF)</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/tb_test2_cva6/cvxif_req">
+         <obj_property name="label">CV-X-IF Request</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">cvxif_req</obj_property>
+         <obj_property name="ObjectShortName">cvxif_req</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_test2_cva6/cvxif_resp">
+         <obj_property name="label">CV-X-IF Response</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">cvxif_resp</obj_property>
+         <obj_property name="ObjectShortName">cvxif_resp</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="grp_status">
+      <obj_property name="label">[07] Testbench Verification &amp; Scoreboard</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/tb_test2_cva6/check_count">
+         <obj_property name="label">Checks Passed</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">check_count</obj_property>
+         <obj_property name="ObjectShortName">check_count</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_test2_cva6/error_count">
+         <obj_property name="label">Errors Count</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">error_count</obj_property>
+         <obj_property name="ObjectShortName">error_count</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">#FF0000</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>
