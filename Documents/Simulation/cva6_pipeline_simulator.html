@@ -1,13 +1,14 @@
 <!--
 ============================================================================
 Author: Alireza Sotodeh
-Date & Time: 2026-11-20 20:05:00 +03:30
+Date & Time: 2026-11-25 12:05:00 +03:30
 Status: MODIFIED FILE
-Reason / Modification: Added toggleable I-Cache startup tag flush simulation
-                       (dynamic 2^linesExp cycles), condensed expandable flush Gantt
-                       timeline column, fixed JAL relative offset handling,
-                       auto-halt on terminal self-loop branch, dual Execution/Total
-                       CPI metrics, and added CVA6 report benchmark Preset 14.
+Reason / Modification: Resolved microarchitectural pipeline discrepancies against Vivado RTL and empirical CSV traces:
+                       fixed scoreboard TID circular buffer wraparound bug during branch recovery, enforced write-through
+                       no-write-allocate in L1 D-cache with multi-cycle AXI store buffer drain latency (6c), enforced MSHR
+                       single-outstanding transaction constraint for D-cache read refills, accurately integrated 10-cycle
+                       hardware reset with 256-cycle startup tag sweep flush sequence, enhanced I-cache FSM state tracking on timeline,
+                       and extended history buffer to 600 cycles for complete cycle-by-cycle step-back capability across all benchmark runs.
 ============================================================================
 -->
 <!DOCTYPE html>
@@ -16,6 +17,7 @@ Reason / Modification: Added toggleable I-Cache startup tag flush simulation
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CVA6 (Ariane) Core Pipeline Simulator</title>
+  <link rel="icon" href="/favicon.ico"/>
   <style>
     @keyframes pulseDash {
       to {
@@ -443,9 +445,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       var text = document.getElementById('error-text');
       if (banner && text) {
         banner.style.display = 'block';
-        text.innerText = msg + "
-at line " + lineNo + ":" + columnNo + (error && error.stack ? "
-" + error.stack : "");
+        text.innerText = msg + "\nat line " + lineNo + ":" + columnNo + (error && error.stack ? "\n" + error.stack : "");
       }
       return false;
     };
@@ -2004,14 +2004,14 @@ BNE  x1, x0, fact_loop
 ADDI x3, x2, 0    // result in x3`
   },
   store_forwarding: {
-    title: "7. Store Buffer Drain & Forwarding",
-    desc: "Demonstrates back-to-back stores queuing in D$ Buffer, asynchronous SRAM drain, and immediate load forwarding.",
+    title: "7. Store Buffer Drain & WAIT_PAGE_OFFSET Stall",
+    desc: "Demonstrates back-to-back stores queuing in Store Buffer, asynchronous SRAM drain, and the real CVA6 WAIT_PAGE_OFFSET ('B') stall on conflicting load.",
     code: `ADDI x1, x0, 0
 ADDI x2, x0, 100
 ADDI x3, x0, 200
 SW   x2, 0(x1)    // Enters Store Buffer (Addr 0x0, Val 100)
 SW   x3, 4(x1)    // Enters Store Buffer (Addr 0x4, Val 200)
-LW   x4, 0(x1)    // LSU Load: forwards from Store Buffer / D$ Hit!
+LW   x4, 0(x1)    // LSU Load: WAIT_PAGE_OFFSET stall until Store Buffer drains!
 ADD  x5, x4, x3   // 100 + 200 = 300`
   },
   cache_cold_miss: {
@@ -2125,8 +2125,143 @@ ADDI x14, x0, 88
 ADDI x15, x0, 42
 SW   x15, 512(x0)
 BEQ  x0, x0, 0`
+  },
+  dual_commit_latency: {
+    title: "15. Dual-Commit Sustained Latency (Suite 6)",
+    desc: "Hardware-verified against tb_cva6_dual_commit_latency.sv. Features dual-issue/commit pairing (NrCommitPorts=2), sustained dual-retirement on Port 0 and Port 1 simultaneously, and CPI approaching 1.0.",
+    code: `LUI  x1, 0x80000
+ADDI x1, x1, 512       // Base pointer (0x80000200)
+ADDI x5, x0, 42        // x5 = 42
+ADDI x6, x0, 0         // x6 = 0
+ADDI x7, x0, 0         // x7 = 0
+ADDI x8, x0, 0         // x8 = 0
+ADDI x10, x0, 0        // x10 = 0
+ADDI x21, x0, 1        // iter = 1
+loop_dual:
+SW   x5, 0(x1)         // Store 42
+ADDI x6, x6, 1         // Dual-commits with SW!
+ADDI x7, x7, 2
+ADDI x8, x8, 3
+LW   x9, 0(x1)         // Load 42
+ADDI x10, x10, 4       // Dual-commits with LW!
+ADD  x11, x6, x7
+ADD  x12, x8, x10
+ADDI x13, x11, 10
+ADDI x14, x12, 20
+XOR  x15, x13, x14
+SLLI x16, x15, 2
+ADDI x21, x21, 1
+ADDI x22, x0, 3
+BNE  x21, x22, loop_dual
+term_loop:
+BEQ  x0, x0, term_loop`
+  },
+  subword_alignment: {
+    title: "16. Subword Memory Alignment & Store Drain (Suite 7)",
+    desc: "Hardware-verified against tb_cva6_subword_alignment.sv. Tests byte (SB, LB, LBU), halfword (SH, LH, LHU), word (SW, LW) memory access, signed/unsigned extension, and the true CVA6 WAIT_PAGE_OFFSET ('B') stall while the Store Buffer drains to memory.",
+    code: `LUI  x8, 0x80000
+ADDI x8, x8, 1024      // Base pointer 0x80000400
+ADDI x6, x0, 17        // 0x11
+SB   x6, 0(x8)         // Store byte 0x11 at offset 0
+ADDI x6, x0, 136       // 0x88
+SB   x6, 1(x8)         // Store byte 0x88 at offset 1
+ADDI x6, x0, 51        // 0x33
+SB   x6, 2(x8)         // Store byte 0x33 at offset 2
+ADDI x6, x0, 170       // 0xAA
+SB   x6, 3(x8)         // Store byte 0xAA at offset 3
+LB   x10, 0(x8)        // LB: sign-extend 0x11 -> 17
+LB   x11, 1(x8)        // LB: sign-extend 0x88 -> -120 (Stalls in WAIT_PAGE_OFFSET 'B'!)
+LBU  x12, 1(x8)        // LBU: zero-extend 0x88 -> 136
+LH   x13, 0(x8)        // LH: sign-extend 0x8811 -> -30703
+LHU  x14, 0(x8)        // LHU: zero-extend 0x8811 -> 34833
+LH   x15, 2(x8)        // LH: sign-extend 0xAA33 -> -21965
+LHU  x16, 2(x8)        // LHU: zero-extend 0xAA33 -> 43571
+LW   x17, 0(x8)        // LW: full word 0xAA338811
+term_loop:
+BEQ  x0, x0, term_loop`
+  },
+  m_extension_serdiv: {
+    title: "17. M-Extension Multiplier & Serial Divider FSM (Suite 4)",
+    desc: "Hardware-verified against tb_cva6_m_extension.sv and serdiv.sv. Exercises bit-accurate non-restoring serial divider with Leading Zero Count (LZC) dynamic latency, divide-by-zero early termination (2 cycles), upper multiplication (MULH, MULHU, MULHSU), and structural hazard stalls at Issue when the divider is busy.",
+    code: `ADDI x3, x0, 1000
+ADDI x4, x0, 0
+DIV  x10, x3, x4       // Divide by zero: early termination in 2 cycles (result = -1)
+DIVU x11, x3, x4       // Unsigned div by zero: early out in 2 cycles (result = 0xFFFFFFFF)
+REM  x12, x3, x4       // Remainder by zero: early out in 2 cycles (result = 1000)
+ADDI x5, x0, 5
+ADDI x6, x0, 100
+DIV  x14, x5, x6       // Early termination: dividend < divisor (2 cycles)
+DIV  x15, x6, x5       // Normal division: dynamic LZC latency (~10 cycles)
+ADDI x7, x0, 12        // Out-of-order ALU: completes in 1 cycle while DIV executes!
+MUL  x16, x7, x7       // 2-cycle MUL: 12 * 12 = 144
+REM  x17, x6, x7       // Structural stall: waits at Issue while DIV unit is busy!
+ADD  x18, x15, x16     // 20 + 144 = 164
+term_loop:
+BEQ  x0, x0, term_loop`
   }
 };;
+
+// --- MEMORY SUBWORD HELPERS ---
+const readMemByte = (mem, addr) => {
+  const wordBase = addr & ~3;
+  const byteOffset = addr & 3;
+  const word = mem[wordBase] || 0;
+  return (word >>> (byteOffset * 8)) & 0xFF;
+};
+
+const writeMemByte = (mem, addr, byteVal) => {
+  const wordBase = addr & ~3;
+  const byteOffset = addr & 3;
+  const word = mem[wordBase] || 0;
+  const mask = ~(0xFF << (byteOffset * 8));
+  const newWord = (word & mask) | ((byteVal & 0xFF) << (byteOffset * 8));
+  mem[wordBase] = newWord;
+};
+
+const readMemHalf = (mem, addr) => {
+  const b0 = readMemByte(mem, addr);
+  const b1 = readMemByte(mem, addr + 1);
+  return (b1 << 8) | b0;
+};
+
+const writeMemHalf = (mem, addr, halfVal) => {
+  writeMemByte(mem, addr, halfVal & 0xFF);
+  writeMemByte(mem, addr + 1, (halfVal >>> 8) & 0xFF);
+};
+
+const readMemWord = (mem, addr) => {
+  const wordBase = addr & ~3;
+  if ((addr & 3) === 0) return mem[wordBase] !== undefined ? mem[wordBase] : 0;
+  const b0 = readMemByte(mem, addr);
+  const b1 = readMemByte(mem, addr + 1);
+  const b2 = readMemByte(mem, addr + 2);
+  const b3 = readMemByte(mem, addr + 3);
+  return (b3 << 24) | (b2 << 16) | (b1 << 8) | b0;
+};
+
+const writeMemWord = (mem, addr, wordVal) => {
+  const wordBase = addr & ~3;
+  if ((addr & 3) === 0) {
+    mem[wordBase] = wordVal | 0;
+  } else {
+    writeMemByte(mem, addr, wordVal & 0xFF);
+    writeMemByte(mem, addr + 1, (wordVal >>> 8) & 0xFF);
+    writeMemByte(mem, addr + 2, (wordVal >>> 16) & 0xFF);
+    writeMemByte(mem, addr + 3, (wordVal >>> 24) & 0xFF);
+  }
+};
+
+// --- SERIAL DIVIDER DYNAMIC LATENCY (serdiv.sv) ---
+const computeDivLatency = (op, s1, s2) => {
+  if (s2 === 0) return 2; // early out on divide-by-zero
+  const u1 = (op === 'DIVU' || op === 'REMU') ? (s1 >>> 0) : Math.abs(s1 | 0);
+  const u2 = (op === 'DIVU' || op === 'REMU') ? (s2 >>> 0) : Math.abs(s2 | 0);
+  if (u1 < u2) return 2; // early out: dividend < divisor
+  const lzcA = Math.clz32(u1);
+  const lzcB = Math.clz32(u2);
+  const rawCycles = (32 - lzcA) - (32 - lzcB) + 3;
+  return Math.max(4, Math.min(34, rawCycles));
+};
 
 // --- INSTRUCTION PARSER ---
 
@@ -2176,13 +2311,13 @@ const parseProgram = asm => {
       const abiIdx = ABI_NAMES.indexOf(r);
       return abiIdx !== -1 ? abiIdx : 0;
     };
-    if (op === 'ADD' || op === 'SUB' || op === 'XOR' || op === 'OR' || op === 'AND' || op === 'SLL' || op === 'SRL' || op === 'SRA' || op === 'SLT') {
+    if (op === 'ADD' || op === 'SUB' || op === 'XOR' || op === 'OR' || op === 'AND' || op === 'SLL' || op === 'SRL' || op === 'SRA' || op === 'SLT' || op === 'SLTU') {
       type = 'ALU';
       rd = parseReg(parts[1]);
       rs1 = parseReg(parts[2]);
       rs2 = parseReg(parts[3]);
       latency = 1;
-    } else if (op === 'ADDI' || op === 'XORI' || op === 'ORI' || op === 'ANDI' || op === 'SLLI' || op === 'SRLI' || op === 'SRAI' || op === 'SLTI') {
+    } else if (op === 'ADDI' || op === 'XORI' || op === 'ORI' || op === 'ANDI' || op === 'SLLI' || op === 'SRLI' || op === 'SRAI' || op === 'SLTI' || op === 'SLTIU') {
       type = 'ALU';
       rd = parseReg(parts[1]);
       rs1 = parseReg(parts[2]);
@@ -2195,19 +2330,25 @@ const parseProgram = asm => {
       const rawImm = parts[2] || '0';
       imm = rawImm.toLowerCase().startsWith('0x') ? parseInt(rawImm, 16) : parseInt(rawImm, 10) || 0;
       latency = 1;
-    } else if (op === 'MUL') {
+    } else if (op === 'AUIPC') {
+      type = 'ALU';
+      rd = parseReg(parts[1]);
+      const rawImm = parts[2] || '0';
+      imm = rawImm.toLowerCase().startsWith('0x') ? parseInt(rawImm, 16) : parseInt(rawImm, 10) || 0;
+      latency = 1;
+    } else if (op === 'MUL' || op === 'MULH' || op === 'MULHU' || op === 'MULHSU') {
       type = 'MUL';
       rd = parseReg(parts[1]);
       rs1 = parseReg(parts[2]);
       rs2 = parseReg(parts[3]);
       latency = 2;
-    } else if (op === 'DIV' || op === 'REM') {
+    } else if (op === 'DIV' || op === 'DIVU' || op === 'REM' || op === 'REMU') {
       type = 'DIV';
       rd = parseReg(parts[1]);
       rs1 = parseReg(parts[2]);
       rs2 = parseReg(parts[3]);
       latency = 4;
-    } else if (op === 'LW') {
+    } else if (op === 'LW' || op === 'LB' || op === 'LBU' || op === 'LH' || op === 'LHU') {
       type = 'LSU';
       rd = parseReg(parts[1]);
       const match = parts[2].match(/(-?\d+|0x[0-9a-fA-F]+)\((.*)\)/);
@@ -2216,7 +2357,7 @@ const parseProgram = asm => {
         rs1 = parseReg(match[2]);
       }
       latency = 2;
-    } else if (op === 'SW') {
+    } else if (op === 'SW' || op === 'SB' || op === 'SH') {
       type = 'LSU';
       rs2 = parseReg(parts[1]);
       const match = parts[2].match(/(-?\d+|0x[0-9a-fA-F]+)\((.*)\)/);
@@ -2225,7 +2366,7 @@ const parseProgram = asm => {
         rs1 = parseReg(match[2]);
       }
       latency = 2;
-    } else if (op === 'BEQ' || op === 'BNE' || op === 'BLT' || op === 'BGE') {
+    } else if (op === 'BEQ' || op === 'BNE' || op === 'BLT' || op === 'BGE' || op === 'BLTU' || op === 'BGEU') {
       type = 'BRANCH';
       rs1 = parseReg(parts[1]);
       rs2 = parseReg(parts[2]);
@@ -2251,6 +2392,22 @@ const parseProgram = asm => {
       } else {
         targetPc = pc + 4;
       }
+      latency = 1;
+    } else if (op === 'JALR') {
+      type = 'BRANCH';
+      rd = parseReg(parts[1]);
+      const match = parts[2] ? parts[2].match(/(-?\d+|0x[0-9a-fA-F]+)\((.*)\)/) : null;
+      if (match) {
+        imm = match[1].toLowerCase().startsWith('0x') ? parseInt(match[1], 16) : parseInt(match[1], 10);
+        rs1 = parseReg(match[2]);
+      } else {
+        rs1 = parseReg(parts[2]);
+        const rawImm = parts[3] || '0';
+        imm = rawImm.toLowerCase().startsWith('0x') ? parseInt(rawImm, 16) : parseInt(rawImm, 10) || 0;
+      }
+      latency = 1;
+    } else if (op === 'FENCE' || op === 'FENCE.I') {
+      type = 'CSR';
       latency = 1;
     } else if (op === 'C.LI') {
       type = 'ALU';
@@ -2308,6 +2465,7 @@ const stepSimulation = (state, program) => {
       ...state.gantt[iId]
     };
   }
+  const nextICacheTimeline = { ...(state.iCacheTimeline || {}) };
   const nextCache = {
     ...state.cache,
     config: state.cache.config ? { ...state.cache.config } : { ...DEFAULT_CACHE_CONFIG },
@@ -2350,6 +2508,7 @@ const stepSimulation = (state, program) => {
     stallReason: null,
     status: 'RUNNING',
     gantt: nextGantt,
+    iCacheTimeline: nextICacheTimeline,
     cycleStory: {
       headline: `Cycle ${cycle}: Execution Step`,
       details: [],
@@ -2361,46 +2520,112 @@ const stepSimulation = (state, program) => {
   let storyType = 'normal';
   let hasMispredict = false;
   let mispredictRedirectPc = 0;
+  let mispredictBranchTransId = -1;
 
   const numSets = 1 << (nextCache.config ? nextCache.config.linesExp : 2);
   const numWays = 1 << (nextCache.config ? nextCache.config.waysExp : 0);
   const simulateStartupFlush = nextCache.config ? !!nextCache.config.simulateStartupFlush : false;
-  const numFlushCycles = simulateStartupFlush ? numSets : 0;
+  // CVA6 Hardware startup: 10 cycles hardware reset (rst_ni = 0), then 256 cycles tag sweep (0..255)
+  // Flush completes at Cycle 265 in Vivado simulation (IcacheFlushDone = 1), with first fetch at Cycle 266.
+  const resetCycles = simulateStartupFlush ? 10 : 0;
+  const numFlushCycles = simulateStartupFlush ? (resetCycles + numSets - 1) : 0;
 
   // -------------------------------------------------------------
-  // CACHE STARTUP TAG FLUSH SIMULATION (2^linesExp cycles)
+  // CACHE STARTUP TAG FLUSH SIMULATION (Reset + 2^linesExp cycles)
   // -------------------------------------------------------------
   if (simulateStartupFlush && cycle <= numFlushCycles) {
+    if (cycle <= resetCycles) {
+      nextState.status = 'RESET';
+      nextCache.iControllerState = 'FLUSH';
+      nextICacheTimeline[cycle] = 'FLUSH';
+      nextState.stageSnapshot.fetch = `Hardware Reset (rst_ni=0, Cyc ${cycle}/${resetCycles})`;
+      nextState.stageSnapshot.decode = 'Held in Reset';
+      nextState.stageSnapshot.issue = 'Held in Reset';
+      nextState.stageSnapshot.execute = 'Held in Reset';
+      nextState.stageSnapshot.commit = 'Held in Reset';
+      nextState.activeUnits['ICACHE'] = {
+        label: 'DUT Hardware Reset',
+        subLabel: `rst_ni=0 (${cycle}/${resetCycles}c)`,
+        color: '#ef4444',
+        computation: `Holding core in hardware reset before release`
+      };
+      storyType = 'flush';
+      storyDetails.push(`Hardware Reset Sequence: Core held in reset (rst_ni = 0, Cycle ${cycle}/${resetCycles}).`);
+      if (cycle === 1) {
+        nextState.logs.unshift({
+          cycle: 1,
+          text: `[RESET] Hardware reset asserted (rst_ni = 0 for 10 cycles). Core initialization pending.`,
+          type: 'info'
+        });
+      }
+      nextState.cycleStory = {
+        headline: `Cycle ${cycle}: Hardware Reset Sequence (${cycle}/${resetCycles})`,
+        details: storyDetails,
+        type: 'flush'
+      };
+      return nextState;
+    } else {
+      const setIdx = cycle - resetCycles - 1;
+      nextState.status = 'FLUSH';
+      nextCache.iControllerState = 'FLUSH';
+      nextICacheTimeline[cycle] = 'FLUSH';
+      nextState.stageSnapshot.fetch = `I$ Tag Flush (Set ${setIdx}/${numSets})`;
+      nextState.stageSnapshot.decode = 'Held in Reset';
+      nextState.stageSnapshot.issue = 'Held in Reset';
+      nextState.stageSnapshot.execute = 'Held in Reset';
+      nextState.stageSnapshot.commit = 'Held in Reset';
+      nextState.activeUnits['ICACHE'] = {
+        label: 'I$ Tag Flush',
+        subLabel: `Set ${setIdx}/${numSets}`,
+        color: '#f59e0b',
+        computation: `Clearing valid bit for cache line ${setIdx}`
+      };
+      storyType = 'flush';
+      storyDetails.push(`I-Cache Startup Invalidation: Clearing line ${setIdx} valid bit (${cycle}/${numFlushCycles} cycles).`);
+      if (cycle === resetCycles + 1) {
+        nextState.logs.unshift({
+          cycle,
+          text: `[FLUSH] Reset released (rst_ni = 1). I-Cache tag flush initiated (${numSets} sets). Front-end fetch is frozen until valid bits are cleared.`,
+          type: 'info'
+        });
+      }
+      if (cycle === numFlushCycles) {
+        nextState.logs.unshift({
+          cycle: numFlushCycles,
+          text: `[FLUSH] I-Cache tag flush completed at cycle ${numFlushCycles} (${numSets} sets cleared). IcacheFlushDone asserted. Front-end fetch released for boot address.`,
+          type: 'success'
+        });
+      }
+      nextState.cycleStory = {
+        headline: `Cycle ${cycle}: I-Cache Startup Tag Flush (Set ${setIdx}/${numSets})`,
+        details: storyDetails,
+        type: 'flush'
+      };
+      return nextState;
+    }
+  }
+
+  // Handle ongoing FENCE.I flush cycles
+  if (nextCache.flushCyclesRemaining > 0) {
+    nextCache.flushCyclesRemaining--;
+    nextCache.iControllerState = 'FLUSH';
+    nextICacheTimeline[cycle] = 'FLUSH';
     nextState.status = 'FLUSH';
-    nextState.stageSnapshot.fetch = `I$ Tag Flush (Set ${cycle - 1}/${numSets})`;
+    nextState.stageSnapshot.fetch = `I$ FENCE.I Flush (${nextCache.flushCyclesRemaining}c left)`;
     nextState.stageSnapshot.decode = 'Held in Reset';
     nextState.stageSnapshot.issue = 'Held in Reset';
     nextState.stageSnapshot.execute = 'Held in Reset';
     nextState.stageSnapshot.commit = 'Held in Reset';
     nextState.activeUnits['ICACHE'] = {
       label: 'I$ Tag Flush',
-      subLabel: `Set ${cycle - 1}/${numSets}`,
+      subLabel: `${nextCache.flushCyclesRemaining}c remaining`,
       color: '#f59e0b',
-      computation: `Clearing valid bit for cache line ${cycle - 1}`
+      computation: `FENCE.I invalidating I-Cache tag valid bits`
     };
     storyType = 'flush';
-    storyDetails.push(`I-Cache Startup Invalidation: Core front-end held in reset while clearing line ${cycle - 1} valid bit (${cycle}/${numFlushCycles} cycles).`);
-    if (cycle === 1) {
-      nextState.logs.unshift({
-        cycle: 1,
-        text: `[FLUSH] I-Cache startup tag flush initiated (${numFlushCycles} cycles for ${numSets} sets). Front-end fetch is frozen until valid bits are cleared.`,
-        type: 'info'
-      });
-    }
-    if (cycle === numFlushCycles) {
-      nextState.logs.unshift({
-        cycle: numFlushCycles,
-        text: `[FLUSH] I-Cache tag flush completed (${numFlushCycles} sets cleared). Tag valid memory initialized. Front-end fetch released for PC 0x00.`,
-        type: 'success'
-      });
-    }
+    storyDetails.push(`FENCE.I Flush in progress: Clearing I-Cache valid tags (${nextCache.flushCyclesRemaining} cycles left).`);
     nextState.cycleStory = {
-      headline: `Cycle ${cycle}: I-Cache Startup Tag Flush (${cycle}/${numFlushCycles})`,
+      headline: `Cycle ${cycle}: I-Cache FENCE.I Tag Flush (${nextCache.flushCyclesRemaining}c remaining)`,
       details: storyDetails,
       type: 'flush'
     };
@@ -2440,10 +2665,10 @@ const stepSimulation = (state, program) => {
       const lineKey = numWays === 1 ? rf.set : `${rf.set}_${rf.way}`;
       const blockAlignedAddr = rf.addr & ~0xF;
       const blockData = [
-        nextState.dataMemory[blockAlignedAddr] !== undefined ? nextState.dataMemory[blockAlignedAddr] : 0,
-        nextState.dataMemory[blockAlignedAddr + 4] !== undefined ? nextState.dataMemory[blockAlignedAddr + 4] : 0,
-        nextState.dataMemory[blockAlignedAddr + 8] !== undefined ? nextState.dataMemory[blockAlignedAddr + 8] : 0,
-        nextState.dataMemory[blockAlignedAddr + 12] !== undefined ? nextState.dataMemory[blockAlignedAddr + 12] : 0
+        readMemWord(nextState.dataMemory, blockAlignedAddr),
+        readMemWord(nextState.dataMemory, blockAlignedAddr + 4),
+        readMemWord(nextState.dataMemory, blockAlignedAddr + 8),
+        readMemWord(nextState.dataMemory, blockAlignedAddr + 12)
       ];
       const wordOffset = (rf.addr >> 2) & 0x3;
       blockData[wordOffset] = rf.res;
@@ -2466,7 +2691,17 @@ const stepSimulation = (state, program) => {
       rf.active = false;
 
       // Find stalled load in scoreboard
-      const sbEntry = nextState.scoreboard.find(e => e.transId === rf.targetTid || e.isStalledOnMemory);
+      const sbEntry = nextState.scoreboard.find(e => e.transId === rf.targetTid);
+      // Also unblock other loads waiting for the same cache block
+      for (const e of nextState.scoreboard) {
+        if (e.transId !== rf.targetTid && e.isStalledOnMemory && e.inst.type === 'LSU' && e.inst.op.startsWith('L')) {
+          const lAddr = (e.rs1Val + e.inst.imm) | 0;
+          if ((lAddr & ~0xF) === blockAlignedAddr) {
+            e.isStalledOnMemory = false;
+            e.remainingCycles = 1; // 1 cycle to read from freshly refilled cache line
+          }
+        }
+      }
       if (sbEntry) {
         sbEntry.ready = true;
         sbEntry.isStalledOnMemory = false;
@@ -2491,111 +2726,146 @@ const stepSimulation = (state, program) => {
     const beat = total - cycLeft;
 
     if (cycLeft > 0) {
-      nextCache.iControllerState = beat === 1 ? 'AXI_AR_ADDR' : (cycLeft === 1 ? 'AXI_R_BURST' : 'AXI_WAIT_DATA');
+      if (nextCache.iRefill.killed) {
+        nextCache.iControllerState = 'KILL_MISS';
+        nextICacheTimeline[cycle] = 'KILL_MISS';
+      } else {
+        nextCache.iControllerState = 'MISS';
+        nextICacheTimeline[cycle] = 'MISS';
+      }
       nextState.activeWires.push({
         key: 'AXI_R_BURST_TO_ICACHE',
-        color: '#f59e0b'
+        color: nextCache.iRefill.killed ? '#f97316' : '#f59e0b'
       });
       nextState.activeUnits['ICACHE_MISS'] = {
-        label: 'I$ Miss Unit',
-        subLabel: `Beat ${beat}/${total}`,
-        color: '#f59e0b',
-        computation: `AXI I-Fetch Refill (PC 0x${nextCache.iRefill.pc.toString(16)}): ${nextCache.iControllerState} (${cycLeft} cyc remaining)`
+        label: nextCache.iRefill.killed ? 'I$ Killed Miss' : 'I$ Miss Unit',
+        subLabel: nextCache.iRefill.killed ? `Discarding (${cycLeft}c)` : `Beat ${beat}/${total}`,
+        color: nextCache.iRefill.killed ? '#f97316' : '#f59e0b',
+        computation: nextCache.iRefill.killed
+          ? `Killed I-Fetch Miss at PC 0x${nextCache.iRefill.pc.toString(16)} (discharging AXI burst)`
+          : `AXI I-Fetch Refill (PC 0x${nextCache.iRefill.pc.toString(16)}): ${nextCache.iControllerState} (${cycLeft} cyc remaining)`
       };
       nextState.activeUnits['ICACHE'] = {
-        label: 'I$ Stalled',
-        subLabel: `Waiting Refill`,
-        color: '#ef4444'
+        label: nextCache.iRefill.killed ? 'I$ Kill-Miss' : 'I$ Stalled',
+        subLabel: nextCache.iRefill.killed ? 'Waiting Bus Drain' : 'Waiting Refill',
+        color: nextCache.iRefill.killed ? '#f97316' : '#ef4444'
       };
     } else {
       // I$ Refill completes!
       const rf = nextCache.iRefill;
-      const lineKey = numWays === 1 ? rf.set : `${rf.set}_${rf.way}`;
-      const blockAlignedPc = rf.pc & ~0xF;
-      const refilledLine = {
-        key: lineKey,
-        index: rf.set,
-        way: rf.way,
-        tag: rf.tag,
-        valid: true,
-        dirty: false,
-        data: [blockAlignedPc, blockAlignedPc + 4, blockAlignedPc + 8, blockAlignedPc + 12],
-        lastAccessCycle: cycle,
-        hitStatus: 'HIT'
-      };
-      nextCache.icache[lineKey] = refilledLine;
-      if (numWays === 1) nextCache.icache[rf.set] = refilledLine;
+      if (rf.killed) {
+        nextCache.iControllerState = 'IDLE';
+        nextICacheTimeline[cycle] = 'IDLE';
+        rf.active = false;
+        storyDetails.push(`Killed I$ Refill Discharged: AXI memory burst completed for squashed PC 0x${rf.pc.toString(16)}. I-Cache returned to IDLE.`);
+      } else {
+        const lineKey = numWays === 1 ? rf.set : `${rf.set}_${rf.way}`;
+        const blockAlignedPc = rf.pc & ~0xF;
+        const refilledLine = {
+          key: lineKey,
+          index: rf.set,
+          way: rf.way,
+          tag: rf.tag,
+          valid: true,
+          dirty: false,
+          data: [blockAlignedPc, blockAlignedPc + 4, blockAlignedPc + 8, blockAlignedPc + 12],
+          lastAccessCycle: cycle,
+          hitStatus: 'HIT'
+        };
+        nextCache.icache[lineKey] = refilledLine;
+        if (numWays === 1) nextCache.icache[rf.set] = refilledLine;
 
-      nextCache.iControllerState = 'IDLE';
-      rf.active = false;
-      storyDetails.push(`I$ Refill Complete: Instruction line for PC 0x${rf.pc.toString(16)} refilled from Main Memory. Front-End Fetch unblocked.`);
-      nextState.logs.unshift({
-        cycle,
-        text: `[I$ REFILL] Instruction cache line refilled for PC 0x${rf.pc.toString(16)}. Front-End Fetch unblocked.`,
-        type: 'info'
-      });
+        nextCache.iControllerState = 'IDLE';
+        nextICacheTimeline[cycle] = 'IDLE';
+        rf.active = false;
+        storyDetails.push(`I$ Refill Complete: Instruction line for PC 0x${rf.pc.toString(16)} refilled from Main Memory. Front-End Fetch unblocked.`);
+        nextState.logs.unshift({
+          cycle,
+          text: `[I$ REFILL] Instruction cache line refilled for PC 0x${rf.pc.toString(16)}. Front-End Fetch unblocked.`,
+          type: 'info'
+        });
+      }
     }
   }
 
   // -------------------------------------------------------------
-  // CACHE MAINTENANCE: Drain Store Buffer into L1 D$ SRAM
+  // CACHE MAINTENANCE: Drain Store Buffer into L1 D$ SRAM & Memory
   // -------------------------------------------------------------
   if (nextCache.storeBuffer.length > 0 && (!nextCache.dRefill || !nextCache.dRefill.active)) {
-    const drained = nextCache.storeBuffer.shift();
-    const dSetIdx = Math.floor(drained.addr / 16) % numSets;
-    const dTag = Math.floor(drained.addr / (16 * numSets));
-    const wordOffset = (drained.addr >> 2) & 0x3;
+    const headStore = nextCache.storeBuffer[0];
+    headStore.drainCycles = (headStore.drainCycles || 0) + 1;
+    const STORE_DRAIN_CYCLES = 6; // CVA6 wt_dcache AXI AW/W/B handshake latency
+    if (headStore.drainCycles >= STORE_DRAIN_CYCLES) {
+      const drained = nextCache.storeBuffer.shift();
+      const dSetIdx = Math.floor(drained.addr / 16) % numSets;
+      const dTag = Math.floor(drained.addr / (16 * numSets));
+      const wordOffset = (drained.addr >> 2) & 0x3;
 
-    let targetWay = 0;
-    for (let w = 0; w < numWays; w++) {
-      const key = numWays === 1 ? dSetIdx : `${dSetIdx}_${w}`;
-      const line = nextCache.dcache[key];
-      if (line && line.valid && line.tag === dTag) {
-        targetWay = w;
-        break;
+      if (drained.op === 'SB') {
+        writeMemByte(nextState.dataMemory, drained.addr, drained.data & 0xFF);
+      } else if (drained.op === 'SH') {
+        writeMemHalf(nextState.dataMemory, drained.addr, drained.data & 0xFFFF);
+      } else {
+        writeMemWord(nextState.dataMemory, drained.addr, drained.data | 0);
       }
+
+      let targetWay = 0;
+      for (let w = 0; w < numWays; w++) {
+        const key = numWays === 1 ? dSetIdx : `${dSetIdx}_${w}`;
+        const line = nextCache.dcache[key];
+        if (line && line.valid && line.tag === dTag) {
+          targetWay = w;
+          break;
+        }
+      }
+      const lineKey = numWays === 1 ? dSetIdx : `${dSetIdx}_${targetWay}`;
+      const oldLine = nextCache.dcache[lineKey];
+      // CVA6 HPDCACHE_WT (Write-Through): No-write-allocate on store miss!
+      // Only update cache line if line was already resident in cache (hit).
+      if (oldLine && oldLine.valid && oldLine.tag === dTag) {
+        const dataArr = oldLine.data ? [...oldLine.data] : [0, 0, 0, 0];
+        dataArr[wordOffset] = readMemWord(nextState.dataMemory, drained.addr & ~3);
+        const updatedLine = {
+          ...oldLine,
+          data: dataArr,
+          lastAccessCycle: cycle,
+          hitStatus: 'HIT'
+        };
+        nextCache.dcache[lineKey] = updatedLine;
+        if (numWays === 1) nextCache.dcache[dSetIdx] = updatedLine;
+      }
+
+      nextCache.dControllerState = 'STORE_BUFFER_DRAIN';
+      nextState.activeUnits['DCACHE_CTRL'] = {
+        label: 'D$ Drain',
+        subLabel: `Mem[0x${drained.addr.toString(16)}] <= ${drained.data}`,
+        color: '#3b82f6',
+        computation: `Store Buffer drained entry to memory (Addr 0x${drained.addr.toString(16)})`
+      };
+      nextState.activeUnits['DCACHE_BUF'] = {
+        label: `Drain Queue`,
+        subLabel: `${nextCache.storeBuffer.length} pending`,
+        color: '#06b6d4'
+      };
+      nextState.activeUnits['DCACHE'] = {
+        label: `AXI Write Done`,
+        subLabel: `Addr 0x${drained.addr.toString(16)}`,
+        color: '#10b981'
+      };
+    } else {
+      nextCache.dControllerState = 'STORE_BUFFER_DRAIN';
+      nextState.activeUnits['DCACHE_CTRL'] = {
+        label: 'D$ AXI Drain',
+        subLabel: `AW/W/B Wait (${headStore.drainCycles}/${STORE_DRAIN_CYCLES}c)`,
+        color: '#3b82f6',
+        computation: `Draining store to AXI memory bus (Addr 0x${headStore.addr.toString(16)})`
+      };
+      nextState.activeUnits['DCACHE_BUF'] = {
+        label: `Drain Queue`,
+        subLabel: `${nextCache.storeBuffer.length} pending`,
+        color: '#06b6d4'
+      };
     }
-    const lineKey = numWays === 1 ? dSetIdx : `${dSetIdx}_${targetWay}`;
-    const oldLine = nextCache.dcache[lineKey];
-    const dataArr = oldLine && oldLine.data ? [...oldLine.data] : [0, 0, 0, 0];
-    dataArr[wordOffset] = drained.data;
-
-    const updatedLine = {
-      key: lineKey,
-      index: dSetIdx,
-      way: targetWay,
-      tag: dTag,
-      valid: true,
-      dirty: true,
-      data: dataArr,
-      lastAccessCycle: cycle,
-      hitStatus: 'HIT'
-    };
-    nextCache.dcache[lineKey] = updatedLine;
-    if (numWays === 1) nextCache.dcache[dSetIdx] = updatedLine;
-
-    nextCache.dControllerState = 'STORE_BUFFER_DRAIN';
-    nextState.activeUnits['DCACHE_CTRL'] = {
-      label: 'D$ Drain',
-      subLabel: `Mem[0x${drained.addr.toString(16)}] <= ${drained.data}`,
-      color: '#3b82f6',
-      computation: `Store Buffer drained entry into D$ line (Set ${dSetIdx}, Tag 0x${dTag.toString(16)})`
-    };
-    nextState.activeUnits['DCACHE_BUF'] = {
-      label: `Drain Queue`,
-      subLabel: `${nextCache.storeBuffer.length} pending`,
-      color: '#06b6d4'
-    };
-    nextState.activeUnits['DCACHE'] = {
-      label: `D$ SRAM Write`,
-      subLabel: `Set ${dSetIdx} [Tag 0x${dTag.toString(16)}] (Dirty)`,
-      color: '#10b981'
-    };
-    nextState.activeUnits['DCACHE_MEM'] = {
-      label: `SRAM Array`,
-      subLabel: `Line ${dSetIdx} Updated`,
-      color: '#10b981'
-    };
   } else if (!nextCache.dRefill || !nextCache.dRefill.active) {
     if (nextCache.dControllerState === 'STORE_BUFFER_DRAIN' || nextCache.dControllerState === 'REFILL_DONE') {
       nextCache.dControllerState = 'IDLE';
@@ -2603,76 +2873,138 @@ const stepSimulation = (state, program) => {
   }
 
   // -------------------------------------------------------------
-  // PHASE 1: IN-ORDER ARCHITECTURAL COMMIT
+  // PHASE 1: IN-ORDER DUAL-COMMIT ARCHITECTURAL RETIREMENT (commit_stage.sv NrCommitPorts=2)
   // -------------------------------------------------------------
+  const committedThisCycle = [];
   if (nextState.scoreboard.length > 0) {
-    const head = nextState.scoreboard[0];
-    if (head.isStalledOnMemory) {
-      nextState.stageSnapshot.commit = `Mem Stall: ${head.inst.op} (TID #${head.transId})`;
-      storyDetails.push(`Commit Stalled: Head of Scoreboard [${head.inst.raw}] is waiting for L1 D$ AXI memory refill.`);
-    } else if (head.ready) {
-      const instColor = head.inst.color.border;
-      if (head.rd !== 0) {
-        nextState.registers[head.rd] = head.result;
+    const head0 = nextState.scoreboard[0];
+    if (head0.isStalledOnMemory || head0.isStalledOnStoreBuf) {
+      nextState.stageSnapshot.commit = `Mem Stall: ${head0.inst.op} (TID #${head0.transId})`;
+      storyDetails.push(`Commit Stalled: Head of Scoreboard [${head0.inst.raw}] is waiting for memory subsystem.`);
+    } else if (head0.ready) {
+      committedThisCycle.push(head0);
+
+      // Check commit port 1 for Dual-Commit
+      if (nextState.scoreboard.length > 1) {
+        const head1 = nextState.scoreboard[1];
+        const isHead0Terminal = (head0.inst.op === 'BEQ' || head0.inst.op === 'BNE' || head0.inst.op === 'BLT' || head0.inst.op === 'BGE') && head0.inst.targetPc === head0.inst.pc;
+        const isHead1Terminal = (head1.inst.op === 'BEQ' || head1.inst.op === 'BNE' || head1.inst.op === 'BLT' || head1.inst.op === 'BGE') && head1.inst.targetPc === head1.inst.pc;
+        const head1CanDualCommit = head1.ready && !head1.isStalledOnMemory && !head1.isStalledOnStoreBuf &&
+                                   !head1.inst.op.startsWith('S') && head1.inst.type !== 'CSR' && !isHead0Terminal && !isHead1Terminal &&
+                                   !head0.inst.op.startsWith('S');
+        if (head1CanDualCommit) {
+          committedThisCycle.push(head1);
+        }
+      }
+    } else {
+      nextState.stageSnapshot.commit = `Waiting: ${head0.inst.op} (TID #${head0.transId})`;
+    }
+  }
+
+  if (committedThisCycle.length > 0) {
+    const commitCount = committedThisCycle.length;
+    storyType = 'commit';
+    if (commitCount === 2) {
+      nextState.dualCommitCount = (nextState.dualCommitCount || 0) + 1;
+    }
+
+    for (const cInst of committedThisCycle) {
+      const instColor = cInst.inst.color.border;
+      if (cInst.rd !== 0) {
+        nextState.registers[cInst.rd] = cInst.result;
         nextState.activeUnits['REGFILE_WRITE'] = {
-          inst: head.inst,
-          label: `Write x${head.rd} = ${head.result}`,
+          inst: cInst.inst,
+          label: `Write x${cInst.rd} = ${cInst.result}`,
           subLabel: `Commit Result`,
           color: instColor,
-          computation: `Commit x${head.rd} <= ${head.result}`
+          computation: `Commit x${cInst.rd} <= ${cInst.result}`
         };
-        nextState.activeWires.push({
-          key: 'COMMIT_SB_TO_REGFILE',
-          color: instColor
+        nextState.activeWires.push({ key: 'COMMIT_SB_TO_REGFILE', color: instColor });
+      } else if (cInst.inst.type === 'LSU' && cInst.inst.op.startsWith('S')) {
+        nextCache.storeBuffer.push({
+          id: cInst.transId,
+          addr: cInst.result,
+          data: cInst.rs2Val,
+          op: cInst.inst.op,
+          cycle
         });
-      } else if (head.inst.type === 'LSU' && head.inst.op.startsWith('S')) {
-        nextState.dataMemory[head.result] = head.rs2Val;
         nextState.activeUnits['COMMIT_LOGIC'] = {
-          inst: head.inst,
-          label: `Store Mem[${head.result}] = ${head.rs2Val}`,
-          subLabel: `D$ Commit`,
+          inst: cInst.inst,
+          label: `Store Mem[${cInst.result}] = ${cInst.rs2Val}`,
+          subLabel: `StoreBuffer Push`,
           color: '#3b82f6',
-          computation: `Data Mem[0x${head.result.toString(16)}] <= ${head.rs2Val}`
+          computation: `Pushed store to Store Buffer (Addr 0x${cInst.result.toString(16)}, Data ${cInst.rs2Val})`
         };
       }
-      nextState.activeUnits['COMMIT_SCOREBOARD'] = {
-        inst: head.inst,
-        label: `Retire: ${head.inst.op}`,
-        subLabel: `TID #${head.transId}`,
-        color: instColor
-      };
-      nextState.activeWires.push({
-        key: 'COMMIT_SB_TO_LOGIC',
-        color: instColor
-      });
-      nextState.stageSnapshot.commit = `${head.inst.op} (x${head.rd}=${head.result})`;
+
       nextState.committedCount++;
+      if (!nextState.gantt[cInst.inst.id]) nextState.gantt[cInst.inst.id] = {};
+      nextState.gantt[cInst.inst.id][cycle] = 'C';
 
-      // Record Commit in Gantt
-      if (!nextState.gantt[head.inst.id]) nextState.gantt[head.inst.id] = {};
-      nextState.gantt[head.inst.id][cycle] = 'C';
-      storyType = 'commit';
-      storyDetails.push(`Retired in-order: [${head.inst.raw}] (TID #${head.transId}). Register x${head.rd} updated with result ${head.result}.`);
-      nextState.logs.unshift({
-        cycle,
-        text: `[COMMIT] Retired instruction ${head.inst.raw} (TID: ${head.transId}). Result: ${head.result} -> x${head.rd}`,
-        type: 'success'
-      });
-
-      // Terminal self-loop detection: stop simulation cleanly
-      if ((head.inst.op === 'BEQ' || head.inst.op === 'BNE' || head.inst.op === 'BLT' || head.inst.op === 'BGE') && head.inst.targetPc === head.inst.pc) {
-        nextState.status = 'DONE';
-        storyDetails.push(`Terminal self-loop reached [${head.inst.raw}]. Simulation completed cleanly.`);
+      // FENCE.I instruction commitment -> 256-cycle I-Cache invalidation & pipeline sync
+      if (cInst.inst.op === 'FENCE.I') {
+        const flushCycles = numSets;
+        nextCache.flushCyclesRemaining = flushCycles;
+        nextCache.iControllerState = 'FLUSH';
+        nextICacheTimeline[cycle] = 'FLUSH';
+        for (const k in nextCache.icache) {
+          if (nextCache.icache[k]) nextCache.icache[k].valid = false;
+        }
+        nextState.feQueue = [];
+        nextState.idQueue = [];
+        nextState.issueBuffer = [];
+        storyDetails.push(`FENCE.I Committed: Core synchronized & I-Cache tag array invalidated (${flushCycles} cycles flush).`);
         nextState.logs.unshift({
           cycle,
-          text: `[HALT] Terminal self-loop [${head.inst.raw}] committed. Halting simulation.`,
+          text: `[FENCE.I] Pipeline synchronized. I-Cache tag array invalidated (${flushCycles} cycles of flush).`,
+          type: 'warning'
+        });
+      }
+
+      // Terminal self-loop detection
+      if ((cInst.inst.op === 'BEQ' || cInst.inst.op === 'BNE' || cInst.inst.op === 'BLT' || cInst.inst.op === 'BGE') && cInst.inst.targetPc === cInst.inst.pc) {
+        nextState.status = 'DONE';
+        storyDetails.push(`Terminal self-loop reached [${cInst.inst.raw}]. Simulation completed cleanly.`);
+        nextState.logs.unshift({
+          cycle,
+          text: `[HALT] Terminal self-loop [${cInst.inst.raw}] committed. Halting simulation.`,
           type: 'info'
         });
       }
+    }
 
-      nextState.scoreboard.shift();
+    nextState.scoreboard.splice(0, commitCount);
+
+    if (commitCount === 2) {
+      const c0 = committedThisCycle[0];
+      const c1 = committedThisCycle[1];
+      nextState.stageSnapshot.commit = `Dual: ${c0.inst.op} + ${c1.inst.op}`;
+      storyDetails.push(`Dual-Commit: Retired [${c0.inst.raw}] (TID #${c0.transId}) and [${c1.inst.raw}] (TID #${c1.transId}) simultaneously on commit ports 0 and 1!`);
+      nextState.logs.unshift({
+        cycle,
+        text: `[DUAL COMMIT] Retired [${c0.inst.raw}] and [${c1.inst.raw}] in cycle ${cycle} (Port 0 & 1 dual retirement).`,
+        type: 'success'
+      });
+      nextState.activeUnits['COMMIT_SCOREBOARD'] = {
+        label: `Dual Retire`,
+        subLabel: `${c0.inst.op} & ${c1.inst.op}`,
+        color: '#10b981'
+      };
     } else {
-      nextState.stageSnapshot.commit = `Waiting: ${head.inst.op} (TID #${head.transId})`;
+      const c0 = committedThisCycle[0];
+      nextState.stageSnapshot.commit = `${c0.inst.op} (x${c0.rd}=${c0.result})`;
+      storyDetails.push(`Retired in-order: [${c0.inst.raw}] (TID #${c0.transId}). Register x${c0.rd} updated with result ${c0.result}.`);
+      nextState.logs.unshift({
+        cycle,
+        text: `[COMMIT] Retired instruction ${c0.inst.raw} (TID: ${c0.transId}). Result: ${c0.result} -> x${c0.rd}`,
+        type: 'success'
+      });
+      nextState.activeUnits['COMMIT_SCOREBOARD'] = {
+        inst: c0.inst,
+        label: `Retire: ${c0.inst.op}`,
+        subLabel: `TID #${c0.transId}`,
+        color: c0.inst.color.border
+      };
     }
   }
 
@@ -2696,6 +3028,33 @@ const stepSimulation = (state, program) => {
       continue;
     }
 
+    // Check CVA6 WAIT_PAGE_OFFSET stall for LSU loads (load_unit.sv & store_buffer.sv)
+    if (entry.fu === 'LSU' && entry.inst.op.startsWith('L') && !entry.ready) {
+      const memAddr = (entry.rs1Val + entry.inst.imm) | 0;
+      const pageOffset = (memAddr >> 3) & 0x1FF;
+      // Match against committed store buffer OR uncommitted in-flight stores in scoreboard
+      const sbConflict = nextCache.storeBuffer.find(sb => ((sb.addr >> 3) & 0x1FF) === pageOffset);
+      const scbConflict = nextState.scoreboard.find(e => e.transId !== entry.transId && e.inst.type === 'LSU' && e.inst.op.startsWith('S') && (((e.rs1Val + e.inst.imm) >> 3) & 0x1FF) === pageOffset);
+      const storeConflict = sbConflict || scbConflict; const conflictAddr = sbConflict ? sbConflict.addr : (scbConflict ? scbConflict.rs1Val + scbConflict.inst.imm : 0);
+      if (storeConflict) {
+        entry.isStalledOnStoreBuf = true;
+        if (!nextState.gantt[entry.inst.id]) nextState.gantt[entry.inst.id] = {};
+        nextState.gantt[entry.inst.id][cycle] = 'B';
+        executingInsts.push(`${entry.inst.op} (StoreBuf Wait)`);
+        nextState.activeUnits['LSU'] = {
+          inst: entry.inst,
+          label: `LSU: StoreBuf Wait`,
+          subLabel: `WAIT_PAGE_OFFSET`,
+          color: '#f59e0b',
+          computation: `Stalled waiting for Store Buffer to drain matching page offset 0x${pageOffset.toString(16)} (Store Addr: 0x${conflictAddr.toString(16)})`
+        };
+        storyDetails.push(`LSU Stalled (WAIT_PAGE_OFFSET): Load [${entry.inst.raw}] stalled waiting for Store Buffer to drain pending store at 0x${conflictAddr.toString(16)}.`);
+        continue;
+      } else {
+        entry.isStalledOnStoreBuf = false;
+      }
+    }
+
     if (!entry.ready) {
       entry.remainingCycles--;
       executingInsts.push(`${entry.inst.op} (${entry.totalLatency - entry.remainingCycles}/${entry.totalLatency})`);
@@ -2703,30 +3062,19 @@ const stepSimulation = (state, program) => {
       let fuColor = instColor;
       if (entry.fu === 'MUL_DIV') {
         fuUnitKey = 'MUL_DIV';
-        nextState.activeWires.push({
-          key: 'EX_PIPE_TO_MULDIV',
-          color: instColor
-        });
+        nextState.activeWires.push({ key: 'EX_PIPE_TO_MULDIV', color: instColor });
       } else if (entry.fu === 'LSU') {
         fuUnitKey = 'LSU';
       } else if (entry.fu === 'BRANCH') {
         fuUnitKey = 'BRANCH_UNIT';
-        nextState.activeWires.push({
-          key: 'EX_PIPE_TO_BRANCH',
-          color: instColor
-        });
+        nextState.activeWires.push({ key: 'EX_PIPE_TO_BRANCH', color: instColor });
       } else if (entry.fu === 'CSR') {
         fuUnitKey = 'CSR_BUFFER';
-        nextState.activeWires.push({
-          key: 'EX_PIPE_TO_CSR',
-          color: instColor
-        });
+        nextState.activeWires.push({ key: 'EX_PIPE_TO_CSR', color: instColor });
       } else {
-        nextState.activeWires.push({
-          key: 'EX_PIPE_TO_ALU',
-          color: instColor
-        });
+        nextState.activeWires.push({ key: 'EX_PIPE_TO_ALU', color: instColor });
       }
+
       let compStr = `${entry.inst.op}`;
       if (entry.inst.type === 'ALU' || entry.inst.type === 'MUL' || entry.inst.type === 'DIV') {
         compStr = `${entry.inst.op}: s1=${entry.rs1Val}, s2=${entry.rs2Val}`;
@@ -2745,7 +3093,6 @@ const stepSimulation = (state, program) => {
         color: '#3b82f6'
       };
 
-      // Record Gantt
       if (!nextState.gantt[entry.inst.id]) nextState.gantt[entry.inst.id] = {};
       nextState.gantt[entry.inst.id][cycle] = 'E';
 
@@ -2756,9 +3103,11 @@ const stepSimulation = (state, program) => {
         const s1 = entry.rs1Val;
         const s2 = entry.rs2Val;
         const imm = entry.inst.imm;
+
         if (op === 'ADD' || op === 'C.ADD') res = s1 + s2 | 0;
         else if (op === 'ADDI' || op === 'C.ADDI') res = s1 + imm | 0;
         else if (op === 'LUI') res = imm > 0xFFFFF ? (imm | 0) : ((imm << 12) | 0);
+        else if (op === 'AUIPC') res = (entry.inst.pc + (imm > 0xFFFFF ? (imm | 0) : ((imm << 12) | 0))) | 0;
         else if (op === 'C.LI') res = imm | 0;
         else if (op === 'C.MV') res = s2 | 0;
         else if (op === 'SUB') res = s1 - s2 | 0;
@@ -2774,164 +3123,179 @@ const stepSimulation = (state, program) => {
         else if (op === 'SRLI') res = s1 >>> (imm & 0x1f) | 0;
         else if (op === 'SRA') res = s1 >> (s2 & 0x1f);
         else if (op === 'SRAI') res = s1 >> (imm & 0x1f);
-        else if (op === 'SLT') res = s1 < s2 ? 1 : 0;
-        else if (op === 'SLTI') res = s1 < imm ? 1 : 0;
-        else if (op === 'MUL') res = Math.imul(s1, s2);
-        else if (op === 'DIV') res = s2 !== 0 ? Math.trunc(s1 / s2) : -1;
-        else if (op === 'LW') {
-          const memAddr = s1 + imm;
-          const pendingStore = nextCache.storeBuffer.slice().reverse().find(sb => sb.addr === memAddr);
-          if (pendingStore) {
-            res = pendingStore.data;
-            shouldMarkReady = true;
-            nextState.activeUnits['DCACHE_BUF'] = {
-              label: 'Store Fwd HIT',
-              subLabel: `Fwd ${res}`,
-              color: '#10b981',
-              computation: `Store-to-Load Forwarding: Forwarded ${res} from pending Store Buffer (Addr 0x${memAddr.toString(16)})`
-            };
-            storyDetails.push(`Store-to-Load Forwarding: LSU forwarded ${res} directly from pending Store Buffer entry for Addr 0x${memAddr.toString(16)}.`);
-          } else {
-            res = nextState.dataMemory[memAddr] !== undefined ? nextState.dataMemory[memAddr] : 0;
-            const dSetIdx = Math.floor(memAddr / 16) % numSets;
-            const dTag = Math.floor(memAddr / (16 * numSets));
-            const wordOffset = (memAddr >> 2) & 0x3;
+        else if (op === 'SLT') res = (s1 | 0) < (s2 | 0) ? 1 : 0;
+        else if (op === 'SLTI') res = (s1 | 0) < (imm | 0) ? 1 : 0;
+        else if (op === 'SLTU') res = (s1 >>> 0) < (s2 >>> 0) ? 1 : 0;
+        else if (op === 'SLTIU') res = (s1 >>> 0) < (imm >>> 0) ? 1 : 0;
+        else if (op === 'MUL') res = Math.imul(s1, s2) | 0;
+        else if (op === 'MULH') res = Number((BigInt(s1 | 0) * BigInt(s2 | 0)) >> 32n) | 0;
+        else if (op === 'MULHU') res = Number((BigInt(s1 >>> 0) * BigInt(s2 >>> 0)) >> 32n) | 0;
+        else if (op === 'MULHSU') res = Number((BigInt(s1 | 0) * BigInt(s2 >>> 0)) >> 32n) | 0;
+        else if (op === 'DIV') res = s2 === 0 ? -1 : (s1 === -2147483648 && s2 === -1 ? -2147483648 : Math.trunc(s1 / s2));
+        else if (op === 'DIVU') res = s2 === 0 ? 0xFFFFFFFF : Math.floor((s1 >>> 0) / (s2 >>> 0)) | 0;
+        else if (op === 'REM') res = s2 === 0 ? s1 : (s1 === -2147483648 && s2 === -1 ? 0 : (s1 % s2));
+        else if (op === 'REMU') res = s2 === 0 ? (s1 >>> 0) : ((s1 >>> 0) % (s2 >>> 0));
+        else if (op === 'LW' || op === 'LB' || op === 'LBU' || op === 'LH' || op === 'LHU') {
+          const memAddr = (s1 + imm) | 0;
+          const dSetIdx = Math.floor(memAddr / 16) % numSets;
+          const dTag = Math.floor(memAddr / (16 * numSets));
 
-            let hitWay = -1;
+          let hitWay = -1;
+          for (let w = 0; w < numWays; w++) {
+            const lineKey = numWays === 1 ? dSetIdx : `${dSetIdx}_${w}`;
+            const line = nextCache.dcache[lineKey];
+            if (line && line.valid && line.tag === dTag) {
+              hitWay = w;
+              break;
+            }
+          }
+
+          if (hitWay !== -1) {
+            nextCache.dHits++;
+            nextCache.dControllerState = 'READ_HIT';
+            shouldMarkReady = true;
+            const hitKey = numWays === 1 ? dSetIdx : `${dSetIdx}_${hitWay >= 0 ? hitWay : 0}`;
+            if (nextCache.dcache[hitKey]) {
+              nextCache.dcache[hitKey].lastAccessCycle = cycle;
+              nextCache.dcache[hitKey].hitStatus = 'HIT';
+            }
+            if (op === 'LB') res = (readMemByte(nextState.dataMemory, memAddr) << 24) >> 24;
+            else if (op === 'LBU') res = readMemByte(nextState.dataMemory, memAddr) & 0xFF;
+            else if (op === 'LH') res = (readMemHalf(nextState.dataMemory, memAddr) << 16) >> 16;
+            else if (op === 'LHU') res = readMemHalf(nextState.dataMemory, memAddr) & 0xFFFF;
+            else res = readMemWord(nextState.dataMemory, memAddr) | 0;
+
+            nextState.activeUnits['DCACHE'] = {
+              label: 'D$ Read HIT',
+              subLabel: `Tag 0x${dTag.toString(16)}`,
+              color: '#10b981',
+              computation: `D$ Hit at addr 0x${memAddr.toString(16)} (${op} = ${res})`
+            };
+            storyDetails.push(`D$ Cache Hit: Loaded value ${res} from L1 D$ (Set ${dSetIdx}, Tag 0x${dTag.toString(16)}).`);
+          } else {
+            // D$ MISS!
+            if (nextCache.dRefill && nextCache.dRefill.active) {
+              // CVA6 MSHR is busy! Only 1 outstanding memory read TX allowed.
+              entry.ready = false;
+              entry.isStalledOnMemory = true;
+              if (!nextState.gantt[entry.inst.id]) nextState.gantt[entry.inst.id] = {};
+              nextState.gantt[entry.inst.id][cycle] = 'M';
+              executingInsts.push(`${entry.inst.op} (MSHR Busy Wait)`);
+              continue;
+            }
+            nextCache.dMisses++;
+            shouldMarkReady = false;
+
+            let victimWay = 0;
+            let oldestCycle = Infinity;
             for (let w = 0; w < numWays; w++) {
               const lineKey = numWays === 1 ? dSetIdx : `${dSetIdx}_${w}`;
               const line = nextCache.dcache[lineKey];
-              if (line && line.valid && line.tag === dTag) {
-                hitWay = w;
+              if (!line || !line.valid) {
+                victimWay = w;
                 break;
               }
+              if (line.lastAccessCycle < oldestCycle) {
+                oldestCycle = line.lastAccessCycle;
+                victimWay = w;
+              }
             }
 
-            if (hitWay !== -1) {
-              nextCache.dHits++;
-              nextCache.dControllerState = 'READ_HIT';
-              shouldMarkReady = true;
-              const hitKey = numWays === 1 ? dSetIdx : `${dSetIdx}_${hitWay >= 0 ? hitWay : 0}`;
-              if (nextCache.dcache[hitKey]) {
-                nextCache.dcache[hitKey].lastAccessCycle = cycle;
-                nextCache.dcache[hitKey].hitStatus = 'HIT';
-                if (nextCache.dcache[hitKey].data && nextCache.dcache[hitKey].data[wordOffset] !== undefined) {
-                  res = nextCache.dcache[hitKey].data[wordOffset];
+            const victimKey = numWays === 1 ? dSetIdx : `${dSetIdx}_${victimWay}`;
+            const victimLine = nextCache.dcache[victimKey];
+            if (victimLine && victimLine.valid && victimLine.dirty) {
+              nextCache.writebacks++;
+              const victimBaseAddr = (victimLine.tag * numSets * 16) | (dSetIdx * 16);
+              for (let wi = 0; wi < 4; wi++) {
+                if (victimLine.data && victimLine.data[wi] !== undefined) {
+                  writeMemWord(nextState.dataMemory, victimBaseAddr + wi * 4, victimLine.data[wi]);
                 }
               }
-              nextState.activeUnits['DCACHE'] = {
-                label: 'D$ Read HIT',
-                subLabel: `Tag 0x${dTag.toString(16)}`,
-                color: '#10b981',
-                computation: `D$ Cache Hit at addr 0x${memAddr.toString(16)} (Value = ${res})`
-              };
-              storyDetails.push(`D$ Cache Hit: Loaded value ${res} from L1 D$ (Set ${dSetIdx}, Tag 0x${dTag.toString(16)}).`);
-            } else {
-              // D$ MISS!
-              nextCache.dMisses++;
-              shouldMarkReady = false;
-
-              // Victim selection (first invalid, or LRU)
-              let victimWay = 0;
-              let oldestCycle = Infinity;
-              for (let w = 0; w < numWays; w++) {
-                const lineKey = numWays === 1 ? dSetIdx : `${dSetIdx}_${w}`;
-                const line = nextCache.dcache[lineKey];
-                if (!line || !line.valid) {
-                  victimWay = w;
-                  break;
-                }
-                if (line.lastAccessCycle < oldestCycle) {
-                  oldestCycle = line.lastAccessCycle;
-                  victimWay = w;
-                }
-              }
-
-              // Check for dirty eviction
-              const victimKey = numWays === 1 ? dSetIdx : `${dSetIdx}_${victimWay}`;
-              const victimLine = nextCache.dcache[victimKey];
-              if (victimLine && victimLine.valid && victimLine.dirty) {
-                nextCache.writebacks++;
-                const victimBaseAddr = (victimLine.tag * numSets * 16) | (dSetIdx * 16);
-                for (let wi = 0; wi < 4; wi++) {
-                  if (victimLine.data && victimLine.data[wi] !== undefined) {
-                    nextState.dataMemory[victimBaseAddr + wi * 4] = victimLine.data[wi];
-                  }
-                }
-                storyDetails.push(`D$ Dirty Eviction: Wrote back modified line (Set ${dSetIdx}, Way ${victimWay}, Tag 0x${victimLine.tag.toString(16)}) to backing memory.`);
-                nextState.logs.unshift({
-                  cycle,
-                  text: `[D$ EVICT] Dirty line evicted from Set ${dSetIdx}, Way ${victimWay} -> written back to memory. Writebacks = ${nextCache.writebacks}.`,
-                  type: 'warn'
-                });
-              }
-
-              // Multi-cycle stall for AXI Refill!
-              entry.ready = false;
-              entry.isStalledOnMemory = true;
-              const refillLatency = nextCache.missPenaltyCycles || 4;
-              entry.remainingCycles = refillLatency;
-
-              nextCache.dRefill = {
-                active: true,
-                addr: memAddr,
-                set: dSetIdx,
-                way: victimWay,
-                tag: dTag,
-                cyclesRemaining: refillLatency,
-                totalCycles: refillLatency,
-                targetTid: entry.transId,
-                res: res
-              };
-              nextCache.dControllerState = 'REFILL_WAIT';
-              nextState.activeWires.push({ key: 'AXI_AR_ADDR', color: '#ef4444' });
-              nextState.activeUnits['DCACHE_MISS'] = {
-                label: 'D$ Miss Unit',
-                subLabel: `AXI Refill (${refillLatency} cyc)`,
-                color: '#ef4444',
-                computation: `D$ Miss at 0x${memAddr.toString(16)} -> ARADDR request to Main Memory`
-              };
-              nextState.activeUnits['DCACHE'] = {
-                label: 'D$ Miss',
-                subLabel: `Set ${dSetIdx} Refill`,
-                color: '#ef4444'
-              };
-              if (!nextState.gantt[entry.inst.id]) nextState.gantt[entry.inst.id] = {};
-              nextState.gantt[entry.inst.id][cycle] = 'M';
-              storyDetails.push(`D$ Cache Miss: LSU load stalled for ${refillLatency}-cycle AXI refill from Main Memory.`);
+              storyDetails.push(`D$ Dirty Eviction: Wrote back modified line (Set ${dSetIdx}, Way ${victimWay}, Tag 0x${victimLine.tag.toString(16)}) to backing memory.`);
+              nextState.logs.unshift({
+                cycle,
+                text: `[D$ EVICT] Dirty line evicted from Set ${dSetIdx}, Way ${victimWay} -> written back to memory. Writebacks = ${nextCache.writebacks}.`,
+                type: 'warn'
+              });
             }
+
+            // Compute value to be loaded on refill completion
+            let memVal = 0;
+            if (op === 'LB') memVal = (readMemByte(nextState.dataMemory, memAddr) << 24) >> 24;
+            else if (op === 'LBU') memVal = readMemByte(nextState.dataMemory, memAddr) & 0xFF;
+            else if (op === 'LH') memVal = (readMemHalf(nextState.dataMemory, memAddr) << 16) >> 16;
+            else if (op === 'LHU') memVal = readMemHalf(nextState.dataMemory, memAddr) & 0xFFFF;
+            else memVal = readMemWord(nextState.dataMemory, memAddr) | 0;
+
+            entry.ready = false;
+            entry.isStalledOnMemory = true;
+            const refillLatency = nextCache.config ? (nextCache.config.missLatency || 4) : (nextCache.missPenaltyCycles || 4);
+            entry.remainingCycles = refillLatency;
+
+            nextCache.dRefill = {
+              active: true,
+              addr: memAddr,
+              set: dSetIdx,
+              way: victimWay,
+              tag: dTag,
+              cyclesRemaining: refillLatency,
+              totalCycles: refillLatency,
+              targetTid: entry.transId,
+              res: memVal
+            };
+            nextCache.dControllerState = 'REFILL_WAIT';
+            nextState.activeWires.push({ key: 'AXI_AR_ADDR', color: '#ef4444' });
+            nextState.activeUnits['DCACHE_MISS'] = {
+              label: 'D$ Miss Unit',
+              subLabel: `AXI Refill (${refillLatency} cyc)`,
+              color: '#ef4444',
+              computation: `D$ Miss at 0x${memAddr.toString(16)} -> ARADDR request to Main Memory`
+            };
+            nextState.activeUnits['DCACHE'] = {
+              label: 'D$ Miss',
+              subLabel: `Set ${dSetIdx} Refill`,
+              color: '#ef4444'
+            };
+            if (!nextState.gantt[entry.inst.id]) nextState.gantt[entry.inst.id] = {};
+            nextState.gantt[entry.inst.id][cycle] = 'M';
+            storyDetails.push(`D$ Cache Miss: LSU load stalled for ${refillLatency}-cycle AXI refill from Main Memory.`);
           }
-        } else if (op === 'SW') {
-          res = s1 + imm;
+        } else if (op === 'SW' || op === 'SB' || op === 'SH') {
+          res = (s1 + imm) | 0;
           shouldMarkReady = true;
-          nextCache.storeBuffer.push({
-            id: entry.transId,
-            addr: res,
-            data: s2,
-            cycle
-          });
           nextState.activeUnits['DCACHE_BUF'] = {
-            label: `Store Buffer`,
+            label: `Store Resolved`,
             subLabel: `Mem[0x${res.toString(16)}] <= ${s2}`,
             color: '#f59e0b',
-            computation: `Pushed store to Store Buffer queue (Addr 0x${res.toString(16)}, Data ${s2})`
+            computation: `Calculated effective store address 0x${res.toString(16)}. Will buffer upon Commit.`
           };
-          storyDetails.push(`Store Buffer: Buffered write to Mem[0x${res.toString(16)}] = ${s2}. D$ SRAM will drain asynchronously.`);
+          storyDetails.push(`Store Unit: Resolved address 0x${res.toString(16)} for ${op}. Will enter Store Buffer on architectural commit.`);
         }
 
         if (entry.inst.type === 'BRANCH') {
           let taken = false;
           if (op === 'BEQ') taken = s1 === s2;
           else if (op === 'BNE') taken = s1 !== s2;
-          else if (op === 'BLT') taken = s1 < s2;
-          else if (op === 'BGE') taken = s1 >= s2;
+          else if (op === 'BLT') taken = (s1 | 0) < (s2 | 0);
+          else if (op === 'BGE') taken = (s1 | 0) >= (s2 | 0);
+          else if (op === 'BLTU') taken = (s1 >>> 0) < (s2 >>> 0);
+          else if (op === 'BGEU') taken = (s1 >>> 0) >= (s2 >>> 0);
           else if (op === 'JAL') taken = true;
-          const target = entry.inst.targetPc || entry.inst.pc + 4;
+          else if (op === 'JALR') taken = true;
+
+          let target = entry.inst.targetPc || (entry.inst.pc + 4);
+          if (op === 'JALR') target = ((s1 + imm) & ~1) | 0;
+
+          if (op === 'JAL' || op === 'JALR') {
+            res = entry.inst.pc + (entry.inst.isCompressed ? 2 : 4);
+          }
+
           const predictedTaken = (nextState.bht[entry.inst.pc] || 0) >= 2;
           const prevBht = nextState.bht[entry.inst.pc] || 1;
           nextState.bht[entry.inst.pc] = taken ? Math.min(3, prevBht + 1) : Math.max(0, prevBht - 1);
           if (taken !== predictedTaken) {
             hasMispredict = true;
+            mispredictBranchTransId = entry.transId;
             mispredictRedirectPc = taken ? target : entry.inst.pc + (entry.inst.isCompressed ? 2 : 4);
             nextState.mispredicts++;
             nextState.activeUnits['MISPREDICT_OVAL'] = {
@@ -2940,10 +3304,7 @@ const stepSimulation = (state, program) => {
               color: '#ef4444',
               computation: `Branch condition evaluated ${taken ? 'TAKEN' : 'NOT TAKEN'}, predicted ${predictedTaken ? 'TAKEN' : 'NOT TAKEN'}`
             };
-            nextState.activeWires.push({
-              key: 'BRANCH_MISPREDICT_REDIRECT',
-              color: '#ef4444'
-            });
+            nextState.activeWires.push({ key: 'BRANCH_MISPREDICT_REDIRECT', color: '#ef4444' });
           }
         }
 
@@ -2951,22 +3312,10 @@ const stepSimulation = (state, program) => {
           entry.ready = true;
           entry.result = res;
           entry.computation = `Result = ${res}`;
-          if (entry.fu === 'ALU') nextState.activeWires.push({
-            key: 'WB_ALU_TO_SB',
-            color: '#f59e0b'
-          });
-          else if (entry.fu === 'MUL_DIV') nextState.activeWires.push({
-            key: 'WB_MULDIV_TO_SB',
-            color: '#f59e0b'
-          });
-          else if (entry.fu === 'BRANCH') nextState.activeWires.push({
-            key: 'WB_BRANCH_TO_SB',
-            color: '#f59e0b'
-          });
-          else if (entry.fu === 'CSR') nextState.activeWires.push({
-            key: 'WB_CSR_TO_SB',
-            color: '#f59e0b'
-          });
+          if (entry.fu === 'ALU') nextState.activeWires.push({ key: 'WB_ALU_TO_SB', color: '#f59e0b' });
+          else if (entry.fu === 'MUL_DIV') nextState.activeWires.push({ key: 'WB_MULDIV_TO_SB', color: '#f59e0b' });
+          else if (entry.fu === 'BRANCH') nextState.activeWires.push({ key: 'WB_BRANCH_TO_SB', color: '#f59e0b' });
+          else if (entry.fu === 'CSR') nextState.activeWires.push({ key: 'WB_CSR_TO_SB', color: '#f59e0b' });
           if (storyType !== 'commit') storyType = 'wb';
           storyDetails.push(`Out-of-Order Write-Back: [${entry.inst.raw}] completed execution in ${entry.fu} (Result: ${res}), wrote back to Scoreboard TID #${entry.transId}.`);
           nextState.logs.unshift({
@@ -2981,22 +3330,41 @@ const stepSimulation = (state, program) => {
       nextState.gantt[entry.inst.id][cycle] = 'W';
     }
   }
+
   nextState.stageSnapshot.execute = executingInsts.join(', ') || 'Idle';
+
+  // Branch Misprediction Pipeline Squash
   if (hasMispredict) {
     nextState.feQueue = [];
     nextState.idQueue = [];
     nextState.issueBuffer = [];
     nextState.pc = mispredictRedirectPc;
+    // Squash speculative scoreboard entries issued AFTER the mispredicted branch
+    const branchIdx = nextState.scoreboard.findIndex(e => e.transId === mispredictBranchTransId);
+    if (branchIdx !== -1) {
+      nextState.scoreboard = nextState.scoreboard.slice(0, branchIdx + 1);
+    }
     nextState.status = 'FLUSHED';
+
+    // Kill in-flight speculative I-Cache miss refill (CVA6 kill_s2 assertion)
+    if (nextCache.iRefill && nextCache.iRefill.active) {
+      nextCache.iRefill.killed = true;
+      nextCache.iControllerState = 'KILL_MISS';
+      nextICacheTimeline[cycle] = 'KILL_MISS';
+    }
     nextState.cache = nextCache;
     nextState.cycleStory = {
       headline: `Cycle ${cycle}: Branch Mispredict Flush!`,
-      details: [`Branch condition mispredicted in Execute stage.`, `Squashed Fetch, Decode, and Issue stages to prevent speculative corruption.`, `Redirected Program Counter to target 0x${mispredictRedirectPc.toString(16)}.`],
+      details: [
+        `Branch condition mispredicted in Execute stage.`,
+        `Squashed Fetch, Decode, and Issue stages, and purged uncommitted speculative scoreboard entries.`,
+        `Redirected Program Counter to target 0x${mispredictRedirectPc.toString(16)}.`
+      ],
       type: 'flush'
     };
     nextState.logs.unshift({
       cycle,
-      text: `[PIPELINE FLUSH] Branch mispredict! Squashed Fetch, Decode, and Issue stages. Redirecting PC to 0x${mispredictRedirectPc.toString(16)}.`,
+      text: `[PIPELINE FLUSH] Branch mispredict! Squashed frontend & speculative scoreboard entries. Redirecting PC to 0x${mispredictRedirectPc.toString(16)}.`,
       type: 'flush'
     });
     return nextState;
@@ -3008,6 +3376,8 @@ const stepSimulation = (state, program) => {
   if (nextState.issueBuffer.length > 0) {
     const candidate = nextState.issueBuffer[0];
     nextState.stageSnapshot.issue = `Candidate: ${candidate.op}`;
+
+    // Structural Hazard 1: Scoreboard Full
     if (nextState.scoreboard.length >= 8) {
       nextState.structuralStalls++;
       nextState.stallReason = "Structural Hazard: Scoreboard is Full (8/8 slots)!";
@@ -3016,7 +3386,18 @@ const stepSimulation = (state, program) => {
       storyDetails.push(`Structural Stall: Scoreboard is completely full (8/8 in-flight instructions). Issue stalled.`);
       if (!nextState.gantt[candidate.id]) nextState.gantt[candidate.id] = {};
       nextState.gantt[candidate.id][cycle] = 'S';
+    }
+    // Structural Hazard 2: Serial Divider Busy (serdiv.sv non-pipelined)
+    else if (candidate.type === 'DIV' && nextState.scoreboard.some(e => !e.ready && e.inst.type === 'DIV')) {
+      nextState.structuralStalls++;
+      nextState.stallReason = "Structural Hazard: Serial Divider Busy!";
+      nextState.status = 'STALLED';
+      storyType = 'stall';
+      storyDetails.push(`Structural Stall: Serial Divider unit is currently busy executing a previous division. Issue stalled.`);
+      if (!nextState.gantt[candidate.id]) nextState.gantt[candidate.id] = {};
+      nextState.gantt[candidate.id][cycle] = 'S';
     } else {
+      // Check RAW Hazard against unready preceding producers
       const rawHazard = nextState.scoreboard.find(e => !e.ready && e.rd !== 0 && (e.rd === candidate.rs1 || e.rd === candidate.rs2));
       if (rawHazard) {
         nextState.rawStalls++;
@@ -3040,6 +3421,7 @@ const stepSimulation = (state, program) => {
         if (!nextState.gantt[candidate.id]) nextState.gantt[candidate.id] = {};
         nextState.gantt[candidate.id][cycle] = 'S';
       } else {
+        // Operands ready: forward latest completed values
         let rs1Val = nextState.registers[candidate.rs1] || 0;
         let rs2Val = nextState.registers[candidate.rs2] || 0;
         for (const e of nextState.scoreboard) {
@@ -3048,12 +3430,23 @@ const stepSimulation = (state, program) => {
             if (e.rd === candidate.rs2) rs2Val = e.result;
           }
         }
+
         let assignedFu = 'ALU';
         if (candidate.type === 'MUL' || candidate.type === 'DIV') assignedFu = 'MUL_DIV';
         else if (candidate.type === 'LSU') assignedFu = 'LSU';
         else if (candidate.type === 'BRANCH') assignedFu = 'BRANCH';
         else if (candidate.type === 'CSR') assignedFu = 'CSR';
-        const newTransId = nextState.scoreboard.length > 0 ? Math.max(...nextState.scoreboard.map(e => e.transId)) + 1 : 1;
+
+        // Dynamic Latency for Serial Divider
+        let totalLat = candidate.latency;
+        if (candidate.type === 'DIV') {
+          totalLat = computeDivLatency(candidate.op, rs1Val, rs2Val);
+        }
+
+        // Circular TID 0..7
+        const newTransId = (nextState.lastAllocatedTid !== undefined ? (nextState.lastAllocatedTid + 1) % 8 : nextState.scoreboard.length % 8);
+        nextState.lastAllocatedTid = newTransId;
+
         nextState.scoreboard.push({
           transId: newTransId,
           inst: candidate,
@@ -3062,24 +3455,19 @@ const stepSimulation = (state, program) => {
           rs1Val,
           rs2Val,
           issueCycle: cycle,
-          totalLatency: candidate.latency,
-          remainingCycles: candidate.latency,
+          totalLatency: totalLat,
+          remainingCycles: totalLat,
           ready: false,
           result: 0,
           committed: false
         });
         nextState.issueBuffer.shift();
         const instColor = candidate.color.border;
-        nextState.activeWires.push({
-          key: 'ISS_BUF_TO_READ',
-          color: instColor
-        }, {
-          key: 'ISS_READ_TO_PIPE',
-          color: instColor
-        }, {
-          key: 'ISS_READ_TO_SB',
-          color: instColor
-        });
+        nextState.activeWires.push(
+          { key: 'ISS_BUF_TO_READ', color: instColor },
+          { key: 'ISS_READ_TO_PIPE', color: instColor },
+          { key: 'ISS_READ_TO_SB', color: instColor }
+        );
         nextState.activeUnits['ISSUE_READ'] = {
           inst: candidate,
           label: `Issue: ${candidate.op}`,
@@ -3096,10 +3484,10 @@ const stepSimulation = (state, program) => {
         nextState.stageSnapshot.issue = `Issued: ${candidate.op} -> ${assignedFu}`;
         if (!nextState.gantt[candidate.id]) nextState.gantt[candidate.id] = {};
         nextState.gantt[candidate.id][cycle] = 'I';
-        storyDetails.push(`Dispatched [${candidate.raw}] to ${assignedFu} unit (TID #${newTransId}, Latency: ${candidate.latency} cyc).`);
+        storyDetails.push(`Dispatched [${candidate.raw}] to ${assignedFu} unit (TID #${newTransId}, Latency: ${totalLat} cyc).`);
         nextState.logs.unshift({
           cycle,
-          text: `[ISSUE] Dispatched ${candidate.raw} to ${assignedFu} (Latency: ${candidate.latency} cyc, TID: ${newTransId})`,
+          text: `[ISSUE] Dispatched ${candidate.raw} to ${assignedFu} (Latency: ${totalLat} cyc, TID: ${newTransId})`,
           type: 'info'
         });
       }
@@ -3122,13 +3510,7 @@ const stepSimulation = (state, program) => {
         color: instColor,
         computation: `16-bit compressed ${decoded.op} expanded to standard RV32I`
       };
-      nextState.activeWires.push({
-        key: 'ID_QUEUE_TO_COMP',
-        color: instColor
-      }, {
-        key: 'ID_COMP_TO_DEC',
-        color: instColor
-      });
+      nextState.activeWires.push({ key: 'ID_QUEUE_TO_COMP', color: instColor }, { key: 'ID_COMP_TO_DEC', color: instColor });
     } else {
       nextState.activeUnits['DECODER'] = {
         inst: decoded,
@@ -3137,10 +3519,7 @@ const stepSimulation = (state, program) => {
         color: instColor,
         computation: `Decoded ${decoded.raw} -> rd:x${decoded.rd}, rs1:x${decoded.rs1}, rs2:x${decoded.rs2}`
       };
-      nextState.activeWires.push({
-        key: 'ID_DEC_TO_ISSUE_BUF',
-        color: instColor
-      });
+      nextState.activeWires.push({ key: 'ID_DEC_TO_ISSUE_BUF', color: instColor });
     }
     if (!nextState.gantt[decoded.id]) nextState.gantt[decoded.id] = {};
     nextState.gantt[decoded.id][cycle] = 'D';
@@ -3153,10 +3532,7 @@ const stepSimulation = (state, program) => {
   if (nextState.feQueue.length > 0 && nextState.idQueue.length < 2) {
     const inst = nextState.feQueue.shift();
     nextState.idQueue.push(inst);
-    nextState.activeWires.push({
-      key: 'FE_REALIGNER_TO_QUEUE',
-      color: inst.color.border
-    });
+    nextState.activeWires.push({ key: 'FE_REALIGNER_TO_QUEUE', color: inst.color.border });
     nextState.activeUnits['INSTR_QUEUE'] = {
       inst,
       label: `Queue (${nextState.idQueue.length}/6)`,
@@ -3170,6 +3546,7 @@ const stepSimulation = (state, program) => {
   if (nextCache.iRefill && nextCache.iRefill.active) {
     nextState.stageSnapshot.fetch = `Fetch Stalled (I$ Refill ${nextCache.iRefill.cyclesRemaining}c)`;
     storyDetails.push(`Front-End Fetch Stalled: Waiting for AXI memory burst refill for I$ at PC 0x${nextCache.iRefill.pc.toString(16)}.`);
+    nextICacheTimeline[cycle] = nextCache.iRefill.killed ? 'KILL_MISS' : 'MISS';
   } else if (nextState.feQueue.length < 4) {
     const currentInst = program.find(p => p.pc === nextState.pc);
     if (currentInst) {
@@ -3189,6 +3566,8 @@ const stepSimulation = (state, program) => {
       const isIHit = hitIWay !== -1;
       if (isIHit) {
         nextCache.iHits++;
+        nextCache.iControllerState = 'READ';
+        nextICacheTimeline[cycle] = 'HIT';
         const lineKey = numWays === 1 ? iSetIdx : `${iSetIdx}_${hitIWay >= 0 ? hitIWay : 0}`;
         if (nextCache.icache[lineKey]) {
           nextCache.icache[lineKey].lastAccessCycle = cycle;
@@ -3216,13 +3595,10 @@ const stepSimulation = (state, program) => {
           subLabel: `${currentInst.type}`,
           color: instColor
         };
-        nextState.activeWires.push({
-          key: 'FE_ICACHE_TO_REALIGNER',
-          color: instColor
-        }, {
-          key: 'FE_REALIGNER_TO_SCAN',
-          color: instColor
-        });
+        nextState.activeWires.push(
+          { key: 'FE_ICACHE_TO_REALIGNER', color: instColor },
+          { key: 'FE_REALIGNER_TO_SCAN', color: instColor }
+        );
 
         let nextPc = nextState.pc + (currentInst.isCompressed ? 2 : 4);
         if (currentInst.type === 'BRANCH') {
@@ -3257,7 +3633,9 @@ const stepSimulation = (state, program) => {
       } else {
         // I$ MISS!
         nextCache.iMisses++;
-        const refillLatency = nextCache.missPenaltyCycles || 4;
+        nextCache.iControllerState = 'MISS';
+        nextICacheTimeline[cycle] = 'MISS';
+        const refillLatency = nextCache.config ? (nextCache.config.missLatency || 4) : (nextCache.missPenaltyCycles || 4);
         let victimWay = 0;
         let oldestCycle = Infinity;
         for (let w = 0; w < numWays; w++) {
@@ -3302,6 +3680,10 @@ const stepSimulation = (state, program) => {
       nextState.status = 'DONE';
       storyDetails.push(`Program execution completed! All instructions committed to architectural registers.`);
     }
+  }
+
+  if (!nextICacheTimeline[cycle]) {
+    nextICacheTimeline[cycle] = nextCache.iControllerState === 'REFILL_WAIT' ? 'MISS' : (nextCache.iControllerState || 'IDLE');
   }
 
   let headline = `Cycle ${cycle}: Normal Pipeline Progress`;
@@ -3356,6 +3738,8 @@ function CVA6PipelineSimulator() {
     issueBuffer: [],
     scoreboard: [],
     committedCount: 0,
+    dualCommitCount: 0,
+    lastAllocatedTid: 0,
     rawStalls: 0,
     structuralStalls: 0,
     mispredicts: 0,
@@ -3370,6 +3754,7 @@ function CVA6PipelineSimulator() {
     stallReason: null,
     status: 'IDLE',
     gantt: {},
+    iCacheTimeline: {},
     cycleStory: {
       headline: 'Simulator Ready',
       details: ['Click Step or Run to execute instructions cycle-by-cycle.'],
@@ -3470,6 +3855,8 @@ function CVA6PipelineSimulator() {
       issueBuffer: [],
       scoreboard: [],
       committedCount: 0,
+      dualCommitCount: 0,
+      lastAllocatedTid: 0,
       rawStalls: 0,
       structuralStalls: 0,
       mispredicts: 0,
@@ -3484,6 +3871,7 @@ function CVA6PipelineSimulator() {
       stallReason: null,
       status: 'IDLE',
       gantt: {},
+      iCacheTimeline: {},
       cycleStory: {
         headline: 'Program Loaded',
         details: [`Loaded ${parsed.length} RISC-V instructions into Instruction Cache. Cache state: ${isPw ? 'Pre-warmed' : 'Cold Start'}.`],
@@ -3541,7 +3929,8 @@ function CVA6PipelineSimulator() {
       return;
     }
     const maxCycle = Math.max(state.cycle, 1);
-    const numFlushCycles = state.cache?.config?.simulateStartupFlush ? (1 << (state.cache.config.linesExp || 2)) : 0;
+    const resetCycles = state.cache?.config?.simulateStartupFlush ? 10 : 0;
+    const numFlushCycles = state.cache?.config?.simulateStartupFlush ? (resetCycles + (1 << (state.cache.config.linesExp || 2)) - 1) : 0;
     const activeCycles = Math.max(0, state.cycle - numFlushCycles);
     const cpiExec = state.committedCount > 0 ? (activeCycles / state.committedCount).toFixed(2) : '1.00';
     const cpiTotal = state.committedCount > 0 ? (state.cycle / state.committedCount).toFixed(2) : '1.00';
@@ -3556,7 +3945,8 @@ function CVA6PipelineSimulator() {
       `# Execution CPI: ${cpiExec}`,
       numFlushCycles > 0 ? `# Total Wall-Clock CPI (including ${numFlushCycles}c flush): ${cpiTotal}` : `# Total CPI: ${cpiTotal}`,
       `# IPC: ${ipcVal}`,
-      `# Stage Legend: F=Fetch; D=Decode; I=Issue; E=Execute; W=Writeback; C=Commit; S=Stall; M=MemWait`,
+      `# Stage Legend: F=Fetch; D=Decode; I=Issue; E=Execute; W=Writeback; C=Commit; S=Stall; M=MemWait; B=StoreBufWait`,
+      `# I-Cache FSM Legend: FLUSH=Tag Invalidation; HIT=Read Hit; MISS=AXI Burst Refill; KILL=Killed Refill; IDLE=Idle`,
       ``
     ];
 
@@ -3565,6 +3955,14 @@ function CVA6PipelineSimulator() {
       cycleCols.push(`C${c}`);
     }
     lines.push(['ID', 'PC', 'Instruction', ...cycleCols].join(','));
+
+    // I-Cache FSM State Row
+    const iStates = [];
+    for (let c = 1; c <= maxCycle; c++) {
+      const iSt = (state.iCacheTimeline && state.iCacheTimeline[c]) || (c <= resetCycles ? 'RESET' : (c <= numFlushCycles ? 'FLUSH' : 'IDLE'));
+      iStates.push(iSt);
+    }
+    lines.push(['ICACHE', '-', '"I$ Cache FSM State"', ...iStates].join(','));
 
     instructions.forEach(inst => {
       const rowGantt = state.gantt[inst.id] || {};
@@ -3605,7 +4003,7 @@ function CVA6PipelineSimulator() {
     const padding = 20;
 
     const totalWidth = padding * 2 + labelWidth + (maxCycle * cellWidth);
-    const totalHeight = padding * 2 + headerHeight + legendHeight + (instructions.length * cellHeight);
+    const totalHeight = padding * 2 + headerHeight + legendHeight + ((instructions.length + 1) * cellHeight) + 8;
 
     const canvas = document.createElement('canvas');
     const scale = 2; // 2x high-resolution
@@ -3627,7 +4025,8 @@ function CVA6PipelineSimulator() {
     // Subtitle & Microarchitectural Metrics
     ctx.fillStyle = '#94a3b8';
     ctx.font = '11px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace';
-    const numFlushCycles = state.cache?.config?.simulateStartupFlush ? (1 << (state.cache.config.linesExp || 2)) : 0;
+    const resetCycles = state.cache?.config?.simulateStartupFlush ? 10 : 0;
+    const numFlushCycles = state.cache?.config?.simulateStartupFlush ? (resetCycles + (1 << (state.cache.config.linesExp || 2)) - 1) : 0;
     const activeCycles = Math.max(0, state.cycle - numFlushCycles);
     const cpiExec = state.committedCount > 0 ? (activeCycles / state.committedCount).toFixed(2) : '1.00';
     const cpiTotal = state.committedCount > 0 ? (state.cycle / state.committedCount).toFixed(2) : '1.00';
@@ -3654,6 +4053,12 @@ function CVA6PipelineSimulator() {
       { k: 'C', label: 'Commit', bg: '#064e3b', text: '#a7f3d0' },
       { k: 'S', label: 'Stall', bg: '#881337', text: '#fecdd3' },
       { k: 'M', label: 'MemWait', bg: '#4c0519', text: '#fda4af', border: '#e11d48' },
+      { k: 'B', label: 'StoreBuf Wait', bg: '#451a03', text: '#fcd34d', border: '#d97706' },
+      { k: 'RST', label: 'Reset', bg: '#4c0519', text: '#fca5a5', border: '#ef4444' },
+      { k: 'FLUSH', label: 'I$ Flush', bg: '#451a03', text: '#fcd34d', border: '#d97706' },
+      { k: 'HIT', label: 'I$ Hit', bg: '#1e3a8a', text: '#93c5fd', border: '#2563eb' },
+      { k: 'MISS', label: 'I$ Miss', bg: '#4c0519', text: '#fda4af', border: '#e11d48' },
+      { k: 'KILL', label: 'I$ Kill', bg: '#431407', text: '#fdba74', border: '#ea580c' },
     ];
 
     let legendX = padding;
@@ -3706,9 +4111,67 @@ function CVA6PipelineSimulator() {
     ctx.lineTo(totalWidth - padding, tableStartY - 2);
     ctx.stroke();
 
+    // I$ Cache State Row
+    const iRowY = tableStartY;
+    ctx.fillStyle = '#0f172a';
+    ctx.fillRect(padding - 4, iRowY, totalWidth - padding * 2 + 8, cellHeight);
+
+    ctx.fillStyle = '#a5b4fc';
+    ctx.font = 'bold 10px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace';
+    ctx.fillText('⚡ I$ Cache FSM', padding, iRowY + 16);
+
+    for (let c = 1; c <= maxCycle; c++) {
+      const colX = padding + labelWidth + (c - 1) * cellWidth;
+      const iSt = (state.iCacheTimeline && state.iCacheTimeline[c]) || (c <= resetCycles ? 'RESET' : (c <= numFlushCycles ? 'FLUSH' : 'IDLE'));
+      if (iSt && iSt !== 'IDLE') {
+        const bg = iSt === 'RESET' ? '#4c0519' : (iSt === 'FLUSH' ? '#451a03' : (iSt === 'HIT' || iSt === 'READ' ? '#1e3a8a' : (iSt === 'MISS' ? '#4c0519' : (iSt === 'KILL_MISS' || iSt === 'KILL' ? '#431407' : '#334155'))));
+        const text = iSt === 'RESET' ? '#fca5a5' : (iSt === 'FLUSH' ? '#fcd34d' : (iSt === 'HIT' || iSt === 'READ' ? '#93c5fd' : (iSt === 'MISS' ? '#fda4af' : (iSt === 'KILL_MISS' || iSt === 'KILL' ? '#fdba74' : '#cbd5e1'))));
+        const border = iSt === 'RESET' ? '#ef4444' : (iSt === 'FLUSH' ? '#d97706' : (iSt === 'HIT' || iSt === 'READ' ? '#2563eb' : (iSt === 'MISS' ? '#e11d48' : (iSt === 'KILL_MISS' || iSt === 'KILL' ? '#ea580c' : null))));
+        const label = iSt === 'RESET' ? 'RESET' : (iSt === 'FLUSH' ? 'FLUSH' : (iSt === 'HIT' || iSt === 'READ' ? 'HIT' : (iSt === 'MISS' ? 'MISS' : (iSt === 'KILL_MISS' || iSt === 'KILL' ? 'KILL' : iSt))));
+
+        ctx.fillStyle = bg;
+        const bx = colX + 1;
+        const by = iRowY + 3;
+        const bw = cellWidth - 2;
+        const bh = cellHeight - 6;
+        ctx.beginPath();
+        if (typeof ctx.roundRect === 'function') {
+          ctx.roundRect(bx, by, bw, bh, 3);
+        } else {
+          ctx.rect(bx, by, bw, bh);
+        }
+        ctx.fill();
+        if (border) {
+          ctx.strokeStyle = border;
+          ctx.stroke();
+        }
+        ctx.fillStyle = text;
+        ctx.font = 'bold 8px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(label, colX + cellWidth / 2, iRowY + 15);
+        ctx.textAlign = 'left';
+      } else {
+        ctx.fillStyle = '#334155';
+        ctx.font = '9px ui-monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('·', colX + cellWidth / 2, iRowY + 15);
+        ctx.textAlign = 'left';
+      }
+    }
+
+    // Divider line below I$ Cache State
+    ctx.strokeStyle = '#334155';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(padding, iRowY + cellHeight + 1);
+    ctx.lineTo(totalWidth - padding, iRowY + cellHeight + 1);
+    ctx.stroke();
+
+    const instStartY = iRowY + cellHeight + 4;
+
     // Instruction Rows
     instructions.forEach((inst, rIdx) => {
-      const rowY = tableStartY + rIdx * cellHeight;
+      const rowY = instStartY + rIdx * cellHeight;
 
       // Subtle Zebra Striping
       if (rIdx % 2 === 1) {
@@ -3809,6 +4272,7 @@ function CVA6PipelineSimulator() {
       if (targetPreset === 'cva6_report_benchmark' && pFlush === null) {
         effectiveCfg.simulateStartupFlush = true;
         effectiveCfg.linesExp = 8;
+        effectiveCfg.missLatency = 6;
       }
       setCacheConfig(effectiveCfg);
 
@@ -3833,6 +4297,8 @@ function CVA6PipelineSimulator() {
         issueBuffer: [],
         scoreboard: [],
         committedCount: 0,
+        dualCommitCount: 0,
+        lastAllocatedTid: 0,
         rawStalls: 0,
         structuralStalls: 0,
         mispredicts: 0,
@@ -3861,7 +4327,7 @@ function CVA6PipelineSimulator() {
           hist.push(s);
           s = stepSimulation(s, parsed);
         }
-        setHistory(hist.slice(-300));
+        setHistory(hist.slice(-600));
       }
       setState(s);
     } catch (e) {
@@ -3870,7 +4336,7 @@ function CVA6PipelineSimulator() {
   }, []);
   const handleStep = () => {
     if (instructions.length === 0) return;
-    setHistory(prev => [...prev.slice(-300), state]);
+    setHistory(prev => [...prev.slice(-600), state]);
     setState(prev => stepSimulation(prev, instructions));
   };
   const handleStepBack = () => {
@@ -3890,6 +4356,12 @@ function CVA6PipelineSimulator() {
     if (key === 'cva6_report_benchmark') {
       effectiveCfg.simulateStartupFlush = true;
       effectiveCfg.linesExp = 8;
+      effectiveCfg.missLatency = 6;
+      setCacheConfig(effectiveCfg);
+    } else {
+      effectiveCfg.simulateStartupFlush = false;
+      effectiveCfg.linesExp = 2;
+      effectiveCfg.missLatency = 4;
       setCacheConfig(effectiveCfg);
     }
     setState({
@@ -3911,6 +4383,8 @@ function CVA6PipelineSimulator() {
       issueBuffer: [],
       scoreboard: [],
       committedCount: 0,
+      dualCommitCount: 0,
+      lastAllocatedTid: 0,
       rawStalls: 0,
       structuralStalls: 0,
       mispredicts: 0,
@@ -3925,6 +4399,7 @@ function CVA6PipelineSimulator() {
       stallReason: null,
       status: 'IDLE',
       gantt: {},
+      iCacheTimeline: {},
       cycleStory: {
         headline: `Preset Loaded: ${PRESETS[key].title}`,
         details: [PRESETS[key].desc, 'Click Step or Run to simulate.'],
@@ -3943,7 +4418,7 @@ function CVA6PipelineSimulator() {
             setIsRunning(false);
             return prev;
           }
-          setHistory(h => [...h.slice(-300), prev]);
+          setHistory(h => [...h.slice(-600), prev]);
           return stepSimulation(prev, instructions);
         });
       }, clockSpeed);
@@ -3991,8 +4466,10 @@ function CVA6PipelineSimulator() {
       y: Math.round(newPanY)
     });
   };
-  const numFlushCycles = state.cache?.config?.simulateStartupFlush ? (1 << (state.cache.config.linesExp || 2)) : 0;
+  const resetCycles = state.cache?.config?.simulateStartupFlush ? 10 : 0;
+    const numFlushCycles = state.cache?.config?.simulateStartupFlush ? (resetCycles + (1 << (state.cache.config.linesExp || 2)) - 1) : 0;
   const activeExecutionCycles = Math.max(0, state.cycle - numFlushCycles);
+  const showPinnedFlushColumn = numFlushCycles > 0 && state.cycle > numFlushCycles;
   const cpiExec = state.committedCount > 0 ? (activeExecutionCycles / state.committedCount).toFixed(2) : '1.00';
   const cpiTotal = state.committedCount > 0 ? (state.cycle / state.committedCount).toFixed(2) : '1.00';
   const cpi = cpiExec;
@@ -4115,7 +4592,15 @@ function CVA6PipelineSimulator() {
     className: "text-slate-500 text-[10px] block"
   }, "IPC"), /*#__PURE__*/React.createElement("span", {
     className: "text-purple-400 font-bold text-sm"
-  }, ipc))), /*#__PURE__*/React.createElement("div", {
+  }, ipc)), state.dualCommitCount > 0 && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    className: "h-5 w-[1px] bg-slate-800"
+  }), /*#__PURE__*/React.createElement("div", {
+    title: `Dual-Commit Cycles: ${state.dualCommitCount} cycles retired 2 instructions simultaneously (Port 0 & Port 1).`
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "text-slate-500 text-[10px] block"
+  }, "DUAL COMMITS"), /*#__PURE__*/React.createElement("span", {
+    className: "text-cyan-400 font-bold text-sm"
+  }, state.dualCommitCount)))), /*#__PURE__*/React.createElement("div", {
     className: `px-2.5 py-1 rounded text-xs font-bold flex items-center gap-1 border ${state.status === 'DONE' ? 'bg-emerald-950 text-emerald-400 border-emerald-800' : state.status === 'STALLED' ? 'bg-amber-950 text-amber-400 border-amber-800 animate-pulse' : state.status === 'FLUSHED' ? 'bg-rose-950 text-rose-400 border-rose-800' : state.status === 'RUNNING' ? 'bg-blue-950 text-blue-400 border-blue-800' : 'bg-slate-950 text-slate-400 border-slate-800'}`
   }, /*#__PURE__*/React.createElement(Activity, {
     size: 13
@@ -4914,7 +5399,7 @@ function CVA6PipelineSimulator() {
     className: "font-semibold text-slate-300"
   }, "Pipeline Reservation Timeline"), /*#__PURE__*/React.createElement("span", {
     className: "text-[10px] text-slate-500 hidden sm:inline"
-  }, "F=Fetch, D=Dec, I=Issue, E=Exec, W=WB, C=Commit, S=Stall, M=MemWait")), /*#__PURE__*/React.createElement("div", {
+  }, "F=Fetch, D=Dec, I=Issue, E=Exec, W=WB, C=Commit, S=Stall, M=MemWait, B=StoreBufWait | I$: FLUSH, HIT, MISS, KILL")), /*#__PURE__*/React.createElement("div", {
     ref: timelineExportMenuRef,
     className: "relative"
   }, /*#__PURE__*/React.createElement("button", {
@@ -4965,13 +5450,63 @@ function CVA6PipelineSimulator() {
     className: "border-b border-slate-800 text-slate-500"
   }, /*#__PURE__*/React.createElement("th", {
     className: "text-left py-1 pr-2"
-  }, "Instr"), numFlushCycles > 0 && /*#__PURE__*/React.createElement("th", {
+  }, "Instr"), showPinnedFlushColumn && /*#__PURE__*/React.createElement("th", {
     className: "px-2 py-0.5 text-center bg-amber-950/40 text-amber-300 border border-amber-800/60 rounded text-[9px] font-mono whitespace-nowrap",
     title: `I-Cache Startup Tag Flush (${numFlushCycles} cycles). CVA6 hardware clears all tag valid bits before fetching PC 0.`
   }, `C1..C${numFlushCycles} [I$ Flush]`), ganttCycles.map(c => /*#__PURE__*/React.createElement("th", {
     key: c,
     className: `px-1.5 text-center ${c === state.cycle ? 'text-blue-400 font-bold' : ''}`
-  }, "C", c)))), /*#__PURE__*/React.createElement("tbody", null, instructions.map(inst => {
+  }, "C", c)))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", {
+    className: "border-b border-indigo-900/60 bg-slate-900/90 font-semibold sticky top-0 z-10"
+  }, /*#__PURE__*/React.createElement("td", {
+    className: "py-1 pr-2 text-indigo-400 font-bold whitespace-nowrap flex items-center space-x-1"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "w-1.5 h-1.5 rounded-full bg-indigo-400 inline-block"
+  }), /*#__PURE__*/React.createElement("span", null, "I$ State")), showPinnedFlushColumn && /*#__PURE__*/React.createElement("td", {
+    className: "p-0.5 text-center"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "px-1.5 py-0.5 rounded font-mono text-[9px] bg-amber-950/90 text-amber-300 border border-amber-700/80 block font-bold",
+    title: `I-Cache tag flush active across cycles 1..${numFlushCycles}`
+  }, "FLUSH")), ganttCycles.map(c => {
+    const iSt = (state.iCacheTimeline && state.iCacheTimeline[c]) || (c <= resetCycles ? 'RESET' : (c <= numFlushCycles ? 'FLUSH' : 'IDLE'));
+    let badgeClass = "text-slate-700 font-mono text-[9px]";
+    let badgeText = "·";
+    let tooltip = "I-Cache Idle / Ready";
+    if (iSt === 'RESET') {
+      badgeClass = "bg-rose-950/90 text-rose-300 border border-rose-700/80 font-bold";
+      badgeText = "RESET";
+      tooltip = "Core Held in Hardware Reset (rst_ni = 0, cycles 1..10)";
+    } else if (iSt === 'FLUSH') {
+      badgeClass = "bg-amber-950/90 text-amber-300 border border-amber-700/80 font-bold";
+      badgeText = "FLUSH";
+      tooltip = "I-Cache Tag Flush FSM (clearing valid tags)";
+    } else if (iSt === 'READ' || iSt === 'HIT') {
+      badgeClass = "bg-blue-950/90 text-blue-300 border border-blue-600 font-bold";
+      badgeText = "HIT";
+      tooltip = "I-Cache Read Hit: Tag matched, retrieved from SRAM";
+    } else if (iSt === 'MISS') {
+      badgeClass = "bg-rose-950 text-rose-300 border border-rose-600 font-bold animate-pulse";
+      badgeText = "MISS";
+      tooltip = "I-Cache Miss: Waiting AXI memory burst refill";
+    } else if (iSt === 'KILL_MISS' || iSt === 'KILL') {
+      badgeClass = "bg-orange-950 text-orange-300 border border-orange-600 font-bold";
+      badgeText = "KILL";
+      tooltip = "I-Cache Killed Miss (kill_s2): Pipeline redirect squashed speculative refill";
+    } else if (iSt === 'KILL_ATRANS') {
+      badgeClass = "bg-purple-950 text-purple-300 border border-purple-600 font-bold";
+      badgeText = "K_AT";
+      tooltip = "I-Cache Killed Address Translation";
+    }
+    return /*#__PURE__*/React.createElement("td", {
+      key: c,
+      className: "p-0.5 text-center"
+    }, badgeText === '·' ? /*#__PURE__*/React.createElement("span", {
+      className: "text-slate-700 font-mono text-[9px]"
+    }, "·") : /*#__PURE__*/React.createElement("span", {
+      className: `px-1.5 py-0.5 rounded font-mono text-[9px] ${badgeClass}`,
+      title: tooltip
+    }, badgeText));
+  })), instructions.map(inst => {
     const rowCycles = state.gantt[inst.id] || {};
     return /*#__PURE__*/React.createElement("tr", {
       key: inst.id,
@@ -4981,7 +5516,7 @@ function CVA6PipelineSimulator() {
       style: {
         color: inst.color.text
       }
-    }, inst.op), numFlushCycles > 0 && /*#__PURE__*/React.createElement("td", {
+    }, inst.op), showPinnedFlushColumn && /*#__PURE__*/React.createElement("td", {
       className: "p-0.5 text-center"
     }, /*#__PURE__*/React.createElement("span", {
       className: "px-1.5 py-0.5 rounded font-mono text-[9px] bg-slate-900/80 text-slate-500 border border-slate-800/80 block truncate",
@@ -4992,7 +5527,7 @@ function CVA6PipelineSimulator() {
         key: c,
         className: "text-center text-slate-800"
       }, "·");
-      const stageClass = stage === 'F' ? 'bg-blue-900 text-blue-200' : stage === 'D' ? 'bg-yellow-900 text-yellow-200' : stage === 'I' ? 'bg-cyan-900 text-cyan-200' : stage === 'E' ? 'bg-purple-900 text-purple-200' : stage === 'W' ? 'bg-amber-900 text-amber-200' : stage === 'C' ? 'bg-emerald-900 text-emerald-200 font-bold' : stage === 'M' ? 'bg-rose-950 border border-rose-600 text-rose-300 font-bold animate-pulse' : 'bg-rose-900 text-rose-200 font-bold animate-pulse';
+      const stageClass = stage === 'F' ? 'bg-blue-900 text-blue-200' : stage === 'D' ? 'bg-yellow-900 text-yellow-200' : stage === 'I' ? 'bg-cyan-900 text-cyan-200' : stage === 'E' ? 'bg-purple-900 text-purple-200' : stage === 'W' ? 'bg-amber-900 text-amber-200' : stage === 'C' ? 'bg-emerald-900 text-emerald-200 font-bold' : stage === 'M' ? 'bg-rose-950 border border-rose-600 text-rose-300 font-bold animate-pulse' : stage === 'B' ? 'bg-amber-950 border border-amber-600 text-amber-300 font-bold' : 'bg-rose-900 text-rose-200 font-bold animate-pulse';
       return /*#__PURE__*/React.createElement("td", {
         key: c,
         className: "p-0.5 text-center"
